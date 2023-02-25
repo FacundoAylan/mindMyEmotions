@@ -1,9 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useNavigation } from '@react-navigation/native'
 
-function Home () {
-  const navigation = useNavigation();
+function Home ({navigation}) {
   return (
     <View style={styles.container}>
       <Text>Bienvenidos a mind My Emotions</Text>
