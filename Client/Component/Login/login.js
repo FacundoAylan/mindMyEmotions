@@ -1,41 +1,48 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { TouchableOpacity } from "react-native-gesture-handler";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-export default function Login () {
+export default function Login({ navigation }) {
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => navigation.navigate("sesion")}
+      >
         <Text style={styles.text}>Soy niño/a</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.text}>Soy padre/docente o cuidador</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => {
+          navigation.navigate("sesion");
+        }}
+      >
+        <Text style={styles.text}>Soy adulto</Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   button: {
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     paddingVertical: 12,
     paddingHorizontal: 32,
     borderRadius: 12,
     elevation: 3,
-    backgroundColor: 'blue',
-    marginTop: 20
+    backgroundColor: "blue",
+    marginTop: 20,
   },
   text: {
     fontSize: 16,
     lineHeight: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     letterSpacing: 0.25,
-    color: 'white',
-  }
-})
+    color: "white",
+  },
+});
