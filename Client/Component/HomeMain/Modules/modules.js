@@ -1,10 +1,27 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Modules () {
+// este componente contine el contenedor de cada modulo , se repite codigo 
+export default function Modules ({navigation}) {
   return (
     <View>
-      <Text>Modulo 1</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
+        <View style={styles.container}>
+          <Text style={styles.text}>Reconocimiento emocional</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
+        <View style={styles.container}>
+          <Text style={styles.text}>Habilidades socioemocionales</Text>
+        </View>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
+        <View style={styles.container}>
+          <Text style={styles.text}>Salud mental</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   )
 }
@@ -12,6 +29,17 @@ export default function Modules () {
 
 const styles = StyleSheet.create({
   container: {
-    background:'red'
+    backgroundColor:'#662483',
+    height: 100,
+    margin: 10,
+    borderRadius: 12
+  },
+  text:{
+    flex: 1,
+    justifyContent: 'center',
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
+    marginTop: '10%'
   }
 }) 
