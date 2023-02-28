@@ -1,0 +1,14 @@
+# React Native dependencies
+node_modules/
+ios/Pods/
+android/app/build/
+
+# IDE files
+.vscode/
+.idea/
+
+# Build artifacts
+*.apk
+*.aab
+*.xcworkspace
+*.log
