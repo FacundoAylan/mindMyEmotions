@@ -37,20 +37,22 @@ class Buscar_usuario_contraseña(BaseModel):
 
 #Buscar Usuario y contraseña
 #Devuelve un mensaje que indica si existe o no el usuario, y la contraseña correcta o no
-@app.post("/Buscar_usuario_contraseña/")
+@app.post("/Buscar_usuario_contraseña")
 async def Buscar_usuario_contraseña(user_date:Buscar_usuario_contraseña):
     #inicio en falso la variable que voy a retornar
-    Mnsaje="El usuario no existe o no coincide el mail"
+    Mensaje="El usuario no existe o no coincide el mail"
     #conecto a la base de datos pidiendo que busque el id de usuario: el mail
     usuario_doc=db.collection('usuarios').document(user_date.mail).get()
     #si existe el usuario busca la contraseña
     
-    if usuario_doc.exists:
+    usuario_diccionario=usuario_doc.to_dict()
+    '''
+    if usuario_diccionario:
         Mensaje="No existe o no coincide la contraseña"
         usuario_diccionario=usuario_doc.to_dict()
         #si existe la contraseña devuelve True
         if usuario_diccionario['contraseña']== user_date.contraseña :
             
             Mensaje="Usuario y contraseña ingresados correctamente"
-    return {Mensaje}
-
+    '''
+    return {usuario_diccionario}
