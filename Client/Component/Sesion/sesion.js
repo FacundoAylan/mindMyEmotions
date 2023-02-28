@@ -5,8 +5,8 @@ import { validatePassword } from "../../Helpers/authenticationFunctions";
 import { validateUserAuthentication } from "../../Helpers/authenticationFunctions";
 
 export default function Sesion({navigation}) {
-  const [ email, setEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
+  const [ email, setEmail ] = useState( 'testemail@gmail.com' );
+  const [ password, setPassword ] = useState( '98dhjwa9hioadk.' );
 
 
   let validateInformationAndLogIn = () => {
@@ -22,7 +22,6 @@ export default function Sesion({navigation}) {
         else {
           alert( 'pon bien los datos1' )
         }
-
       }
       else {
         alert( 'pon bien los datos2' )
