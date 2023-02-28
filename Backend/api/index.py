@@ -37,7 +37,7 @@ class Buscar_usuario_contraseña(BaseModel):
 
 #Buscar Usuario y contraseña
 #Devuelve un mensaje que indica si existe o no el usuario, y la contraseña correcta o no
-@app.post("/Buscar_usuario_contraseña")
+@app.post("/Buscar_usuario_contraseña/")
 async def Buscar_usuario_contraseña(user_date:Buscar_usuario_contraseña):
     #inicio en falso la variable que voy a retornar
     Mnsaje="El usuario no existe o no coincide el mail"
