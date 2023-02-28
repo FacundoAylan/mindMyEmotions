@@ -46,7 +46,7 @@ async def Buscar_usuario_contraseña(user_date:Buscar_usuario_contraseña):
     #si existe el usuario busca la contraseña
     
     usuario_diccionario=usuario_doc.to_dict()
-    
+    """
     if usuario_diccionario:
         Mensaje="No existe o no coincide la contraseña"
         usuario_diccionario=usuario_doc.to_dict()
@@ -54,5 +54,5 @@ async def Buscar_usuario_contraseña(user_date:Buscar_usuario_contraseña):
         if usuario_diccionario['contraseña']== user_date.contraseña :
             
             Mensaje="Usuario y contraseña ingresados correctamente"
-    
-    return {"Mensaje":Mensaje}
+    """
+    return {"Mensaje":usuario_diccionario}
