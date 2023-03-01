@@ -1,12 +1,38 @@
 import React from "react";
+import { useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import * as SecureStore from 'expo-secure-store';
+
 
 export default function Login({ navigation }) {
+  const [ first, setfirst ] = useState( 'aaaaaaaaaa' )
+
+  let IS_ADULT = 'IS_ADULT'
+
+  let adultSelected = async () => {
+    saveToStorage( IS_ADULT, 'yes' )
+    navigation.navigate( "sesion" );
+  }
+
+  let kidSelected = () => {
+    saveToStorage( IS_ADULT, 'no' )
+    navigation.navigate( "sesion" );
+  }
+
+  async function saveToStorage( key, value ) {
+
+    await SecureStore.setItemAsync( key, value );
+
+  }
+
+
   return (
     <View style={styles.container}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("sesion")}
+        onPress={() =>
+          kidSelected()
+        }
       >
         <Text style={styles.text}>Soy niño/a</Text>
       </TouchableOpacity>
@@ -14,7 +40,7 @@ export default function Login({ navigation }) {
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
-          navigation.navigate("sesion");
+          adultSelected()
         }}
       >
         <Text style={styles.text}>Soy adulto</Text>
@@ -22,6 +48,7 @@ export default function Login({ navigation }) {
     </View>
   );
 }
+
 
 const styles = StyleSheet.create({
   container: {
