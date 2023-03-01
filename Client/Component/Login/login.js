@@ -10,6 +10,7 @@ export default function Login({ navigation }) {
       >
         <Text style={styles.text}>Soy niño/a</Text>
       </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.button}
         onPress={() => {
