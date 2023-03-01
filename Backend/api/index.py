@@ -14,12 +14,14 @@ app = FastAPI()
 
 now = datetime.now()
 
-if not firebase_admin._apps:
-    cred = credentials.Certificate('/.serviceAccountKey.json') 
+
+cred = credentials.Certificate('/.serviceAccountKey.json') 
+try:
+    firebase_admin.get_app()
+except ValueError:
     firebase_admin.initialize_app(cred)
-    db = firestore_async.client()
 
-
+firestore.client()
 
 @app.get("/")
 async def first_root():
