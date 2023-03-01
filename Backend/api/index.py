@@ -6,7 +6,7 @@ from pydantic import BaseModel
 import json
 #librerias para que funcione la firebase
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, firestore,firestore_async
 from datetime import datetime
 
 class completar_Datos_Usuario(BaseModel):
@@ -23,8 +23,10 @@ app = FastAPI()
 now = datetime.now()
 
 cred = credentials.Certificate("serviceAccountKey.json")
+
+# Application Default credentials are automatically created.
 firebase_admin.initialize_app(cred)
-db=firestore.client()
+db = firestore_async.client()
 
 @app.get("/")
 async def first_root():
@@ -40,19 +42,21 @@ class Buscar_usuario_contraseña(BaseModel):
 @app.post("/Buscar_usuario_contraseña")
 async def Buscar_usuario_contraseña(user_date:Buscar_usuario_contraseña):
     #inicio en falso la variable que voy a retornar
-    Mensaje="El usuario no existe o no coincide el mail"
-    #conecto a la base de datos pidiendo que busque el id de usuario: el mail
-    usuario_doc=db.collection('usuarios').document(user_date.mail).get()
-    #si existe el usuario busca la contraseña
     
-    usuario_diccionario=usuario_doc.to_dict()
-    """
-    if usuario_diccionario:
-        Mensaje="No existe o no coincide la contraseña"
-        usuario_diccionario=usuario_doc.to_dict()
-        #si existe la contraseña devuelve True
-        if usuario_diccionario['contraseña']== user_date.contraseña :
+    #conecto a la base de datos pidiendo que busque el id de usuario: el mail
+    usuario_doc=db.collection('usuarios').where("mail","==","jorge@gmail.com").get()
+    if usuario_doc==[]:
+        Mensaje="Usuario y/ contraseña no coinciden"
+    else:
             
-            Mensaje="Usuario y contraseña ingresados correctamente"
-    """
-    return {"Mensaje":usuario_diccionario}
+        for clave in usuario_doc:
+            key=clave.id
+        usuario_doc_completo=db.collection('usuarios').document(key).get()
+        usuario_diccionario=usuario_doc_completo.to_dict()
+        if usuario_diccionario['contraseña']== "12345" :
+
+            Mensaje="Usuario y/ contraseña ingresados correctamente"
+        else:
+            Mensaje="Contraseña ingresada incorrectamente"
+
+    return {Mensaje}
