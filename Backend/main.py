@@ -1,4 +1,4 @@
-from api.index import *
+from api.index import app
 
 
 
