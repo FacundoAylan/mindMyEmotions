@@ -9,14 +9,6 @@ import firebase_admin
 from firebase_admin import credentials, firestore,firestore_async
 from datetime import datetime
 
-class completar_Datos_Usuario(BaseModel):
-    mail:str
-    contraseña:str
-    Edad: str
-    Nombre_de_usuario: str
-    Género_con_el_que_te_identificas: str
-    Ciudad_país: str
-
 app = FastAPI()
 
 
@@ -33,14 +25,14 @@ async def first_root():
     
     return {"Presentacion": "Api desarrollada para MyEmotion."}
 
-class Buscar_usuario_contraseña(BaseModel):
+class Buscar_usuario_contrasenia(BaseModel):
     mail: str
-    contraseña: str  
+    contrasenia: str  
 
 #Buscar Usuario y contraseña
 #Devuelve un mensaje que indica si existe o no el usuario, y la contraseña correcta o no
 @app.post("/Buscar_usuario_contraseña")
-def Buscar_usuario_contraseña(user_date:Buscar_usuario_contraseña):
+def Buscar_usuario_contrasenia(user_date:Buscar_usuario_contrasenia):
     #inicio en falso la variable que voy a retornar
     
     #conecto a la base de datos pidiendo que busque el id de usuario: el mail
@@ -53,7 +45,7 @@ def Buscar_usuario_contraseña(user_date:Buscar_usuario_contraseña):
             key=clave.id
         usuario_doc_completo=db.collection('usuarios').document(key).get()
         usuario_diccionario=usuario_doc_completo.to_dict()
-        if usuario_diccionario['contraseña']== user_date.contraseña :
+        if usuario_diccionario['contraseña']== user_date.contrasenia :
 
             Mensaje="Usuario y/ contraseña ingresados correctamente"
         else:
