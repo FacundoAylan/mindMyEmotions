@@ -51,4 +51,4 @@ def Buscar_usuario_contrasenia(user_date:Buscar_usuario_contrasenia_class):
         else:
             Mensaje="Contraseña ingresada incorrectamente"
 
-    return {Mensaje}
+    return {"Mensaje":Mensaje}
