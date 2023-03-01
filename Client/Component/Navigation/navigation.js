@@ -20,6 +20,7 @@ export default function Navigation () {
         <stack.Screen name="register" component={Register} />
         <stack.Screen name="homeMain" component={HomeMain} />
         <stack.Screen name="choice" component={Choice} />
+        <stack.Screen name="importance" component={Choice} />
       </stack.Navigator>
     </NavigationContainer>
   );

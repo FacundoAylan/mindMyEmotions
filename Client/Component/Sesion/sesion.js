@@ -3,10 +3,25 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-nativ
 import { validateEmail } from "../../Helpers/authenticationFunctions";
 import { validatePassword } from "../../Helpers/authenticationFunctions";
 import { validateUserAuthentication } from "../../Helpers/authenticationFunctions";
+import * as SecureStore from 'expo-secure-store';
 
 export default function Sesion({navigation}) {
   const [ email, setEmail ] = useState( 'testemail@gmail.com' );
   const [ password, setPassword ] = useState( '98dhjwa9hioadk.' );
+  const [ isAdultState, setIsAdultState ] = useState( undefined )
+
+
+  async function getProfileSwitchValue() {
+
+    try {
+      let result = await SecureStore.getItemAsync( 'IS_ADULT' );
+      //console.log( result );
+      setIsAdultState( result )
+    } catch ( error ) {
+      console.log( error )
+    }
+  }
+  getProfileSwitchValue()
 
 
   let validateInformationAndLogIn = () => {
@@ -17,7 +32,14 @@ export default function Sesion({navigation}) {
         const validation = validateUserAuthentication()
 
         if ( validation ) {
-          navigation.navigate( 'homeMain' )
+          //console.log( isAdultState );
+          if ( isAdultState === 'yes' ) {
+            navigation.navigate( 'importance' )
+          }
+          else {
+            navigation.navigate( 'homeMain' )
+          }
+
         }
         else {
           alert( 'pon bien los datos1' )
