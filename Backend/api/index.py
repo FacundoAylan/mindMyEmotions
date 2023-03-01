@@ -25,14 +25,14 @@ async def first_root():
     
     return {"Presentacion": "Api desarrollada para MyEmotion."}
 
-class Buscar_usuario_contrasenia(BaseModel):
+class Buscar_usuario_contrasenia_class(BaseModel):
     mail: str
     contrasenia: str  
 
 #Buscar Usuario y contraseña
 #Devuelve un mensaje que indica si existe o no el usuario, y la contraseña correcta o no
 @app.post("/Buscar_usuario_contraseña")
-def Buscar_usuario_contrasenia(user_date:Buscar_usuario_contrasenia):
+def Buscar_usuario_contrasenia(user_date:Buscar_usuario_contrasenia_class):
     #inicio en falso la variable que voy a retornar
     
     #conecto a la base de datos pidiendo que busque el id de usuario: el mail
