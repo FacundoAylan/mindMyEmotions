@@ -5,6 +5,7 @@ import { validatePassword } from "../../Helpers/authenticationFunctions";
 import { validateUserAuthentication } from "../../Helpers/authenticationFunctions";
 import * as SecureStore from 'expo-secure-store';
 
+
 export default function Sesion({navigation}) {
   const [ email, setEmail ] = useState( 'testemail@gmail.com' );
   const [ password, setPassword ] = useState( '98dhjwa9hioadk.' );
@@ -22,6 +23,7 @@ export default function Sesion({navigation}) {
     }
   }
   getProfileSwitchValue()
+
 
 
   let validateInformationAndLogIn = () => {
