@@ -15,7 +15,7 @@ app = FastAPI()
 now = datetime.now()
 
 
-cred = credentials.Certificate('./serviceAccountKey.json') 
+cred = credentials.Certificate('/.serviceAccountKey.json') 
 try:
     firebase_admin.get_app()
 except ValueError:
