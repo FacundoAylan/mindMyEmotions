@@ -14,11 +14,12 @@ app = FastAPI()
 
 now = datetime.now()
 
-cred = credentials.Certificate("serviceAccountKey.json")
+if not firebase_admin._apps:
+    cred = credentials.Certificate('./serviceAccountKey.json') 
+    firebase_admin.initialize_app(cred)
+    db = firestore_async.client()
 
-# Application Default credentials are automatically created.
-firebase_admin.initialize_app(cred)
-db = firestore_async.client()
+
 
 @app.get("/")
 async def first_root():
