@@ -34,10 +34,10 @@ class Buscar_usuario_contrasenia_class(BaseModel):
 @app.post("/Buscar_usuario_contraseña/")
 def Buscar_usuario_contrasenia(user_date:Buscar_usuario_contrasenia_class):
     #inicio en falso la variable que voy a retornar
-    
+    Mensaje="if no funciona"
     #conecto a la base de datos pidiendo que busque el id de usuario: el mail
     usuario_doc=db.collection('usuarios').where("mail","==",user_date.mail).get()
-    Mensaje="if no funciona"
+    
     if not usuario_doc:
         Mensaje="Usuario y/ contraseña no coinciden"
     else:
