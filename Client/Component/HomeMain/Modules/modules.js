@@ -5,6 +5,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 export default function Modules ({navigation}) {
   return (
     <View>
+
+      <Text style={styles.title}>Módulos de aprendizaje</Text>
+
       <TouchableOpacity onPress={() => navigation.navigate('choice')}>
         <View style={styles.container}>
           <Text style={styles.text}>Reconocimiento emocional</Text>
@@ -28,17 +31,26 @@ export default function Modules ({navigation}) {
 
 
 const styles = StyleSheet.create({
+  title: {
+    flex:0,
+    justifyContent:'center',
+    textAlign: 'center',
+    fontSize: 30,
+    color: 'purple'
+  },
   container: {
-    backgroundColor:'#662483',
+    backgroundColor:'white',
     height: 100,
     margin: 10,
-    borderRadius: 12
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: 'purple'
   },
   text:{
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',
-    color: 'white',
+    color: 'purple',
     fontSize: 20,
     marginTop: '10%'
   }

@@ -60,10 +60,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingHorizontal: 120,
+    borderWidth: 2,
+    borderColor: 'purple',
     borderRadius: 12,
     elevation: 3,
-    backgroundColor: "blue",
+    backgroundColor: "white",
     marginTop: 20,
   },
   text: {
@@ -71,6 +73,6 @@ const styles = StyleSheet.create({
     lineHeight: 30,
     fontWeight: "bold",
     letterSpacing: 0.25,
-    color: "white",
+    color: "purple",
   },
 });
