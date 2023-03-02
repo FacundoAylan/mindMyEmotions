@@ -1,9 +1,60 @@
 import React, { useState } from "react";
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image,StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { validateEmail } from "../../Helpers/authenticationFunctions";
+import { validatePassword } from "../../Helpers/authenticationFunctions";
+import { validateUserAuthentication } from "../../Helpers/authenticationFunctions";
+import * as SecureStore from 'expo-secure-store';
 
 export default function Sesion({navigation}) {
-  const [ email, setEmail ] = useState('');
-  const [ password, setPassword ] = useState('');
+  const [ email, setEmail ] = useState( 'testemail@gmail.com' );
+  const [ password, setPassword ] = useState( '98dhjwa9hioadk.' );
+  const [ isAdultState, setIsAdultState ] = useState( undefined )
+
+
+  async function getProfileSwitchValue() {
+
+    try {
+      let result = await SecureStore.getItemAsync( 'IS_ADULT' );
+      //console.log( result );
+      setIsAdultState( result )
+    } catch ( error ) {
+      console.log( error )
+    }
+  }
+  getProfileSwitchValue()
+
+
+
+  let validateInformationAndLogIn = () => {
+
+    if ( validateEmail( email ) ) {
+      if ( validatePassword( password ) ) {
+
+        const validation = validateUserAuthentication()
+
+        if ( validation ) {
+          //console.log( isAdultState );
+          if ( isAdultState === 'yes' ) {
+            navigation.navigate( 'importance' )
+          }
+          else {
+            navigation.navigate( 'homeMain' )
+          }
+
+        }
+        else {
+          alert( 'pon bien los datos1' )
+        }
+      }
+      else {
+        alert( 'pon bien los datos2' )
+      }
+    }
+    else {
+      alert( 'pon bien los datos3' )
+    }
+  }
+
   return (
     <View style={styles.container}>
       <Image
@@ -27,10 +78,7 @@ export default function Sesion({navigation}) {
         onChangeText={setPassword}
         value={password}
       />
-      <TouchableOpacity
-        style={styles.button}
-        onPress={() => navigation.navigate("homeMain")}
-      >
+      <TouchableOpacity style={styles.button} onPress={() => validateInformationAndLogIn()} >
         <Text style={styles.text}>Ingresar</Text>
       </TouchableOpacity>
 
