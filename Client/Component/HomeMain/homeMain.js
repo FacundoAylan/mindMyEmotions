@@ -2,6 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Modules from "./Modules/modules";
 import Setting from "./Setting/setting";
+import About from "./about/about";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { AntDesign } from '@expo/vector-icons'; 
 import { Image, StyleSheet } from "react-native";
@@ -27,7 +28,7 @@ export default function HomeMain ({ navigation }) {
       />
       <Tab.Screen
         name="Sobre mi"
-        component={Setting}
+        component={About}
         options={{
           headerShown: false,
           tabBarIcon: ({ color, size }) => (
@@ -37,16 +38,6 @@ export default function HomeMain ({ navigation }) {
               uri: 'https://i.ibb.co/s2jKMtg/mind-My-Emotions.png',
             }}
           />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Redes"
-        component={Setting}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="earth" size={size} color={color} />
           ),
         }}
       />
