@@ -26,8 +26,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderLeftWidth: 5,
+    borderLeftColor: '#f29100',
     borderRightWidth: 5,
-    borderColor: '#f29100',
+    borderRightColor: '#662483',
+    minHeight: "100%",
   },
   button: {
     alignItems: 'center',
@@ -50,8 +52,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'none'
   },
   image:{
-    width: '96%',
-    height: 100,
+    width: '81%',
+    height: 60,
     borderRadius: 12,
     resizeMode: 'stretch'
   }
