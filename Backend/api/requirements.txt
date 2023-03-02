@@ -1,4 +1,0 @@
-fastapi
-firebase-admin
-pydantic
-uvicorn
