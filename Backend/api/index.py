@@ -36,9 +36,10 @@ async def root():
 #devuelve un mensaje segun el resultado de la busqueda.
 @app.post("/usuario_contrasenia/")
 def Buscar_usuario_contrasenia(user_date:Buscar_usuario_contrasenia_class):
-
+    Mensaje = "No coinciden"
     usuario_doc=db.collection('usuarios').where("Datos_registro.Mail","==",user_date.Mail).get()
-    if usuario_doc==[] or user_date.Mail== "null" or user_date.Contrasenia== "null":
+    
+    if usuario_doc==[]:
         Mensaje="Usuario y/ contraseña no coinciden"
     else:
         for clave in usuario_doc:
@@ -47,22 +48,24 @@ def Buscar_usuario_contrasenia(user_date:Buscar_usuario_contrasenia_class):
         usuario_diccionario=usuario_doc_completo.to_dict()
         
         consultar_datos=usuario_diccionario['Datos_registro']
-        clave=user_date.Contrasenia
-        clave_str=clave
-        if consultar_datos['Contrasenia']== clave_str :
+        
+        clave=consultar_datos['Contrasenia']
+    
+        if consultar_datos['Contrasenia']== user_date.Contrasenia:
             Mensaje="Usuario y/ contraseña ingresados correctamente"
         else:
             Mensaje="Contraseña ingresada incorrectamente"
-        return {"Mensaje":Mensaje}
+    return {"Mensaje":Mensaje}
+    
 #comentario para hacer el push 
 #pide 7 datos Mail:str, Edad, Nombre_de_usuario, Apellido_de_usuario, Contrasenia, Genero, Ciudad
 #registra los datos junto con la fecha actual
 #devuelve un mensaje segun el resultado del registro
 @app.post("/Registro/")
 def Registrar_Datos_Usuario(user_date:Registrar_Datos_Usuario_class):
-    #Apellido_str=user_date.Apellido_de_usuario
-    #Nombre_str=user_date.Nombre_de_usuario
+
     usuario_doc=db.collection('usuarios').where("Datos_registro.Mail","==",user_date.Mail).get()
+    
     if(user_date.Edad<6 or user_date.Edad>100 ):
         Mensaje="Edad invalida"
     elif (not(user_date.Apellido_de_usuario.isalpha()) or not(user_date.Nombre_de_usuario.isalpha())):
