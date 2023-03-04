@@ -6,8 +6,8 @@ import { validateUserAuthentication } from "../../Helpers/authenticationFunction
 import * as SecureStore from 'expo-secure-store';
 
 export default function Sesion({navigation}) {
-  const [ email, setEmail ] = useState( 'testemail@gmail.com' );
-  const [ password, setPassword ] = useState( '98dhjwa9hioadk.' );
+  const [ email, setEmail ] = useState( 'jorge@gmail.com' );
+  const [ password, setPassword ] = useState( '12345' );
   const [ isAdultState, setIsAdultState ] = useState( undefined )
 
 
@@ -25,14 +25,14 @@ export default function Sesion({navigation}) {
 
 
 
-  let validateInformationAndLogIn = () => {
+  let validateInformationAndLogIn = async () => {
 
     if ( validateEmail( email ) ) {
       if ( validatePassword( password ) ) {
 
-        const validation = validateUserAuthentication()
+        const validation = await validateUserAuthentication( email, password )
 
-        if ( validation ) {
+        if ( validation === true ) {
           //console.log( isAdultState );
           if ( isAdultState === 'yes' ) {
             navigation.navigate( 'importance' )
@@ -40,18 +40,17 @@ export default function Sesion({navigation}) {
           else {
             navigation.navigate( 'homeMain' )
           }
-
         }
         else {
-          alert( 'pon bien los datos1' )
+          alert( 'No encontramos ninguna cuenta con estos datos, revisa tus datos de ingreso.' )
         }
       }
       else {
-        alert( 'pon bien los datos2' )
+        alert( 'Tu contraseña parece estar mal.' )
       }
     }
     else {
-      alert( 'pon bien los datos3' )
+      alert( 'Tu email parece estar mal.' )
     }
   }
 
