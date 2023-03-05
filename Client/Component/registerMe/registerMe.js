@@ -22,7 +22,7 @@ export default function Register({ navigation }) {
     <View style={styles.container}>
       <Text style={styles.text}>Nombre</Text>
       <TextInput
-        placeholder="nombre"
+        placeholder="Nombre"
         style={styles.input}
         onChangeText={(nombre) => setform({ ...form, name: nombre })}
       />
@@ -40,7 +40,7 @@ export default function Register({ navigation }) {
       />
       <Text style={styles.text}>Correo</Text>
       <TextInput
-        placeholder="Corre"
+        placeholder="Correo"
         style={styles.input}
         onChangeText={(correo) => setform({ ...form, email: correo })}
       />
@@ -62,7 +62,7 @@ export default function Register({ navigation }) {
           )
         }
       >
-        <Text style={styles.text}>Registrarme</Text>
+        <Text style={styles.textButton} >Registrarme</Text>
       </TouchableOpacity>
     </View>
   );
@@ -73,34 +73,48 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     textAlign: "center",
-    padding: 10
+    padding: 10,
+    borderLeftWidth: 5,
+    borderLeftColor: '#f29100',
+    borderRightWidth: 5,
+    borderRightColor: '#662483',
   },
   input: {
     justifyContent: "center",
     textAlign: "center",
     height: 40,
-    borderColor: "purple",
+    borderColor: "#662483",
     borderWidth: 2,
     margin: 1,
     marginTop: 2,
-    borderRadius: 6
+    borderRadius: 6,
+    marginHorizontal: 30,
   },
   button: {
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
     borderRadius: 6,
     elevation: 3,
     backgroundColor: "white",
     marginTop: 20,
     borderWidth: 2,
-    borderColor: "purple",
+    borderColor: "#662483",
+    marginHorizontal: 30,
   },
   text: {
-    color: "purple",
+    color: "#662483",
     padding: 0,
     margin: 0,
-    marginTop: 5
+    marginTop: 10,
+    marginLeft: 30,
+  },
+  textButton: {
+    fontSize: 16,
+    lineHeight: 21,
+    fontWeight: 'bold',
+    letterSpacing: 0.25,
+    color: '#662483',
   },
 });

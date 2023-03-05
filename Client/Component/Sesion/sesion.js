@@ -56,13 +56,13 @@ export default function Sesion({navigation}) {
 
   return (
     <View style={styles.container}>
-      <Image
+      {/* <Image
         style={styles.image}
         source={{
           uri: "https://i.ibb.co/dGpDhhL/mind-My-Emotion2.png",
         }}
-      />
-      <Text style={styles.title}>----Iniciar sesión----</Text>
+      /> */}
+      <Text style={styles.title}> Iniciar sesión</Text>
       <Text style={styles.label}>Correo</Text>
       <TextInput
         style={styles.input}
@@ -97,11 +97,18 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     backgroundColor: "#eaeaea",
+    borderLeftWidth: 5,
+    borderLeftColor: '#f29100',
+    borderRightWidth: 5,
+    borderRightColor: '#662483',
   },
   title: {
-    fontSize:30,
+    fontSize: 30,
     justifyContent: 'center',
-    textAlign: 'center'
+    textAlign: 'center',
+    color: '#662483',
+    marginBottom: 15,
+    fontWeight: '600'
   },
   input: {
     justifyContent: 'center',
@@ -111,28 +118,30 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 12,
     margin: 0,
-    marginTop:5,
+    marginTop: 3,
     borderWidth:2,
-    borderColor: 'purple'
+    borderColor: '#662483',
+    marginHorizontal: 30,
   },
   button: {
     alignItems: 'center',
     justifyContent: 'center',
     paddingVertical: 12,
-    paddingHorizontal: 32,
+    paddingHorizontal: 22,
     borderRadius: 6,
     elevation: 3,
     backgroundColor: 'white',
     marginTop: 20,
     borderWidth:2,
-    borderColor: 'purple'
+    borderColor: '#662483',
+    marginHorizontal: 30,
   },
   text: {
     fontSize: 16,
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: 'purple',
+    color: '#662483',
   },
   image:{
     width: '60%',
@@ -142,9 +151,10 @@ const styles = StyleSheet.create({
     marginLeft:'20%'
   },
   label: {
-    color: 'purple',
+    color: '#662483',
     padding: 0,
     margin: 0,
-    marginTop: 5
+    marginTop: 10,
+    marginLeft: 30,
   }
 });
