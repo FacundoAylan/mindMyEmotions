@@ -8,6 +8,8 @@ import Register from "../registerMe/registerMe";
 import HomeMain from "../HomeMain/homeMain";
 import Choice from "../HomeMain/Choice/choice";
 import Importance from "../Importance/importance";
+import Theory from '../HomeMain/theory/theory';
+import Topics from '../HomeMain/Modules/topics/topics'
 
 //En este componente se crea todas las rutas
 export default function Navigation () {
@@ -22,6 +24,8 @@ export default function Navigation () {
         <stack.Screen name="homeMain" component={HomeMain} />
         <stack.Screen name="choice" component={Choice} />
         <stack.Screen name="importance" component={Importance} />
+        <stack.Screen name="theory" component={Theory} />
+        <stack.Screen name="topincs" component={Topics} />
       </stack.Navigator>
     </NavigationContainer>
   );
