@@ -138,7 +138,6 @@ export default function Register({ navigation }) {
           <Text style={styles.text}>Registrarme</Text>
         </TouchableOpacity>
       </KeyboardAvoidingScrollView>
-
     </View>
   );
 }

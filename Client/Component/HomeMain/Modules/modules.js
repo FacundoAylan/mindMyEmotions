@@ -8,19 +8,25 @@ export default function Modules ({navigation}) {
 
       <Text style={styles.title}>Temas</Text>
 
-      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
+      <TouchableOpacity onPress={() => navigation.navigate('topincs',{
+        name:'Reconocimiento emocional'
+      })}>
         <View style={styles.container}>
           <Text style={styles.text}>Reconocimiento emocional</Text>
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
+      <TouchableOpacity onPress={() => navigation.navigate('topincs',{
+        name:'Habilidades socioemocionales'
+      })}>
         <View style={styles.container}>
           <Text style={styles.text}>Habilidades socioemocionales</Text>
         </View>
       </TouchableOpacity>
 
-      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
+      <TouchableOpacity onPress={() => navigation.navigate('topincs',{
+        name:'Salud mental'
+      })}>
         <View style={styles.container}>
           <Text style={styles.text}>Salud mental</Text>
         </View>
