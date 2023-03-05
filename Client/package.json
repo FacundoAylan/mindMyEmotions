@@ -33,6 +33,7 @@
     "react-native-screens": "~3.18.0",
     "react-native-snackbar": "^2.4.0",
     "react-native-vector-icons": "^9.2.0",
+    "react-native-svg": "13.4.0",
     "yet": "^0.1.0"
   },
   "devDependencies": {

@@ -1,38 +1,68 @@
-import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import React, { useCallback } from "react";
+import { StyleSheet, Text, TouchableOpacity, View, Linking, Image } from "react-native";
+import { SvgUri } from 'react-native-svg';
+import insta from '../../../assets/insta.svg'
+import linkedin from '../../../assets/linkedin.svg'
+import tiktok from '../../../assets/tiktok.svg'
+import twitter from '../../../assets/twitter.svg'
 
-export default function About () {
+
+export default function About( { navigation } ) {
+
+
+
   return (
-    <View>
-      <Text style={styles.title}>MATERIAL ADICIONAL</Text>
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.text}>CONOCE MAS SOBRE 'ME'</Text>
-      </TouchableOpacity>
-      <Text style={styles.title}>CONTACTOS</Text>
+    <View style={styles.mainContainer}>
+      <Text style={styles.title}>Material adicional</Text>
 
-      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
-        <View style={styles.container}>
-          <Text style={styles.textContainer}>www.instagram.com/mindmyemotions</Text>
+      <TouchableOpacity style={styles.button} onPress={() => Linking.openURL( 'https://www.mindmyemotions.com/' )}>
+        <Text style={styles.textButton}>Nuestra página web</Text>
+
+      </TouchableOpacity> 
+
+      {/* <OpenURLButton url={'https://www.mindmyemotions.com/'} children={"Conoce más sobre 'Me'"} />
+ */}
+
+      <Text style={styles.title}>Contacto</Text>
+
+      <TouchableOpacity onPress={() => Linking.openURL( 'https://www.instagram.com/mindmyemotions' )}>
+        <View style={styles.socialsContainer}>
+          <SvgUri
+            width={45}
+            height={45}
+            uri={Image.resolveAssetSource( insta ).uri}
+          />
+          <Text style={styles.text}>instagram.com/mindmyemotions</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
-        <View style={styles.container}>
-          <Text style={styles.textContainer}>www.tiktok.com/@mindmyemotions</Text>
+      <TouchableOpacity onPress={() => Linking.openURL( 'https://www.tiktok.com/@mindmyemotions' )}>
+        <View style={styles.socialsContainer}>
+          <SvgUri
+            width={45}
+            height={45}
+            uri={Image.resolveAssetSource( tiktok ).uri}
+          />
+          <Text style={styles.text}>tiktok.com/@mindmyemotions</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
-        <View style={styles.container}>
-          <Text style={styles.textContainer}>www.twitter.com/MindMyEmotions</Text>
+      <TouchableOpacity onPress={() => Linking.openURL( 'https://www.twitter.com/MindMyEmotions' )}>
+        <View style={styles.socialsContainer}>
+          <SvgUri
+            width={45}
+            height={45}
+            uri={Image.resolveAssetSource( twitter ).uri}
+          />
+          <Text style={styles.text}>twitter.com/MindMyEmotions</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
-        <View style={styles.container}>
-          <Text style={styles.textContainer}>www.linkedin.com/company/mindmyemotions</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => navigation.navigate('choice')}>
-        <View style={styles.container}>
-          <Text style={styles.textContainer}>info@mindmyemotions.com</Text>
+      <TouchableOpacity onPress={() => Linking.openURL( 'https://www.linkedin.com/company/mindmyemotions' )}>
+        <View style={styles.socialsContainer}>
+          <SvgUri
+            width={45}
+            height={45}
+            uri={Image.resolveAssetSource( linkedin ).uri}
+          />
+          <Text style={styles.text}>linkedin.com/mindmyemotions</Text>
         </View>
       </TouchableOpacity>
     </View>
@@ -40,10 +70,17 @@ export default function About () {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor:'#E0ECFF',
+  mainContainer: {
+    borderLeftWidth: 5,
+    borderLeftColor: '#f29100',
+    borderRightWidth: 5,
+    borderRightColor: '#662483',
+    minHeight: '100%'
+  },
+  socialsContainer: {
+    flexDirection: "row",
     height: 60,
-    margin: 10,
+    marginLeft: 40,
   },
   textContainer:{
     flex: 1,
@@ -54,27 +91,34 @@ const styles = StyleSheet.create({
     marginTop: '5%'
   },
   title: {
-    flex: 0,
-    justifyContent: 'center',
-    textAlign: 'center',
-    fontSize: 32,
+    alignSelf: "center",
+    fontSize: 27,
+    marginVertical: 20,
+    color: "#662483",
+    fontWeight: "800",
   },
   button: {
-    flex: 0,
-    height: 40,
-    width:'70%',
-    backgroundColor: 'white',
-    marginLeft: '15%',
-    borderWidth: 2,
-    borderColor: 'purple',
-    borderRadius: 6,
-    margin: 4
+    alignSelf: "center",
+    height: 45,
+    width: '78%',
+    backgroundColor: '#f29100',
+    marginLeft: '0%',
+    borderRadius: 25,
+    margin: 4,
+    marginBottom: 20,
   },
   text: {
-    flex:0,
+    paddingTop: '3%',
+    marginLeft: 15,
+    color: 'black',
+  },
+  textButton: {
+    flex: 0,
     justifyContent: 'center',
     textAlign: 'center',
-    paddingTop: '4%',
-    color: 'purple'
+    paddingTop: 10,
+    color: 'white',
+    fontWeight: "600",
+    fontSize: 17,
   }
 })

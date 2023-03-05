@@ -9,6 +9,11 @@ export default function Importance() {
     let title = 'Importancia de la app'
     let text = 'Mucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada rato Mucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada rato Mucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada rato Mucho texto dinámico que va a cambiar a cada ratoMucho texto dinámico que va a cambiar a cada rato'
 
+
+
+
+
+
     return (
         <View>
             <TextRenderizer title={title} text={text} />

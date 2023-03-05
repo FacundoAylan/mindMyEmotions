@@ -12,7 +12,7 @@ export default function Choice({ navigation, route }) {
     : Alert.alert('Respuesta incorrecta'))
   }
   return (
-    <View>
+    <View style={styles.mainContainer}>
       <Text style={styles.title}>{json[0].title}</Text>
       <Text style={styles.textContainer}>{json[0].text}</Text>
       {json[0].questions.map((value) => {
@@ -31,6 +31,13 @@ export default function Choice({ navigation, route }) {
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    borderLeftWidth: 5,
+    borderLeftColor: '#f29100',
+    borderRightWidth: 5,
+    borderRightColor: '#662483',
+    minHeight: '100%'
+  },
   title: {
     flex: 0,
     justifyContent: "center",

@@ -1,0 +1,1 @@
+export default BACKEND_LOGIN_CHECKER = "https://mind-my-emotions.vercel.app/usuario_contrasenia/"
