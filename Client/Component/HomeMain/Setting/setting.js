@@ -1,61 +1,131 @@
 import React from "react";
-import { StyleSheet, Text, TextInput, View } from "react-native";
+import { StyleSheet, Text, TextInput, View, Image } from "react-native";
+import { SvgUri } from 'react-native-svg';
+import edit_info_logo from '../../../assets/edit_info_logo.svg'
 
 export default function Setting() {
   return (
-    <View>
+    <View style={styles.mainContainer}>
       <View>
-        <Text style={styles.title}>Perfil</Text>
+        <Text style={styles.title}>Tu Perfil</Text>
         
         <View style={styles.avatar}></View>
 
-        <Text style={styles.text}>Nombre</Text>
-        <TextInput placeholder="nombre" style={styles.input} />
-        <Text style={styles.text}>Apellido</Text>
-        <TextInput placeholder="Apellido" style={styles.input} />
-        <Text style={styles.text}>Edad</Text>
-        <TextInput placeholder="Edad" style={styles.input} />
-        <Text style={styles.text}>Correo</Text>
-        <TextInput placeholder="Corre" style={styles.input} />
+        <View style={styles.informationContainer}>
+          <Text style={styles.text}>Correo</Text>
+          <Text style={styles.textForUserData}>camilita@gmail.com</Text>
+          <SvgUri style={styles.editInfoImg}
+            width={25}
+            height={25}
+            uri={Image.resolveAssetSource( edit_info_logo ).uri}
+          />
+        </View>
+
+        <View style={styles.informationContainer}>
+          <Text style={styles.text}>Nombre completo</Text>
+          <Text style={styles.textForUserData}>Camila Gonzales blabla</Text>
+          <SvgUri style={styles.editInfoImg}
+            width={25}
+            height={25}
+            uri={Image.resolveAssetSource( edit_info_logo ).uri}
+          />
+        </View>
+
+        <View style={styles.informationContainer}>
+          <Text style={styles.text}>Edad</Text>
+          <Text style={styles.textForUserData}>12 años</Text>
+          <SvgUri style={styles.editInfoImg}
+            width={25}
+            height={25}
+            uri={Image.resolveAssetSource( edit_info_logo ).uri}
+          />
+        </View>
+        <View style={styles.informationContainer}>
+          <Text style={styles.text}>Género</Text>
+          <Text style={styles.textForUserData}>Femenino</Text>
+          <SvgUri style={styles.editInfoImg}
+            width={25}
+            height={25}
+            uri={Image.resolveAssetSource( edit_info_logo ).uri}
+          />
+        </View>
+        <View style={styles.informationContainer}>
         <Text style={styles.text}>Contraseña</Text>
-        <TextInput
-          placeholder="Contraseña"
-          secureTextEntry={true}
-          style={styles.input}
-        />
+          <Text style={styles.textForUserData}>********</Text>
+          <SvgUri style={styles.editInfoImg}
+            width={25}
+            height={25}
+            uri={Image.resolveAssetSource( edit_info_logo ).uri}
+          />
+        </View>
+        <View style={styles.informationContainer}>
+          <Text style={styles.text}>Ciudad</Text>
+          <Text style={styles.textForUserData}>Bogotá</Text>
+          <SvgUri style={styles.editInfoImg}
+            width={25}
+            height={25}
+            uri={Image.resolveAssetSource( edit_info_logo ).uri}
+          />
+        </View>
+
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    borderLeftWidth: 5,
+    borderLeftColor: '#f29100',
+    borderRightWidth: 5,
+    borderRightColor: '#662483',
+    minHeight: '100%'
+  },
   title: {
     flex: 0,
+    marginTop: 20,
     justifyContent: "center",
     textAlign: "center",
     fontSize: 30,
+    fontWeight: "bold",
+    color: '#662483'
   },
   avatar: {
-    marginLeft:'40%',
+    alignSelf: "center",
+    marginTop: 20,
+    marginBottom: 20,
     height:90,
     width: 90,
     borderRadius: 50,
-    backgroundColor: 'purple'
+    backgroundColor: '#662483'
   },
-  input: {
-    justifyContent: "center",
-    textAlign: "center",
-    height: 40,
+  informationContainer: {
     borderColor: "purple",
-    borderWidth: 2,
-    margin: 1,
-    marginTop: 2,
-    borderRadius: 6,
+    marginLeft: 16,
+    borderWidth: 0,
+    maxHeight: 65
   },
   text: {
-    color: "purple",
+    color: "#662483",
+    fontWeight: "800",
+    fontSize: 17,
     padding: 0,
     margin: 0,
     marginTop: 5,
+    marginLeft: 30,
+  },
+  textForUserData: {
+    color: "#8C8C8C",
+    fontWeight: "400",
+    fontSize: 15,
+    padding: 0,
+    margin: 0,
+    marginTop: 5,
+    marginLeft: 50,
+  },
+  editInfoImg: {
+    position: "absolute",
+    marginTop: 2,
+    marginLeft: 300,
   },
 });
