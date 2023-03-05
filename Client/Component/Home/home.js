@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     marginTop: 20,
     borderWidth: 2,
-    borderColor: 'purple',
+    borderColor: '#662483',
     backgroundColor: 'white'
   },
   text: {
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     lineHeight: 21,
     fontWeight: 'bold',
     letterSpacing: 0.25,
-    color: 'purple',
+    color: '#662483',
     backgroundColor: 'none'
   },
   image:{

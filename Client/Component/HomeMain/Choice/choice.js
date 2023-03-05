@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 export default function Choice({ navigation }) {
   return (
-    <View>
+    <View style={styles.mainContainer}>
       <Text style={styles.title}>Practica</Text>
       <Text>
         Estas en una reunión familiar con tus seres queridos, y notas que cada
@@ -35,6 +35,13 @@ export default function Choice({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    borderLeftWidth: 5,
+    borderLeftColor: '#f29100',
+    borderRightWidth: 5,
+    borderRightColor: '#662483',
+    minHeight: '100%'
+  },
   title: {
     flex: 0,
     justifyContent: "center",
