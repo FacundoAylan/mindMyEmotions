@@ -19,11 +19,13 @@
     ],
     "ios": {
       "supportsTablet": true,
+      "bundleIndentifier": "com.mindMyEmotions.mindMyEmotions",
       "config": {
         "usesNonExemptEncryption": false
       }
     },
     "android": {
+      "package": "com.mindMyEmotions.mindMyEmotions",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
