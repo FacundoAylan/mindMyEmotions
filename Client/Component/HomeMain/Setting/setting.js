@@ -1,9 +1,31 @@
 import React from "react";
+import { useState } from "react";
 import { StyleSheet, Text, TextInput, View, Image } from "react-native";
 import { SvgUri } from 'react-native-svg';
 import edit_info_logo from '../../../assets/edit_info_logo.svg'
+import EditProfileData from "./editProfileData";
 
 export default function Setting() {
+
+  const [ showEditPanel, setShowEditPanel ] = useState( false )
+  const [ selectedPanel, setselectedPanel ] = useState( "false" )
+
+  const stopShowingEditPanel = () => {
+    setShowEditPanel( false )
+  }
+
+  const sendEditNamePanel = () => {
+    setselectedPanel( "EDIT_NAME" )
+    setShowEditPanel( true )
+  }
+
+
+
+
+
+
+
+
   return (
     <View style={styles.mainContainer}>
       <View>
@@ -12,22 +34,24 @@ export default function Setting() {
         <View style={styles.avatar}></View>
 
         <View style={styles.informationContainer}>
-          <Text style={styles.text}>Correo</Text>
-          <Text style={styles.textForUserData}>camilita@gmail.com</Text>
+          <Text style={styles.text}>Nombre</Text>
+          <Text style={styles.textForUserData}>Camila</Text>
           <SvgUri style={styles.editInfoImg}
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
+            onPress={() => sendEditNamePanel()}
           />
         </View>
 
         <View style={styles.informationContainer}>
-          <Text style={styles.text}>Nombre completo</Text>
-          <Text style={styles.textForUserData}>Camila Gonzales blabla</Text>
+          <Text style={styles.text}>Apellido</Text>
+          <Text style={styles.textForUserData}>Gonzales</Text>
           <SvgUri style={styles.editInfoImg}
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
+            onPress={() => setShowEditPanel( true )}
           />
         </View>
 
@@ -38,8 +62,10 @@ export default function Setting() {
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
+            onPress={() => setShowEditPanel( true )}
           />
         </View>
+
         <View style={styles.informationContainer}>
           <Text style={styles.text}>Género</Text>
           <Text style={styles.textForUserData}>Femenino</Text>
@@ -47,15 +73,7 @@ export default function Setting() {
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
-          />
-        </View>
-        <View style={styles.informationContainer}>
-        <Text style={styles.text}>Contraseña</Text>
-          <Text style={styles.textForUserData}>********</Text>
-          <SvgUri style={styles.editInfoImg}
-            width={25}
-            height={25}
-            uri={Image.resolveAssetSource( edit_info_logo ).uri}
+            onPress={() => setShowEditPanel( true )}
           />
         </View>
         <View style={styles.informationContainer}>
@@ -65,8 +83,33 @@ export default function Setting() {
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
+            onPress={() => setShowEditPanel( true )}
           />
         </View>
+
+        <View style={styles.informationContainer}>
+          <Text style={styles.text}>Correo</Text>
+          <Text style={styles.textForUserData}>camilita@gmail.com</Text>
+          <SvgUri style={styles.editInfoImg}
+            width={25}
+            height={25}
+            uri={Image.resolveAssetSource( edit_info_logo ).uri}
+            onPress={() => setShowEditPanel( true )}
+          />
+        </View>
+
+        <View style={styles.informationContainer}>
+          <Text style={styles.text}>Contraseña</Text>
+          <Text style={styles.textForUserData}>********</Text>
+          <SvgUri style={styles.editInfoImg}
+            width={25}
+            height={25}
+            uri={Image.resolveAssetSource( edit_info_logo ).uri}
+            onPress={() => setShowEditPanel( true )}
+          />
+        </View>
+
+        {showEditPanel === true && <EditProfileData stopShowingEditPanel={stopShowingEditPanel} selectedPanel={selectedPanel} />} 
 
       </View>
     </View>
