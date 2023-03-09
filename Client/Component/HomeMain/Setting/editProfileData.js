@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity } from "react-native";
-
+import { SelectList } from 'react-native-dropdown-select-list';
+import { Data } from "../../registerMe/city";
 
 export default function EditProfileData( { stopShowingEditPanel, selectedPanel } ) {
 
     const [ newName, setNewName ] = useState( "" )
     const [ newLastName, setNewLastName ] = useState( "" )
-    const [ newAge, setNewAge ] = useState( 0 )
+    const [ newAge, setNewAge ] = useState( "" )
+    const [ newGender, setNewGender ] = useState( "" )
     const [ newDepartamento, setNewDepartamento ] = useState( "" )
     const [ newEmail, setNewEmail ] = useState( "" )
     const [ newPassword, setNewPassword ] = useState( "" )
@@ -24,30 +26,29 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
         let newNameTrimmed = newName.trim()
         //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
     }
-    let validateAndChangeLastname = ( newName ) => {
-        let newNameTrimmed = newName.trim()
+    let validateAndChangeLastname = ( newLastname ) => {
+        let newLastnameTrimmed = newLastname.trim()
         //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
     }
-    let validateAndChangeAge = () => {
-        let newNameTrimmed = newName.trim()
+    let validateAndChangeAge = ( newAge ) => {
+        if ( newAge > 6 ) {
+            //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+        }
+    }
+    let changeGender = ( newGender ) => {
         //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
     }
-    let ChangeGender = ( newName ) => {
-        let newNameTrimmed = newName.trim()
+    let changeDepartment = ( newDepartment ) => {
         //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
     }
-    let changeDepartment = ( newName ) => {
-        let newNameTrimmed = newName.trim()
+/*     let validateAndChangeEmail = ( newEmail ) => {
+        let newEmailTrimmed = newEmail.trim()
         //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
     }
-    let validateAndChangeEmail = ( newName ) => {
-        let newNameTrimmed = newName.trim()
+    let validateAndChangePassword = ( newPassword ) => {
+        let newNameTrimmed = newPassword
         //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    }
-    let validateAndChangePassword = ( newName ) => {
-        let newNameTrimmed = newName.trim()
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    }
+    } */
 
 
 
@@ -67,14 +68,95 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
                         </TouchableOpacity>
                     </View>
                 )
-            case "EDIT_NAME":
+            case "EDIT_LASTNAME":
                 return (
                     <View>
                         <View>
-                            <Text style={styles.textTitles}>Cambiar nombre</Text>
-                            <TextInput style={styles.input} placeholder="Nuevo nombre" onChangeText={setNewName} />
+                            <Text style={styles.textTitles}>Cambiar apellido</Text>
+                            <TextInput style={styles.input} placeholder="Nuevo apellido" onChangeText={setNewLastName} />
                         </View>
-                        <TouchableOpacity style={styles.editButton} onPress={() => validateAndChangeName()} >
+                        <TouchableOpacity style={styles.editButton} onPress={() => validateAndChangeLastname()} >
+                            <Text style={styles.text}>Cambiar</Text>
+                        </TouchableOpacity>
+                    </View>
+                )
+            case "EDIT_AGE":
+                return (
+                    <View>
+                        <View>
+                            <Text style={styles.textTitles}>Cambiar edad</Text>
+                            <TextInput style={styles.input} placeholder="Nueva edad Ej: 9" onChangeText={setNewAge}
+                                maxLength={2}
+                                keyboardType='numeric' />
+                        </View>
+                        <TouchableOpacity style={styles.editButton} onPress={() => validateAndChangeAge()} >
+                            <Text style={styles.text}>Cambiar</Text>
+                        </TouchableOpacity>
+                    </View>
+                )
+            case "EDIT_GENDER":
+                return (
+                    <View>
+                        <View>
+                            <Text style={styles.textTitles}>Cambiar género</Text>
+                            <SelectList
+                                placeholder='Género'
+                                search={false}
+                                setSelected={setNewGender}
+                                data={[ 'Masculino', 'Femenino', 'Otro' ]}
+                                save="value"
+                                boxStyles={{
+                                    alignSelf: "center",
+                                    borderColor: "#662483",
+                                    borderWidth: 2,
+                                    height: 48,
+                                    width: 246,
+                                    borderRadius: 6,
+                                }}
+                                inputStyles={{ fontSize: 13 }}
+                                dropdownStyles={{
+                                    alignSelf: "center",
+                                    borderColor: "#662483",
+                                    width: 246,
+                                    borderWidth: 2,
+                                    borderRadius: 6,
+                                }}
+                            />
+                            <TouchableOpacity style={styles.editButton} onPress={() => changeGender( newGender )} >
+                                <Text style={styles.text}>Cambiar</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                )
+            case "EDIT_DEPARTMENT":
+                return (
+                    <View>
+                        <Text style={styles.textTitles}>Cambiar departamento</Text>
+
+                        <SelectList
+                            placeholder={'Departamento'}
+                            setSelected={setNewDepartamento}
+                            data={Data}
+                            save="value"
+                            boxStyles={{
+                                alignSelf: "center",
+                                borderColor: "#662483",
+                                borderWidth: 2,
+                                height: 48,
+                                width: 246,
+                                borderRadius: 6,
+                            }}
+                            inputStyles={{ fontSize: 13 }}
+                            dropdownStyles={{
+                                alignSelf: "center",
+                                borderColor: "#662483",
+                                height: 160,
+                                width: 246,
+                                borderWidth: 2,
+                                borderRadius: 6,
+                            }}
+                        />
+                        <TouchableOpacity style={styles.editButton} onPress={() => changeDepartment( newDepartamento )} >
                             <Text style={styles.text}>Cambiar</Text>
                         </TouchableOpacity>
                     </View>
@@ -83,7 +165,6 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
             default:
                 break;
         }
-
     }
 
 
@@ -98,6 +179,7 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
             </TouchableOpacity>
 
             {renderEditModals()}
+            {console.log( newDepartamento )}
         </View>
 
     )

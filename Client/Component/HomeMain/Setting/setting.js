@@ -8,8 +8,9 @@ import EditProfileData from "./editProfileData";
 export default function Setting() {
 
   const [ showEditPanel, setShowEditPanel ] = useState( false )
-  const [ selectedPanel, setselectedPanel ] = useState( "false" )
+  const [ selectedPanel, setselectedPanel ] = useState( false )
 
+  //This function is passed to the child component and helps to stop showing the edit panel when pressing the x 
   const stopShowingEditPanel = () => {
     setShowEditPanel( false )
   }
@@ -18,6 +19,36 @@ export default function Setting() {
     setselectedPanel( "EDIT_NAME" )
     setShowEditPanel( true )
   }
+
+  const sendEditLastNamePanel = () => {
+    setselectedPanel( "EDIT_LASTNAME" )
+    setShowEditPanel( true )
+  }
+
+  const sendEditAgePanel = () => {
+    setselectedPanel( "EDIT_AGE" )
+    setShowEditPanel( true )
+  }
+
+  const sendEditGenderPanel = () => {
+    setselectedPanel( "EDIT_GENDER" )
+    setShowEditPanel( true )
+  }
+
+  const sendEditDepartmentPanel = () => {
+    setselectedPanel( "EDIT_DEPARTMENT" )
+    setShowEditPanel( true )
+  }
+
+  /*   const sendEditEmailPanel = () => {
+      setselectedPanel( "EDIT_EMAIL" )
+      setShowEditPanel( true )
+    }
+  
+    const sendEditPasswordPanel = () => {
+      setselectedPanel( "EDIT_PASSWORD" )
+      setShowEditPanel( true )
+    } */
 
 
 
@@ -52,7 +83,7 @@ export default function Setting() {
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => setShowEditPanel( true )}
+            onPress={() => sendEditLastNamePanel()}
           />
         </View>
 
@@ -63,7 +94,7 @@ export default function Setting() {
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => setShowEditPanel( true )}
+            onPress={() => sendEditAgePanel()}
           />
         </View>
 
@@ -74,7 +105,7 @@ export default function Setting() {
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => setShowEditPanel( true )}
+            onPress={() => sendEditGenderPanel()}
           />
         </View>
         <View style={styles.informationContainer}>
@@ -84,29 +115,29 @@ export default function Setting() {
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => setShowEditPanel( true )}
+            onPress={() => sendEditDepartmentPanel()}
           />
         </View>
 
         <View style={styles.informationContainer}>
-          <Text style={styles.text}>Correo</Text>
+          <Text style={styles.notWorkingYet}>Correo</Text>
           <Text style={styles.textForUserData}>camilita@gmail.com</Text>
           <SvgUri style={styles.editInfoImg}
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => setShowEditPanel( true )}
+            onPress={() => setShowEditPanel( false )}
           />
         </View>
 
         <View style={styles.informationContainer}>
-          <Text style={styles.text}>Contraseña</Text>
+          <Text style={styles.notWorkingYet} >Contraseña</Text>
           <Text style={styles.textForUserData}>********</Text>
           <SvgUri style={styles.editInfoImg}
             width={25}
             height={25}
             uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => setShowEditPanel( true )}
+            onPress={() => setShowEditPanel( false )}
           />
         </View>
 
@@ -172,4 +203,13 @@ const styles = StyleSheet.create({
     marginTop: 2,
     marginLeft: 300,
   },
+  notWorkingYet: {
+    color: "#8C8C8C",
+    fontWeight: "800",
+    fontSize: 17,
+    padding: 0,
+    margin: 0,
+    marginTop: 5,
+    marginLeft: 30,
+  }
 });
