@@ -20,12 +20,33 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
         let password = '12345'
      */
 
-    let validateAndChangeEmail = ( newName ) => {
-
+    let validateAndChangeName = ( newName ) => {
         let newNameTrimmed = newName.trim()
-
         //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-
+    }
+    let validateAndChangeLastname = ( newName ) => {
+        let newNameTrimmed = newName.trim()
+        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    }
+    let validateAndChangeAge = () => {
+        let newNameTrimmed = newName.trim()
+        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    }
+    let ChangeGender = ( newName ) => {
+        let newNameTrimmed = newName.trim()
+        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    }
+    let changeDepartment = ( newName ) => {
+        let newNameTrimmed = newName.trim()
+        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    }
+    let validateAndChangeEmail = ( newName ) => {
+        let newNameTrimmed = newName.trim()
+        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    }
+    let validateAndChangePassword = ( newName ) => {
+        let newNameTrimmed = newName.trim()
+        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
     }
 
 
@@ -39,15 +60,21 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
                     <View>
                         <View>
                             <Text style={styles.textTitles}>Cambiar nombre</Text>
-                            <TextInput
-                                style={styles.input}
-                                placeholder="Nuevo nombre"
-                                onChangeText={setNewName}
-
-                            />
+                            <TextInput style={styles.input} placeholder="Nuevo nombre" onChangeText={setNewName} />
                         </View>
-
-                        <TouchableOpacity style={styles.editButton} onPress={() => validateAndChangeEmail()} >
+                        <TouchableOpacity style={styles.editButton} onPress={() => validateAndChangeName()} >
+                            <Text style={styles.text}>Cambiar</Text>
+                        </TouchableOpacity>
+                    </View>
+                )
+            case "EDIT_NAME":
+                return (
+                    <View>
+                        <View>
+                            <Text style={styles.textTitles}>Cambiar nombre</Text>
+                            <TextInput style={styles.input} placeholder="Nuevo nombre" onChangeText={setNewName} />
+                        </View>
+                        <TouchableOpacity style={styles.editButton} onPress={() => validateAndChangeName()} >
                             <Text style={styles.text}>Cambiar</Text>
                         </TouchableOpacity>
                     </View>

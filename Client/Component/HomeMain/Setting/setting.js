@@ -26,6 +26,7 @@ export default function Setting() {
 
 
 
+
   return (
     <View style={styles.mainContainer}>
       <View>
