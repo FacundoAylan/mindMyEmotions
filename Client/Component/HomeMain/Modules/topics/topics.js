@@ -1,23 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Info } from '../../info/info';
+import { useSelector } from "react-redux";
+import { validate } from "../../info/user_modules_info";
 
 export default function Topics ({ navigation, route }) {
-  const {name} = route.params;
-  const json = Info.filter((value) => value.module === name);
+  const { json, name, indexModule } = route.params; 
+  // const validate = useSelector((state) => state.loader.validate)
+  const jsonTopic = validate.filter((value) => value.module === name);
   return (
     <View>
       {
-        json[0].topics.map(topic =>{
+        jsonTopic[0].topics.map(topic =>{
             return (
-              <TouchableOpacity onPress={() => navigation.navigate('theory',{
+              <TouchableOpacity key={topic.name} disabled={!topic.complete} onPress={() => navigation.navigate('theory',{
+                json: json,
+                nameTheory: topic.name,
                 name: name,
-                nameTopic: topic,
-                theory: json[0].theory,
-                practice: json[0].Practice
+                indexModule: indexModule
               })}>
-              <View style={styles.container}>
-                <Text style={styles.text}>{topic}</Text>
+              <View style={ topic.complete? styles.container: styles.disabled }>
+                <Text style={styles.text}>{topic.name}</Text>
               </View>
             </TouchableOpacity>
             )
@@ -43,5 +45,14 @@ const styles = StyleSheet.create( {
     color: 'purple',
     fontSize: 20,
     marginTop: '10%'
+  },
+  disabled: {
+    backgroundColor:'white',
+    height: 100,
+    margin: 10,
+    borderRadius: 6,
+    borderWidth: 2,
+    borderColor: 'purple',
+    opacity:0.5
   }
 })

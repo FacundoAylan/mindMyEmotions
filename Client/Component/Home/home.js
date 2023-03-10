@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useEffect }  from "react";
+import { useDispatch } from 'react-redux'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Info } from "../HomeMain/info/info";
+import { increment, loadValidate } from '../../redux/slice/index';
+import { validate } from "../HomeMain/info/user_modules_info";
 
 function Home ({navigation}) {
+  const dispatch = useDispatch();
+  useEffect(()=>{
+    dispatch(increment(Info))
+    dispatch(loadValidate(validate))
+  },[])
   return (
     <View style={styles.container}>
       <Image

@@ -1,24 +1,57 @@
 import React from "react";
-import { Alert, Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import  {validate}  from "../info/user_modules_info";
+import {validateTopinc} from '../../../redux/slice/index'
+import { useDispatch } from "react-redux";
 
 export default function Choice({ navigation, route }) {
-  const { name, nameTheory, practice } = route.params;
-  const json = practice.filter((value) => value.nameTheory === nameTheory);
-  const validate = (answer) => {
-    return (json[0].answer === answer
-    ? navigation.navigate("topincs", {
-        name: name,
+  const {json, nameTheory, name, indexModule } = route.params;
+  const dispath = useDispatch();
+  var indexChoise=0
+  const practice = json.practice.filter((value, index) =>{ 
+    if(value.nameTheory === nameTheory){
+      indexChoise= index+1;
+      return(true)
+    }
+  })
+
+  // Arreglar esta cosa horrible no tenia tiempo
+  const validateDate =  (answer) => {
+    if(practice[0].answer === answer){
+      validate.map((value) => {
+        if(value.module === name){
+          if(value.topics.length === indexChoise){
+            validate[indexModule+1].complete = true;
+            return (
+              navigation.navigate("homeMain")
+            )
+          }else{
+            // dispath(validateTopinc({'name':name, 'indexChoise':indexChoise}))
+            value.topics[indexChoise].complete = true;
+            return (
+              navigation.navigate("topincs", {
+                json: json,
+                nameTheory: nameTheory,
+                name: name,
+                indexModule: indexModule
+               })
+            )
+          }
+        }
       })
-    : Alert.alert('Respuesta incorrecta'))
+    }else{
+       Alert.alert('Respuesta incorrecta')
+    }
   }
   return (
     <View style={styles.mainContainer}>
-      <Text style={styles.title}>{json[0].title}</Text>
-      <Text style={styles.textContainer}>{json[0].text}</Text>
-      {json[0].questions.map((value) => {
+      <Text style={styles.title}>{practice[0].title}</Text>
+      <Text style={styles.textContainer}>{practice[0].text}</Text>
+      {practice[0].questions.map((value) => {
         return (
           <TouchableOpacity
-            onPress={() => validate(value.charAt(0))}
+            onPress={() => validateDate(value.charAt(0))}
+            key={value}
           >
             <View style={styles.container}>
               <Text style={styles.textContainer}>{value}</Text>
