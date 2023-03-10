@@ -168,9 +168,6 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
     }
 
 
-
-
-
     return (
         <View style={styles.mainContainer}>
 

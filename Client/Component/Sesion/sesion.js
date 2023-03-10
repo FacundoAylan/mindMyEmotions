@@ -77,7 +77,8 @@ export default function Sesion({navigation}) {
         onChangeText={setPassword}
         value={password}
       />
-      <TouchableOpacity style={styles.button} onPress={() => validateInformationAndLogIn()} >
+      <TouchableOpacity style={styles.button} onPress={() => /* validateInformationAndLogIn() === false */
+        navigation.navigate( 'homeMain' )} >
         <Text style={styles.text}>Ingresar</Text>
       </TouchableOpacity>
 
