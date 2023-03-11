@@ -7,7 +7,6 @@ import { validate } from "../Choice/user_modules_info";
 export default function Modules ({navigation}) {
 
   const json = useSelector((state) => state.loader.modules);
-  useEffect(()=>{},[validate])
 
   return (
     <View style={styles.mainContainer}>

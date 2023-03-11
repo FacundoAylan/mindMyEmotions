@@ -1,9 +1,13 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import  {validate}  from "./user_modules_info";
+import {validateTopinc} from '../../../redux/slice/index'
+
 
 export default function Choice({ navigation, route }) {
   const {json, nameTheory, name, indexModule } = route.params;
+  const dispatch = useDispatch()
   var indexChoise=0;
   const practice = json.practice.filter((value, index) =>{ 
     if(value.nameTheory === nameTheory){
@@ -29,6 +33,7 @@ export default function Choice({ navigation, route }) {
           }else{
             try{
               value.topics[indexChoise].complete= true;
+              //dispatch(validateTopinc(indexChoise))
               return (
                 navigation.navigate("topincs", {
                   json: json,

@@ -16,9 +16,12 @@ export const counterSlice = createSlice({
     loadValidate: (state,module) => {
       state.validate = module.payload
     },
-    validateTopinc: (state,module) => {
-      const cambio = state.validate.map((value) => {
-        console.log('hola')
+    validateTopinc: async (state,module) => {
+      let index = module.payload
+      let cambio = await state.validate.map((value) => {
+        if(value.name === 'Test inicial'){
+          console.log(index)
+        }
       })
     }
     
