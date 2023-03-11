@@ -1,22 +1,21 @@
 import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useSelector } from "react-redux";
-import { validate } from "../../info/user_modules_info";
+import {validate} from '../../Choice/user_modules_info';
 
 export default function Topics ({ navigation, route }) {
   const { json, name, indexModule } = route.params; 
-  // const validate = useSelector((state) => state.loader.validate)
   const jsonTopic = validate.filter((value) => value.module === name);
+  
   return (
     <View>
       {
         jsonTopic[0].topics.map(topic =>{
             return (
               <TouchableOpacity key={topic.name} disabled={!topic.complete} onPress={() => navigation.navigate('theory',{
-                json: json,
+                json,
                 nameTheory: topic.name,
-                name: name,
-                indexModule: indexModule
+                name,
+                indexModule,
               })}>
               <View style={ topic.complete? styles.container: styles.disabled }>
                 <Text style={styles.text}>{topic.name}</Text>

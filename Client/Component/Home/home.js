@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Info } from "../HomeMain/info/info";
 import { increment, loadValidate } from '../../redux/slice/index';
-import { validate } from "../HomeMain/info/user_modules_info";
+import { validate } from "../HomeMain/Choice/user_modules_info";
 
 function Home ({navigation}) {
   const dispatch = useDispatch();

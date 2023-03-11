@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { validateUserAuthentication } from '../../Helpers/authenticationFunctions'
 
 const initialState = {
   modules: '',
@@ -16,13 +17,9 @@ export const counterSlice = createSlice({
       state.validate = module.payload
     },
     validateTopinc: (state,module) => {
-      const info = module.payload;
-      console.log(info)
-      for( let i = 0;i<state.validate.length; i++){
-        // console.log(state.validate[i].module)
-        // console.log(info)
-        // state.validate[i].topics[0]
-      }
+      const cambio = state.validate.map((value) => {
+        console.log('hola')
+      })
     }
     
   },

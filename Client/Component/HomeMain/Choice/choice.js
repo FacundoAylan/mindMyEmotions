@@ -1,13 +1,10 @@
 import React from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import  {validate}  from "../info/user_modules_info";
-import {validateTopinc} from '../../../redux/slice/index'
-import { useDispatch } from "react-redux";
+import  {validate}  from "./user_modules_info";
 
 export default function Choice({ navigation, route }) {
   const {json, nameTheory, name, indexModule } = route.params;
-  const dispath = useDispatch();
-  var indexChoise=0
+  var indexChoise=0;
   const practice = json.practice.filter((value, index) =>{ 
     if(value.nameTheory === nameTheory){
       indexChoise= index+1;
@@ -16,27 +13,33 @@ export default function Choice({ navigation, route }) {
   })
 
   // Arreglar esta cosa horrible no tenia tiempo
-  const validateDate =  (answer) => {
+  const validateDate = (answer) => {
     if(practice[0].answer === answer){
       validate.map((value) => {
         if(value.module === name){
           if(value.topics.length === indexChoise){
-            validate[indexModule+1].complete = true;
-            return (
-              navigation.navigate("homeMain")
-            )
+            try{
+              validate[indexModule+1].complete = true;
+              return (
+                navigation.navigate("homeMain")
+              )
+            }catch(error){
+              console.log(error)
+            }
           }else{
-            // dispath(validateTopinc({'name':name, 'indexChoise':indexChoise}))
-            value.topics[indexChoise].complete = true;
-            return (
-              navigation.navigate("topincs", {
-                json: json,
-                nameTheory: nameTheory,
-                name: name,
-                indexModule: indexModule
-               })
-            )
-          }
+            try{
+              value.topics[indexChoise].complete= true;
+              return (
+                navigation.navigate("topincs", {
+                  json: json,
+                  name: name,
+                  indexModule: indexModule,
+                 })
+              )
+            }catch(error){
+              console.log(error)
+            }
+            }
         }
       })
     }else{

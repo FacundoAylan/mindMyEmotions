@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux'
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { validate } from "../info/user_modules_info";
+import { validate } from "../Choice/user_modules_info";
 
 // este componente contine el contenedor de cada modulo , se repite codigo 
 export default function Modules ({navigation}) {
 
   const json = useSelector((state) => state.loader.modules);
-  // const validate = useSelector((state) => state.loader.validate)
   useEffect(()=>{},[validate])
 
   return (
@@ -21,7 +20,7 @@ export default function Modules ({navigation}) {
             <TouchableOpacity key={value.module} disabled={!module[0].complete} onPress={ () => navigation.navigate('topincs',{
               json: value,
               name: value.module,
-              indexModule: index
+              indexModule: index,
             })}>
               <View style={module[0].complete? styles.container : styles.disabled}>
                 <Text style={styles.text}>{value.module}</Text>
