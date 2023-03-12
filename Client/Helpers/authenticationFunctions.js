@@ -12,7 +12,7 @@ export const validateUserAuthentication = ( email, password ) => {
         Mail: email,
         Contrasenia: password,
     }
-    let res = axios.post( 'https://mind-my-emotions.vercel.app/usuario_contrasenia/', objLoginData )
+    let res = axios.post( 'https://mind-my-emotions.vercel.app/Login/', objLoginData )
         .then( ( response ) => {
 
             if ( response.data.Mensaje === "Usuario y/ contraseña ingresados correctamente" ) {

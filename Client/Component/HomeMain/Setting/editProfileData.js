@@ -2,8 +2,10 @@ import React, { useState } from 'react'
 import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity } from "react-native";
 import { SelectList } from 'react-native-dropdown-select-list';
 import { Data } from "../../registerMe/city";
+import { MES_IMAGES } from '../../../Helpers/constants';
+import { ScrollView } from 'react-native';
 
-export default function EditProfileData( { stopShowingEditPanel, selectedPanel } ) {
+export default function EditProfileData( { stopShowingEditPanel, selectedPanel, changeAvatarImage } ) {
 
     const [ newName, setNewName ] = useState( "" )
     const [ newLastName, setNewLastName ] = useState( "" )
@@ -14,13 +16,34 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
     const [ newPassword, setNewPassword ] = useState( "" )
 
 
-    /*  let name = 'maria'
-        let lastName = 'vargas'
-        let age = '14'
-        let departamento = 'Bogotá DC'
-        let email = 'jorge@gmail.com'
-        let password = '12345'
-     */
+    let selectNewAvatarAndSendItToTheDb = ( newAvatarLink ) => {
+        console.log( 'clicked' );
+        changeAvatarImage( newAvatarLink )
+        //FUNCION PARA HACER EL POST PARA CAMBIAR EL AVATAR
+    }
+
+    let selectAvatar = () => {
+
+        let allImages = MES_IMAGES.map( image => {
+            return (
+                <TouchableOpacity style={styles.imageAndTextContainer}
+                    onPress={() => selectNewAvatarAndSendItToTheDb( image.img )}
+                    key={Math.random()}>
+                    <Image
+                        style={styles.imgStyles}
+                        source={{ uri: image.img }}
+                        key={image.name + Math.random()}
+
+                    />
+                    <Text style={styles.avatarTextStyles} key={image.name + Math.random()}>{image.name.charAt( 0 ).toUpperCase() + image.name.slice( 1 )}</Text>
+                </TouchableOpacity>
+
+            )
+        } );
+
+        return allImages
+    }
+
 
     let validateAndChangeName = ( newName ) => {
         let newNameTrimmed = newName.trim()
@@ -41,21 +64,31 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
     let changeDepartment = ( newDepartment ) => {
         //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
     }
-/*     let validateAndChangeEmail = ( newEmail ) => {
-        let newEmailTrimmed = newEmail.trim()
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    }
-    let validateAndChangePassword = ( newPassword ) => {
-        let newNameTrimmed = newPassword
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    } */
-
-
-
+    /*     let validateAndChangeEmail = ( newEmail ) => {
+            let newEmailTrimmed = newEmail.trim()
+            //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+        }
+        let validateAndChangePassword = ( newPassword ) => {
+            let newNameTrimmed = newPassword
+            //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+        } */
 
     let renderEditModals = () => {
 
         switch ( selectedPanel ) {
+
+            case "EDIT_AVATAR":
+                return (
+                    <View >
+                        <Text style={styles.textTitles}>Cambiar avatar</Text>
+                        {selectAvatar()}
+                    </View>
+                )
+
+
+                {/*  <TouchableOpacity style={styles.editButton} onPress={() => validateAndChangeName()} >
+                    <Text style={styles.text}>Cambiar</Text>
+                </TouchableOpacity> */}
             case "EDIT_NAME":
                 return (
                     <View>
@@ -174,9 +207,9 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel }
             <TouchableOpacity style={styles.closeButton} onPress={stopShowingEditPanel}>
                 <Text style={styles.closeButtonX}>X</Text>
             </TouchableOpacity>
-
-            {renderEditModals()}
-            {console.log( newDepartamento )}
+            <ScrollView style={{ height: 400 }}>
+                {renderEditModals()}
+            </ScrollView>
         </View>
 
     )
@@ -193,7 +226,7 @@ const styles = StyleSheet.create( {
         borderColor: '#662483',
         borderWidth: 2,
         borderRadius: 10,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
 
     },
     closeButton: {
@@ -246,8 +279,24 @@ const styles = StyleSheet.create( {
         fontSize: 20,
         fontWeight: '800',
         color: '#662483',
-
-    }
-
+    },
+    imgStyles: {
+        width: 100,
+        height: 100,
+    },
+    avatarTextStyles: {
+        marginTop: 3,
+        alignSelf: 'center',
+        fontWeight: '600',
+    },
+    imageAndTextContainer: {
+        flexDirection: 'column-reverse',
+        alignSelf: 'center',
+        borderColor: 'black',
+        borderWidth: 0.2,
+        borderRadius: 10,
+        paddingHorizontal: 80,
+        marginBottom: 4,
+    },
 }
 )
