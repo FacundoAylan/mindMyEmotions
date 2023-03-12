@@ -9,7 +9,7 @@ export default function Choice({ navigation, route }) {
     ? navigation.navigate("topincs", {
         name: name,
       })
-    : Alert.alert('Respuesta incorrecta'))
+    : Alert.alert('Respuesta incorrecta'));
   }
   return (
     <View style={styles.mainContainer}>
