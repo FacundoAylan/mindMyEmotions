@@ -1,13 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from "react-native-modal";
 import { useDispatch } from "react-redux";
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
 import  {validate}  from "./user_modules_info";
 import {validateTopinc} from '../../../redux/slice/index'
 
 
 export default function Choice({ navigation, route }) {
+
   const {json, nameTheory, name, indexModule } = route.params;
   const dispatch = useDispatch()
+
+  const [isModalVisible, setModalVisible] = useState(false);
+  const [random, setRandom] = useState();
+  const { name, nameTheory, practice } = route.params;
+  const url = ['https://i.ibb.co/QmQc16N/1.png','https://i.ibb.co/tBRn87m/2.png','https://i.ibb.co/YRmhjkY/3.png', 'https://i.ibb.co/gJwJ3Xg/4.png']
+  
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+  const validate = (answer) => {
+    if(practice[0].answer === answer){
+      return ( navigation.navigate("topincs", {name: name,}))
+    }else{
+      setRandom(Math.floor(Math.random() * 3));
+      toggleModal()
+    }
+    
+  }
+  
   var indexChoise=0;
   const practice = json.practice.filter((value, index) =>{ 
     if(value.nameTheory === nameTheory){
@@ -67,6 +88,21 @@ export default function Choice({ navigation, route }) {
           </TouchableOpacity>
         );
       })}
+      <Modal isVisible={isModalVisible} style={{padding:0, margin:15}}>
+        <View >
+          <Image
+            style={styles.image}
+            source={{
+              uri: url[random],
+            }}
+          />
+            <TouchableOpacity onPress={() => setModalVisible(!isModalVisible)}>
+                <View style={styles.containerButton}>
+                  <Text style={styles.textContainer}>Intentar de nuevo</Text>
+                </View>
+            </TouchableOpacity>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -97,4 +133,23 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "purple",
   },
+  image:{
+    width: '100%',
+    height: '90%',
+    borderRadius: 12,
+    resizeMode: 'stretch'
+  },
+  containerButton:{
+    flex:0,
+    justifyContent: 'center',
+    textAlign: 'center',
+    height: 40,
+    width: '100%',
+    backgroundColor: 'white',
+    borderRadius:12,
+    fontSize: 30,
+    marginTop: 6,
+    borderColor: '#662483',
+    borderWidth:2
+  }
 });

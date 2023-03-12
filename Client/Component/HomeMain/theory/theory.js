@@ -8,11 +8,12 @@ export default function Theory ({ navigation, route }) {
     <View>
       <Text style={styles.title}>{theoryTopic[0].title}</Text>
       <Text style={styles.text}>{theoryTopic[0].text}</Text> 
-      <TouchableOpacity onPress={() => navigation.navigate("choice", {
+      <TouchableOpacity onPress={() => navigation.navigate(nameTopic==='Test de Inteligencia Emocional'?'choiseTest':"choice", {
         json,
-        nameTheory,
         name,
-        indexModule
+        nameTheory,
+        indexModule,
+        practice
       })}>
         <View style={styles.container}>
           <Text style={styles.textContainer}>ingresar</Text>
