@@ -19,8 +19,8 @@ export default function Navigation () {
     <NavigationContainer>
       <stack.Navigator>
         <stack.Screen name="home" component={Home} options={{headerShown: false}}/>
-        <stack.Screen name="login" component={Login} />
-        <stack.Screen name="sesion" component={Sesion} />
+        <stack.Screen name="login" component={Login} options={{headerShown: false}} />
+        <stack.Screen name="sesion" component={Sesion} options={{headerShown: false}}/>
         <stack.Screen name="register" component={Register} />
         <stack.Screen name="homeMain" component={HomeMain} />
         <stack.Screen name="choice" component={Choice} />
