@@ -4,9 +4,10 @@ import Modal from "react-native-modal";
 import { Count } from "./count";
 
 export default function Choice({ navigation, route }) {
-  const { name, nameTheory, practice } = route.params;
-  const json = practice.filter((value) => value.nameTheory === nameTheory);
-  const questions = json[0].questions
+  const { json, name,nameTheory,indexModule} = route.params;
+  console.log(json)
+  const JSON = json.practice.filter((value) => value.nameTheory === nameTheory);
+  const questions = JSON[0].questions
 
   const [modal, setModal] = useState(false)
   const [index, setIndex] = useState(0);
@@ -63,7 +64,7 @@ export default function Choice({ navigation, route }) {
               ,
             }}
           /> 
-          <TouchableOpacity onPress={() => navigation.navigate('topincs',{name})}>
+          <TouchableOpacity onPress={() => navigation.navigate('topincs',{json, name, indexModule})}>
             <View style={styles.containerButton}>
               <Text style={styles.textContainer}>Terminar</Text>
             </View>

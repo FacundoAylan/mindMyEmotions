@@ -4,16 +4,16 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 export default function Theory ({ navigation, route }) {
   const {json, nameTheory, name, indexModule } = route.params;
   const theoryTopic = json.theory.filter(value => value.nameTheory === nameTheory);
+
   return (
     <View>
       <Text style={styles.title}>{theoryTopic[0].title}</Text>
       <Text style={styles.text}>{theoryTopic[0].text}</Text> 
-      <TouchableOpacity onPress={() => navigation.navigate(nameTopic==='Test de Inteligencia Emocional'?'choiseTest':"choice", {
+      <TouchableOpacity key={'ingresar'} onPress={() => navigation.navigate(nameTheory==='Test de Inteligencia Emocional'?'choiseTest':"choice", {
         json,
         name,
         nameTheory,
         indexModule,
-        practice
       })}>
         <View style={styles.container}>
           <Text style={styles.textContainer}>ingresar</Text>

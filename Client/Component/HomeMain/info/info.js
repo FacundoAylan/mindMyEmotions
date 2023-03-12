@@ -2,7 +2,7 @@ export var Info = [
   {
     "module": "Reconocimiento emocional",
     "topics": ["Test de Inteligencia Emocional", "Identificar", "Nombrar ", "Entender", "Actuar"],
-    theory: [
+    "theory": [
       {
         "nameTheory": "Test de Inteligencia Emocional",
         "title": "Instrucciones",
@@ -30,12 +30,12 @@ export var Info = [
       }
     ],
 
-    Practice: [
+    "practice": [
       {
         "nameTheory": "Test de Inteligencia Emocional",
         "questions":[
-          {title: "Pregunta 1",
-          text: "Estas en una reunión familiar con tus seres queridos, y notas que cada vez empiezan a hablar más y más duro, hasta el punto en el que se empiezan a enojar y a gritar. ¿Qué haces?",
+          {"title": "Pregunta 1",
+          "text": "Estas en una reunión familiar con tus seres queridos, y notas que cada vez empiezan a hablar más y más duro, hasta el punto en el que se empiezan a enojar y a gritar. ¿Qué haces?",
           "answers": [
             "a. INTENTAS CAMBIAR DE TEMA Y DISTRAER A TUS SERES QUERIDOS.",
             "b. NO HACES NADA.",
@@ -110,7 +110,7 @@ export var Info = [
       {
         "nameTheory": "Identificar",
         "title": "Practica 2",
-        text: "La inteligencia emocional es una habilida que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
+        "text": "La inteligencia emocional es una habilida que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
         "answers": [
           "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
           "b. Respuesta, respuesta, respuesta, respuesta, respuesta.",
@@ -159,7 +159,7 @@ export var Info = [
   },
   {
     "module": "Habilidades socioemocionales",
-    "topics": ["Test inicial","Identificar","Nombrar ","Entender","Actuar"}],
+    "topics": ["Test inicial","Identificar","Nombrar ","Entender","Actuar"],
     "theory": [
       {
         "nameTheory": "Test inicial",
@@ -254,7 +254,7 @@ export var Info = [
   },
   {
     "module": "salud mental",
-    "topics": ["Test inicial","Identificar","name":"Nombrar ", "name":"Entender", "name":"Actuar",}],
+    "topics": ["Test inicial","Identificar","Nombrar ", "Entender", "Actuar"],
     "theory": [
       {
         "nameTheory": "Test inicial",

@@ -13,21 +13,11 @@ export default function Choice({ navigation, route }) {
 
   const [isModalVisible, setModalVisible] = useState(false);
   const [random, setRandom] = useState();
-  const { name, nameTheory, practice } = route.params;
   const url = ['https://i.ibb.co/QmQc16N/1.png','https://i.ibb.co/tBRn87m/2.png','https://i.ibb.co/YRmhjkY/3.png', 'https://i.ibb.co/gJwJ3Xg/4.png']
   
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
-  const validate = (answer) => {
-    if(practice[0].answer === answer){
-      return ( navigation.navigate("topincs", {name: name,}))
-    }else{
-      setRandom(Math.floor(Math.random() * 3));
-      toggleModal()
-    }
-    
-  }
   
   var indexChoise=0;
   const practice = json.practice.filter((value, index) =>{ 
@@ -36,24 +26,23 @@ export default function Choice({ navigation, route }) {
       return(true)
     }
   })
-
   // Arreglar esta cosa horrible no tenia tiempo
   const validateDate = (answer) => {
     if(practice[0].answer === answer){
-      validate.map((value) => {
-        if(value.module === name){
-          if(value.topics.length === indexChoise){
-            try{
-              validate[indexModule+1].complete = true;
-              return (
-                navigation.navigate("homeMain")
-              )
-            }catch(error){
-              console.log(error)
-            }
-          }else{
-            try{
-              value.topics[indexChoise].complete= true;
+      // validate.map((value) => {
+      //   if(value.module === name){
+      //     if(value.topics.length === indexChoise){
+      //       try{
+      //         validate[indexModule+1].complete = true;
+      //         return (
+      //           navigation.navigate("homeMain")
+      //         )
+      //       }catch(error){
+      //         console.log(error)
+      //       }
+      //     }else{
+      //       try{
+      //         value.topics[indexChoise].complete= true;
               //dispatch(validateTopinc(indexChoise))
               return (
                 navigation.navigate("topincs", {
@@ -62,21 +51,22 @@ export default function Choice({ navigation, route }) {
                   indexModule: indexModule,
                  })
               )
-            }catch(error){
-              console.log(error)
-            }
-            }
-        }
-      })
+            // }catch(error){
+            //   console.log(error)
+            // }
+      //       }
+      //   }
+      // })
     }else{
-       Alert.alert('Respuesta incorrecta')
+      setRandom(Math.floor(Math.random() * 3));
+      toggleModal()
     }
   }
   return (
     <View style={styles.mainContainer}>
       <Text style={styles.title}>{practice[0].title}</Text>
       <Text style={styles.textContainer}>{practice[0].text}</Text>
-      {practice[0].questions.map((value) => {
+      {practice[0].answers.map((value) => {
         return (
           <TouchableOpacity
             onPress={() => validateDate(value.charAt(0))}

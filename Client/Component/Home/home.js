@@ -1,8 +1,13 @@
 import React, { useEffect} from "react";
 import { Image, StyleSheet, View } from "react-native";
+import { useDispatch } from "react-redux";
+import { increment, loadValidate } from '../../redux/slice/index'
 
 function Home ({navigation}) {
+  const dispatch = useDispatch();
   useEffect(()=> {
+    dispatch(increment);
+    dispatch(loadValidate);
     setTimeout(() => {
       navigation.navigate("login")
     }, 2000); 

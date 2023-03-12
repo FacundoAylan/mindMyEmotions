@@ -4,8 +4,7 @@ import {validate} from '../../Choice/user_modules_info';
 
 export default function Topics ({ navigation, route }) {
   const { json, name, indexModule } = route.params; 
-  const jsonTopic = validate.filter((value) => value.module === name);
-  
+  const jsonTopic = validate.filter((value) => value.module === name); 
   return (
     <View>
       {

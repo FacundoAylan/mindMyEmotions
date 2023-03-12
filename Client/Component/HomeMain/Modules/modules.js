@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from 'react-redux'
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { validate } from "../Choice/user_modules_info";
+import {Info} from '../info/info'
 
 // este componente contine el contenedor de cada modulo , se repite codigo 
 export default function Modules ({navigation}) {
@@ -13,7 +14,7 @@ export default function Modules ({navigation}) {
 
       <Text style={styles.title}>Temas</Text>
       {
-        json.map((value,index) => {
+        Info.map((value,index) => {
           const module = validate.filter(e => e.module === value.module)
           return(
             <TouchableOpacity key={value.module} disabled={!module[0].complete} onPress={ () => navigation.navigate('topincs',{

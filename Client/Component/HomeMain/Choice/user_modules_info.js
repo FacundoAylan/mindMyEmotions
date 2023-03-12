@@ -3,24 +3,24 @@ export var validate = [
     "module": "Reconocimiento emocional",
     "topics": [
       {
-        "name":"Test inicial",
+        "name":"Test de Inteligencia Emocional",
         "complete": true
       }, 
       {
         "name":"Identificar",
-        "complete": false
+        "complete": true
       }, 
       {
         "name":"Nombrar ",
-        "complete": false
+        "complete": true
       }, 
       {
         "name":"Entender",
-        "complete": false
+        "complete": true
       }, 
       {
         "name":"Actuar",
-        "complete": false
+        "complete": true
       }],
 
       "complete": true
