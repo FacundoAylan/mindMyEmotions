@@ -27,31 +27,31 @@ export default function Sesion({navigation}) {
 
   let validateInformationAndLogIn = async () => {
 
-    if ( validateEmail( email ) ) {
-      if ( validatePassword( password ) ) {
+    // if ( validateEmail( email ) ) {
+    //   if ( validatePassword( password ) ) {
 
-        const validation = await validateUserAuthentication( email, password )
+    //     const validation = await validateUserAuthentication( email, password )
 
-        if ( validation === true ) {
-          //console.log( isAdultState );
-          if ( isAdultState === 'yes' ) {
-            navigation.navigate( 'importance' )
-          }
-          else {
+    //     if ( validation === true ) {
+    //       //console.log( isAdultState );
+    //       if ( isAdultState === 'yes' ) {
+    //         navigation.navigate( 'importance' )
+    //       }
+    //       else {
             navigation.navigate( 'homeMain' )
-          }
-        }
-        else {
-          alert( 'No encontramos ninguna cuenta con estos datos, revisa tus datos de ingreso.' )
-        }
-      }
-      else {
-        alert( 'Tu contraseña parece estar mal.' )
-      }
-    }
-    else {
-      alert( 'Tu email parece estar mal.' )
-    }
+    //       }
+    //     }
+    //     else {
+    //       alert( 'No encontramos ninguna cuenta con estos datos, revisa tus datos de ingreso.' )
+    //     }
+    //   }
+    //   else {
+    //     alert( 'Tu contraseña parece estar mal.' )
+    //   }
+    // }
+    // else {
+    //   alert( 'Tu email parece estar mal.' )
+    // }
   }
 
   return (
