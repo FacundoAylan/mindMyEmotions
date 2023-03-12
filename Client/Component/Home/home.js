@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: '#662483',
-    backgroundColor: 'none'
   },
   image:{
     width: '81%',
