@@ -5,7 +5,6 @@ import { Count } from "./count";
 
 export default function Choice({ navigation, route }) {
   const { json, name,nameTheory,indexModule} = route.params;
-  console.log(json)
   const JSON = json.practice.filter((value) => value.nameTheory === nameTheory);
   const questions = JSON[0].questions
 
