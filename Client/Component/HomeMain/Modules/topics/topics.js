@@ -10,7 +10,7 @@ export default function Topics ({ navigation, route }) {
       {
         json[0].topics.map(topic =>{
             return (
-              <TouchableOpacity onPress={() => navigation.navigate('theory',{
+              <TouchableOpacity  key={topic} onPress={() => navigation.navigate('theory',{
                 name: name,
                 nameTopic: topic,
                 theory: json[0].theory,

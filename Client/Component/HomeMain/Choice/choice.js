@@ -4,6 +4,7 @@ import { Alert, Button, StyleSheet, Text, TextInput, TouchableOpacity, View } fr
 export default function Choice({ navigation, route }) {
   const { name, nameTheory, practice } = route.params;
   const json = practice.filter((value) => value.nameTheory === nameTheory);
+
   const validate = (answer) => {
     return (json[0].answer === answer
     ? navigation.navigate("topincs", {
@@ -15,9 +16,10 @@ export default function Choice({ navigation, route }) {
     <View style={styles.mainContainer}>
       <Text style={styles.title}>{json[0].title}</Text>
       <Text style={styles.textContainer}>{json[0].text}</Text>
-      {json[0].questions.map((value) => {
-        return (
+      {json[0].answers.map((value) => { 
+        return ( 
           <TouchableOpacity
+          key={value}
             onPress={() => validate(value.charAt(0))}
           >
             <View style={styles.container}>
