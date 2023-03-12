@@ -1,36 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux'
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { validate } from "../Choice/user_modules_info";
 
 // este componente contine el contenedor de cada modulo , se repite codigo 
 export default function Modules ({navigation}) {
+
+  const json = useSelector((state) => state.loader.modules);
+
   return (
     <View style={styles.mainContainer}>
 
       <Text style={styles.title}>Temas</Text>
-
-      <TouchableOpacity onPress={() => navigation.navigate('topincs',{
-        name:'Reconocimiento emocional'
-      })}>
-        <View style={styles.container}>
-          <Text style={styles.text}>Reconocimiento emocional</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate('topincs',{
-        name:'Habilidades socioemocionales'
-      })}>
-        <View style={styles.container}>
-          <Text style={styles.text}>Habilidades socioemocionales</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => navigation.navigate('topincs',{
-        name:'Salud mental'
-      })}>
-        <View style={styles.container}>
-          <Text style={styles.text}>Salud mental</Text>
-        </View>
-      </TouchableOpacity>
+      {
+        json.map((value,index) => {
+          const module = validate.filter(e => e.module === value.module)
+          return(
+            <TouchableOpacity key={value.module} disabled={!module[0].complete} onPress={ () => navigation.navigate('topincs',{
+              json: value,
+              name: value.module,
+              indexModule: index,
+            })}>
+              <View style={module[0].complete? styles.container : styles.disabled}>
+                <Text style={styles.text}>{value.module}</Text>
+              </View>
+            </TouchableOpacity>
+          )
+        })
+      }
     </View>
   )
 }
@@ -70,5 +67,13 @@ const styles = StyleSheet.create({
     color: '#662483',
     fontSize: 20,
     marginTop: 13,
+  },
+  disabled: {
+    height: 60,
+    margin: 10,
+    marginHorizontal: 30,
+    borderRadius: 6,
+    borderWidth: 2,
+    opacity:0.5
   }
 }) 

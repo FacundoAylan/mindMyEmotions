@@ -1,13 +1,21 @@
 import React, { useState } from "react";
-import {  Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Modal from "react-native-modal";
+import { useDispatch } from "react-redux";
+import { Alert, StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
+import  {validate}  from "./user_modules_info";
+import {validateTopinc} from '../../../redux/slice/index'
+
 
 export default function Choice({ navigation, route }) {
+
+  const {json, nameTheory, name, indexModule } = route.params;
+  const dispatch = useDispatch()
+
   const [isModalVisible, setModalVisible] = useState(false);
   const [random, setRandom] = useState();
   const { name, nameTheory, practice } = route.params;
-  const json = practice.filter((value) => value.nameTheory === nameTheory);
   const url = ['https://i.ibb.co/QmQc16N/1.png','https://i.ibb.co/tBRn87m/2.png','https://i.ibb.co/YRmhjkY/3.png', 'https://i.ibb.co/gJwJ3Xg/4.png']
+  
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -20,15 +28,59 @@ export default function Choice({ navigation, route }) {
     }
     
   }
+  
+  var indexChoise=0;
+  const practice = json.practice.filter((value, index) =>{ 
+    if(value.nameTheory === nameTheory){
+      indexChoise= index+1;
+      return(true)
+    }
+  })
+
+  // Arreglar esta cosa horrible no tenia tiempo
+  const validateDate = (answer) => {
+    if(practice[0].answer === answer){
+      validate.map((value) => {
+        if(value.module === name){
+          if(value.topics.length === indexChoise){
+            try{
+              validate[indexModule+1].complete = true;
+              return (
+                navigation.navigate("homeMain")
+              )
+            }catch(error){
+              console.log(error)
+            }
+          }else{
+            try{
+              value.topics[indexChoise].complete= true;
+              //dispatch(validateTopinc(indexChoise))
+              return (
+                navigation.navigate("topincs", {
+                  json: json,
+                  name: name,
+                  indexModule: indexModule,
+                 })
+              )
+            }catch(error){
+              console.log(error)
+            }
+            }
+        }
+      })
+    }else{
+       Alert.alert('Respuesta incorrecta')
+    }
+  }
   return (
     <View style={styles.mainContainer}>
-      <Text style={styles.title}>{json[0].title}</Text>
-      <Text style={styles.textContainer}>{json[0].text}</Text>
-      {json[0].answers.map((value) => { 
-        return ( 
+      <Text style={styles.title}>{practice[0].title}</Text>
+      <Text style={styles.textContainer}>{practice[0].text}</Text>
+      {practice[0].questions.map((value) => {
+        return (
           <TouchableOpacity
-          key={value}
-            onPress={() => validate(value.charAt(0))}
+            onPress={() => validateDate(value.charAt(0))}
+            key={value}
           >
             <View style={styles.container}>
               <Text style={styles.textContainer}>{value}</Text>
