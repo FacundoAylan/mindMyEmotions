@@ -10,6 +10,7 @@ import {
 import { KeyboardAvoidingScrollView } from "react-native-keyboard-avoiding-scroll-view";
 import { SelectList } from 'react-native-dropdown-select-list';
 import { Data } from "./city";
+import axios from 'axios';
 
 // {
 //  name: "Facundo", mas de 3 caracteres y menos que 16
@@ -25,13 +26,13 @@ export default function Register({ navigation }) {
 
   const data = Data;
   const [form, setform] = useState({
-    name: "",
-    lastName: "",
-    age: "",
-    gender: "",
-    city: "",
-    email: "",
-    password: "",
+    Mail:'str',
+    Edad: 'int',
+    Nombre_de_usuario: 'str',
+    Apellido_de_usuario: 'str',
+    Contrasenia:'str',
+    Genero: 'str',
+    Ciudad: 'str',
   });
 
   const expresiones = {
@@ -44,15 +45,16 @@ export default function Register({ navigation }) {
 
   const validate = () => {
     if (
-      expresiones.name.test(form.name) &&
-      expresiones.lastName.test(form.lastName) &&
-      expresiones.age.test(form.age) &&
-      expresiones.gender !== '' &&
-      form.city !== '' &&
-      expresiones.email.test(form.email) &&
-      expresiones.password.test(form.password)
+      expresiones.name.test(form.Nombre_de_usuario) &&
+      expresiones.lastName.test(form.Apellido_de_usuario) &&
+      expresiones.age.test(form.Edad) &&
+      form.Genero!== '' &&
+      form.Ciudad !== '' &&
+      expresiones.email.test(form.Mail) &&
+      expresiones.password.test(form.Contrasenia)
     ) {
-      Alert.alert("todo correcto");
+      let res = axios.post( 'https://vercel-three-nu.vercel.app/docs#/default/Registra_Datos_de_Usuario_Registro__post', form );
+      console.log(form)
     } else {
       Alert.alert("falta completar");
     }
@@ -65,25 +67,26 @@ export default function Register({ navigation }) {
         <TextInput
           placeholder="nombre"
           style={styles.input}
-          onChangeText={(nombre) => setform({ ...form, name: nombre })}
+          onChangeText={(nombre) => setform({ ...form, Nombre_de_usuario: nombre })}
         />
         <Text style={styles.text}>Apellido</Text>
         <TextInput
           placeholder="Apellido"
           style={styles.input}
-          onChangeText={(apellido) => setform({ ...form, lastName: apellido })}
+          onChangeText={(apellido) => setform({ ...form, Apellido_de_usuario: apellido })}
         />
         <Text style={styles.text}>Edad</Text>
         <TextInput
           placeholder="Edad"
           style={styles.input}
-          onChangeText={(edad) => setform({ ...form, age: edad })}
+          keyboardType='numeric'
+          onChangeText={(edad) => setform({ ...form, Edad: parseInt(edad) })}
         />
         <Text style={styles.text}>gender</Text>
         <SelectList
           placeholder='genero'
           search={false}
-          setSelected={(gender) => setform({ ...form, gender: gender })}
+          setSelected={(gender) => setform({ ...form, Genero: gender })}
           data={['masculino', 'femenino', 'otro']}
           save="value"
           boxStyles={{
@@ -103,7 +106,7 @@ export default function Register({ navigation }) {
 
         <SelectList
           placeholder={'ciudad'}
-          setSelected={(city) => setform({ ...form, city: city })}
+          setSelected={(city) => setform({ ...form, Ciudad: city })}
           data={data}
           save="value"
           boxStyles={{
@@ -119,11 +122,12 @@ export default function Register({ navigation }) {
             borderRadius: 6,
           }}
         />
+          
         <Text style={styles.text}>Correo</Text>
         <TextInput
           placeholder="Corre"
           style={styles.input}
-          onChangeText={(correo) => setform({ ...form, email: correo })}
+          onChangeText={(correo) => setform({ ...form, Mail: correo })}
         />
         <Text style={styles.text}>Contraseña</Text>
         <TextInput
@@ -131,7 +135,7 @@ export default function Register({ navigation }) {
           secureTextEntry={true}
           style={styles.input}
           onChangeText={(contraseña) =>
-            setform({ ...form, password: contraseña })
+            setform({ ...form, Contrasenia: contraseña })
           }
         />
         <TouchableOpacity style={styles.button} onPress={() => validate()}>
