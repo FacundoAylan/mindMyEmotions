@@ -1,18 +1,19 @@
 import React, { useState } from "react";
-import { Image,StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { validateEmail } from "../../Helpers/authenticationFunctions";
 import { validatePassword } from "../../Helpers/authenticationFunctions";
 import { validateUserAuthentication } from "../../Helpers/authenticationFunctions";
 import * as SecureStore from 'expo-secure-store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from "axios";
 
-export default function Sesion({navigation}) {
+export default function Sesion( { navigation } ) {
   const [ email, setEmail ] = useState( 'jorge@gmail.com' );
   const [ password, setPassword ] = useState( '12345' );
   const [ isAdultState, setIsAdultState ] = useState( undefined )
 
 
   async function getProfileSwitchValue() {
-
     try {
       let result = await SecureStore.getItemAsync( 'IS_ADULT' );
       //console.log( result );
@@ -24,34 +25,55 @@ export default function Sesion({navigation}) {
   getProfileSwitchValue()
 
 
+  async function getUserDataObjectAndSaveItLocally() {
+
+    let userObject = axios.get( 'https://mind-my-emotions.vercel.app/Devolver_todo/', { params: { Mail: email } } )
+      .then( async ( res ) => {
+        const jsonValue = JSON.stringify( res.data );
+        await AsyncStorage.setItem( 'myObject', jsonValue );
+        //console.log( jsonValue );
+      } )
+      .catch( ( error ) => {
+        console.error( 'the error when getting the user data is ==>  ' + error );
+      } );
+
+    // console.log( userObject );
+  }
+
+
 
   let validateInformationAndLogIn = async () => {
 
-    // if ( validateEmail( email ) ) {
-    //   if ( validatePassword( password ) ) {
+    if ( validateEmail( email ) ) {
+      if ( validatePassword( password ) ) {
 
-    //     const validation = await validateUserAuthentication( email, password )
+        const validation = await validateUserAuthentication( email, password )
 
-    //     if ( validation === true ) {
-    //       //console.log( isAdultState );
-    //       if ( isAdultState === 'yes' ) {
-    //         navigation.navigate( 'importance' )
-    //       }
-    //       else {
+        if ( validation === true ) {
+          //console.log( isAdultState );
+
+          //getting and saving the userData object 
+          getUserDataObjectAndSaveItLocally()
+
+          //defining if the profile to open is for the adult or for a child/teen
+          if ( isAdultState === 'yes' ) {
+            navigation.navigate( 'importance' )
+          }
+          else {
             navigation.navigate( 'homeMain' )
-    //       }
-    //     }
-    //     else {
-    //       alert( 'No encontramos ninguna cuenta con estos datos, revisa tus datos de ingreso.' )
-    //     }
-    //   }
-    //   else {
-    //     alert( 'Tu contraseña parece estar mal.' )
-    //   }
-    // }
-    // else {
-    //   alert( 'Tu email parece estar mal.' )
-    // }
+          }
+        }
+        else {
+          alert( 'No encontramos ninguna cuenta con estos datos, revisa tus datos de ingreso y tu conexión a internet.' )
+        }
+      }
+      else {
+        alert( 'Tu contraseña parece estar mal.' )
+      }
+    }
+    else {
+      alert( 'Tu email parece estar mal.' )
+    }
   }
 
   return (
@@ -83,14 +105,14 @@ export default function Sesion({navigation}) {
 
       <TouchableOpacity
         style={styles.button}
-        onPress={() => navigation.navigate("register")}
+        onPress={() => navigation.navigate( "register" )}
       >
         <Text style={styles.text}>Registrarme</Text>
       </TouchableOpacity>
     </View>
   );
 }
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   container: {
     justifyContent: 'center',
     textAlign: 'center',
@@ -119,7 +141,7 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     margin: 0,
     marginTop: 3,
-    borderWidth:2,
+    borderWidth: 2,
     borderColor: '#662483',
     marginHorizontal: 30,
   },
@@ -132,7 +154,7 @@ const styles = StyleSheet.create({
     elevation: 3,
     backgroundColor: 'white',
     marginTop: 20,
-    borderWidth:2,
+    borderWidth: 2,
     borderColor: '#662483',
     marginHorizontal: 30,
   },
@@ -143,12 +165,12 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: '#662483',
   },
-  image:{
+  image: {
     width: '60%',
     height: 200,
     borderRadius: 12,
     resizeMode: 'stretch',
-    marginLeft:'20%'
+    marginLeft: '20%'
   },
   label: {
     color: '#662483',
@@ -157,4 +179,4 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginLeft: 30,
   }
-});
+} );
