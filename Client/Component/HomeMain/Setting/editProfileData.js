@@ -1,12 +1,22 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Alert } from "react-native";
 import { SelectList } from 'react-native-dropdown-select-list';
 import { Data } from "../../registerMe/city";
-import { MES_IMAGES } from '../../../Helpers/constants';
+import { MES_IMAGES, endpoints } from '../../../Helpers/constants';
 import { ScrollView } from 'react-native';
+import axios from 'axios';
 
-export default function EditProfileData( { stopShowingEditPanel, selectedPanel, changeAvatarImage } ) {
-
+export default function EditProfileData( {
+    stopShowingEditPanel,
+    selectedPanel,
+    changeAvatarImage,
+    renderNewUserName,
+    renderNewUserLastname,
+    renderNewserAge,
+    renderNewUserGender,
+    renderUserDepartment,
+    userEmail
+} ) {
     const [ newName, setNewName ] = useState( "" )
     const [ newLastName, setNewLastName ] = useState( "" )
     const [ newAge, setNewAge ] = useState( "" )
@@ -14,6 +24,7 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel, 
     const [ newDepartamento, setNewDepartamento ] = useState( "" )
     const [ newEmail, setNewEmail ] = useState( "" )
     const [ newPassword, setNewPassword ] = useState( "" )
+    const [ oldEmail, setOldEmail ] = useState( "" )
 
 
     let selectNewAvatarAndSendItToTheDb = ( newAvatarLink ) => {
@@ -44,34 +55,112 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel, 
         return allImages
     }
 
+    //Estas funciones validan el nuevo nombre, lo renderizan y mandan la petición para cambiarlas en el backend
+    let validateAndChangeName = () => {
+        renderNewUserName( newName )
+        let sendNewNameToTheDb = async () => {
+            await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Nombre?Mail=${userEmail}&Nuevo_Nombre=${newName}` ).
+                then( res => {
+                    console.log( res.data.Mensaje );
 
-    let validateAndChangeName = ( newName ) => {
-        let newNameTrimmed = newName.trim()
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+                } ).
+                catch( error => {
+                    console.log( error );
+                } )
+            stopShowingEditPanel()
+        }
+        try {
+            sendNewNameToTheDb()
+        } catch ( error ) {
+            console.log( error );
+        }
+
     }
-    let validateAndChangeLastname = ( newLastname ) => {
-        let newLastnameTrimmed = newLastname.trim()
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    }
-    let validateAndChangeAge = ( newAge ) => {
-        if ( newAge > 6 ) {
-            //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    let validateAndChangeLastname = () => {
+        renderNewUserLastname( newLastName )
+        let sendNewLastNameToTheDb = async () => {
+            await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Apellido?Mail=${userEmail}&Nuevo_Apellido=${newLastName}` ).
+                then( res => {
+                    console.log( res.data.Mensaje );
+
+                } ).
+                catch( error => {
+                    console.log( error );
+                } )
+            stopShowingEditPanel()
+        }
+        try {
+            sendNewLastNameToTheDb()
+        } catch ( error ) {
+            console.log( error );
         }
     }
-    let changeGender = ( newGender ) => {
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    }
-    let changeDepartment = ( newDepartment ) => {
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    }
-    /*     let validateAndChangeEmail = ( newEmail ) => {
-            let newEmailTrimmed = newEmail.trim()
-            //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    let validateAndChangeAge = () => {
+        if ( newAge >= 6 ) {
+            renderNewserAge( newAge )
+            let sendNewLastNameToTheDb = async () => {
+                await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Edad?Mail=${userEmail}&Nueva_edad=${newAge}` ).
+                    then( res => {
+                        console.log( res.data.Mensaje );
+
+                    } ).
+                    catch( error => {
+                        console.log( error );
+                    } )
+                stopShowingEditPanel()
+            }
+            try {
+                sendNewLastNameToTheDb()
+            } catch ( error ) {
+                console.log( error );
+            }
+        } else {
+            Alert.alert( 'La edad debe ser un número igual o mayor a 6.' )
         }
-        let validateAndChangePassword = ( newPassword ) => {
-            let newNameTrimmed = newPassword
-            //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-        } */
+    }
+    let changeGender = () => {
+        renderNewUserGender( newGender )
+        let sendNewLastNameToTheDb = async () => {
+            await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Genero?Mail=${userEmail}&Nuevo_Genero=${newAge}` ).
+                then( res => {
+                    console.log( res.data.Mensaje );
+
+                } ).
+                catch( error => {
+                    console.log( error );
+                } )
+            stopShowingEditPanel()
+        }
+        try {
+            sendNewLastNameToTheDb()
+        } catch ( error ) {
+            console.log( error );
+        }
+        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    }
+
+    let changeDepartment = () => {
+
+        renderUserDepartment( newDepartamento )
+        /*  let sendNewLastNameToTheDb = async () => {
+             await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Genero?Mail=${userEmail}&Nuevo_Genero=${newAge}` ).
+                 then( res => {
+                     console.log( res.data.Mensaje );
+ 
+                 } ).
+                 catch( error => {
+                     console.log( error );
+                 } )
+             stopShowingEditPanel()
+         }
+         try {
+             sendNewLastNameToTheDb()
+         } catch ( error ) {
+             console.log( error );
+         } */
+
+    }
+
 
     let renderEditModals = () => {
 

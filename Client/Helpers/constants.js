@@ -1,4 +1,13 @@
-export const BACKEND_LOGIN_CHECKER = "https://mind-my-emotions.vercel.app/usuario_contrasenia/"
+export const endpoints = {
+    BACKEND_LOGIN_CHECKER: "https://mind-my-emotions.vercel.app/Login/",
+    BACKEND_PERFIL_NOMBRE: "https://mind-my-emotions.vercel.app/Perfil/Nombre",
+    BACKEND_PERFIL_APELLIDO: "https://mind-my-emotions.vercel.app/Perfil/Apellido",
+    BACKEND_PERFIL_EDAD: "https://mind-my-emotions.vercel.app/Perfil/Edad",
+    BACKEND_PERFIL_GENERO: "https://mind-my-emotions.vercel.app/Perfil/Genero",
+    BACKEND_LOGIN_DEPARTAMENTO: "https://mind-my-emotions.vercel.app/Perfil/Departamento/",
+
+}
+
 
 
 
@@ -62,3 +71,4 @@ export const MES_IMAGES = [
 
     },
 ]
+
