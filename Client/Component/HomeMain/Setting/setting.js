@@ -1,8 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable } from "react-native";
-import { SvgUri } from 'react-native-svg';
-import edit_info_logo from '../../../assets/edit_info_logo.svg'
 import EditProfileData from "./editProfileData";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -19,7 +17,7 @@ export default function Setting() {
   const [ selectedPanel, setSelectedPanel ] = useState( false )
   const [ selectedAvatar, setselectedAvatar ] = useState( 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png' )
 
-  const editImage = 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678678683/ASSETTS/edit_info_logo_xcitjt.jpg'
+  const editImage = 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678820634/ASSETTS/editLogo_mirxle.png'
 
   useEffect( () => {
     traerDatos()
