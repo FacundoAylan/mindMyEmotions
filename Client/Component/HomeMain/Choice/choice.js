@@ -41,9 +41,9 @@ export default function Choice({ navigation, route }) {
       //         console.log(error)
       //       }
       //     }else{
-      //       try{
-      //         value.topics[indexChoise].complete= true;
-              //dispatch(validateTopinc(indexChoise))
+            try{
+              // value.topics[indexChoise].complete= true;
+              dispatch(validateTopinc(indexChoise))
               return (
                 navigation.navigate("topincs", {
                   json: json,
@@ -51,9 +51,9 @@ export default function Choice({ navigation, route }) {
                   indexModule: indexModule,
                  })
               )
-            // }catch(error){
-            //   console.log(error)
-            // }
+            }catch(error){
+              console.log(error)
+            }
       //       }
       //   }
       // })

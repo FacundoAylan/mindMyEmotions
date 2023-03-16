@@ -212,8 +212,6 @@ export default function Setting() {
 
         />}
 
-
-
       </View>
     </View>
   );
