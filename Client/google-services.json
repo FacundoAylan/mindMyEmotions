@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "673592098328",
+    "firebase_url": "https://emocionesfeb-default-rtdb.firebaseio.com",
+    "project_id": "emocionesfeb",
+    "storage_bucket": "emocionesfeb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:673592098328:android:b5d4d0600c0654c1260d6d",
+        "android_client_info": {
+          "package_name": "com.mindMyEmotions.mindMyEmotions"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "673592098328-4t8kjfdhoo3f8ldqu68diq16nnr6rer9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mindMyEmotions.mindMyEmotions",
+            "certificate_hash": "9342e2f815544733c44be446981037388e66eb63"
+          }
+        },
+        {
+          "client_id": "673592098328-ae4iin79td52sni0v4n5ekv89j5no3gq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mindMyEmotions.mindMyEmotions",
+            "certificate_hash": "9c73744a411228cbc3ecf11130c054ed4ad12929"
+          }
+        },
+        {
+          "client_id": "673592098328-0ee3uc8qm0c49hdfp35stvt7m7kl6avr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAGmu359fk67Lyku8hBx2ZEV7OnxRuWsLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "673592098328-0ee3uc8qm0c49hdfp35stvt7m7kl6avr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

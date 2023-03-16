@@ -2,6 +2,7 @@
   "expo": {
     "name": "mindMyEmotions",
     "slug": "mindMyEmotions",
+    "plugins": ["@react-native-google-signin/google-signin"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,11 +26,12 @@
       }
     },
     "android": {
-      "package": "com.mindMyEmotions.mindMyEmotions",
+      "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.mindMyEmotions.mindMyEmotions"
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -27,7 +27,7 @@ export default function HomeMain ({ navigation }) {
         }}
       />
       <Tab.Screen
-        name="Sobre mi"
+        name="Sobre ME"
         component={About}
         options={{
           headerShown: false,
