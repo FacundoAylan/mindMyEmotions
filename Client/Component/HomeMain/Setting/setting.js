@@ -89,7 +89,7 @@ export default function Setting() {
     setUserLastname( jsonToObject.Mensaje.Datos_registro.Apellido_de_usuario )
     setUserAge( jsonToObject.Mensaje.Datos_registro.Edad )
     setUserGender( jsonToObject.Mensaje.Datos_registro.Genero )
-    setUserDepartment( jsonToObject.Mensaje.Datos_registro.Ciudad )
+    setUserDepartment( jsonToObject.Mensaje.Datos_registro.Departamento )
     setUserEmail( jsonToObject.Mensaje.Datos_registro.Mail )
     //console.log( jsonToObject.Mensaje.Datos_registro );
   }
@@ -122,7 +122,7 @@ export default function Setting() {
         <Pressable onPress={() => sendEditNamePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Nombre</Text>
-            <Text style={styles.textForUserData}>{userName ? userName : 'Camila'}</Text>
+            <Text style={styles.textForUserData}>{userName ? userName : '???????'}</Text>
 
             <Image
               style={styles.imageEditLogoForTheRightSide}
@@ -135,7 +135,7 @@ export default function Setting() {
         <Pressable onPress={() => sendEditLastNamePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Apellido</Text>
-            <Text style={styles.textForUserData}>{userLastname ? userLastname : 'Vargas'}</Text>
+            <Text style={styles.textForUserData}>{userLastname ? userLastname : '???????'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -146,7 +146,7 @@ export default function Setting() {
         <Pressable onPress={() => sendEditAgePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Edad</Text>
-            <Text style={styles.textForUserData}>{userAge ? userAge : '12'}</Text>
+            <Text style={styles.textForUserData}>{userAge ? userAge : '???????'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -157,7 +157,7 @@ export default function Setting() {
         <Pressable onPress={() => sendEditGenderPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Género</Text>
-            <Text style={styles.textForUserData}>{userGender ? userGender : 'Femenino'}</Text>
+            <Text style={styles.textForUserData}>{userGender ? userGender : '???????'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -168,7 +168,7 @@ export default function Setting() {
         <Pressable onPress={() => sendEditDepartmentPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Departamento</Text>
-            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : 'Bogotá DC'}</Text>
+            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : '???????'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -179,7 +179,7 @@ export default function Setting() {
         <Pressable onPress={() => setShowEditPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.notWorkingYet}>Correo</Text>
-            <Text style={styles.textForUserData}>  {userEmail ? userEmail : 'camilita@gmail.com'}</Text>
+            <Text style={styles.textForUserData}>  {userEmail ? userEmail : '???????'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}

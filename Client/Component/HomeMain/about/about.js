@@ -1,15 +1,10 @@
 import React, { useCallback } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Linking, Image } from "react-native";
 import { SvgUri } from 'react-native-svg';
-import insta from '../../../assets/insta.svg'
-import linkedin from '../../../assets/linkedin.svg'
-import tiktok from '../../../assets/tiktok.svg'
-import twitter from '../../../assets/twitter.svg'
+
 
 
 export default function About( { navigation } ) {
-
-
 
   return (
     <View style={styles.mainContainer}>
@@ -18,49 +13,50 @@ export default function About( { navigation } ) {
       <TouchableOpacity style={styles.button} onPress={() => Linking.openURL( 'https://www.mindmyemotions.com/' )}>
         <Text style={styles.textButton}>Nuestra página web</Text>
 
-      </TouchableOpacity> 
-
-      {/* <OpenURLButton url={'https://www.mindmyemotions.com/'} children={"Conoce más sobre 'Me'"} />
- */}
+      </TouchableOpacity>
 
       <Text style={styles.title}>Contacto</Text>
 
+
+
       <TouchableOpacity onPress={() => Linking.openURL( 'https://www.instagram.com/mindmyemotions' )}>
         <View style={styles.socialsContainer}>
-          <SvgUri
-            width={45}
-            height={45}
-            uri={Image.resolveAssetSource( insta ).uri}
+          <Image
+            style={styles.socialMediaImage}
+            source={{ uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678945324/ASSETTS/insta_zlym52.png' }}
           />
           <Text style={styles.text}>instagram.com/mindmyemotions</Text>
         </View>
       </TouchableOpacity>
+
+
       <TouchableOpacity onPress={() => Linking.openURL( 'https://www.tiktok.com/@mindmyemotions' )}>
         <View style={styles.socialsContainer}>
-          <SvgUri
-            width={45}
-            height={45}
-            uri={Image.resolveAssetSource( tiktok ).uri}
+          <Image
+            style={styles.socialMediaImage}
+            source={{ uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678945324/ASSETTS/tiktok_lned3u.png' }}
           />
           <Text style={styles.text}>tiktok.com/@mindmyemotions</Text>
         </View>
       </TouchableOpacity>
+
+
       <TouchableOpacity onPress={() => Linking.openURL( 'https://www.twitter.com/MindMyEmotions' )}>
         <View style={styles.socialsContainer}>
-          <SvgUri
-            width={45}
-            height={45}
-            uri={Image.resolveAssetSource( twitter ).uri}
+          <Image
+            style={styles.socialMediaImage}
+            source={{ uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678945324/ASSETTS/twitter_qhtu5n.png' }}
           />
           <Text style={styles.text}>twitter.com/MindMyEmotions</Text>
         </View>
       </TouchableOpacity>
+
+
       <TouchableOpacity onPress={() => Linking.openURL( 'https://www.linkedin.com/company/mindmyemotions' )}>
         <View style={styles.socialsContainer}>
-          <SvgUri
-            width={45}
-            height={45}
-            uri={Image.resolveAssetSource( linkedin ).uri}
+          <Image
+            style={styles.socialMediaImage}
+            source={{ uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678945324/ASSETTS/linkedin_etlovq.png' }}
           />
           <Text style={styles.text}>linkedin.com/mindmyemotions</Text>
         </View>
@@ -69,7 +65,7 @@ export default function About( { navigation } ) {
   )
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   mainContainer: {
     borderLeftWidth: 5,
     borderLeftColor: '#f29100',
@@ -82,7 +78,7 @@ const styles = StyleSheet.create({
     height: 60,
     marginLeft: 40,
   },
-  textContainer:{
+  textContainer: {
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',
@@ -120,5 +116,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontWeight: "600",
     fontSize: 17,
+  },
+  socialMediaImage: {
+    width: 45,
+    height: 45,
   }
-})
+} )
