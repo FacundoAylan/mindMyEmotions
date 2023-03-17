@@ -31,13 +31,13 @@ export default function Sesion( { navigation } ) {
       .then( async ( res ) => {
         const jsonValue = JSON.stringify( res.data );
         await AsyncStorage.setItem( 'myObject', jsonValue );
-        //console.log( jsonValue );
+        console.log( jsonValue );
       } )
       .catch( ( error ) => {
         console.error( 'the error when getting the user data is ==>  ' + error );
       } );
 
-    // console.log( userObject );
+    //console.log( userObject );
   }
 
 
