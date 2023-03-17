@@ -10,7 +10,7 @@ function Home( { navigation } ) {
     dispatch( loadValidate );
     setTimeout( () => {
       navigation.navigate( "login" )
-    }, 3000 );
+    }, 2000 );
   }, [] )
   return (
     <View style={styles.container}>
