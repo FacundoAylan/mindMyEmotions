@@ -90,6 +90,8 @@ export default function Sesion( { navigation } ) {
 
 
   //////////////////////////////////////GOOGLE THINGS/////////////////////////////////////////////////////////////
+
+  //Saves the user profile to be shown, if its not an adult, its a kid so the homemain should be shown
   async function getProfileSwitchValue() {
     try {
       let result = await SecureStore.getItemAsync( 'IS_ADULT' );
@@ -100,6 +102,35 @@ export default function Sesion( { navigation } ) {
     }
   }
   getProfileSwitchValue()
+
+  //Saves a flag that means that the user logged in and hasnt logged out, so the sesion login shoulnt be shown
+  const saveLoggedInFlag = async () => {
+    try {
+      await AsyncStorage.setItem( 'IS_LOGGED_IN', 'true' );
+
+    } catch ( error ) {
+      console.log( error );
+    }
+  }
+  //Gets the flag and checks it, if its true it means that the user is still loged in and their data is on async storage too so it navigates to other screen
+  const getLoggedInFlag = async () => {
+    try {
+      let isLoggedInResult = await AsyncStorage.getItem( 'IS_LOGGED_IN' );
+      console.log( isLoggedInResult );
+      if ( isLoggedInResult === 'true' ) {
+        if ( isAdultState === 'yes' ) {
+          navigation.navigate( 'importance' )
+        }
+        else {
+          navigation.navigate( 'homeMain' )
+        }
+      }
+    } catch ( error ) {
+      console.log( error );
+    }
+
+  }
+  getLoggedInFlag()
 
 
   async function getUserDataObjectAndSaveItLocally() {
@@ -114,7 +145,7 @@ export default function Sesion( { navigation } ) {
         console.error( 'the error when getting the user data is ==>  ' + error );
       } );
 
-    // console.log( userObject );
+    //console.log( userObject );
   }
 
 
@@ -125,6 +156,7 @@ export default function Sesion( { navigation } ) {
         const validation = await validateUserAuthentication( email, password )
         if ( validation === true ) {
           //console.log( isAdultState );
+          saveLoggedInFlag()
           //getting and saving the userData object 
           getUserDataObjectAndSaveItLocally()
           //defining if the profile to open is for the adult or for a child/teen

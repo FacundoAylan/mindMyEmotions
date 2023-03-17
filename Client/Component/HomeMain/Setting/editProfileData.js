@@ -1,25 +1,45 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Alert } from "react-native";
 import { SelectList } from 'react-native-dropdown-select-list';
 import { Data } from "../../registerMe/city";
 import { MES_IMAGES } from '../../../Helpers/constants';
 import { ScrollView } from 'react-native';
+import axios from 'axios';
 
-export default function EditProfileData( { stopShowingEditPanel, selectedPanel, changeAvatarImage } ) {
-
+export default function EditProfileData( {
+    stopShowingEditPanel,
+    selectedPanel,
+    changeAvatarImage,
+    renderNewUserName,
+    renderNewUserLastname,
+    renderNewserAge,
+    renderNewUserGender,
+    renderUserDepartment,
+    userEmail
+} ) {
     const [ newName, setNewName ] = useState( "" )
     const [ newLastName, setNewLastName ] = useState( "" )
     const [ newAge, setNewAge ] = useState( "" )
     const [ newGender, setNewGender ] = useState( "" )
     const [ newDepartamento, setNewDepartamento ] = useState( "" )
-    const [ newEmail, setNewEmail ] = useState( "" )
-    const [ newPassword, setNewPassword ] = useState( "" )
+    /*     const [ newEmail, setNewEmail ] = useState( "" )
+        const [ newPassword, setNewPassword ] = useState( "" )
+        const [ oldEmail, setOldEmail ] = useState( "" ) */
 
 
-    let selectNewAvatarAndSendItToTheDb = ( newAvatarLink ) => {
+    let selectNewAvatarAndSendItToTheDb = async ( newAvatarLink ) => {
         console.log( 'clicked' );
         changeAvatarImage( newAvatarLink )
-        //FUNCION PARA HACER EL POST PARA CAMBIAR EL AVATAR
+
+        await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Avatar?Mail=${userEmail}&Avatar=${newAvatarLink}` ).
+            then( res => {
+                console.log( res.data.Mensaje );
+
+            } ).
+            catch( error => {
+                console.log( error );
+            } )
+        stopShowingEditPanel()
     }
 
     let selectAvatar = () => {
@@ -44,34 +64,112 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel, 
         return allImages
     }
 
+    //Estas funciones validan el nuevo nombre, lo renderizan y mandan la petición para cambiarlas en el backend
+    //Intente poner los links en constantes y hacer las peticiones mandandole un objeto datos a axios... Pero no me funciono rapido entonces toca cambiarlo luego
 
-    let validateAndChangeName = ( newName ) => {
-        let newNameTrimmed = newName.trim()
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    let validateAndChangeName = () => {
+        renderNewUserName( newName )
+        let sendNewNameToTheDb = async () => {
+            await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Nombre?Mail=${userEmail}&Nuevo_Nombre=${newName}` ).
+                then( res => {
+                    console.log( res.data.Mensaje );
+
+                } ).
+                catch( error => {
+                    console.log( error );
+                } )
+            stopShowingEditPanel()
+        }
+        try {
+            sendNewNameToTheDb()
+        } catch ( error ) {
+            console.log( error );
+        }
+
     }
-    let validateAndChangeLastname = ( newLastname ) => {
-        let newLastnameTrimmed = newLastname.trim()
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    }
-    let validateAndChangeAge = ( newAge ) => {
-        if ( newAge > 6 ) {
-            //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    let validateAndChangeLastname = () => {
+        renderNewUserLastname( newLastName )
+        let sendNewLastNameToTheDb = async () => {
+            await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Apellido?Mail=${userEmail}&Nuevo_Apellido=${newLastName}` ).
+                then( res => {
+                    console.log( res.data.Mensaje );
+
+                } ).
+                catch( error => {
+                    console.log( error );
+                } )
+            stopShowingEditPanel()
+        }
+        try {
+            sendNewLastNameToTheDb()
+        } catch ( error ) {
+            console.log( error );
         }
     }
-    let changeGender = ( newGender ) => {
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    }
-    let changeDepartment = ( newDepartment ) => {
-        //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-    }
-    /*     let validateAndChangeEmail = ( newEmail ) => {
-            let newEmailTrimmed = newEmail.trim()
-            //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
+    let validateAndChangeAge = () => {
+        if ( newAge >= 6 ) {
+            renderNewserAge( newAge )
+            let sendNewAgeToTheDb = async () => {
+                await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Edad?Mail=${userEmail}&Nueva_edad=${newAge}` ).
+                    then( res => {
+                        console.log( res.data.Mensaje );
+
+                    } ).
+                    catch( error => {
+                        console.log( error );
+                    } )
+                stopShowingEditPanel()
+            }
+            try {
+                sendNewAgeToTheDb()
+            } catch ( error ) {
+                console.log( error );
+            }
+        } else {
+            Alert.alert( 'La edad debe ser un número igual o mayor a 6.' )
         }
-        let validateAndChangePassword = ( newPassword ) => {
-            let newNameTrimmed = newPassword
-            //llamo a la funcion para cambiar el nombre y le mando el nuevo nombre
-        } */
+    }
+    let changeGender = () => {
+        renderNewUserGender( newGender )
+        let sendNewGenderToTheDb = async () => {
+            await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Genero?Mail=${userEmail}&Nuevo_Genero=${newGender}` ).
+                then( res => {
+                    console.log( res.data.Mensaje );
+
+                } ).
+                catch( error => {
+                    console.log( error );
+                } )
+            stopShowingEditPanel()
+        }
+        try {
+            sendNewGenderToTheDb()
+        } catch ( error ) {
+            console.log( error );
+        }
+
+    }
+
+    let changeDepartment = () => {
+        renderUserDepartment( newDepartamento )
+        let sendNewDepartmentToTheDb = async () => {
+            await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Departamento?Mail=${userEmail}&Nuevo_Departamento=${newDepartamento}` ).
+                then( res => {
+                    console.log( res.data.Mensaje );
+
+                } ).
+                catch( error => {
+                    console.log( error );
+                } )
+            stopShowingEditPanel()
+        }
+        try {
+            sendNewDepartmentToTheDb()
+        } catch ( error ) {
+            console.log( error );
+        }
+    }
+
 
     let renderEditModals = () => {
 
@@ -84,11 +182,6 @@ export default function EditProfileData( { stopShowingEditPanel, selectedPanel, 
                         {selectAvatar()}
                     </View>
                 )
-
-
-                {/*  <TouchableOpacity style={styles.editButton} onPress={() => validateAndChangeName()} >
-                    <Text style={styles.text}>Cambiar</Text>
-                </TouchableOpacity> */}
             case "EDIT_NAME":
                 return (
                     <View>

@@ -1,17 +1,45 @@
 import React from "react";
-import { useState } from "react";
-import { StyleSheet, Text, TextInput, View, Image, Button } from "react-native";
-import { SvgUri } from 'react-native-svg';
-import edit_info_logo from '../../../assets/edit_info_logo.svg'
+import { useState, useEffect } from "react";
+import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable } from "react-native";
 import EditProfileData from "./editProfileData";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
-export default function Setting() {
+export default function Setting( { navigation } ) {
+
+  const [ userName, setUserName ] = useState( '' )
+  const [ userLastname, setUserLastname ] = useState( '' )
+  const [ userAge, setUserAge ] = useState( '' )
+  const [ userGender, setUserGender ] = useState( '' )
+  const [ userDepartment, setUserDepartment ] = useState( '' )
+  const [ userEmail, setUserEmail ] = useState( '' )
 
   const [ showEditPanel, setShowEditPanel ] = useState( false )
   const [ selectedPanel, setSelectedPanel ] = useState( false )
   const [ selectedAvatar, setselectedAvatar ] = useState( 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png' )
 
+  const editImage = 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678820634/ASSETTS/editLogo_mirxle.png'
+
+  useEffect( () => {
+    traerDatos()
+  }, [] )
+
+  //state rerendering functions
+  const renderNewUserName = ( newName ) => {
+    setUserName( newName )
+  }
+  const renderNewUserLastname = ( newLastname ) => {
+    setUserLastname( newLastname )
+  }
+  const renderNewserAge = ( newAge ) => {
+    setUserAge( newAge )
+  }
+  const renderNewUserGender = ( newGender ) => {
+    setUserGender( newGender )
+  }
+  const renderUserDepartment = ( newDepartment ) => {
+    setUserDepartment( newDepartment )
+  }
 
   //This function is passed to the child component and helps to stop showing the edit panel when pressing the x 
   const stopShowingEditPanel = () => { setShowEditPanel( false ) }
@@ -56,10 +84,29 @@ export default function Setting() {
     } */
 
   let traerDatos = async () => {
-
     let retrievedJson = await AsyncStorage.getItem( 'myObject' );
     let jsonToObject = JSON.parse( retrievedJson )
-    console.log( jsonToObject.Diccionario_de_datos_del_usuario );
+    setUserName( jsonToObject.Mensaje.Datos_registro.Nombre_de_usuario )
+    setUserLastname( jsonToObject.Mensaje.Datos_registro.Apellido_de_usuario )
+    setUserAge( jsonToObject.Mensaje.Datos_registro.Edad )
+    setUserGender( jsonToObject.Mensaje.Datos_registro.Genero )
+    setUserDepartment( jsonToObject.Mensaje.Datos_registro.Departamento )
+    setUserEmail( jsonToObject.Mensaje.Datos_registro.Mail )
+    //console.log( jsonToObject.Mensaje.Datos_registro );
+  }
+
+
+  //Removes this key from async storage, so the user has to log in again from the sesion screen. The user is navigated to the sesion.
+  let logOutUser = async () => {
+    try {
+      await AsyncStorage.removeItem( 'IS_LOGGED_IN' );
+      //google sign out
+
+    } catch ( error ) {
+      console.log( error );
+    }
+    navigation.navigate( 'login' )
+    //console.log( 'user signed out' );
 
   }
 
@@ -69,98 +116,116 @@ export default function Setting() {
       <View>
         <Text style={styles.title}>Tu Perfil</Text>
 
-        <Button title="aindoaw" onPress={traerDatos}>aaaaaaaa</Button>
 
-        <Image
-          style={styles.avatar}
-          source={{ uri: selectedAvatar }}
-          key={Math.random()}
-        />
-
-        <SvgUri style={styles.editInfoImgForAvatar}
-          width={25}
-          height={25}
-          uri={Image.resolveAssetSource( edit_info_logo ).uri}
-          onPress={() => sendAvatarPanel()}
-        />
-
-        <View style={styles.informationContainer}>
-          <Text style={styles.text}>Nombre</Text>
-          <Text style={styles.textForUserData}>Camila</Text>
-          <SvgUri style={styles.editInfoImg}
-            width={25}
-            height={25}
-            uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => sendEditNamePanel()}
+        <View style={styles.avatarContainer}>
+          <Image
+            style={styles.avatar}
+            source={{ uri: selectedAvatar }}
+            key={Math.random()}
+            onPress={sendAvatarPanel}
           />
         </View>
-
-        <View style={styles.informationContainer}>
-          <Text style={styles.text}>Apellido</Text>
-          <Text style={styles.textForUserData}>Gonzales</Text>
-          <SvgUri style={styles.editInfoImg}
-            width={25}
-            height={25}
-            uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => sendEditLastNamePanel()}
+        <Pressable onPress={() => sendAvatarPanel()}>
+          <Image
+            style={styles.imageEditLogo}
+            source={{ uri: editImage }}
           />
-        </View>
+        </Pressable>
 
-        <View style={styles.informationContainer}>
-          <Text style={styles.text}>Edad</Text>
-          <Text style={styles.textForUserData}>12 años</Text>
-          <SvgUri style={styles.editInfoImg}
-            width={25}
-            height={25}
-            uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => sendEditAgePanel()}
-          />
-        </View>
+        <Pressable onPress={() => sendEditNamePanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Nombre</Text>
+            <Text style={styles.textForUserData}>{userName ? userName : '???????'}</Text>
 
-        <View style={styles.informationContainer}>
-          <Text style={styles.text}>Género</Text>
-          <Text style={styles.textForUserData}>Femenino</Text>
-          <SvgUri style={styles.editInfoImg}
-            width={25}
-            height={25}
-            uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => sendEditGenderPanel()}
-          />
-        </View>
-        <View style={styles.informationContainer}>
-          <Text style={styles.text}>Ciudad</Text>
-          <Text style={styles.textForUserData}>Bogotá</Text>
-          <SvgUri style={styles.editInfoImg}
-            width={25}
-            height={25}
-            uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => sendEditDepartmentPanel()}
-          />
-        </View>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
 
-        <View style={styles.informationContainer}>
-          <Text style={styles.notWorkingYet}>Correo</Text>
-          <Text style={styles.textForUserData}>camilita@gmail.com</Text>
-          <SvgUri style={styles.editInfoImg}
-            width={25}
-            height={25}
-            uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => setShowEditPanel( false )}
-          />
-        </View>
+          </View>
+        </Pressable>
 
-        <View style={styles.informationContainer}>
-          <Text style={styles.notWorkingYet} >Contraseña</Text>
-          <Text style={styles.textForUserData}>********</Text>
-          <SvgUri style={styles.editInfoImg}
-            width={25}
-            height={25}
-            uri={Image.resolveAssetSource( edit_info_logo ).uri}
-            onPress={() => setShowEditPanel( false )}
-          />
-        </View>
+        <Pressable onPress={() => sendEditLastNamePanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Apellido</Text>
+            <Text style={styles.textForUserData}>{userLastname ? userLastname : '???????'}</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
 
-        {showEditPanel === true && <EditProfileData stopShowingEditPanel={stopShowingEditPanel} selectedPanel={selectedPanel} changeAvatarImage={changeAvatarImage} />}
+        <Pressable onPress={() => sendEditAgePanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Edad</Text>
+            <Text style={styles.textForUserData}>{userAge ? userAge : '???????'}</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
+
+        <Pressable onPress={() => sendEditGenderPanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Género</Text>
+            <Text style={styles.textForUserData}>{userGender ? userGender : '???????'}</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
+
+        <Pressable onPress={() => sendEditDepartmentPanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Departamento</Text>
+            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : '???????'}</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
+
+        <Pressable onPress={() => setShowEditPanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.notWorkingYet}>Correo</Text>
+            <Text style={styles.textForUserData}>  {userEmail ? userEmail : '???????'}</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
+
+        <Pressable onPress={() => setShowEditPanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.notWorkingYet} >Contraseña</Text>
+            <Text style={styles.textForUserData}>********</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
+
+
+        {showEditPanel === true && <EditProfileData
+          stopShowingEditPanel={stopShowingEditPanel}
+          selectedPanel={selectedPanel}
+          changeAvatarImage={changeAvatarImage}
+          renderNewUserName={renderNewUserName}
+          renderNewUserLastname={renderNewUserLastname}
+          renderNewserAge={renderNewserAge}
+          renderNewUserGender={renderNewUserGender}
+          renderUserDepartment={renderUserDepartment}
+          userEmail={userEmail}
+
+        />}
+
+        <Button title="LogOut" onPress={logOutUser}>LogOut</Button>
 
       </View>
     </View>
@@ -186,8 +251,8 @@ const styles = StyleSheet.create( {
   },
   avatar: {
     alignSelf: "center",
-    marginTop: 20,
-    marginBottom: 20,
+    marginTop: 10,
+    marginBottom: 5,
     height: 95,
     width: 95,
     borderRadius: 50,
@@ -223,11 +288,6 @@ const styles = StyleSheet.create( {
     marginTop: 2,
     marginLeft: 300,
   },
-  editInfoImgForAvatar: {
-    position: "absolute",
-    marginTop: 117,
-    marginLeft: 245,
-  },
   notWorkingYet: {
     color: "#8C8C8C",
     fontWeight: "800",
@@ -236,5 +296,24 @@ const styles = StyleSheet.create( {
     margin: 0,
     marginTop: 5,
     marginLeft: 30,
-  }
+  },
+  imageEditLogo: {
+    alignSelf: "center",
+    marginBottom: 10,
+    height: 26,
+    width: 28,
+  },
+  imageEditLogoForTheRightSide: {
+    position: "absolute",
+    marginTop: 5,
+    marginRight: 0,
+    marginLeft: 300,
+    height: 26,
+    width: 28,
+  },
+  avatarContainer: {
+    flexDirection: "row",
+    alignSelf: "center",
+  },
+
 } );
