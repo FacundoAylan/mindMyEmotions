@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { validateEmail } from "../../Helpers/authenticationFunctions";
 import { validatePassword } from "../../Helpers/authenticationFunctions";
@@ -13,6 +13,8 @@ export default function Sesion( { navigation } ) {
   const [ isAdultState, setIsAdultState ] = useState( undefined )
 
 
+
+  //Saves the user profile to be shown, if its not an adult, its a kid so the homemain should be shown
   async function getProfileSwitchValue() {
     try {
       let result = await SecureStore.getItemAsync( 'IS_ADULT' );
@@ -24,6 +26,35 @@ export default function Sesion( { navigation } ) {
   }
   getProfileSwitchValue()
 
+  //Saves a flag that means that the user logged in and hasnt logged out, so the sesion login shoulnt be shown
+  const saveLoggedInFlag = async () => {
+    try {
+      await AsyncStorage.setItem( 'IS_LOGGED_IN', 'true' );
+
+    } catch ( error ) {
+      console.log( error );
+    }
+  }
+  //Gets the flag and checks it, if its true it means that the user is still loged in and their data is on async storage too so it navigates to other screen
+  const getLoggedInFlag = async () => {
+    try {
+      let isLoggedInResult = await AsyncStorage.getItem( 'IS_LOGGED_IN' );
+      console.log( isLoggedInResult );
+      if ( isLoggedInResult === 'true' ) {
+        if ( isAdultState === 'yes' ) {
+          navigation.navigate( 'importance' )
+        }
+        else {
+          navigation.navigate( 'homeMain' )
+        }
+      }
+    } catch ( error ) {
+      console.log( error );
+    }
+
+  }
+  getLoggedInFlag()
+
 
   async function getUserDataObjectAndSaveItLocally() {
 
@@ -31,7 +62,7 @@ export default function Sesion( { navigation } ) {
       .then( async ( res ) => {
         const jsonValue = JSON.stringify( res.data );
         await AsyncStorage.setItem( 'myObject', jsonValue );
-        console.log( jsonValue );
+        //console.log( jsonValue );
       } )
       .catch( ( error ) => {
         console.error( 'the error when getting the user data is ==>  ' + error );
@@ -51,7 +82,7 @@ export default function Sesion( { navigation } ) {
 
         if ( validation === true ) {
           //console.log( isAdultState );
-
+          saveLoggedInFlag()
           //getting and saving the userData object 
           getUserDataObjectAndSaveItLocally()
 
@@ -78,12 +109,6 @@ export default function Sesion( { navigation } ) {
 
   return (
     <View style={styles.container}>
-      {/* <Image
-        style={styles.image}
-        source={{
-          uri: "https://i.ibb.co/dGpDhhL/mind-My-Emotion2.png",
-        }}
-      /> */}
       <Text style={styles.title}> Iniciar sesión</Text>
       <Text style={styles.label}>Correo</Text>
       <TextInput
