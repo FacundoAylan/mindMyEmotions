@@ -2,9 +2,10 @@ import React from "react";
 import { useState, useEffect } from "react";
 import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable } from "react-native";
 import EditProfileData from "./editProfileData";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import * as SecureStore from 'expo-secure-store';
 
-export default function Setting() {
+export default function Setting( { navigation } ) {
 
   const [ userName, setUserName ] = useState( '' )
   const [ userLastname, setUserLastname ] = useState( '' )
@@ -95,7 +96,19 @@ export default function Setting() {
   }
 
 
+  //Removes this key from async storage, so the user has to log in again from the sesion screen. The user is navigated to the sesion.
+  let logOutUser = async () => {
+    try {
+      await AsyncStorage.removeItem( 'IS_LOGGED_IN' );
+      //google sign out
 
+    } catch ( error ) {
+      console.log( error );
+    }
+    navigation.navigate( 'login' )
+    //console.log( 'user signed out' );
+
+  }
 
 
   return (
@@ -211,6 +224,8 @@ export default function Setting() {
           userEmail={userEmail}
 
         />}
+
+        <Button title="LogOut" onPress={logOutUser}>LogOut</Button>
 
       </View>
     </View>

@@ -20,11 +20,8 @@ export default function Login({ navigation }) {
   }
 
   async function saveToStorage( key, value ) {
-
     await SecureStore.setItemAsync( key, value );
-
   }
-
 
   return (
     <View style={styles.container}>

@@ -10,14 +10,14 @@ function Home( { navigation } ) {
     dispatch( loadValidate );
     setTimeout( () => {
       navigation.navigate( "login" )
-    }, 2000 );
+    }, 3000 );
   }, [] )
   return (
     <View style={styles.container}>
       <Image
         style={styles.image}
         source={{
-          uri: "https://i.ibb.co/Vw9v0p5/mind-My-Emotion.png",
+          uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_fit,g_center,w_1188,x_0/v1679012928/MME%20logos/Mind_My_Emotions_znokgz.png",
         }}
       />
     </View>
@@ -44,8 +44,8 @@ const styles = StyleSheet.create( {
     /* backgroundColor: 'none', */
   },
   image: {
-    width: '81%',
-    height: 60,
+    width: 400,
+    height: 400,
     borderRadius: 12,
     resizeMode: 'stretch'
   }

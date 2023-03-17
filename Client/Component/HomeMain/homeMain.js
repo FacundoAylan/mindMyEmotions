@@ -23,11 +23,11 @@ export default function HomeMain ({ navigation }) {
           tabBarIcon: ({ color, size }) => (
             <MaterialCommunityIcons name="home" color={color} size={size} />
           ),
-          tabBarBadge: 5,
+          /* tabBarBadge: 5, */ //Esta propiedad sirve para agregar un contador de notificaciones en el futuro
         }}
       />
       <Tab.Screen
-        name="Sobre mi"
+        name="​"
         component={About}
         options={{
           headerShown: false,
@@ -35,14 +35,14 @@ export default function HomeMain ({ navigation }) {
             <Image
             style={styles.logo}
             source={{
-              uri: 'https://i.ibb.co/s2jKMtg/mind-My-Emotions.png',
+              uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_100/v1679012926/MME%20logos/ME_3_offzo2.png',
             }}
           />
           ),
         }}
       />
       <Tab.Screen
-        name="Usuario"
+        name="Mi perfil"
         component={Setting}
         options={{
           headerShown: false,
@@ -57,7 +57,8 @@ export default function HomeMain ({ navigation }) {
 
 const styles = StyleSheet.create( {
   logo: {
-    width: 30,
-    height: 30,
+    marginTop: 12,
+    width: 55,
+    height: 55,
   },
 })
