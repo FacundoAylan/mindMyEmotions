@@ -4,12 +4,13 @@ import Modal from "react-native-modal";
 import { Count } from "./count";
 
 export default function Choice({ navigation, route }) {
-  const { json, name,nameTheory,indexModule} = route.params;
+  const { json, nameTheory, index} = route.params;
+
   const JSON = json.practice.filter((value) => value.nameTheory === nameTheory);
   const questions = JSON[0].questions
 
   const [modal, setModal] = useState(false)
-  const [index, setIndex] = useState(0);
+  const [index1, setIndex] = useState(0);
   const [title, setTitle] = useState(questions[0].title);
   const [text, setText] = useState(questions[0].text);
   const [countSum, setCount] = useState(0);
@@ -18,7 +19,7 @@ export default function Choice({ navigation, route }) {
   const toggleModal = async ({pregunta, respuesta}) => {
     let index = await Count({pregunta,respuesta});
     //tengo que solucionar el tema de presionar el boton cuando no existen mas preguntas
-    setCount(countSum+index)
+    setCount(countSum+index1)
     //--------------------------------------------
     if(pregunta < questions.length){
       setIndex(pregunta)
@@ -44,9 +45,9 @@ export default function Choice({ navigation, route }) {
     <View style={styles.mainContainer}>
       <Text style={styles.title}>{title}</Text>
       <Text style={styles.title}>{text}</Text>
-      {questions[index].answers.map((value) => {
+      {questions[index1].answers.map((value) => {
         return (
-          <TouchableOpacity key ={value} onPress={() => toggleModal({pregunta:index + 1, respuesta: value.charAt(0)})}>
+          <TouchableOpacity key ={value} onPress={() => toggleModal({pregunta:index1 + 1, respuesta: value.charAt(0)})}>
             <View style={styles.containerButton}>
               <Text style={styles.textContainer}>{value}</Text>
             </View>
@@ -63,7 +64,7 @@ export default function Choice({ navigation, route }) {
               ,
             }}
           /> 
-          <TouchableOpacity onPress={() => navigation.navigate('topincs',{json, name, indexModule})}>
+          <TouchableOpacity onPress={() => navigation.navigate('topincs',{index})}>
             <View style={styles.containerButton}>
               <Text style={styles.textContainer}>Terminar</Text>
             </View>

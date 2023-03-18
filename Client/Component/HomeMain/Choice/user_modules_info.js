@@ -12,15 +12,15 @@ export var validate = [
       }, 
       {
         "name":"Nombrar ",
-        "complete": true
+        "complete": false
       }, 
       {
         "name":"Entender",
-        "complete": true
+        "complete": false
       }, 
       {
         "name":"Actuar",
-        "complete": true
+        "complete": false
       }],
 
       "complete": true
