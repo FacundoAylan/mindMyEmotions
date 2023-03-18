@@ -1,12 +1,13 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { increment, loadValidate } from '../../redux/actions/index';
 import {validate} from '../HomeMain/Choice/user_modules_info';
 import {Info} from '../HomeMain/info/info'
 
-function Home ({navigation}) {
+function Home( { navigation } ) {
   const dispatch = useDispatch();
+
   useEffect(()=> {
     dispatch(increment(Info));
     dispatch(loadValidate(validate));
@@ -14,18 +15,19 @@ function Home ({navigation}) {
       navigation.navigate("login")
     }, 2000); 
   },[])
+
   return (
     <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: "https://i.ibb.co/Vw9v0p5/mind-My-Emotion.png",
-          }}
-        />
+      <Image
+        style={styles.image}
+        source={{
+          uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_fit,g_center,w_1188,x_0/v1679012928/MME%20logos/Mind_My_Emotions_znokgz.png",
+        }}
+      />
     </View>
   );
 }
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   container: {
     flex: 1,
     backgroundColor: 'white',
@@ -43,13 +45,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: '#662483',
-    backgroundColor: 'none',
+    /* backgroundColor: 'none', */
   },
-  image:{
-    width: '81%',
-    height: 60,
+  image: {
+    width: 400,
+    height: 400,
     borderRadius: 12,
     resizeMode: 'stretch'
   }
-})
+} )
 export default Home;

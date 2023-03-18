@@ -6,7 +6,7 @@ export default function TextRenderizer( { title, text } ) {
 
     return (
 
-        <View style={styles.mainContainer}>
+        <View >
             <Text style={styles.titleContainer}>
                 {title}
             </Text>
@@ -17,25 +17,13 @@ export default function TextRenderizer( { title, text } ) {
                         {text}
                     </Text>
                 </ScrollView>
-
             </View>
-
-
-
         </View>
     )
 }
 
 
 const styles = StyleSheet.create( {
-
-    mainContainer: {
-        borderLeftWidth: 5,
-        borderLeftColor: '#f29100',
-        borderRightWidth: 5,
-        borderRightColor: '#662483',
-        minHeight: "92.6%",
-    },
     titleContainer: {
         fontSize: 25,
         alignSelf: "center",
@@ -51,10 +39,10 @@ const styles = StyleSheet.create( {
         paddingTop: 20,
         paddingBottom: 20,
         borderWidth: 2,
-        borderColor: 'purple',
+        borderColor: '#662483',
         borderRadius: 12,
         marginTop: 30,
-        maxHeight: 450,
+        maxHeight: 500,
     },
     text: {
         fontSize: 15,
@@ -62,6 +50,7 @@ const styles = StyleSheet.create( {
         fontWeight: "normal",
         color: "black",
         paddingHorizontal: 15,
+        /* fontFamily:  */
     },
 
 } );

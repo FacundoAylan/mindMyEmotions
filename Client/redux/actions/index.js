@@ -26,7 +26,6 @@ export const counterSlice = createSlice({
         ...state,
         [module.payload.name]: module.payload.value
       }
-
     }
     
   },
