@@ -11,6 +11,7 @@ import Importance from "../Importance/importance";
 import Theory from '../HomeMain/theory/theory';
 import Topics from '../HomeMain/Modules/topics/topics';
 import ChoiceTest from "../HomeMain/Choice/ChoiseTest";
+import Health from "../HomeMain/health/health"
 
 //En este componente se crea todas las rutas
 export default function Navigation () {
@@ -28,6 +29,7 @@ export default function Navigation () {
         <stack.Screen name="theory" component={Theory} />
         <stack.Screen name="topincs" component={Topics} />
         <stack.Screen name="choiseTest" component={ChoiceTest} />
+        <stack.Screen name="health" component={Health} />
       </stack.Navigator>
     </NavigationContainer>
   );

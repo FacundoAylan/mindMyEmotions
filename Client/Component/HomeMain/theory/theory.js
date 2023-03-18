@@ -1,24 +1,21 @@
 import React from "react";
 import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-export default function Theory ({ navigation, route }) {
-  const {json, nameTheory, name, indexModule } = route.params;
-  const theoryTopic = json.theory.filter(value => value.nameTheory === nameTheory);
+export default function Theory ({ navigation, route}) {
+
+  const {json, nameTheory, index} = route.params;
+
+  const theory = json.theory.filter((value) => value.nameTheory === nameTheory)
 
   return (
     <View>
-      <Text style={styles.title}>{theoryTopic[0].title}</Text>
-      <Text style={styles.text}>{theoryTopic[0].text}</Text> 
-      <TouchableOpacity key={'ingresar'} onPress={() => navigation.navigate(nameTheory==='Test de Inteligencia Emocional'?'choiseTest':"choice", {
-        json,
-        name,
-        nameTheory,
-        indexModule,
-      })}>
+      <Text style={styles.title}>{theory[0].title}</Text>
+      <Text style={styles.description}>{theory[0].text}</Text> 
+      <TouchableOpacity key={nameTheory} onPress={() => navigation.navigate("choiseTest", {json, nameTheory, index})}>
         <View style={styles.container}>
           <Text style={styles.textContainer}>ingresar</Text>
         </View>
-      </TouchableOpacity>
+      </TouchableOpacity> 
     </View>
   );
 }
@@ -31,7 +28,7 @@ const styles = StyleSheet.create({
     color: 'purple',
     fontSize: 30
   },
-  text: {
+  description: {
     flex:0,
     justifyContent: 'center',
     textAlign: 'center'

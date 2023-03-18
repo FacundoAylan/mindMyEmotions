@@ -1,17 +1,21 @@
 import React, { useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { increment, loadValidate } from '../../redux/slice/index'
+import { increment, loadValidate } from '../../redux/actions/index';
+import {validate} from '../HomeMain/Choice/user_modules_info';
+import {Info} from '../HomeMain/info/info'
 
 function Home( { navigation } ) {
   const dispatch = useDispatch();
-  useEffect( () => {
-    dispatch( increment );
-    dispatch( loadValidate );
-    setTimeout( () => {
-      navigation.navigate( "login" )
-    }, 2000 );
-  }, [] )
+
+  useEffect(()=> {
+    dispatch(increment(Info));
+    dispatch(loadValidate(validate));
+    setTimeout(() => {
+      navigation.navigate("login")
+    }, 2000); 
+  },[])
+
   return (
     <View style={styles.container}>
       <Image

@@ -1,28 +1,32 @@
-import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import {validate} from '../../Choice/user_modules_info';
+import React, { useState, useMemo } from "react";
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
+import { useSelector } from "react-redux";
 
 export default function Topics ({ navigation, route }) {
-  const { json, name, indexModule } = route.params; 
-  const jsonTopic = validate.filter((value) => value.module === name); 
+
+  const {index} = route.params;
+  const json = useSelector((state) => state.loader.modules);
+  const validate = useSelector((state) => state.loader);
+
   return (
     <View>
-      {
-        jsonTopic[0].topics.map(topic =>{
-            return (
-              <TouchableOpacity key={topic.name} disabled={!topic.complete} onPress={() => navigation.navigate('theory',{
-                json,
-                nameTheory: topic.name,
-                name,
-                indexModule,
-              })}>
-              <View style={ topic.complete? styles.container: styles.disabled }>
-                <Text style={styles.text}>{topic.name}</Text>
-              </View>
-            </TouchableOpacity>
-            )
-          })
-        }
+      <ScrollView>
+        {
+          json[index].topics.map((topic) =>{
+              return (
+                <TouchableOpacity key={topic} disabled={false} onPress={() => navigation.navigate('theory',{
+                  json: json[index],
+                  nameTheory: topic,
+                  index
+                })}>
+                <View style={ validate[topic]? styles.container: styles.disabled }>
+                  <Text style={styles.textButton}>{topic}</Text>
+                </View>
+              </TouchableOpacity>
+              )
+            })
+          }
+        </ScrollView>
     </View>
   );
 };
@@ -36,7 +40,7 @@ const styles = StyleSheet.create( {
     borderWidth: 2,
     borderColor: 'purple'
   },
-  text:{
+  textButton:{
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',

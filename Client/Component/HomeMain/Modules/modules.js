@@ -1,36 +1,58 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux'
+import React, { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { validate } from "../Choice/user_modules_info";
-import {Info} from '../info/info'
+import { useSelector } from "react-redux";
 
 // este componente contine el contenedor de cada modulo , se repite codigo 
 export default function Modules ({navigation}) {
 
-  const json = useSelector((state) => state.loader.modules);
+  const [reconocimiento, setReconocimiento] = useState(true);
 
+  const habilidades = useSelector((state) => state.loader.habilidades)
+  const [salut, setSalut] = useState(true);
+
+
+  const onChangeHabilidades = () => {
+    // setHabilidades(!isEnabled2);
+  };
+
+  const onChangeSalut = () => {
+    setSalut(!isEnabled3);
+  };
+
+  
   return (
     <View style={styles.mainContainer}>
+      <TouchableOpacity
+        key={'reconocimiento'}
+        disabled={!reconocimiento}
+        onPress={() => navigation.navigate("topincs",{index: 0})}
+      >
+        <View style={reconocimiento ? styles.container : styles.disabled}>
+          <Text style={styles.text}>Reconocimiento emocional</Text>
+        </View>
+      </TouchableOpacity>
 
-      <Text style={styles.title}>Temas</Text>
-      {
-        Info.map((value,index) => {
-          const module = validate.filter(e => e.module === value.module)
-          return(
-            <TouchableOpacity key={value.module} disabled={!module[0].complete} onPress={ () => navigation.navigate('topincs',{
-              json: value,
-              name: value.module,
-              indexModule: index,
-            })}>
-              <View style={module[0].complete? styles.container : styles.disabled}>
-                <Text style={styles.text}>{value.module}</Text>
-              </View>
-            </TouchableOpacity>
-          )
-        })
-      }
+      <TouchableOpacity
+        key={'habilidades'}
+        disabled={habilidades}
+        onPress={() => navigation.navigate("topincs",{index: 1})}
+      >
+        <View style={habilidades ? styles.container : styles.disabled}>
+          <Text style={styles.text}>Habilidades socioemocionales</Text>
+        </View>
+      </TouchableOpacity> 
+
+      <TouchableOpacity
+        key={'salut'}
+        disabled={!salut}
+        onPress={() => navigation.navigate("topincs",{index: 2})}
+      >
+        <View style={salut ? styles.container : styles.disabled}>
+          <Text style={styles.text}>Salud mental</Text>
+        </View>
+      </TouchableOpacity>
     </View>
-  )
+  );
 }
 
 

@@ -2,8 +2,13 @@ import { createSlice } from '@reduxjs/toolkit'
 import { validateUserAuthentication } from '../../Helpers/authenticationFunctions'
 
 const initialState = {
-  modules: '',
-  validate: ''
+  "modules": '',
+  "habilidades": false,
+  "Test": true,
+  "Identificar": false,
+  "Nombrar": false,
+  "Entender": false,
+  "Actuar": false
 }
 
 export const counterSlice = createSlice({
@@ -16,9 +21,11 @@ export const counterSlice = createSlice({
     loadValidate: (state,module) => {
       state.validate = module.payload
     },
-    validateTopinc: async (state,module) => {
-      let index = module.payload
-      console.log(index)
+    validateTopinc: (state,module) => {
+      return{
+        ...state,
+        [module.payload.name]: module.payload.value
+      }
     }
     
   },
