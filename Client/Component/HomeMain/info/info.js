@@ -25,8 +25,13 @@ export var Info = [
       },
       {
         "nameTheory": "Entender",
-        "title": "Nombrar",
+        "title": "Entender",
         "text": "Entender lo que nos pasa es la capacidad que tenemos para pensar sobre las razones que nos hacen experimentar ciertas emociones.Desde que somos pequeños nos enseñan a entender algunas cosas que nos ayudan a vivir mejor en sociedad.Cuando somos pequeños, entendemos que hay ciertos elementos que no nos podemos llevar a la boca porque nos hacen daño, o que no podemos hacer porque pueden poner en peligro nuestra vida.También entendemos sobre algunas cosas que nos gustan y otras que no disfrutamos.Pero, ¿alguna vez has intentado entender tus emociones?",
+      },
+      {
+        "nameTheory": "Actuar",
+        "title": "Actuar",
+        "text": "Actuar es el último paso del ciclo de reconocimiento emocional.Actuar es la acción que decidimos tomar para reaccionar frente a la emoción que sentimos.Cuando identificamos, nombramos y entendemos una emoción, podemos pensar en cuál es el mejor camino a seguir.Muchas veces, actuamos sin pensar primero, y luego, nos arrepentimos de la acción que decidimos tomar.Cuando actuamos sin pensar, podemos llegar a herir a seres queridos sin intención.En esta sección vas a ayudar a ME a tomar decisiones que lo hagan sentir bien y que intenten evitar causarle daño a los demás.Recuerda que aunque es importante intentar nunca hacerle daño a los demás, no te puedes olvidar de lo que es importante para ti y de que tú tranquilidad y felicidad, siempre debe estar de primeras.",
       }
     ],
 
@@ -434,137 +439,341 @@ export var Info = [
           }
         ],
       },
+
+      {
+        "nameTheory": "Actuar",
+        "questions":[
+          {"title": "Actuar",
+          "text": "A ME se le cayó el helado que estaba disfrutando. ME se puso triste pero también se enojó por no haberlo terminado. Que crees que debería hacer ME?.",
+          "answers": [
+            "a.Gritar y echarle la culpa a alguien por tirarle el helado para poder conseguir otro.",
+            "b.Respirar, entender que son cosas que pasan e ir a comprar otro helado, si es posible.",
+            "c.Sentarse a llorar hasta que se haga de noche y deba irse a su casa."
+
+          ],
+          },
+          {"title": "Pregunta 1",
+          "text": "A ME le da mucho miedo equivocarse y que las personas se burlen de él, ¿qué consejo le daría a ME?",
+          "answers": [
+            "a.Que no lo intente nunca, así nadie se podrá burlar de él.",
+            "b.Que lo intente, y si se burlan de él, que les grite y les pegue.",
+            "c.Que lo intente, que sepa que siempre se encontrará con personas buenas y otras no tan buenas.",
+            "d.pero que eso no debe ser un impedimento para que el hago lo que lo hace feliz."
+          ]
+          },
+          {"title": "Pregunta 2",
+          "text": "ME suele gritar cada vez que algo que el no quiere que pase, pasa. Al final, siempre termina sintiéndose mal, porque le grita a sus seres queridos, amigos y familiares. ¿Qué le recomiendas a ME que haga?",
+          "answers": [
+            "a.Que intente respirar antes de actuar y alejarse de la situación mientras se siente mejor.",
+            "b.Que siga insultando y gritando cuando quiera. Al fin y al cabo, él es así",
+            "c.Que intente callarse y no decir nada nunca sobre como se siente."
+          ],
+          },
+          {"title": "Pregunta 3",
+          "text": "Selecciona algunas cosas que podrían ayudarte a tomar mejores decisiones.",
+          "answers": [
+            "a.Respirar",
+            "b.Dibujar",
+            "c.Alejarme de la situación mientras puedo pensar mejor",
+            "d.Intentar comunicar lo que siento sin aumentar el tono de voz"
+          ],
+          },
+          {"title": "Pregunta 4",
+          "text": "ME se dió cuenta que uno de sus mejores amigos le hace bullying a otro compañero de clase,¿Qué le recomiendas a ME que haga?",
+          "answers": [
+            "a.Nada, no es problema de él.",
+            "b.Juntarse con su amigo y hacer bullying los dos.",
+            "c.Hablar con su amigo sobre la empatía, y de cómo lo que él hace, puede estar afectando para toda la vida a la otra persona.",
+            "d.Dejar de hablarle a su amigo."
+          ],
+          },
+          {"title": "Pregunta 5",
+          "text": "Un amigo de ME tiene la intención de ir y pegarle a otro amigo, para vengarse de algo que hizo y que no le gustó. ¿Qué le recomiendas a ME que haga?.",
+          "answers": [
+            "a.Que aliente a su amigo para que le de una lección al otro.",
+            "b.Que intente evitar que su amigo se meta en problemas, por actitudes que tienen otras personas y él no puede controlar.",
+            "c.Que no haga ni opine nada."
+          ],
+          },
+          {"title": "Pregunta 6",
+          "text": "ME anhelaba con todo su corazón conocer a su ídolo favorito. Sin embargo, el día anterior a conocerlo, se enfermó y no pudo ir. ¿Qué actitud crees que haría sentir mejor a ME?.",
+          "answers": [
+            "a.Ponerse a llorar por días y días hasta que no le salgan mas lágrimas. Luego enojarse con su cuerpo por haberse enfermado.",
+            "b.Llorar para desahogarse, respirar y entender que hay situaciones que él no puede controlar.",
+            "c.Luego agradecer porque sigue vivo y tendrá otras oportunidades para conocerlo.",
+            "d.Enojarse, gritar, no hablar con nadie y odiar la vida. Luego, estar bravo durante una semana o mas, hasta que se le olvide."
+          ],
+          },
+          {"title": "Pregunta 7",
+          "text": "ME siente que esta sobrecargado con sus tareas del colegio y algunas situaciones en su casa.No sabe como manejar lo que siente, pero se siente estresado, sin ánimo y a veces irritable. ¿Qué le recomiendas a ME que haga?.",
+          "answers": [
+            "a.Que deje todo botado y no haga nada para no estresarse.",
+            "b.Que intente entender que situaciones lo están abrumando y pueda pensar una por una como manejarlas.",
+            "c.Que intente hacerlo todo al tiempo de forma automática y que espere a ver que sale bien."
+          ],
+          },
+          {"title": "Pregunta 8",
+          "text": "¿Puedes pensar en algunas opciones para sentirte mejor cuando estes enojado?",
+          "answers": [
+            "a.",
+            "b.",
+            "c.",
+            "d."
+          ],
+          },
+          {"title": "Pregunta 9",
+          "text": "P¿Puedes pensar en algunas opciones para sentirte mejor cuando estes triste?.",
+          "answers": [
+            "a.",
+            "b.",
+            "c.",
+            "d."
+          ],
+          }
+        ],
+      },
     ],
   },
   {
     "module": "Habilidades socioemocionales",
-    "topics": ["Test","Identificar","Nombrar","Entender","Actuar"],
+    "topics": ["Test inicial","Empatia","Asertividad", "Resiliencia"],
     "theory": [
       {
-        "nameTheory": "Test",
-        "title": "Inteligencia emocional",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.Es importante que empieces a hacer ejercicios y actividades para fortalecer tus habilidades socioemocionales, porque te encuentras en un nivel por debajo de lo esperado.Recuerda que la inteligencia emocional es fundamental para el desarrollo integral y está relacionado con muchos resultados en la vida."
+        "nameTheory": "Test inicial",
+        "title": "Habilidades socioemocionales",
+        "text": "Hola, soy Mind My Emotions, pero me puedes decir ME ¿sabías que las habilidades socioemocionales te pueden ayudar a desarrollar inteligencia emocional?.Pues hoy, quiero contarte que cuando desarrollas tus habilidades socioemocionales, puedes tener relaciones más sanas y te puedes convertir en una mejor persona, con los demás y contigo mismo.Todos los seres humanos tenemos muchas habilidades socioemocionales, sin embargo es muy importante que trabajemos en ellas constantemente para poder comunicarnos de una manera más efectiva.En esta sección vas a aprender algunas de las habilidades socioemocionales más importantes. Esto te ayudará a saber cuales debes trabajar con más constancia."
       },
       {
-        "nameTheory": "Identificar",
-        "title": "Identificar",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.Es importante que empieces a hacer ejercicios y actividades para fortalecer tus habilidades socioemocionales, porque te encuentras en un nivel por debajo de lo esperado.Recuerda que la inteligencia emocional es fundamental para el desarrollo integral y está relacionado con muchos resultados en la vida."
+        "nameTheory": "Empatia",
+        "title": "Empatia",
+        "text": "Es la habilidad que tenemos todas las personas para ponernos en los zapatos de los demás. Con la empatía podemos ser conscientes de, reconocer, comprender y apreciar los sentimientos de los demás y relacionarnos de forma respetuosa.Empecemos!"
       },
       {
-        "nameTheory": "Nombrar",
-        "title": "Nombrar",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para los nombrarlas, entenderlas y finalmente actuar."
+        "nameTheory": "Asertividad",
+        "title": "Asertividad",
+        "text": "La asertividad es la habilidad o capacidad que tenemos las persona para expresar, decir o mostrar lo que sentimos, creemos o necesitamos de forma respetuosa, clara y sincera, y siempre sin molestar, agredir o hacer daño a nadie."
       },
       {
-        "nameTheory": "Entender",
-        "title": "Entender",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar."
-      },
-      {
-        "nameTheory": "Actuar",
-        "title": "Actuar",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar."
+        "nameTheory": "Resiliencia",
+        "title": "Resiliencia",
+        "text": "La resiliencia es la habilidad que nos permite tener la capacidad de superar momentos difíciles y afrontar de una manera más positiva los problemas. Nos permite adaptarnos mejor a situaciones de fuerte y prolongado estrés.Empecemos!."
       }
     ],
 
     "practice": [
       {
-        "nameTheory": "Test",
-        "title": "Practica 1",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
-        "answers": [
-          "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "b. duda, respuesta, respuesta, respuesta, respuesta.",
-          "c. consulta, respuesta, respuesta, respuesta, respuesta.",
-          "d. Resolucion, respuesta, respuesta, respuesta, respuesta."
+        "nameTheory": "Test inicial",
+        "questions":[
+          {"title": "Pregunta 1",
+          "text": "¿Alguna vez has escuchado hablar sobre habilidades socioemocionales?",
+          "answers": [
+            "a. Si.",
+            "b. No.",
+          ],
+          },
+          {"title": "Pregunta 2",
+          "text": " ¿Podrías decir fácilmente que habilidades socioemocionales tienes?",
+          "answers": [
+            "a. Si.",
+            "b. Cuales?.",
+            "c. No.",
+          ],
+          },
+          {"title": "Pregunta 3",
+          "text": "¿Crees que las habilidades sociales se pueden perder con el tiempo?",
+          "answers": [
+            "a. Si.",
+            "b. Por que?.",
+            "c. No.",
+            "d. Nose.",
+          ],
+          },
+          {"title": "Pregunta 4",
+          "text": "¿Cuándo no estás de acuerdo con algo, que haces?",
+          "answers": [
+            "a.Me molesto.",
+            "b.Digo lo que opino respetuosamente.",
+           " a.Prefiero no decir nada."
+          ],
+          },
+          {"title": "Pregunta 5",
+          "text": "¿Te sientes cómodo/a conociendo gente nueva?",
+          "answers": [
+            "a. Si.",
+            "b. A veces siento nervios.",
+            "c. Siempre me da muchos nervios y prefiero no conocer a nadie.",
+          ],
+          },
+          {"title": "Pregunta 6",
+          "text": "  Si estás en una pelea y ves que las personas comienzan a ser violentas ¿Qué haces?",
+          "answers": [
+            "a. Prefiero alejarme.",
+            "b. Trato de hacer algo para que no peleen mas.",
+            "c. Solo me quedo mirando.",
+          ],
+          },
         ],
-        "answer": "a"
       },
       {
-        "nameTheory": "Identificar",
-        "title": "Practica 2",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
-        "answers": [
-          "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "b. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "c. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "d. Respuesta, respuesta, respuesta, respuesta, respuesta."
+        "nameTheory": "Empatia",
+        "questions":[
+          {"title": "Situacion 1",
+          "text": "Juan se ha caído y se ha manchado de barro el pantalón ¿Qué crees que necesita Juan?",
+          "answers": [
+            "a.No necesita nada.",
+            "b.Necesita ayuda para levantarse y limpiar su pantalón.",
+            "c.Necesita un abrazo porque se siente triste."
+            
+          ],
+          },
+          {"title": "Situacion 2",
+          "text": "María se ha mudado de casa y se siente sola porque no tiene cerca a sus amigos/as ¿Cómo crees que se siente y qué crees que necesita María? ",
+          "answers": [
+            "a.No se.",
+            "b.Se siente triste y necesita expresarle a alguien cómo se siente.",
+            "c.Se siente triste pero es mejor no decirle nada a nadie.",
+            
+          ],
+          },
+          {"title": "Situacion 3",
+          "text": "Sofía se quedó la última en la fila, no alcanzó a entrar al salón y se quedó sola por fuera ¿Cómo crees que se siente Sofía? ",
+          "answers": [
+            "a.Se siente muy avergonzada porque es la única que está por fuera.",
+            "b.Siente rabia porque quería entrar al salón.",
+            "c.No le importa."
+            
+          ],
+          },
+          {"title": "Situacion 4",
+          "text": "Luna fue la única a la que no invitaron al cumpleaños de Juan ¿Cómo crees que se siente Luna?",
+          "answers": [
+            "a.Se siente muy triste y confundida porque no sabe por qué no la invitaron.",
+            "b.Siente vergüenza de ser la única a la que no invitaron.",
+            "c.No le importa."             
+          ],
+          },
+          {"title": "Situacion 5",
+          "text": "Santiago ha estado muy triste porque su hermana mayor se fue de casa y no la ve hace mucho tiempo. ¿Qué harías tú para que él pueda sentirse mejor?",
+          "answers": [
+            "a.No haría nada.",
+            "b.Le haría compañía para que no se sienta solo.",
+            "c.Lo invitaría a jugar para que se pueda distraer un rato."
+            
+          ],
+          },
         ],
-        "answer": "a"
       },
       {
-        "nameTheory": "Nombrar",
-        "title": "Practica 3",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
-        "answers": [
-          "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "b. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "c. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "d. Respuesta, respuesta, respuesta, respuesta, respuesta."
+        "nameTheory": "Asertividad",
+        "questions":[
+          {"title": "Situacion 1",
+          "text": "Cuando tienes un desacuerdo con alguien ¿Qué haces?",
+          "answers": [
+            "a.Prfiero no decir nada.",
+            "b.Me dan ganas de discutir porque yo tengo la razon.",
+            "c.Trato de llegar a un acuerdo respetuosamente."           
+          ],
+          },
+          {"title": "Situacion 2",
+          "text": "Cuando alguien te pide un consejo¿Qué haces?",
+          "answers": [
+            "a.Si puedo trato de darselo.",
+            "b.No me gusta dar consejos.",
+            "c.No me importa.",
+            
+          ],
+          },
+          {"title": "Situacion 3",
+          "text": "Si estás jugando y perdiste ¿Que haces?",
+          "answers": [
+            "a.Me molesto demasiado y me quejo mucho.",
+            "b.No pasa nada, no siempre se gana.",
+            "c.Me da igual."
+            
+          ],
+          },
+          {"title": "Situacion 4",
+          "text": "Si alguien es grosero/a contigo ¿Que haces?",
+          "answers": [
+            "a.Le hago o le digo lo mismo.",
+            "b.Prefiero no hacer nada.",
+            "c.Calmadamente le pido que no sea grocero/a."             
+          ],
+          },
+          {"title": "Situacion 5",
+          "text": "Cuando te sientes triste ¿Qué haces?",
+          "answers": [
+            "a.No le digo nada a nadie y me guardo mis sentimientos.",
+            "b.Prefiero decirle a alguien para sentirme mejor.",
+            "c.No se que hacer."
+            
+          ],
+          },
         ],
-        "answer": "a"
       },
       {
-        "nameTheory": "Entender",
-        "title": "Practica 4",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
-        "answers": [
-          "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "b. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "c. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "d. Respuesta, respuesta, respuesta, respuesta, respuesta."
+        "nameTheory": "Resiliencia",
+        "questions":[
+          {"title": "Situacion 1",
+          "text": "Si un día tienes un problema con uno/a de tus amigos/as y el o ella no quiere hablarte más ¿Que haces?",
+          "answers": [
+            "a.No me importa, prefiero dejarlo así.",
+            "b.Trato de hablar con él/ella para solucionar el problema.",
+            "c.Si ya no me quiere hablar, trato de seguir adelante y recordar las cosas lindas que pasaron."
+                      
+          ],
+          },
+          {"title": "Situacion 2",
+          "text": "Imagina que te cambian de colegio y no conoces a nadie ¿Qué harías?",
+          "answers": [
+            "a.Hago pataleta y digo que no quiero ir al colegio.",
+            "b.Aunque me cueste, acepto, voy y trato de hacer nuevos/as amigos/as.",
+            "c.Voy pero no hablo con nadie porque me siento inseguro/a."
+          ],
+          },
+          {"title": "Situacion 3",
+          "text": "Imagina que te ponen a hacer algo en público y hay muchas personas mirándote ¿Qué harías?",
+          "answers": [
+            "a.Salgo corriendo.",
+            "b.Prefiero decir que no cuando no quiero hacer algo.",
+            "c.Improviso y lo hago. "
+          ],
+          },
+          {"title": "Situacion 4",
+          "text": "Cuando pasaste por la pandemia del COVID 19 ¿Cómo te adaptaste? ",
+          "answers": [
+            "a.Me gustó estar en casa mucho tiempo.",
+            "b.No me adapté, fue muy difícil porque estaba lejos de mis amigos/as y no sabia que hacer.",
+            "c.Al principio fue difícil pero logré adaptarme con algunas rutinas y cosas que tenía en casa.",                  
+          ],
+          },
+          {"title": "Situacion 5",
+          "text": "Si no tienes la posibilidad de ir al cole y estudiar ¿Qué harías?",
+          "answers": [
+            "a.No me importa.",
+            "b.Trato de aprender en casa, internet o una biblioteca.",
+            "c.Le pido a alguien adulto que me enseñe."
+          ],
+          },
         ],
-        "answer": "a"
       },
-      {
-        "nameTheory": "Actuar",
-        "title": "Practica 5",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
-        "answers": [
-          "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "b. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "c. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "d. Respuesta, respuesta, respuesta, respuesta, respuesta."
-        ],
-        "answer": "a"
-      }
     ],
     
   },
   {
     "module": "salud mental",
-    "topics": ["Test","Identificar","Nombrar", "Entender", "Actuar"],
+    "topics": ["Diario"],
     "theory": [
       {
-        "nameTheory": "Test",
+        "nameTheory": "Diario",
         "title": "Inteligencia emocional",
         "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.Es importante que empieces a hacer ejercicios y actividades para fortalecer tus habilidades socioemocionales, porque te encuentras en un nivel por debajo de lo esperado.Recuerda que la inteligencia emocional es fundamental para el desarrollo integral y está relacionado con muchos resultados en la vida."
       },
-      {
-        "nameTheory": "Identificar",
-        "title": "Identificar",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.Es importante que empieces a hacer ejercicios y actividades para fortalecer tus habilidades socioemocionales, porque te encuentras en un nivel por debajo de lo esperado.Recuerda que la inteligencia emocional es fundamental para el desarrollo integral y está relacionado con muchos resultados en la vida."
-      },
-      {
-        "nameTheory": "Nombrar",
-        "title": "Nombrar",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para los nombrarlas, entenderlas y finalmente actuar."
-      },
-      {
-        "nameTheory": "Entender",
-        "title": "Entender",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar."
-      },
-      {
-        "nameTheory": "Actuar",
-        "title": "Actuar",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar."
-      }
     ],
 
     "practice": [
       {
-        "nameTheory": "Test",
+        "nameTheory": "Diario",
         "title": "Practica 1",
         "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
         "answers": [
@@ -575,54 +784,6 @@ export var Info = [
         ],
         "answer": "a"
       },
-      {
-        "nameTheory": "Identificar",
-        "title": "Practica 2",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
-        "answers": [
-          "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "b. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "c. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "d. Respuesta, respuesta, respuesta, respuesta, respuesta."
-        ],
-        "answer": "a"
-      },
-      {
-        "nameTheory": "Nombrar",
-        "title": "Practica 3",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
-        "answers": [
-          "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "b. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "c. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "d. Respuesta, respuesta, respuesta, respuesta, respuesta."
-        ],
-        "answer": "a"
-      },
-      {
-        "nameTheory": "Entender",
-        "title": "Practica 4",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
-        "answers": [
-          "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "b. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "c. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "d. Respuesta, respuesta, respuesta, respuesta, respuesta."
-        ],
-        "answer": "a"
-      },
-      {
-        "nameTheory": "Actuar",
-        "title": "Practica 5",
-        "text": "La inteligencia emocional es una habilidad que se puede desarrollar. Puedes empezar por identificar tus emociones, para luego nombrarlas, entenderlas y finalmente actuar.",
-        "answers": [
-          "a. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "b. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "c. Respuesta, respuesta, respuesta, respuesta, respuesta.",
-          "d. Respuesta, respuesta, respuesta, respuesta, respuesta."
-        ],
-        "answer": "a"
-      }
     ],
     
   }

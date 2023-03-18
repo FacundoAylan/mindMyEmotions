@@ -34,7 +34,7 @@ export default function Modules ({navigation}) {
 
       <TouchableOpacity
         key={'habilidades'}
-        disabled={!habilidades}
+        disabled={habilidades}
         onPress={() => navigation.navigate("topincs",{index: 1})}
       >
         <View style={habilidades ? styles.container : styles.disabled}>

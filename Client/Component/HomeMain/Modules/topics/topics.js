@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 
 export default function Topics ({ navigation, route }) {
@@ -10,21 +10,23 @@ export default function Topics ({ navigation, route }) {
 
   return (
     <View>
-      {
-        json[index].topics.map((topic) =>{
-            return (
-              <TouchableOpacity key={topic} disabled={false} onPress={() => navigation.navigate('theory',{
-                json: json[index],
-                nameTheory: topic,
-                index
-              })}>
-              <View style={ validate[topic]? styles.container: styles.disabled }>
-                <Text style={styles.textButton}>{topic}</Text>
-              </View>
-            </TouchableOpacity>
-            )
-          })
-        }
+      <ScrollView>
+        {
+          json[index].topics.map((topic) =>{
+              return (
+                <TouchableOpacity key={topic} disabled={false} onPress={() => navigation.navigate('theory',{
+                  json: json[index],
+                  nameTheory: topic,
+                  index
+                })}>
+                <View style={ validate[topic]? styles.container: styles.disabled }>
+                  <Text style={styles.textButton}>{topic}</Text>
+                </View>
+              </TouchableOpacity>
+              )
+            })
+          }
+        </ScrollView>
     </View>
   );
 };
