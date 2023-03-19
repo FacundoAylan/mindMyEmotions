@@ -536,10 +536,10 @@ export var Info = [
   },
   {
     "module": "Habilidades socioemocionales",
-    "topics": ["Test inicial","Empatia","Asertividad", "Resiliencia"],
+    "topics": ["Test inicial socioemocional","Empatia","Asertividad", "Resiliencia"],
     "theory": [
       {
-        "nameTheory": "Test inicial",
+        "nameTheory": "Test inicial socioemocional",
         "title": "Habilidades socioemocionales",
         "text": "Hola, soy Mind My Emotions, pero me puedes decir ME ¿sabías que las habilidades socioemocionales te pueden ayudar a desarrollar inteligencia emocional?.Pues hoy, quiero contarte que cuando desarrollas tus habilidades socioemocionales, puedes tener relaciones más sanas y te puedes convertir en una mejor persona, con los demás y contigo mismo.Todos los seres humanos tenemos muchas habilidades socioemocionales, sin embargo es muy importante que trabajemos en ellas constantemente para poder comunicarnos de una manera más efectiva.En esta sección vas a aprender algunas de las habilidades socioemocionales más importantes. Esto te ayudará a saber cuales debes trabajar con más constancia."
       },
@@ -562,7 +562,7 @@ export var Info = [
 
     "practice": [
       {
-        "nameTheory": "Test inicial",
+        "nameTheory": "Test inicial socioemocional",
         "questions":[
           {"title": "Pregunta 1",
           "text": "¿Alguna vez has escuchado hablar sobre habilidades socioemocionales?",

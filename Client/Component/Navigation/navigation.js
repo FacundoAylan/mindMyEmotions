@@ -11,7 +11,8 @@ import Importance from "../Importance/importance";
 import Theory from '../HomeMain/theory/theory';
 import Topics from '../HomeMain/Modules/topics/topics';
 import ChoiceTest from "../HomeMain/Choice/ChoiseTest";
-import Health from "../HomeMain/health/health"
+import Modules from "../HomeMain/Modules/modules";
+import Diary from "../HomeMain/Diary/diary"
 
 //En este componente se crea todas las rutas
 export default function Navigation () {
@@ -26,10 +27,11 @@ export default function Navigation () {
         <stack.Screen name="homeMain" component={HomeMain} />
         <stack.Screen name="choice" component={Choice} />
         <stack.Screen name="importance" component={Importance} />
+        <stack.Screen name="module" component={Modules} />
         <stack.Screen name="theory" component={Theory} />
         <stack.Screen name="topincs" component={Topics} />
         <stack.Screen name="choiseTest" component={ChoiceTest} />
-        <stack.Screen name="health" component={Health} />
+        <stack.Screen name="diary" component={Diary} />
       </stack.Navigator>
     </NavigationContainer>
   );

@@ -1,56 +1,32 @@
 import React, { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import { useSelector } from "react-redux";
 
 // este componente contine el contenedor de cada modulo , se repite codigo 
 export default function Modules ({navigation}) {
 
-  const [reconocimiento, setReconocimiento] = useState(true);
+  const json = useSelector((state) => state.loader); 
+  const modules = useSelector((state) => state.loader.modules); 
 
-  const habilidades = useSelector((state) => state.loader.habilidades)
-  const [salut, setSalut] = useState(true);
-
-
-  const onChangeHabilidades = () => {
-    // setHabilidades(!isEnabled2);
-  };
-
-  const onChangeSalut = () => {
-    setSalut(!isEnabled3);
-  };
-
-  
   return (
     <View style={styles.mainContainer}>
-      <TouchableOpacity
-        key={'reconocimiento'}
-        disabled={!reconocimiento}
-        onPress={() => navigation.navigate("topincs",{index: 0})}
-      >
-        <View style={reconocimiento ? styles.container : styles.disabled}>
-          <Text style={styles.text}>Reconocimiento emocional</Text>
-        </View>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        key={'habilidades'}
-        disabled={habilidades}
-        onPress={() => navigation.navigate("topincs",{index: 1})}
-      >
-        <View style={habilidades ? styles.container : styles.disabled}>
-          <Text style={styles.text}>Habilidades socioemocionales</Text>
-        </View>
-      </TouchableOpacity> 
-
-      <TouchableOpacity
-        key={'salut'}
-        disabled={!salut}
-        onPress={() => navigation.navigate("topincs",{index: 2})}
-      >
-        <View style={salut ? styles.container : styles.disabled}>
-          <Text style={styles.text}>Salud mental</Text>
-        </View>
-      </TouchableOpacity>
+      <ScrollView>
+        {
+          modules.map((module,index) =>{
+            return(
+              <TouchableOpacity
+                key={index}
+                disabled={!json[module.split(" ").join("")]}
+                onPress={() => module!== 'Salud mental' ? navigation.navigate("topincs",{indexModule:index}):navigation.navigate("diary")}
+              >
+                <View style={json[module.split(" ").join("")] ? styles.container : styles.disabled}>
+                  <Text style={styles.text}>{module}</Text>
+                </View>
+              </TouchableOpacity>
+            )
+          })
+        }
+      </ScrollView>
     </View>
   );
 }
