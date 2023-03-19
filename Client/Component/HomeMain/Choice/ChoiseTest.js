@@ -80,7 +80,7 @@ export default function Choice({ navigation, route }) {
           /> 
           <TouchableOpacity onPress={() => {
             if(nameNext=== ''){
-              navigation.navigate('module')
+              navigation.navigate('homeMain')
             }else{
               navigation.navigate('topincs',{indexModule})
             }
