@@ -1,4 +1,6 @@
-fastapi
-firebase-admin
-pydantic
-uvicorn
+fastapi==0.88.0
+firebase-admin==6.1.0
+pydantic~=1.10.4
+waitress==2.1.2
+
+
