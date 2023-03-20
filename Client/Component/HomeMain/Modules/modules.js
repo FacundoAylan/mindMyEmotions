@@ -1,36 +1,34 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from 'react-redux'
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { validate } from "../Choice/user_modules_info";
-import {Info} from '../info/info'
+import React, { useState } from "react";
+import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
+import { useSelector } from "react-redux";
 
 // este componente contine el contenedor de cada modulo , se repite codigo 
 export default function Modules ({navigation}) {
 
-  const json = useSelector((state) => state.loader.modules);
+  const json = useSelector((state) => state.loader); 
+  const modules = useSelector((state) => state.loader.modules); 
 
   return (
     <View style={styles.mainContainer}>
-
-      <Text style={styles.title}>Temas</Text>
-      {
-        Info.map((value,index) => {
-          const module = validate.filter(e => e.module === value.module)
-          return(
-            <TouchableOpacity key={value.module} disabled={!module[0].complete} onPress={ () => navigation.navigate('topincs',{
-              json: value,
-              name: value.module,
-              indexModule: index,
-            })}>
-              <View style={module[0].complete? styles.container : styles.disabled}>
-                <Text style={styles.text}>{value.module}</Text>
-              </View>
-            </TouchableOpacity>
-          )
-        })
-      }
+      <ScrollView>
+        {
+          modules.map((module,index) =>{
+            return(
+              <TouchableOpacity
+                key={index}
+                disabled={!json[module.split(" ").join("")]}
+                onPress={() => module!== 'Salud mental' ? navigation.navigate("topincs",{indexModule:index}):navigation.navigate("diary")}
+              >
+                <View style={json[module.split(" ").join("")] ? styles.container : styles.disabled}>
+                  <Text style={styles.text}>{module}</Text>
+                </View>
+              </TouchableOpacity>
+            )
+          })
+        }
+      </ScrollView>
     </View>
-  )
+  );
 }
 
 

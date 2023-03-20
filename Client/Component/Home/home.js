@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
-import { increment, loadValidate } from '../../redux/slice/index'
+import { loadInfo } from '../../redux/actions/index';
+import {Info} from '../HomeMain/info/info'
 
-function Home( { navigation } ) {
+export default function Home( { navigation } ) {
   const dispatch = useDispatch();
-  useEffect( () => {
-    dispatch( increment );
-    dispatch( loadValidate );
-    setTimeout( () => {
-      navigation.navigate( "login" )
-    }, 2000 );
-  }, [] )
+
+  useEffect(()=> {
+    dispatch(loadInfo(Info));
+    setTimeout(() => {
+      navigation.navigate("login")
+    }, 2000); 
+  },[])
+
   return (
     <View style={styles.container}>
       <Image
@@ -44,10 +46,9 @@ const styles = StyleSheet.create( {
     /* backgroundColor: 'none', */
   },
   image: {
-    width: 400,
-    height: 400,
+    width: '100%',
+    height: '100%',
     borderRadius: 12,
     resizeMode: 'stretch'
   }
 } )
-export default Home;
