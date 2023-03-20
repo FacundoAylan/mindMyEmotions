@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import {  Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {  Image, StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import Modal from "react-native-modal";
 import { Count } from "./count";
+import { useSelector, useDispatch } from "react-redux";
+import {validateTopinc} from '../../../redux/actions/index'
 
 export default function Choice({ navigation, route }) {
-  const { json, nameTheory, index} = route.params;
 
+  const { json, nameTheory, indexModule, nameNext, nameModule} = route.params;
+
+  const validate = useSelector((state) => state.loader);
   const JSON = json.practice.filter((value) => value.nameTheory === nameTheory);
   const questions = JSON[0].questions
 
@@ -15,6 +19,8 @@ export default function Choice({ navigation, route }) {
   const [text, setText] = useState(questions[0].text);
   const [countSum, setCount] = useState(0);
   const [URLimg, setImg] = useState('');
+
+  const dispatch = useDispatch()
   
   const toggleModal = async ({pregunta, respuesta}) => {
     let index = await Count({pregunta,respuesta});
@@ -26,6 +32,12 @@ export default function Choice({ navigation, route }) {
       setTitle(questions[pregunta].title)
       setText(questions[pregunta].text)
     }else{
+      if(nameNext!== ''){
+        dispatch(validateTopinc({name: nameNext, value:true}))
+      }
+      if(nameNext=== ''){
+        dispatch(validateTopinc({name: nameModule, value:true}))
+      }
       if(countSum <= 6){
         setImg('https://i.ibb.co/VSxFhWP/0-6.jpg')
       }
@@ -43,17 +55,19 @@ export default function Choice({ navigation, route }) {
   };
   return (
     <View style={styles.mainContainer}>
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.title}>{text}</Text>
-      {questions[index1].answers.map((value) => {
-        return (
-          <TouchableOpacity key ={value} onPress={() => toggleModal({pregunta:index1 + 1, respuesta: value.charAt(0)})}>
-            <View style={styles.containerButton}>
-              <Text style={styles.textContainer}>{value}</Text>
-            </View>
-          </TouchableOpacity>
-        );
-      })}
+      <ScrollView>
+        <Text style={styles.title}>{title}</Text>
+        <Text style={styles.title}>{text}</Text>
+        {questions[index1].answers.map((value) => {
+          return (
+            <TouchableOpacity key ={value} onPress={() => toggleModal({pregunta:index1 + 1, respuesta: value.charAt(0)})}>
+              <View style={styles.containerButton}>
+                <Text style={styles.textContainer}>{value}</Text>
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </ScrollView>
 
       <Modal isVisible={modal} style={{ padding: 0, margin: 15 }}>
         <View>
@@ -64,7 +78,13 @@ export default function Choice({ navigation, route }) {
               ,
             }}
           /> 
-          <TouchableOpacity onPress={() => navigation.navigate('topincs',{index})}>
+          <TouchableOpacity onPress={() => {
+            if(nameNext=== ''){
+              navigation.navigate('homeMain')
+            }else{
+              navigation.navigate('topincs',{indexModule})
+            }
+          }}>
             <View style={styles.containerButton}>
               <Text style={styles.textContainer}>Terminar</Text>
             </View>

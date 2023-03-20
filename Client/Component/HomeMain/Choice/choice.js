@@ -19,7 +19,7 @@ export default function Choice({ navigation, route }) {
 
   const validateDate = (answer) => {
     if(practice[0].answer === answer){
-      dispatch(validateTopinc({name:'Identificar', value:true}))
+      
       navigation.navigate("topincs",{index})
     }else{
       setModalVisible(!isModalVisible)

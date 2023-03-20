@@ -4,22 +4,24 @@ import { useSelector } from "react-redux";
 
 export default function Topics ({ navigation, route }) {
 
-  const {index} = route.params;
-  const json = useSelector((state) => state.loader.modules);
+  const {indexModule} = route.params;
+  const json = useSelector((state) => state.loader.json);
   const validate = useSelector((state) => state.loader);
 
   return (
     <View>
       <ScrollView>
         {
-          json[index].topics.map((topic) =>{
-              return (
-                <TouchableOpacity key={topic} disabled={false} onPress={() => navigation.navigate('theory',{
-                  json: json[index],
+          json[indexModule].topics.map((topic, indexChoise) =>{
+              return ( 
+                <TouchableOpacity key={topic} disabled={!validate[topic.split(" ").join("")]} onPress={() => navigation.navigate('theory',{
+                  json: json[indexModule],
                   nameTheory: topic,
-                  index
+                  indexModule,
+                  nameNext: indexChoise+1<json[indexModule].topics.length? json[indexModule].topics[indexChoise+1].split(" ").join(""): '',
+                  nameModule: json[indexModule+1].module.split(" ").join("")
                 })}>
-                <View style={ validate[topic]? styles.container: styles.disabled }>
+                <View style={ validate[topic.split(" ").join("")]? styles.container: styles.disabled }>
                   <Text style={styles.textButton}>{topic}</Text>
                 </View>
               </TouchableOpacity>
