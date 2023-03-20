@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, TextInput, TouchableOpacity, View, Button } from "react-native";
+import { StyleSheet, Text, TextInput, TouchableOpacity, View, Button, Alert } from "react-native";
 import { validateEmail } from "../../Helpers/authenticationFunctions";
 import { validatePassword } from "../../Helpers/authenticationFunctions";
 import { validateUserAuthentication } from "../../Helpers/authenticationFunctions";
@@ -12,15 +12,38 @@ import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/go
 
 
 export default function Sesion( { navigation } ) {
-  const [ email, setEmail ] = useState( 'jorge@gmail.com' );
+  const [ email, setEmail ] = useState( '' ); //jorge@gmail.com
   const [ password, setPassword ] = useState( '12345' );
   const [ isAdultState, setIsAdultState ] = useState( undefined )
 
   const [ initializing, setInitializing ] = useState( true );
   const [ user, setUser ] = useState();
 
+
+
   //La autenticación con google persiste aunque se cierre la app, entonces si el usuario entra a la pantalla de login, pero ya esta logueado con google, va a pasar directamente a la pantalla homemain si es niño o importance si es adulto. 
   if ( user ) {
+    //1. request to see if a firebase object with that email already exists
+    try {
+      response = axios.post( `https://mind-my-emotions.vercel.app/Registro/google?Mail=${email}` )
+        .then( async ( res ) => {
+          if ( res.status ) {
+            return res.data?.Mensaje
+          } else {
+            console.log( 'Request failed with status code:', res.status );
+            Alert.alert( 'No se puedo relacionar con una base de datos al usuario de google.' )
+          }
+        } )
+        .catch( ( error ) => {
+          console.error( 'the error when querying or creating the google user on firebase was ==>  ' + error );
+        } );
+    } catch ( error ) {
+      console.log( error );
+    }
+
+    getGoogleUserDataAndSaveItLocally()
+
+    //Cheks if the user is an adult or not and navigates accordingly
     if ( isAdultState === 'yes' ) {
       navigation.navigate( 'importance' )
     }
@@ -64,7 +87,11 @@ export default function Sesion( { navigation } ) {
       // Sign-in the user with the credential
       //return auth().signInWithCredential( googleCredential );
       const userSignedIn = await auth().signInWithCredential( googleCredential )
-      console.log( userSignedIn.user );
+      setEmail( userSignedIn.user.email )
+      console.log( userSignedIn.user.email );
+
+
+
       /* userSignedIn.then( user => {
         console.log( user );
       } ).catch( error => {
@@ -76,12 +103,13 @@ export default function Sesion( { navigation } ) {
     }
   }
 
+
   const signOut = async () => {
     try {
       await GoogleSignin.revokeAccess()
       await auth().signOut()
     } catch ( error ) {
-      console.log( 7 + 'logout' );
+      console.log( 'user logged out' );
       console.log( error );
     }
   }
@@ -132,10 +160,26 @@ export default function Sesion( { navigation } ) {
   }
   getLoggedInFlag()
 
+  //Trae el objeto del usuario de google y lo guarda en async storage
+  async function getGoogleUserDataAndSaveItLocally() {
+    axios.get( `https://mind-my-emotions.vercel.app/Devolver_todo/?Mail=${email ? email : user.Mail}` )
+      .then( async ( res ) => {
+        console.log( res.data );
+        console.log( 'aaaaaaaaaaaaaaaaaaaaaa' );
+        const jsonValue = JSON.stringify( res.data );
+        await AsyncStorage.setItem( 'myObject', jsonValue );
+      } )
+      .catch( ( error ) => {
+        console.error( 'the error when getting the GOOGLE user data is ==>  ' + error );
+      } );
 
+    console.log( 'Google user information was saved on asyncStorage' );
+  }
+
+ //Trae el objeto del usuario registrado normalmente y lo guarda en async storage
   async function getUserDataObjectAndSaveItLocally() {
 
-    let userObject = axios.get( 'https://mind-my-emotions.vercel.app/Devolver_todo/', { params: { Mail: email } } )
+    axios.get( 'https://mind-my-emotions.vercel.app/Devolver_todo/', { params: { Mail: email } } )
       .then( async ( res ) => {
         const jsonValue = JSON.stringify( res.data );
         await AsyncStorage.setItem( 'myObject', jsonValue );
@@ -211,13 +255,14 @@ export default function Sesion( { navigation } ) {
 
       {user ?
         <View>
-          <Text> {user?.displayName} </Text>
-          <Button title='logout' onPress={signOut} >LOG OUT</Button>
+          <Text style={{ marginTop: 20, marginHorizontal: 20, marginLeft: 20 }}> Estas logueado/a con tu cuenta de Google como {user?.displayName} </Text>
+          {/* <Button title='logout' onPress={signOut} >LOG OUT</Button> */}
         </View>
-        : <GoogleSigninButton onPress={onGoogleButtonPress} />}
+        : <GoogleSigninButton style={{ alignSelf: 'center', marginTop: 40 }} onPress={onGoogleButtonPress} />}
     </View>
   );
 }
+//aaaaaaaaaa
 const styles = StyleSheet.create( {
   container: {
     justifyContent: 'center',

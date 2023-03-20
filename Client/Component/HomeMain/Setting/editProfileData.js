@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Alert } fro
 import { SelectList } from 'react-native-dropdown-select-list';
 import { Data } from "../../registerMe/city";
 import { MES_IMAGES } from '../../../Helpers/constants';
-import { ScrollView } from 'react-native';
+import { ScrollView } from "react-native-gesture-handler";
 import axios from 'axios';
 
 export default function EditProfileData( {
@@ -33,8 +33,7 @@ export default function EditProfileData( {
 
         await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Avatar?Mail=${userEmail}&Avatar=${newAvatarLink}` ).
             then( res => {
-                console.log( res.data.Mensaje );
-
+                console.log( res.data );
             } ).
             catch( error => {
                 console.log( error );
@@ -177,10 +176,14 @@ export default function EditProfileData( {
 
             case "EDIT_AVATAR":
                 return (
+
                     <View >
                         <Text style={styles.textTitles}>Cambiar avatar</Text>
+
                         {selectAvatar()}
+
                     </View>
+
                 )
             case "EDIT_NAME":
                 return (

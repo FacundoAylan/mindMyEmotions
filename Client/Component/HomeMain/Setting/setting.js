@@ -1,9 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable } from "react-native";
+import { StyleSheet, Text, View, Image, Button, Pressable } from "react-native";
 import EditProfileData from "./editProfileData";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { ScrollView } from "react-native-gesture-handler";
 
 export default function Setting( { navigation } ) {
 
@@ -23,6 +26,8 @@ export default function Setting( { navigation } ) {
   useEffect( () => {
     traerDatos()
   }, [] )
+
+
 
   //state rerendering functions
   const renderNewUserName = ( newName ) => {
@@ -86,32 +91,54 @@ export default function Setting( { navigation } ) {
   let traerDatos = async () => {
     let retrievedJson = await AsyncStorage.getItem( 'myObject' );
     let jsonToObject = JSON.parse( retrievedJson )
-    setUserName( jsonToObject.Mensaje.Datos_registro.Nombre_de_usuario )
-    setUserLastname( jsonToObject.Mensaje.Datos_registro.Apellido_de_usuario )
-    setUserAge( jsonToObject.Mensaje.Datos_registro.Edad )
-    setUserGender( jsonToObject.Mensaje.Datos_registro.Genero )
-    setUserDepartment( jsonToObject.Mensaje.Datos_registro.Departamento )
-    setUserEmail( jsonToObject.Mensaje.Datos_registro.Mail )
+    setUserName( jsonToObject.Mensaje?.Datos_registro.Nombre_de_usuario )
+    setUserLastname( jsonToObject.Mensaje?.Datos_registro.Apellido_de_usuario )
+    setUserAge( jsonToObject.Mensaje?.Datos_registro.Edad )
+    setUserGender( jsonToObject.Mensaje?.Datos_registro.Genero )
+    setUserDepartment( jsonToObject.Mensaje?.Datos_registro.Departamento )
+    setUserEmail( jsonToObject.Mensaje?.Datos_registro.Mail )
     //console.log( jsonToObject.Mensaje.Datos_registro );
   }
 
 
   //Removes this key from async storage, so the user has to log in again from the sesion screen. The user is navigated to the sesion.
+  //I dont know if the changes of the login and logout with google can be tested on a normal server... I had to create an apk
   let logOutUser = async () => {
     try {
-      await AsyncStorage.removeItem( 'IS_LOGGED_IN' );
-      //google sign out
+      //await AsyncStorage.removeItem( 'IS_LOGGED_IN' );
+      await AsyncStorage.clear();
+      console.log( 'user logged out from email' )
+      //Google sing out function
+      const signOut = async () => {
+        try {
+          await GoogleSignin.revokeAccess()
+          await auth().signOut()
+          console.log( 'user logged out from google' )
+
+          await SecureStore.deleteItemAsync( 'IS_ADULT' )
+            .then( () => {
+              console.log( 'Value deleted successfully!' );
+            } )
+            .catch( error => {
+              console.log( 'Failed to delete value:', error );
+            } );
+
+        } catch ( error ) {
+          console.log( error );
+        }
+      }
+
+      await signOut()
 
     } catch ( error ) {
       console.log( error );
     }
     navigation.navigate( 'login' )
-    //console.log( 'user signed out' );
-
+    console.log( 'user signed out' );
   }
 
 
-  return (
+  return (   
     <View style={styles.mainContainer}>
       <View>
         <Text style={styles.title}>Tu Perfil</Text>
@@ -135,7 +162,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditNamePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Nombre</Text>
-            <Text style={styles.textForUserData}>{userName ? userName : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userName ? userName : 'Llena este campo'}</Text>
 
             <Image
               style={styles.imageEditLogoForTheRightSide}
@@ -148,7 +175,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditLastNamePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Apellido</Text>
-            <Text style={styles.textForUserData}>{userLastname ? userLastname : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userLastname ? userLastname : 'Llena este campo'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -159,7 +186,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditAgePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Edad</Text>
-            <Text style={styles.textForUserData}>{userAge ? userAge : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userAge ? userAge : 'Llena este campo'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -170,7 +197,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditGenderPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Género</Text>
-            <Text style={styles.textForUserData}>{userGender ? userGender : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userGender ? userGender : 'Llena este campo'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -181,7 +208,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditDepartmentPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Departamento</Text>
-            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : 'Llena este campo'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -192,7 +219,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => setShowEditPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.notWorkingYet}>Correo</Text>
-            <Text style={styles.textForUserData}>  {userEmail ? userEmail : '???????'}</Text>
+            <Text style={styles.textForUserData}>  {userEmail ? userEmail : 'Llena este campo'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -211,6 +238,8 @@ export default function Setting( { navigation } ) {
           </View>
         </Pressable>
 
+        <View style={{ marginBottom: 0 }}></View>
+
 
         {showEditPanel === true && <EditProfileData
           stopShowingEditPanel={stopShowingEditPanel}
@@ -222,12 +251,13 @@ export default function Setting( { navigation } ) {
           renderNewUserGender={renderNewUserGender}
           renderUserDepartment={renderUserDepartment}
           userEmail={userEmail}
-
         />}
 
-        <Button title="LogOut" onPress={logOutUser}>LogOut</Button>
-
+        <View style={{ marginHorizontal: 40, marginTop: 20 }}>
+          <Button color='red' title="SALIR DE TU CUENTA" onPress={logOutUser}>SALIR DE LA CUENTA</Button>
+        </View>
       </View>
+
     </View>
   );
 }
@@ -263,7 +293,7 @@ const styles = StyleSheet.create( {
     borderColor: "purple",
     marginLeft: 16,
     borderWidth: 0,
-    maxHeight: 65
+    maxHeight: 60
   },
   text: {
     color: "#662483",
