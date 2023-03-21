@@ -4,6 +4,8 @@ import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pre
 import EditProfileData from "./editProfileData";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
+import axios from "axios";
+
 
 export default function Setting( { navigation } ) {
 
@@ -24,7 +26,7 @@ export default function Setting( { navigation } ) {
 
   useEffect( () => {
     setTimeout( () => {
-      traerDatos()
+      getUserDataFromAsyncStorage()
     }, 2500 );
   }, [] )
 
@@ -88,7 +90,29 @@ export default function Setting( { navigation } ) {
       setShowEditPanel( true )
     } */
 
-  let traerDatos = async () => {
+  const getUserDataObjectAndSaveItLocally = async () => {
+    try {
+      if ( userEmail !== '...' ) {
+        axios.get( `https://mind-my-emotions.vercel.app/Devolver_todo/?Mail=${userEmail}` ).then( async ( res ) => {
+          // Aquí guardas los datos localmente y los muestras por consola
+          const jsonValue = JSON.stringify( res.data );
+          await AsyncStorage.setItem( 'myObject', jsonValue );
+          //console.log( 'LOS DATOS DEL USUARIO EN LA DB SON:' + jsonValue )
+          setTimeout( () => {
+            getUserDataFromAsyncStorage()
+          }, 1000 );
+        } )
+      }
+      // Aquí haces la petición y esperas a que se resuelva   
+    } catch ( error ) {
+      // Aquí manejas el error que pueda ocurrir en la petición o en el guardado de datos
+      console.error( 'the error when getting the user data is ==>  ' + error );
+    }
+    //console.log( userObject );
+  }
+
+
+  let getUserDataFromAsyncStorage = async () => {
     try {
       let retrievedJson = await AsyncStorage.getItem( 'myObject' );
       console.log( 'Request local user data   ' + retrievedJson );
@@ -138,13 +162,28 @@ export default function Setting( { navigation } ) {
     && userDepartment === ''
     && userEmail === ''
   ) {
-    traerDatos()
+    getUserDataFromAsyncStorage()
   }
 
   return (
     <View style={styles.mainContainer}>
       <View>
+
+
         <Text style={styles.title}>Tu Perfil</Text>
+
+        <View style={styles.reloadImage}>
+          <Pressable onPressIn={getUserDataObjectAndSaveItLocally}>
+            <Image
+              style={styles.imageEditLogo}
+              source={{ uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1679427955/ASSETTS/383083_refresh_reload_icon_ae9ghe.png' }}
+              key={Math.random()}
+              onPress={sendAvatarPanel}
+            />
+          </Pressable>
+
+        </View>
+
 
 
         <View style={styles.avatarContainer}>
@@ -345,5 +384,9 @@ const styles = StyleSheet.create( {
     flexDirection: "row",
     alignSelf: "center",
   },
-
+  reloadImage: {
+    position: "absolute",
+    marginLeft: 320,
+    marginTop: 30,
+  }
 } );

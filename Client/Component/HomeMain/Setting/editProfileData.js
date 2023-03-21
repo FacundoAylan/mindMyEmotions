@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, View, Image, TouchableOpacity, Alert } fro
 import { SelectList } from 'react-native-dropdown-select-list';
 import { Data } from "../../registerMe/city";
 import { MES_IMAGES } from '../../../Helpers/constants';
-import { ScrollView } from 'react-native';
+import { ScrollView, SectionList } from 'react-native';
 import axios from 'axios';
 
 export default function EditProfileData( {
