@@ -20,8 +20,12 @@ export default function Setting( { navigation } ) {
 
   const editImage = 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1678820634/ASSETTS/editLogo_mirxle.png'
 
+
+
   useEffect( () => {
-    traerDatos()
+    setTimeout( () => {
+      traerDatos()
+    }, 2500 );
   }, [] )
 
 
@@ -87,15 +91,15 @@ export default function Setting( { navigation } ) {
   let traerDatos = async () => {
     try {
       let retrievedJson = await AsyncStorage.getItem( 'myObject' );
-      //console.log( 'Request local user data   ' + retrievedJson );
+      console.log( 'Request local user data   ' + retrievedJson );
       let jsonToObject = JSON.parse( retrievedJson )
-      setUserName( jsonToObject?.Mensaje.Datos_registro.Nombre_de_usuario )
-      setUserLastname( jsonToObject?.Mensaje.Datos_registro.Apellido_de_usuario )
-      setUserAge( jsonToObject?.Mensaje.Datos_registro.Edad )
-      setUserGender( jsonToObject?.Mensaje.Datos_registro.Genero )
-      setUserDepartment( jsonToObject?.Mensaje.Datos_registro.Departamento )
-      setUserEmail( jsonToObject?.Mensaje.Datos_registro.Mail )
-  //console.log( jsonToObject.Mensaje.Datos_registro );
+      setUserName( jsonToObject.Mensaje?.Datos_registro.Nombre_de_usuario )
+      setUserLastname( jsonToObject.Mensaje?.Datos_registro.Apellido_de_usuario )
+      setUserAge( jsonToObject.Mensaje?.Datos_registro.Edad )
+      setUserGender( jsonToObject.Mensaje?.Datos_registro.Genero )
+      setUserDepartment( jsonToObject.Mensaje?.Datos_registro.Departamento )
+      setUserEmail( jsonToObject.Mensaje?.Datos_registro.Mail )
+      //console.log( jsonToObject.Mensaje.Datos_registro );
 
     } catch ( error ) {
       console.log( error );
@@ -125,6 +129,17 @@ export default function Setting( { navigation } ) {
 
   }
 
+  console.log( userEmail );
+
+  if ( userName === ''
+    && userLastname === ''
+    && userAge === ''
+    && userGender === ''
+    && userDepartment === ''
+    && userEmail === ''
+  ) {
+    traerDatos()
+  }
 
   return (
     <View style={styles.mainContainer}>
@@ -150,7 +165,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditNamePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Nombre</Text>
-            <Text style={styles.textForUserData}>{userName ? userName : '???'}</Text>
+            <Text style={styles.textForUserData}>{userName ? userName : '...'}</Text>
 
             <Image
               style={styles.imageEditLogoForTheRightSide}
@@ -163,7 +178,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditLastNamePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Apellido</Text>
-            <Text style={styles.textForUserData}>{userLastname ? userLastname : '???'}</Text>
+            <Text style={styles.textForUserData}>{userLastname ? userLastname : '...'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -174,7 +189,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditAgePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Edad</Text>
-            <Text style={styles.textForUserData}>{userAge ? userAge : '???'}</Text>
+            <Text style={styles.textForUserData}>{userAge ? userAge : '...'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -185,7 +200,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditGenderPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Género</Text>
-            <Text style={styles.textForUserData}>{userGender ? userGender : '???'}</Text>
+            <Text style={styles.textForUserData}>{userGender ? userGender : '...'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -196,7 +211,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditDepartmentPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Departamento</Text>
-            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : '???'}</Text>
+            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : '...'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -207,7 +222,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => setShowEditPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.notWorkingYet}>Correo</Text>
-            <Text style={styles.textForUserData}>  {userEmail ? userEmail : '???'}</Text>
+            <Text style={styles.textForUserData}>  {userEmail ? userEmail : '...'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}

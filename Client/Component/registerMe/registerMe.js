@@ -24,21 +24,21 @@ import * as SecureStore from 'expo-secure-store';
 // city: "",
 // });
 
-export default function Register({ navigation }) {
+export default function Register( { navigation } ) {
 
   const [ isAdultState, setIsAdultState ] = useState( undefined )
-  const [ userCreated, setUserCreated ] = useState( undefined )
+  //const [ userCreated, setUserCreated ] = useState( undefined )
 
   const data = Data;
-  const [form, setform] = useState({
-    Mail:'str',
+  const [ form, setform ] = useState( {
+    Mail: 'str',
     Edad: 'int',
     Nombre_de_usuario: 'str',
     Apellido_de_usuario: 'str',
-    Contrasenia:'str',
+    Contrasenia: 'str',
     Genero: 'str',
     Departamento: 'str',
-  });
+  } );
 
   const expresiones = {
     name: /^[a-zA-Z ]{3,16}$/,
@@ -47,7 +47,6 @@ export default function Register({ navigation }) {
     email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
     password: /.{7,16}/,
   };
-
 
 
   async function getProfileSwitchValue() {
@@ -60,17 +59,17 @@ export default function Register({ navigation }) {
     }
   }
 
-  const getUserObject = async () => {
-    //Gets the user data from asyncStorage
-    let createdUser = await AsyncStorage.getItem( 'myObject' );
-    if ( createdUser !== null ) {
-      setUserCreated( createdUser )
-    }
-  }
+  /*   const getUserObject = async () => {
+      //Gets the user data from asyncStorage
+      let createdUser = await AsyncStorage.getItem( 'myObject' );
+      if ( createdUser !== null ) {
+        setUserCreated( createdUser )
+      }
+    } */
 
   useEffect( () => {
     getProfileSwitchValue()
-    getUserObject()
+    //getUserObject()
   }, [] )
 
 
@@ -121,13 +120,13 @@ export default function Register({ navigation }) {
 
 
     if (
-      expresiones.name.test(form.Nombre_de_usuario) &&
-      expresiones.lastName.test(form.Apellido_de_usuario) &&
-      expresiones.age.test(form.Edad) &&
-      form.Genero!== '' &&
+      expresiones.name.test( form.Nombre_de_usuario ) &&
+      expresiones.lastName.test( form.Apellido_de_usuario ) &&
+      expresiones.age.test( form.Edad ) &&
+      form.Genero !== '' &&
       form.Departamento !== '' &&
-      expresiones.email.test(form.Mail) &&
-      expresiones.password.test(form.Contrasenia)
+      expresiones.email.test( form.Mail ) &&
+      expresiones.password.test( form.Contrasenia )
     ) {
 
       try {
@@ -138,7 +137,7 @@ export default function Register({ navigation }) {
         //It has a setTimeout because making this call usually results on the user not being created yet. It takes between 1 second and 2 seconds to create the user on the db. So I think 3 secs its the sweetspot... This can be achieved with retries with Axios, but that's too much for now.
         setTimeout( () => {
           getUserDataObjectAndSaveItLocally()
-        }, 3000 );
+        }, 2000 );
 
         //changes the log in flag to true, which means that the user is now logged in and their data object is in asyncStorage
         saveLoggedInFlag()
@@ -162,25 +161,6 @@ export default function Register({ navigation }) {
 
 
 
-  /*   const getUserDataObjectAndSaveItLocally = async () => {
-   
-      await axios.get( `https://mind-my-emotions.vercel.app/Devolver_todo/?Mail=${form.Mail}` )
-        .then( async ( res ) => {
-          console.log( res.data );
-          try {
-            const jsonValue = JSON.stringify( res.data );
-            await AsyncStorage.setItem( 'myObject', jsonValue );
-            console.log( 'LOS DATOS DEL USUARIO EN LA DB SON:' + jsonValue );
-          } catch ( error ) {
-            console.error( '111 the error when getting the user data is ==>  ' + error );
-          }
-        } )
-        .catch( ( error ) => {
-          console.error( '222 the error when getting the user data is ==>  ' + error );
-        } );
-   
-      //console.log( userObject );
-    } */
   const getUserDataObjectAndSaveItLocally = async () => {
     try {
       // Aquí haces la petición y esperas a que se resuelva   
@@ -205,26 +185,27 @@ export default function Register({ navigation }) {
         <TextInput
           placeholder="Nombre (Ej. Laura)"
           style={styles.input}
-          onChangeText={(nombre) => setform({ ...form, Nombre_de_usuario: nombre })}
+          onChangeText={( nombre ) => setform( { ...form, Nombre_de_usuario: nombre } )}
         />
         <Text style={styles.text}>Apellido</Text>
         <TextInput
           placeholder="Apellido (Ej. Vargas)"
           style={styles.input}
-          onChangeText={(apellido) => setform({ ...form, Apellido_de_usuario: apellido })}
+          onChangeText={( apellido ) => setform( { ...form, Apellido_de_usuario: apellido } )}
         />
         <Text style={styles.text}>Edad</Text>
         <TextInput
           placeholder="Edad (Ej. 12)"
           style={styles.input}
           keyboardType='numeric'
-          onChangeText={(edad) => setform({ ...form, Edad: parseInt(edad) })}
+          maxLength={2}
+          onChangeText={( edad ) => setform( { ...form, Edad: parseInt( edad ) } )}
         />
         <Text style={styles.text}>Gender</Text>
         <SelectList
           placeholder='Género'
           search={false}
-          setSelected={(gender) => setform({ ...form, Genero: gender })}
+          setSelected={( gender ) => setform( { ...form, Genero: gender } )}
           data={[ 'Masculino', 'Femenino', 'Otro' ]}
           save="value"
           boxStyles={{
@@ -262,20 +243,20 @@ export default function Register({ navigation }) {
             borderRadius: 6,
           }}
         />
-          
+
         <Text style={styles.text}>Correo</Text>
         <TextInput
           placeholder="Correo (Ej. laurav123@gmail.com)"
           style={styles.input}
-          onChangeText={(correo) => setform({ ...form, Mail: correo })}
+          onChangeText={( correo ) => setform( { ...form, Mail: correo } )}
         />
         <Text style={styles.text}>Contraseña, entre 6 y 15 caracteres. </Text>
         <TextInput
           placeholder="Contraseña"
           secureTextEntry={true}
           style={styles.input}
-          onChangeText={(contraseña) =>
-            setform({ ...form, Contrasenia: contraseña })
+          onChangeText={( contraseña ) =>
+            setform( { ...form, Contrasenia: contraseña } )
           }
         />
         <TouchableOpacity style={styles.button} onPress={() => validate()}>
@@ -286,7 +267,7 @@ export default function Register({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create( {
   container: {
     flex: 1,
     justifyContent: "center",
@@ -336,4 +317,4 @@ const styles = StyleSheet.create({
     letterSpacing: 0.25,
     color: '#662483',
   },
-});
+} );
