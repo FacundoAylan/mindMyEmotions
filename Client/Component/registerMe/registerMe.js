@@ -27,7 +27,7 @@ import * as SecureStore from 'expo-secure-store';
 export default function Register({ navigation }) {
 
   const [ isAdultState, setIsAdultState ] = useState( undefined )
-  const [ userCreated, setUserCreated ] = useState( undefined )
+  //const [ userCreated, setUserCreated ] = useState( undefined )
 
   const data = Data;
   const [form, setform] = useState({
@@ -49,7 +49,6 @@ export default function Register({ navigation }) {
   };
 
 
-
   async function getProfileSwitchValue() {
     try {
       let result = await SecureStore.getItemAsync( 'IS_ADULT' );
@@ -60,17 +59,17 @@ export default function Register({ navigation }) {
     }
   }
 
-  const getUserObject = async () => {
+/*   const getUserObject = async () => {
     //Gets the user data from asyncStorage
     let createdUser = await AsyncStorage.getItem( 'myObject' );
     if ( createdUser !== null ) {
       setUserCreated( createdUser )
     }
-  }
+  } */
 
   useEffect( () => {
     getProfileSwitchValue()
-    getUserObject()
+    //getUserObject()
   }, [] )
 
 
@@ -138,7 +137,7 @@ export default function Register({ navigation }) {
         //It has a setTimeout because making this call usually results on the user not being created yet. It takes between 1 second and 2 seconds to create the user on the db. So I think 3 secs its the sweetspot... This can be achieved with retries with Axios, but that's too much for now.
         setTimeout( () => {
           getUserDataObjectAndSaveItLocally()
-        }, 3000 );
+        }, 2000 );
 
         //changes the log in flag to true, which means that the user is now logged in and their data object is in asyncStorage
         saveLoggedInFlag()
@@ -187,6 +186,7 @@ export default function Register({ navigation }) {
       axios.get( `https://mind-my-emotions.vercel.app/Devolver_todo/?Mail=${form.Mail}` ).then( async ( res ) => {
         // Aquí guardas los datos localmente y los muestras por consola
         const jsonValue = JSON.stringify( res.data );
+
         await AsyncStorage.setItem( 'myObject', jsonValue );
         //console.log( 'LOS DATOS DEL USUARIO EN LA DB SON:' + jsonValue )
       } )
@@ -218,6 +218,7 @@ export default function Register({ navigation }) {
           placeholder="Edad (Ej. 12)"
           style={styles.input}
           keyboardType='numeric'
+          maxLength={2}
           onChangeText={(edad) => setform({ ...form, Edad: parseInt(edad) })}
         />
         <Text style={styles.text}>Gender</Text>
