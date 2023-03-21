@@ -99,7 +99,7 @@ export default function Setting( { navigation } ) {
       setUserGender( jsonToObject.Mensaje?.Datos_registro.Genero )
       setUserDepartment( jsonToObject.Mensaje?.Datos_registro.Departamento )
       setUserEmail( jsonToObject.Mensaje?.Datos_registro.Mail )
-  //console.log( jsonToObject.Mensaje.Datos_registro );
+      //console.log( jsonToObject.Mensaje.Datos_registro );
 
     } catch ( error ) {
       console.log( error );
