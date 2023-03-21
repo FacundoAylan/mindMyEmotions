@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable } from "react-native";
+import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert } from "react-native";
 import EditProfileData from "./editProfileData";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
@@ -23,6 +23,7 @@ export default function Setting( { navigation } ) {
   useEffect( () => {
     traerDatos()
   }, [] )
+
 
   //state rerendering functions
   const renderNewUserName = ( newName ) => {
@@ -84,29 +85,43 @@ export default function Setting( { navigation } ) {
     } */
 
   let traerDatos = async () => {
-    let retrievedJson = await AsyncStorage.getItem( 'myObject' );
-    let jsonToObject = JSON.parse( retrievedJson )
-    setUserName( jsonToObject.Mensaje.Datos_registro.Nombre_de_usuario )
-    setUserLastname( jsonToObject.Mensaje.Datos_registro.Apellido_de_usuario )
-    setUserAge( jsonToObject.Mensaje.Datos_registro.Edad )
-    setUserGender( jsonToObject.Mensaje.Datos_registro.Genero )
-    setUserDepartment( jsonToObject.Mensaje.Datos_registro.Departamento )
-    setUserEmail( jsonToObject.Mensaje.Datos_registro.Mail )
-    //console.log( jsonToObject.Mensaje.Datos_registro );
+    try {
+      let retrievedJson = await AsyncStorage.getItem( 'myObject' );
+      //console.log( 'Request local user data   ' + retrievedJson );
+      let jsonToObject = JSON.parse( retrievedJson )
+      setUserName( jsonToObject?.Mensaje.Datos_registro.Nombre_de_usuario )
+      setUserLastname( jsonToObject?.Mensaje.Datos_registro.Apellido_de_usuario )
+      setUserAge( jsonToObject?.Mensaje.Datos_registro.Edad )
+      setUserGender( jsonToObject?.Mensaje.Datos_registro.Genero )
+      setUserDepartment( jsonToObject?.Mensaje.Datos_registro.Departamento )
+      setUserEmail( jsonToObject?.Mensaje.Datos_registro.Mail )
+  //console.log( jsonToObject.Mensaje.Datos_registro );
+
+    } catch ( error ) {
+      console.log( error );
+    }
   }
 
 
   //Removes this key from async storage, so the user has to log in again from the sesion screen. The user is navigated to the sesion.
   let logOutUser = async () => {
     try {
-      await AsyncStorage.removeItem( 'IS_LOGGED_IN' );
-      //google sign out
+      //await AsyncStorage.removeItem( 'IS_LOGGED_IN' );
+      await AsyncStorage.clear();
+
+      await SecureStore.deleteItemAsync( 'IS_ADULT' )
+        .then( () => {
+          console.log( 'Value deleted successfully!' );
+        } )
+        .catch( error => {
+          console.log( 'Failed to delete value:', error );
+        } );
 
     } catch ( error ) {
       console.log( error );
     }
     navigation.navigate( 'login' )
-    //console.log( 'user signed out' );
+    console.log( 'user signed out' );
 
   }
 
@@ -135,7 +150,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditNamePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Nombre</Text>
-            <Text style={styles.textForUserData}>{userName ? userName : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userName ? userName : '???'}</Text>
 
             <Image
               style={styles.imageEditLogoForTheRightSide}
@@ -148,7 +163,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditLastNamePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Apellido</Text>
-            <Text style={styles.textForUserData}>{userLastname ? userLastname : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userLastname ? userLastname : '???'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -159,7 +174,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditAgePanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Edad</Text>
-            <Text style={styles.textForUserData}>{userAge ? userAge : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userAge ? userAge : '???'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -170,7 +185,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditGenderPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Género</Text>
-            <Text style={styles.textForUserData}>{userGender ? userGender : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userGender ? userGender : '???'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -181,7 +196,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => sendEditDepartmentPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.text}>Departamento</Text>
-            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : '???????'}</Text>
+            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : '???'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
@@ -192,7 +207,7 @@ export default function Setting( { navigation } ) {
         <Pressable onPress={() => setShowEditPanel()}>
           <View style={styles.informationContainer}>
             <Text style={styles.notWorkingYet}>Correo</Text>
-            <Text style={styles.textForUserData}>  {userEmail ? userEmail : '???????'}</Text>
+            <Text style={styles.textForUserData}>  {userEmail ? userEmail : '???'}</Text>
             <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}

@@ -39,7 +39,7 @@ export default function Sesion( { navigation } ) {
   const getLoggedInFlag = async () => {
     try {
       let isLoggedInResult = await AsyncStorage.getItem( 'IS_LOGGED_IN' );
-      console.log( isLoggedInResult );
+      //console.log( isLoggedInResult );
       if ( isLoggedInResult === 'true' ) {
         if ( isAdultState === 'yes' ) {
           navigation.navigate( 'importance' )
@@ -56,18 +56,19 @@ export default function Sesion( { navigation } ) {
   getLoggedInFlag()
 
 
-  async function getUserDataObjectAndSaveItLocally() {
-
-    let userObject = axios.get( 'https://mind-my-emotions.vercel.app/Devolver_todo/', { params: { Mail: email } } )
-      .then( async ( res ) => {
+  const getUserDataObjectAndSaveItLocally = async () => {
+    try {
+      // Aquí haces la petición y esperas a que se resuelva   
+      axios.get( `https://mind-my-emotions.vercel.app/Devolver_todo/?Mail=${email}` ).then( async ( res ) => {
+        // Aquí guardas los datos localmente y los muestras por consola
         const jsonValue = JSON.stringify( res.data );
         await AsyncStorage.setItem( 'myObject', jsonValue );
-        //console.log( jsonValue );
+        //console.log( 'LOS DATOS DEL USUARIO EN LA DB SON:' + jsonValue )
       } )
-      .catch( ( error ) => {
-        console.error( 'the error when getting the user data is ==>  ' + error );
-      } );
-
+    } catch ( error ) {
+      // Aquí manejas el error que pueda ocurrir en la petición o en el guardado de datos
+      console.error( 'the error when getting the user data is ==>  ' + error );
+    }
     //console.log( userObject );
   }
 
