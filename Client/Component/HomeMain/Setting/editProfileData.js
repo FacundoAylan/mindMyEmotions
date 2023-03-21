@@ -31,7 +31,7 @@ export default function EditProfileData( {
         console.log( 'clicked' );
         changeAvatarImage( newAvatarLink )
 
-        await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Avatar?Mail=${userEmail}&Avatar=${newAvatarLink}` ).
+        await axios.post( `https://mind-my-emotions.vercel.app/Modulos/Avatar?Mail=${userEmail}&Avatar=${newAvatarLink}` ).
             then( res => {
                 console.log( res.data?.Mensaje );
             } ).
@@ -40,6 +40,7 @@ export default function EditProfileData( {
             } )
         stopShowingEditPanel()
     }
+
 
     let selectAvatar = () => {
 
