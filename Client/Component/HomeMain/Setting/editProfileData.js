@@ -33,8 +33,7 @@ export default function EditProfileData( {
 
         await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Avatar?Mail=${userEmail}&Avatar=${newAvatarLink}` ).
             then( res => {
-                console.log( res.data.Mensaje );
-
+                console.log( res.data?.Mensaje );
             } ).
             catch( error => {
                 console.log( error );
@@ -72,7 +71,7 @@ export default function EditProfileData( {
         let sendNewNameToTheDb = async () => {
             await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Nombre?Mail=${userEmail}&Nuevo_Nombre=${newName}` ).
                 then( res => {
-                    console.log( res.data.Mensaje );
+                    console.log( res.data?.Mensaje );
 
                 } ).
                 catch( error => {
@@ -92,7 +91,7 @@ export default function EditProfileData( {
         let sendNewLastNameToTheDb = async () => {
             await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Apellido?Mail=${userEmail}&Nuevo_Apellido=${newLastName}` ).
                 then( res => {
-                    console.log( res.data.Mensaje );
+                    console.log( res.data?.Mensaje );
 
                 } ).
                 catch( error => {
@@ -112,7 +111,7 @@ export default function EditProfileData( {
             let sendNewAgeToTheDb = async () => {
                 await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Edad?Mail=${userEmail}&Nueva_edad=${newAge}` ).
                     then( res => {
-                        console.log( res.data.Mensaje );
+                        console.log( res.data?.Mensaje );
 
                     } ).
                     catch( error => {
@@ -134,7 +133,7 @@ export default function EditProfileData( {
         let sendNewGenderToTheDb = async () => {
             await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Genero?Mail=${userEmail}&Nuevo_Genero=${newGender}` ).
                 then( res => {
-                    console.log( res.data.Mensaje );
+                    console.log( res.data?.Mensaje );
 
                 } ).
                 catch( error => {
@@ -155,7 +154,7 @@ export default function EditProfileData( {
         let sendNewDepartmentToTheDb = async () => {
             await axios.post( `https://mind-my-emotions.vercel.app/Perfil/Departamento?Mail=${userEmail}&Nuevo_Departamento=${newDepartamento}` ).
                 then( res => {
-                    console.log( res.data.Mensaje );
+                    console.log( res.data?.Mensaje );
 
                 } ).
                 catch( error => {
