@@ -10,8 +10,8 @@ import firebase_admin
 from firebase_admin import credentials, firestore
 from datetime import datetime
 
-from api.funciones_de_consulta_a_firestone import *
-from api.funciones_de_validacion import *
+from funciones.funciones_de_consulta_a_firestone import *
+from funciones.funciones_de_validacion import *
 
 class inicio_sesion(BaseModel):
     Mail: str 
