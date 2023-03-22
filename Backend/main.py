@@ -46,6 +46,29 @@ def Devolver_datos_del_usuario(Mail:str):
     datos=Devolver_datos(Mail)
 
     return {"Mensaje": datos}
+@app.get("/Modulo/Habilidades_socioemocionales/")
+def Devolver_datos_del_usuario():
+    
+    #busca el modulo de Habilidades_socioemocionales 
+    modulo=Devolver_modulo("Habilidades_socioemocionales")
+
+    return {"Mensaje": modulo}
+
+@app.get("/Modulo/Reconocimiento_emocional/")
+def Devolver_datos_del_usuario():
+    
+    #busca el modulo de Reconocimiento_emocional 
+    modulo=Devolver_modulo("Reconocimiento_emocional")
+
+    return {"Mensaje": modulo}
+
+@app.get("/Modulo/salud_mental/")
+def Devolver_datos_del_usuario():
+    
+    #busca el modulo de salud_mental 
+    modulo=Devolver_modulo("salud_mental")
+
+    return {"Mensaje": modulo}
 
 #pide dos datos usuario y contraseña
 #Busca usuario y contraseña
@@ -78,7 +101,7 @@ def Registra_Datos_de_Usuario_google(Mail:str):
     Mensaje+=validar_mail(Mail)
     if(Mensaje==""):
         #registra el usuario
-        Mensaje=registrar_usuario_con_google(mail_user)
+        Mensaje=registrar_usuario_con_google(Mail)
         
     return {"Mensaje":Mensaje}
 

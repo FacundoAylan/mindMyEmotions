@@ -3,7 +3,7 @@
 from firebase_admin import firestore
 from datetime import datetime
 
-from api.funciones_de_validacion import *
+
 
 def registrar_usuario_con_google(mail_user):
  #inicia la variable Mensaje
@@ -88,7 +88,7 @@ def buscar_usuario_contrasenia(mail_user, contrasenia_user):
             #sino Contraseña ingresada incorrectamente
             Mensaje="Contraseña ingresada incorrectamente"
 
-    return mensaje
+    return Mensaje
 
 
 #recibe el mail, la clave del dato a atualizar y el nuevo dato
@@ -102,29 +102,29 @@ def Reemplaza_datos(mail_user, clave_dict, nuevo_dato):
     #inicia la lista usuario_doc
     usuario_doc=[]
     #verifica si el formato del mail es correcto y que el dato mail no este vacio
-    Mensaje+=validar_mail(mail_user)
+    
     #si es edad paso el dato a numero entero
     if(clave_dict=="Edad"):
         nuevo_dato=int(nuevo_dato)
     #si no hay mensajes de error consulta a la base de datos
-    if(Mensaje==""):
-        #inicia la configuracion de firestone
-        db = firestore.client()
-        #busca el id en la base de datos
-        usuario_doc=db.collection('usuarios').where("Datos_registro.Mail","==",mail_user).get()
-        #recorre la lista usuario_doc
-        for clave in usuario_doc:
-            # Almacena la clave del usuario en Key
-            key=clave.id
-        #crea la consulta dentro del diccionario clave: Datos_registro
-        clave="Datos_registro."+clave_dict
-        #Crea un diccionario {clave:valor}
-        datos={clave:nuevo_dato}
-        #actualiza los datos
-        db.collection('usuarios').document(key).update(datos)
-        #mensaje va a ser igual a Se actulizo 
-        Mensaje="Se actulizo "+clave_dict
-        
+    
+    #inicia la configuracion de firestone
+    db = firestore.client()
+    #busca el id en la base de datos
+    usuario_doc=db.collection('usuarios').where("Datos_registro.Mail","==",mail_user).get()
+    #recorre la lista usuario_doc
+    for clave in usuario_doc:
+        # Almacena la clave del usuario en Key
+        key=clave.id
+    #crea la consulta dentro del diccionario clave: Datos_registro
+    clave="Datos_registro."+clave_dict
+    #Crea un diccionario {clave:valor}
+    datos={clave:nuevo_dato}
+    #actualiza los datos
+    db.collection('usuarios').document(key).update(datos)
+    #mensaje va a ser igual a Se actulizo 
+    Mensaje="Se actulizo "+clave_dict
+    
     return Mensaje
 
 #recibe el mail, la clave del dato a atualizar y el nuevo dato
@@ -134,24 +134,21 @@ def Editar_datos_modulo(mail_user: str, clave_dict: str, nuevo_dato:str):
     Mensaje=""
     key=""
     usuario_doc=[]
-    Mensaje+=validar_mail(mail_user)
 
-    #si no hay mensajes de error consulta a la base de datos
-    if(Mensaje==""):
-        #inicia la configuracion de firestone
-        db = firestore.client()
-        #busca el id en la base de datos
-        usuario_doc=db.collection('usuarios').where("Datos_registro.Mail","==",mail_user).get()
-        for clave in usuario_doc:
-            key=clave.id
-        #crea la consulta dentro del diccionario segun la clave:clave_dict paramentro de la funcion
-        clave=clave_dict
-        #Crea un diccionario {clave:valor}        
-        datos={clave:nuevo_dato}
-        #actualiza los datos
-        db.collection('usuarios').document(key).update(datos)
-        Mensaje="Se actulizo "+clave_dict
-        #mensaje va a ser igual a Se actulizo 
+    #inicia la configuracion de firestone
+    db = firestore.client()
+    #busca el id en la base de datos
+    usuario_doc=db.collection('usuarios').where("Datos_registro.Mail","==",mail_user).get()
+    for clave in usuario_doc:
+        key=clave.id
+    #crea la consulta dentro del diccionario segun la clave:clave_dict paramentro de la funcion
+    clave=clave_dict
+    #Crea un diccionario {clave:valor}        
+    datos={clave:nuevo_dato}
+    #actualiza los datos
+    db.collection('usuarios').document(key).update(datos)
+    Mensaje="Se actulizo "+clave_dict
+    #mensaje va a ser igual a Se actulizo 
 
     return Mensaje
 
@@ -162,16 +159,27 @@ def Devolver_datos(mail_user: str):
     Mensaje=""
     key=""
     usuario_doc=[]
-    Mensaje+=validar_mail(mail_user)
-    #si no hay mensajes de error consulta a la base de datos
-    if(Mensaje==""):
-        #inicia la configuracion de firestone
-        db = firestore.client()
-        #busca el id en la base de datos
-        usuario_doc=db.collection('usuarios').where("Datos_registro.Mail","==",mail_user).get()
+
+    #inicia la configuracion de firestone
+    db = firestore.client()
+    #busca el id en la base de datos
+    usuario_doc=db.collection('usuarios').where("Datos_registro.Mail","==",mail_user).get()
+    Mensaje="Usuario no existe"  
+    if (usuario_doc!=[]):
+        #mensaje es Usuario existe
+            
         for clave in usuario_doc:
             key=clave.id
-    usuario_doc_completo=db.collection('usuarios').document(key).get()
-    usuario_diccionario=usuario_doc_completo.to_dict()
-    usuario_diccionario['Datos_registro'].pop('Contrasenia')
-    return usuario_diccionario
+        usuario_doc_completo=db.collection('usuarios').document(key).get()
+        usuario_diccionario=usuario_doc_completo.to_dict()
+        usuario_diccionario['Datos_registro'].pop('Contrasenia')
+        Mensaje= usuario_diccionario
+    return Mensaje
+
+def Devolver_modulo(modulo):
+    #inicia la configuracion de firestone
+    db = firestore.client()
+    modulo_doc_completo=db.collection('Contenido').document(modulo).get()
+    modulo_diccionario=modulo_doc_completo.to_dict()
+    return modulo_diccionario
+    
