@@ -15,7 +15,7 @@ export default function Modules ({navigation}) {
           modules.map((module,index) =>{
             return(
               <TouchableOpacity
-                key={index}
+                key={index} 
                 disabled={!json[module.split(" ").join("")]}
                 onPress={() => module!== 'Salud mental' ? navigation.navigate("topincs",{indexModule:index}):navigation.navigate("diary")}
               >

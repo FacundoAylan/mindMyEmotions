@@ -1,0 +1,1 @@
+export const Emotions = ['Tristeza', 'Enojo', 'Asco', 'Felicidad']

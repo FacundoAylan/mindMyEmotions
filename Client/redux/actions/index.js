@@ -36,6 +36,7 @@ const initialState = {
 
   // Mini modulos Salut mental
   Diario: true,
+  answers: []
 };
 
 export const counterSlice = createSlice({
@@ -51,10 +52,13 @@ export const counterSlice = createSlice({
         [module.payload.name]: module.payload.value,
       };
     },
+    loadAnswer: (state, module) => {
+      state.answers.push(module.payload)
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { loadInfo, validateTopinc } = counterSlice.actions;
+export const { loadInfo, validateTopinc, loadAnswer } = counterSlice.actions;
 
 export default counterSlice.reducer;
