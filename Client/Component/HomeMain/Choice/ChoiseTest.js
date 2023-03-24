@@ -5,7 +5,7 @@ import { Count } from "./count";
 import { useSelector, useDispatch } from "react-redux";
 import {validateTopinc} from '../../../redux/actions/index'
 
-export default function Choice({ navigation, route }) {
+export default function ChoiceTest({ navigation, route }) {
 
   const { json, nameTheory, indexModule, nameNext, nameModule} = route.params;
 
@@ -23,7 +23,6 @@ export default function Choice({ navigation, route }) {
   const dispatch = useDispatch()
   
   const toggleModal = async ({pregunta, respuesta}) => {
-    let index = await Count({pregunta,respuesta});
     //tengo que solucionar el tema de presionar el boton cuando no existen mas preguntas
     setCount(countSum+index1)
     //--------------------------------------------
@@ -32,9 +31,11 @@ export default function Choice({ navigation, route }) {
       setTitle(questions[pregunta].title)
       setText(questions[pregunta].text)
     }else{
+      // habilita el siguiente mini modulo
       if(nameNext!== ''){
         dispatch(validateTopinc({name: nameNext, value:true}))
       }
+      // habilita el siguiente modulo
       if(nameNext=== ''){
         dispatch(validateTopinc({name: nameModule, value:true}))
       }
@@ -107,7 +108,7 @@ const styles = StyleSheet.create({
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 32,
+    fontSize: 20,
     color: "purple",
   },
   container: {

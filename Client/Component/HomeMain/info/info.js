@@ -323,7 +323,7 @@ export var Info = [
           {"title": "Pregunta 6",
           "text": "7. Nombra la emoción que piensas cuando ves a ME",
           "answers": [
-            "imagen."
+            "imagen"
           ],
           },
           {"title": "Pregunta 7",
@@ -349,7 +349,10 @@ export var Info = [
           {"title": "Pregunta 9",
           "text": "Nombra a cada ME",
           "answers": [
-            "a. Imagenes.",
+            "imagen",
+            "imagen",
+            "imagen",
+            "imagen",
           ],
           }
         ],
@@ -428,13 +431,13 @@ export var Info = [
           {"title": "Pregunta 8",
           "text": "Puedes intentar entender cómo te has sentido hoy y por qué razón?",
           "answers": [
-            "a. Texto.",
+            "Texto",
           ],
           },
           {"title": "Pregunta 9",
           "text": "Puedes intentar entender cómo te sientes la mayoría de días y por qué razón?",
           "answers": [
-            "Texto.",
+            "Texto",
           ],
           }
         ],
@@ -536,12 +539,17 @@ export var Info = [
   },
   {
     "module": "Habilidades socioemocionales",
-    "topics": ["Test inicial socioemocional","Empatia","Asertividad", "Resiliencia"],
+    "topics": ["Test inicial socioemocional", "Autocontrol/Autoregulacion","Empatia","Asertividad", "Resiliencia"],
     "theory": [
       {
         "nameTheory": "Test inicial socioemocional",
         "title": "Habilidades socioemocionales",
         "text": "Hola, soy Mind My Emotions, pero me puedes decir ME ¿sabías que las habilidades socioemocionales te pueden ayudar a desarrollar inteligencia emocional?.Pues hoy, quiero contarte que cuando desarrollas tus habilidades socioemocionales, puedes tener relaciones más sanas y te puedes convertir en una mejor persona, con los demás y contigo mismo.Todos los seres humanos tenemos muchas habilidades socioemocionales, sin embargo es muy importante que trabajemos en ellas constantemente para poder comunicarnos de una manera más efectiva.En esta sección vas a aprender algunas de las habilidades socioemocionales más importantes. Esto te ayudará a saber cuales debes trabajar con más constancia."
+      },
+      {
+        "nameTheory": "Autocontrol/Autoregulacion",
+        "title": "Autocontrol/Autoregulacion",
+        "text": "La resiliencia es la habilidad que nos permite tener la capacidad de superar momentos difíciles y afrontar de una manera más positiva los problemas. Nos permite adaptarnos mejor a situaciones de fuerte y prolongado estrés.Empecemos!."
       },
       {
         "nameTheory": "Empatia",
@@ -574,18 +582,16 @@ export var Info = [
           {"title": "Pregunta 2",
           "text": " ¿Podrías decir fácilmente que habilidades socioemocionales tienes?",
           "answers": [
-            "a. Si.",
-            "b. Cuales?.",
-            "c. No.",
+            "¿Cuales?-a.Si.",
+            "b. No.",
           ],
           },
           {"title": "Pregunta 3",
           "text": "¿Crees que las habilidades sociales se pueden perder con el tiempo?",
           "answers": [
-            "a. Si.",
-            "b. Por que?.",
-            "c. No.",
-            "d. Nose.",
+            "¿Porque?-a.Si.",
+            "b. No.",
+            "c. Nose.",
           ],
           },
           {"title": "Pregunta 4",
@@ -615,50 +621,128 @@ export var Info = [
         ],
       },
       {
+        "nameTheory": "Autocontrol/Autoregulacion",
+        "questions":[
+          {"title": "Pregunta 1",
+          "text": "¿Cómo hubieras reaccionado tu en la misma situación?",
+          "answers": [
+            "a.Hubiera reaccionado igual que ME lo hizo",
+            "b.No le hubiera dicho nada y hubiera parado de jugar",
+            "c.Le hubiera dicho que por favor tuviera más cuidado la próxima vez "     
+          ],
+          },
+          {"title": "Pregunta 2",
+          "text": " ¿Tu intentas perdonar y olvidar?",
+          "answers": [
+            "¿Porqué?-a.No me cuesta perdonar.",
+            "b. Si.",
+            "c. Aveces."
+          ],
+          },
+          {"title": "Pregunta 3",
+          "text": "¿Te irritas con facilidad?",
+          "answers": [
+            "a. Si.",
+            "b.No.",
+            "c. Depende de la situacion.",
+          ],
+          },
+          {"title": "Pregunta 4",
+          "text": "¿Te molesta cuando alguien se equivoca?",
+          "answers": [
+            "a.Si mucho.",
+            "b.No me da igual.",
+           " a.A veces."
+          ],
+          },
+          {"title": "Pregunta 5",
+          "text": "¿Eres siempre muy amable con las personas?",
+          "answers": [
+            "a. No.",
+            "b. Lo intento.",
+            "c. Si, simepre con cualquier persona.",
+            "d.Depende de la persona"
+          ],
+          },
+          {"title": "Pregunta 6",
+          "text": " ¿Podrías describir lo que haces cuando estás perdiendo el control de algo?",
+          "answers": [
+            "a.No se como",
+            "¿Text?-b. Si.", 
+          ],
+          },
+        ],
+      },
+      {
         "nameTheory": "Empatia",
         "questions":[
+          {"title": "Pregunta 1",
+          "text": "Cuando alguien te cuenta un problema que le ha afectado mucho…",
+          "answers": [
+            "¿por que?-a.Me cuesta entenderlo.",
+            "b.Puedo imaginar como se siente.",
+            "c. Me esfuerzo para ayudarle."
+            
+          ],
+          },
+          {"title": "Pregunta 2",
+          "text": "Si alguien te está contando algo y crees que es una tontería ¿que le dices?",
+          "answers": [
+            "a.Le digo que es una tonteia y que no se preocupe.",
+            "b.Prefiero no decir nada.",
+            "c.Escucho sin invalidar sus sentimientos."
+            
+          ],
+          },
+          {"title": "Pregunta 3",
+          "text": " ¿Te afecta cuando ves a alguien triste?",
+          "answers": [
+            "¿por que?-a.Si mucho",
+            "b.A veces.",
+            "c.No",
+            "d.Depende de la persona"
+          ],
+          },
+          {"title": "Pregunta 4",
+          "text": " Cuando alguien te da una buena noticia…",
+          "answers": [
+            "a. Me alegro por las cosas buenas que le pasan.",
+            "b. Me da igual."
+          ],
+          },
+          {"title": "Pregunta 5",
+          "text": "Si ves que alguien necesita ayuda",
+          "answers": [
+            "a.Ofresco mi ayuda.",
+            "¿por que?-b.Prefiero no hacer nada.",
+            "c. Busco a alguien que pueda ayudarlo."
+            
+          ],
+          },
           {"title": "Situacion 1",
           "text": "Juan se ha caído y se ha manchado de barro el pantalón ¿Qué crees que necesita Juan?",
           "answers": [
-            "a.No necesita nada.",
-            "b.Necesita ayuda para levantarse y limpiar su pantalón.",
-            "c.Necesita un abrazo porque se siente triste."
+            "Texto",
             
           ],
           },
           {"title": "Situacion 2",
           "text": "María se ha mudado de casa y se siente sola porque no tiene cerca a sus amigos/as ¿Cómo crees que se siente y qué crees que necesita María? ",
           "answers": [
-            "a.No se.",
-            "b.Se siente triste y necesita expresarle a alguien cómo se siente.",
-            "c.Se siente triste pero es mejor no decirle nada a nadie.",
-            
+            "Texto",
           ],
           },
           {"title": "Situacion 3",
           "text": "Sofía se quedó la última en la fila, no alcanzó a entrar al salón y se quedó sola por fuera ¿Cómo crees que se siente Sofía? ",
           "answers": [
-            "a.Se siente muy avergonzada porque es la única que está por fuera.",
-            "b.Siente rabia porque quería entrar al salón.",
-            "c.No le importa."
+            "Texto",
             
           ],
           },
           {"title": "Situacion 4",
           "text": "Luna fue la única a la que no invitaron al cumpleaños de Juan ¿Cómo crees que se siente Luna?",
           "answers": [
-            "a.Se siente muy triste y confundida porque no sabe por qué no la invitaron.",
-            "b.Siente vergüenza de ser la única a la que no invitaron.",
-            "c.No le importa."             
-          ],
-          },
-          {"title": "Situacion 5",
-          "text": "Santiago ha estado muy triste porque su hermana mayor se fue de casa y no la ve hace mucho tiempo. ¿Qué harías tú para que él pueda sentirse mejor?",
-          "answers": [
-            "a.No haría nada.",
-            "b.Le haría compañía para que no se sienta solo.",
-            "c.Lo invitaría a jugar para que se pueda distraer un rato."
-            
+            "Texto",          
           ],
           },
         ],
@@ -679,8 +763,7 @@ export var Info = [
           "answers": [
             "a.Si puedo trato de darselo.",
             "b.No me gusta dar consejos.",
-            "c.No me importa.",
-            
+            "¿por que?-c.No me importa.",
           ],
           },
           {"title": "Situacion 3",
@@ -688,8 +771,7 @@ export var Info = [
           "answers": [
             "a.Me molesto demasiado y me quejo mucho.",
             "b.No pasa nada, no siempre se gana.",
-            "c.Me da igual."
-            
+            "¿por que?-c.Me da igual.",
           ],
           },
           {"title": "Situacion 4",
@@ -703,7 +785,7 @@ export var Info = [
           {"title": "Situacion 5",
           "text": "Cuando te sientes triste ¿Qué haces?",
           "answers": [
-            "a.No le digo nada a nadie y me guardo mis sentimientos.",
+            "¿por que?-a.No le digo nada a nadie y me guardo mis sentimientos.",
             "b.Prefiero decirle a alguien para sentirme mejor.",
             "c.No se que hacer."
             
@@ -714,6 +796,42 @@ export var Info = [
       {
         "nameTheory": "Resiliencia",
         "questions":[
+          {"title": "Practica 1",
+          "text": "¿Normalmente enfrentas los problemas?",
+          "answers": [
+            "a.Siempre.",
+            "¿por que?-b.Casi nunca.",
+            "c.A veces."
+                      
+          ],
+          },
+          {"title": "Practica 2",
+          "text": "¿Es fácil para ti superar momentos difíciles?",
+          "answers": [
+            "¿por que?-a.No, es muy dificil.",
+            "b.Si, siempre es facil.",
+            "c.Depende de la situacion."
+                      
+          ],
+          },
+          {"title": "Practica 3",
+          "text": "¿Normalmente encuentras motivos para reírte y estar alegre?",
+          "answers": [
+            "a.Si trato de estar alegre.",
+            "¿por que?-b.No me cuesta encontrar motivos.",
+            "c.Unos dias me cuesta mas que otros."
+                      
+          ],
+          },
+          {"title": "Practica 4",
+          "text": "¿Cuando estás en una situación difícil normalmente encuentras una salida?",
+          "answers": [
+            "a.Casi siempre.",
+            "¿por que?-b.Casi nunca.",
+            "c.A veces."
+                      
+          ],
+          },
           {"title": "Situacion 1",
           "text": "Si un día tienes un problema con uno/a de tus amigos/as y el o ella no quiere hablarte más ¿Que haces?",
           "answers": [
