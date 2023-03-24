@@ -150,7 +150,6 @@ export default function Setting( { navigation } ) {
     }
     navigation.navigate( 'login' )
     console.log( 'user signed out' );
-
   }
 
   console.log( userEmail );

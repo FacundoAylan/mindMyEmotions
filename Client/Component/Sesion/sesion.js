@@ -8,7 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from "axios";
 
 export default function Sesion( { navigation } ) {
-  const [ email, setEmail ] = useState( '' ); //jorge@gmail.com
+  const [ email, setEmail ] = useState( 'jorge@gmail.com' ); //jorge@gmail.com
   const [ password, setPassword ] = useState( '12345' );
   const [ isAdultState, setIsAdultState ] = useState( undefined )
 

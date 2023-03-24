@@ -1,12 +1,17 @@
 import React, { useEffect } from "react";
-import { Image, StyleSheet, View, Dimensions, TextInput, ScrollViewBase, ScrollView } from "react-native";
+import { Image, StyleSheet, View, Dimensions, TextInput, Text, ScrollViewBase, ScrollView } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const windowHeight = Dimensions.get('window').height;
-const windowWidth = Dimensions.get('window').width;
 
-export default function Data( { navigation } ) {
+const windowHeight = Dimensions.get( 'window' ).height;
+const windowWidth = Dimensions.get( 'window' ).width;
+
+export default function UserInfo( { navigation } ) {
+
+
 
   return (
+
     <ScrollView>
       <View style={styles.container}>
         <Image
@@ -15,18 +20,18 @@ export default function Data( { navigation } ) {
             uri: "https://res.cloudinary.com/dafvcjkfo/image/upload/q_100/v1679262554/Documento_A4_formas_curvas_Hoja_de_papel_formas_abstractas_multicolor_plcg3l.png",
           }}
         />
-        <TextInput style={styles.Name}>Mi nombre es</TextInput>
+        <Text style={styles.Name}>Mi nombre es</Text>
         <TextInput
           style={styles.inputName}
           maxLength={10}
         />
-        <TextInput style={styles.Age}>Mi edad es</TextInput>
+        <Text style={styles.Age}>Mi edad es</Text>
         <TextInput
           style={styles.inputAge}
           keyboardType="numeric"
           maxLength={2}
         />
-        <TextInput style={styles.Text}>Lo que mas feliz me hace es</TextInput>
+        <Text style={styles.Text}>Lo que más me hace feliz es</Text>
         <TextInput
           style={styles.inputText}
           multiline={true} // Permitir varias líneas
@@ -46,7 +51,7 @@ const styles = StyleSheet.create( {
   container: {
     height: windowHeight * 0.93,
     position: "relative",
-    padding:0
+    padding: 0
   },
   Name: {
     position: "absolute",
@@ -67,7 +72,7 @@ const styles = StyleSheet.create( {
     fontSize: 24,
     color: 'black',
     maxHeight: 85,
-    padding:30
+    padding: 30
   },
   Age: {
     position: "absolute",
@@ -81,8 +86,8 @@ const styles = StyleSheet.create( {
   inputAge: {
     position: 'absolute',
     zIndex: 3,
-    maxWidth:'30%',
-    minWidth:'30%',
+    maxWidth: '30%',
+    minWidth: '30%',
     backgroundColor: 'pink',
     marginTop: windowHeight * 0.4,
     marginLeft: windowWidth * 0.6,
@@ -90,7 +95,7 @@ const styles = StyleSheet.create( {
     fontSize: 25,
     color: 'white',
     height: 70,
-    paddingLeft:33
+    paddingLeft: 33
   },
   Text: {
     position: "absolute",
@@ -112,7 +117,7 @@ const styles = StyleSheet.create( {
     fontSize: 25,
     color: 'white',
     maxHeight: 120,
-    padding:10,
+    padding: 10,
     zIndex: 3,
   },
   image: {
@@ -121,11 +126,12 @@ const styles = StyleSheet.create( {
   },
   imageMind: {
     position: 'absolute',
-    width: '100%',
-    height: '100%',
+    alignSelf: "center",
+    width: '45%',
+    height: '25%',
     borderRadius: 12,
     resizeMode: 'stretch',
-    marginTop: windowHeight * 0.33
+    marginTop: windowHeight * 0.67
   }
 } )
 
