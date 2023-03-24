@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 32,
+    fontSize: 20,
     color: "purple",
   },
   container: {

@@ -1,28 +1,89 @@
 import React, { useState } from "react";
-import {  Image, StyleSheet, Text, TouchableOpacity, View, ScrollView, TextInput } from "react-native";
+import {  Image, Text, TouchableOpacity, View, ScrollView, TextInput } from "react-native";
 import Modal from "react-native-modal";
 import { useSelector, useDispatch } from "react-redux";
 import {validateTopinc, loadAnswer} from '../../../redux/actions/index'
 import {Identify} from './identify/identify'
 import {Emotions} from './emotions/emotions'
+import {styles} from './styles/styles';
+import ButtonNext from './Button/Button' 
 
 export default function Choice({ navigation, route }) {
 
   const { json, nameTheory, indexModule, nameNext, nameModule} = route.params;
-
-  const validate = useSelector((state) => state.loader);
+  /* 
+    La variable JSON contine la información del módulo que incluye: 
+    1-module(Nombre del modulo). 
+    2-topics(Son los mini modulos de casa modulo). 
+    3-theory(Contiene la teoria de cada mini modulo).
+    4-practice(Contiene la practica de cada mini modulo).
+    En Practice existe la varibale questions que contiene las preguntas y respuestas de cada mini modulo.
+  */
+  
   const JSON = json.practice.filter((value) => value.nameTheory === nameTheory);
   const questions = JSON[0].questions
 
+//--------------------------------------------------------------------------------------------------------------------------------
+
+/*
+  modal(Sirve para habilitar o deshabilitar el modal).
+  text modal(es el texto que se mostrara dentro del modal).
+  URLimg(Imagen que se va a mostrar dentro del modal).
+*/
   const [modal, setModal] = useState(false)
   const [textModal, setTextModal] = useState('Nuevo logro desbloqueado!!!!')
+  const [URLimg, setImg] = useState('https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png');
+//--------------------------------------------------------------------------------------------------------------------------------
+ 
+/*
+ index1(Es un indice que me permite avanzar en las preguntas del modulo).
+ title(Es el titulo de cada pregunta del modulo).
+ text(Es la pregunta de cada modulo).
+*/
   const [index1, setIndex] = useState(0);
   const [title, setTitle] = useState(questions[0].title);
   const [text, setText] = useState(questions[0].text);
-  const [URLimg, setImg] = useState('https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png');
+//-------------------------------------------------------------------------------------------------------------------------------
 
   const dispatch = useDispatch()
   
+  /* existen preguntas en las que tienes que ingresar una respuestas y tambien existen
+   algunas que debes ingresar mas de una respuesta escrita por eso estas variables
+
+  */
+  const [textInputValues, setTextInputValues] = useState([
+    { id: 0, value: '' },
+    { id: 1, value: '' },
+    { id: 2, value: '' },
+    { id: 3, value: '' },
+    { id: 4, value: '' },
+  ]);
+
+  /*me permite modificar los input anteriores */
+  const handleTextInputChange = (text, id) => {
+    const updatedTextInputValues = textInputValues.map((textInput) => {
+      if (textInput.id === id) {
+        return { ...textInput, value: text };
+      }
+      return textInput;
+    });
+    setTextInputValues(updatedTextInputValues);
+  };
+  /*Existe preguntas en las cuales debes ingresar una descipcion */
+  const [description, setDescription] = useState('');
+  /*Estas varibales fueron creadas por que existen preguntas 
+    en las cuales presionas un boton y te debe aparecer
+    un input donde debes tipear por que elegiste esa respuesta
+    y la funcion permite habilitar o desahbilitar ese input
+  */
+  const [isInputVisible, setIsInputVisible] = useState(false); 
+  
+  const handleButtonPress = () => {
+    setIsInputVisible(!isInputVisible); 
+  }
+  //----------------------------------------------------------------------------------------------------------------------
+
+  /* Esta funcion permite controla el comportamiento del modal*/
   const toggleModal = async ({module, ask, answer}) => {
     setIsInputVisible(false);
     dispatch(loadAnswer({module, ask, answer}))
@@ -43,6 +104,8 @@ export default function Choice({ navigation, route }) {
     }
 
   };
+ // -------------------------------------------------------------------------------------------------------
+  /*Existe una pregunata en donde debes presionar tu sentiiento y mediante eso te muestra un modal determinado segun su eleccion*/
   const identify = ({module, ask, answer}) =>{
     if(answer.charAt(0) === 'a'){
       setTextModal(Identify[0].text)
@@ -62,31 +125,7 @@ export default function Choice({ navigation, route }) {
     setModal(!modal)
     toggleModal({module, ask, answer})
   }
-
-  const [textInputValues, setTextInputValues] = useState([
-    { id: 0, value: '' },
-    { id: 1, value: '' },
-    { id: 2, value: '' },
-    { id: 3, value: '' },
-    { id: 4, value: '' },
-  ]);
-  const handleTextInputChange = (text, id) => {
-    const updatedTextInputValues = textInputValues.map((textInput) => {
-      if (textInput.id === id) {
-        return { ...textInput, value: text };
-      }
-      return textInput;
-    });
-    setTextInputValues(updatedTextInputValues);
-  };
-
-  const [description, setDescription] = useState('');
-
-  const [isInputVisible, setIsInputVisible] = useState(false); 
-  
-  const handleButtonPress = () => {
-    setIsInputVisible(!isInputVisible); 
-  }
+//-----------------------------------------------------------------------------------------------------------
 
   return (
     <View style={styles.mainContainer}>
@@ -109,32 +148,27 @@ export default function Choice({ navigation, route }) {
                     {
                       value.split("-")[0] === "¿Text?"?
                       <TextInput                   
-                        multiline={value.split("-")[0] === "¿Text?"? true: false}
-                        numberOfLines={7}
-                        placeholder="Ingresa tu texto aquí" 
-                        style={{height:150, width: '90%', borderWidth:2, borderColor:'purple', margin:15, marginLeft:'5%', borderRadius:12, backgroundColor:'white', padding:25}} 
-                        />:
-                        <TextInput                   
-                        placeholder="Ingresa tu texto aquí" 
-                        style={{ borderWidth: 1, borderColor: 'gray', marginTop: 10, padding: 5, borderRadius: 5 }} 
-                        />
-
+                      multiline={value.split("-")[0] === "¿Text?"? true: false}
+                      numberOfLines={7}
+                      placeholder="Ingresa tu texto aquí" 
+                      style={styles.caso1} 
+                      />
+                      :
+                      <TextInput                   
+                      placeholder="Ingresa tu texto aquí" 
+                      style={styles.caso2} 
+                      />
+                      
                     }
-                    <TouchableOpacity
-                    key={value}
-                    onPress={() => {
-                      setIsInputVisible(!isInputVisible);
-                      toggleModal({
-                        module: nameTheory,
-                        ask: index1 + 1,
-                        answer: value,
-                      });
-                    }}
-                  >
-                    <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'purple', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
-                      <Text style={styles.textContainer}>Continuar</Text>
-                    </View>
-                  </TouchableOpacity>
+                    <ButtonNext 
+                      module={nameTheory} 
+                      ask={index1 + 1} 
+                      answer ={value} 
+                      value={value} 
+                      isInputVisible={isInputVisible} 
+                      setIsInputVisible={setIsInputVisible} 
+                      toggleModal={toggleModal}
+                    />
                   </View>
                 )}
             </View>
@@ -325,62 +359,3 @@ export default function Choice({ navigation, route }) {
   );
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    borderLeftWidth: 5,
-    borderLeftColor: '#f29100',
-    borderRightWidth: 5,
-    borderRightColor: '#662483',
-    minHeight: '100%',
-  },
-  title: {
-    flex: 0,
-    justifyContent: "center",
-    textAlign: "center",
-    fontSize: 32,
-    color: "purple",
-  },
-  container: {
-    backgroundColor: "#E0ECFF",
-    height: 60,
-    margin: 10,
-  },
-  textContainer: {
-    flex: 0,
-    justifyContent: "center",
-    textAlign: "center",
-    color: "purple",
-  },
-  image:{
-    width: '100%',
-    height: '90%',
-    borderRadius: 12,
-    resizeMode: 'stretch'
-  },
-  containerButton:{
-    flex:0,
-    justifyContent: 'center',
-    textAlign: 'center',
-    height: 40,
-    width: '100%',
-    backgroundColor: 'white',
-    borderRadius:12,
-    fontSize: 30,
-    marginTop: 6,
-    borderColor: '#662483',
-    borderWidth:2
-  },
-  input: {
-    justifyContent: 'center',
-    textAlign: 'center',
-    height: 40,
-    borderColor: 'black',
-    borderWidth: 2,
-    borderRadius: 12,
-    margin: 0,
-    marginTop: 3,
-    borderWidth: 2,
-    borderColor: '#662483',
-    marginHorizontal: 30,
-  },
-});
