@@ -68,7 +68,7 @@ const styles = StyleSheet.create( {
   },
   text:{
     textAlign: 'center',
-    color: 'purple',
+    color: '#662483',
     fontSize: 20  
   },
   containerButton: {
@@ -86,6 +86,6 @@ const styles = StyleSheet.create( {
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
-    color: "purple",
+    color: '#662483',
   }
 } )

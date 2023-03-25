@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from "react";
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
+import React from "react";
+import { Text, TouchableOpacity, View, ScrollView } from "react-native";
 import { useSelector } from "react-redux";
+import { styles } from "./styles";
 
 export default function Topics ({ navigation, route }) {
 
@@ -33,31 +34,3 @@ export default function Topics ({ navigation, route }) {
   );
 };
 
-const styles = StyleSheet.create( {
-  container: {
-    backgroundColor:'white',
-    height: 100,
-    margin: 10,
-    borderRadius: 6,
-    borderWidth: 2,
-    borderColor: 'purple'
-  },
-  textButton:{
-    flex: 1,
-    justifyContent: 'center',
-    textAlign: 'center',
-    fontFamily: 'title',
-    color: 'black',
-    fontSize: 20,
-    marginTop: '10%'
-  },
-  disabled: {
-    backgroundColor:'white',
-    height: 100,
-    margin: 10,
-    borderRadius: 6,
-    borderWidth: 2,
-    borderColor: 'purple',
-    opacity:0.5
-  }
-})

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import {  Image, StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import Modal from "react-native-modal";
-import { Count } from "./count";
 import { useSelector, useDispatch } from "react-redux";
-import {validateTopinc} from '../../../redux/actions/index'
+import {validateTopinc} from '../../../../redux/actions/index';
+import { styles } from "./styles";
 
 export default function ChoiceTest({ navigation, route }) {
 
@@ -96,52 +96,3 @@ export default function ChoiceTest({ navigation, route }) {
   );
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    borderLeftWidth: 5,
-    borderLeftColor: '#f29100',
-    borderRightWidth: 5,
-    borderRightColor: '#662483',
-    minHeight: '100%'
-  },
-  title: {
-    fontFamily:'title',
-    color: 'black',
-    flex: 0,
-    justifyContent: "center",
-    textAlign: "center",
-    fontSize: 32,
-  },
-  container: {
-    backgroundColor: "#E0ECFF",
-    height: 60,
-    margin: 10,
-  },
-  image:{
-    width: '100%',
-    height: '90%',
-    borderRadius: 12,
-    resizeMode: 'stretch'
-  },
-  containerButton:{
-    flex:0,
-    justifyContent: 'center',
-    textAlign: 'center',
-    height: 40,
-    width: '90%',
-    marginLeft: '5%',
-    backgroundColor: 'white',
-    borderRadius:12,
-    fontSize: 30,
-    marginTop: 6,
-    borderColor: '#662483',
-    borderWidth:2
-  },
-  textContainer: {
-    fontFamily:  "text",
-    flex: 0,
-    justifyContent: "center",
-    textAlign: "center",
-    color: "purple",
-  }
-});

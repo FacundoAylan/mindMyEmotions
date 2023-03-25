@@ -8,6 +8,7 @@ import * as Font from 'expo-font';
 
 export default function Home( { navigation } ) {
 
+/*Esto sirve para poder cargar la tipografia correctamente*/
   const loadFont = async () => {
     await Font.loadAsync({
       'title': require('../../assets/fonts/title.ttf'),
@@ -17,12 +18,17 @@ export default function Home( { navigation } ) {
   };
   const dispatch = useDispatch();
 
+  /*Esto se encarga de:
+   1- Cargar la tipografia. 
+   2- Cargar toda la informacion a utilizar.
+   3- Luego se 2 segundo te direcciona al componente login
+  */
   useEffect(()=> {
     loadFont();
     dispatch(loadInfo(Info));
     setTimeout(() => {
       navigation.navigate("login")
-    }, 2000); 
+    }, 4000); 
   },[])
 
 

@@ -327,7 +327,7 @@ const styles = StyleSheet.create( {
     borderColor: '#662483'
   },
   informationContainer: {
-    borderColor: "purple",
+    borderColor: '#662483',
     marginLeft: 16,
     borderWidth: 0,
     maxHeight: 65
