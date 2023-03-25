@@ -3,7 +3,7 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
 
   mainContainer: {
-    paddingTop: '50%',
+    paddingTop: '30%',
     borderLeftWidth: 5,
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
@@ -11,6 +11,9 @@ export const styles = StyleSheet.create({
     minHeight: '100%'
   },
   container: {
+    flex: 0,
+    justifyContent: 'center',
+    textAlign: 'center',
     backgroundColor:'white',
     height: 80,
     margin: 10,
@@ -20,17 +23,18 @@ export const styles = StyleSheet.create({
     borderColor: '#662483'
   },
   text:{
-    fontFamily: 'logo',
     flex: 0,
     justifyContent: 'center',
     textAlign: 'center',
-    color: 'purple',
+    fontFamily: 'logo',
+    color: '#662483',
     letterSpacing: 2,
     fontSize: 25,
-    marginTop: 13,
-    paddingTop: '2%'
   },
   disabled: {
+    flex: 0,
+    justifyContent: 'center',
+    textAlign: 'center',
     height: 80,
     marginHorizontal: 30,
     borderRadius: 14,

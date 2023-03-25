@@ -88,7 +88,7 @@ export const styles = StyleSheet.create({
     borderRadius: 5 
   },
   containerModal: { 
-    padding: 0,
+    padding: 5,
     margin: 15, 
     backgroundColor: 'white', 
     borderColor:'#662483', 
@@ -96,12 +96,12 @@ export const styles = StyleSheet.create({
     borderRadius:12 
   },
   textModal:{
-    fontSize:25,
-    color: '#662483',
     flex:0,
-    justifyContent:'center',
-    alignItems:'center', 
-    textAlign:'center', 
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: 20,
+    color: '#662483',
+    flex:0, 
     fontFamily:'logo'
   },
   buttonModal:{

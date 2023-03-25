@@ -327,16 +327,16 @@ export default function Choice({ navigation, route }) {
         
       </ScrollView>
 
+      <ScrollView style={{padding:'5%'}}>
       <Modal isVisible={modal} style={styles.containerModal}>
-        <View>
           <Text style={styles.textModal}>{textModal}</Text>
-        <Image
-            style={{height:400}}
-            source={{
-              uri: URLimg
-              ,
-            }}
-          /> 
+            <Image
+                style={{height:300, margin:0}}
+                source={{
+                  uri: URLimg
+                  ,
+                }}
+              /> 
           <TouchableOpacity 
           onPress={() => {
             if(nameNext=== ''){
@@ -353,8 +353,8 @@ export default function Choice({ navigation, route }) {
               <Text style={{fontSize:36, color:'white'}}>{"=>"}</Text>
             </View>
           </TouchableOpacity>
-        </View>
       </Modal>
+        </ScrollView>
     </View>
   );
 }

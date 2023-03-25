@@ -24,6 +24,9 @@ export const styles = StyleSheet.create({
     marginHorizontal: 50,
   },
   text: {
+    flex: 0,
+    justifyContent: 'center',
+    textAlign: 'center',
     fontFamily: 'logo',
     fontSize: 25,
     lineHeight: 30,

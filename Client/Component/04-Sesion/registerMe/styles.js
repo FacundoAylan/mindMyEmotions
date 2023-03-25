@@ -23,7 +23,7 @@ export const styles = StyleSheet.create( {
     marginTop: 2,
     borderRadius: 14,
     marginHorizontal: 30,
-    fontSize: 20
+    fontSize: 15
   },
   button: {
     alignItems: "center",
@@ -61,13 +61,13 @@ export const styles = StyleSheet.create( {
     fontSize: 20,
     height: 40, 
     color:'grey',
-    paddingLeft: '40%',
+    paddingLeft: '35%'
   },
   selectInput:{
     fontSize: 20,
     height: 40, 
     color:'grey',
-    paddingLeft: '30%' 
+    paddingLeft: '25%' 
   },
   selectBox:{
     borderColor: "#662483",
