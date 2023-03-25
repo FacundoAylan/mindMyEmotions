@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
   Alert,
-  StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
@@ -13,6 +12,7 @@ import { Data } from "./city";
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
+import { styles } from "./styles";
 
 // {
 //  name: "Facundo", mas de 3 caracteres y menos que 16
@@ -201,26 +201,17 @@ export default function Register( { navigation } ) {
           maxLength={2}
           onChangeText={( edad ) => setform( { ...form, Edad: parseInt( edad ) } )}
         />
-        <Text style={styles.text}>Gender</Text>
+        <Text style={styles.text}>Genero</Text>
         <SelectList
           placeholder='Género'
           search={false}
           setSelected={( gender ) => setform( { ...form, Genero: gender } )}
           data={[ 'Masculino', 'Femenino', 'Otro' ]}
           save="value"
-          boxStyles={{
-            borderColor: "#662483",
-            borderWidth: 2,
-            height: 44,
-            borderRadius: 6,
-            marginHorizontal: 30,
-          }}
-          inputStyles={{ fontSize: 13 }}
-          dropdownStyles={{
-            borderColor: "#662483",
-            borderWidth: 2,
-            borderRadius: 6,
-          }}
+          inputStyles={styles.selectInput1}
+          fontFamily='title'
+          boxStyles={styles.selectBox}
+          dropdownStyles={styles.selectDropdown}
         />
         <Text style={styles.text}>Departamento</Text>
 
@@ -229,19 +220,10 @@ export default function Register( { navigation } ) {
           setSelected={( dep ) => setform( { ...form, Departamento: dep } )}
           data={data}
           save="value"
-          boxStyles={{
-            borderColor: "#662483",
-            borderWidth: 2,
-            height: 44,
-            borderRadius: 6,
-            marginHorizontal: 30,
-          }}
-          inputStyles={{ fontSize: 13 }}
-          dropdownStyles={{
-            borderColor: "#662483",
-            borderWidth: 2,
-            borderRadius: 6,
-          }}
+          fontFamily="title"
+          boxStyles={styles.selectBox}
+          inputStyles={styles.selectInput}
+          dropdownStyles={styles.selectDropdown}
         />
 
         <Text style={styles.text}>Correo</Text>
@@ -250,9 +232,9 @@ export default function Register( { navigation } ) {
           style={styles.input}
           onChangeText={( correo ) => setform( { ...form, Mail: correo } )}
         />
-        <Text style={styles.text}>Contraseña, entre 6 y 15 caracteres. </Text>
+        <Text style={styles.text}>Contraseña. </Text>
         <TextInput
-          placeholder="Contraseña"
+          placeholder="De 6 a 15 caracteres"
           secureTextEntry={true}
           style={styles.input}
           onChangeText={( contraseña ) =>
@@ -267,54 +249,4 @@ export default function Register( { navigation } ) {
   );
 }
 
-const styles = StyleSheet.create( {
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    textAlign: "center",
-    padding: 10,
-    overflow: "scroll",
-    borderLeftWidth: 5,
-    borderLeftColor: '#f29100',
-    borderRightWidth: 5,
-    borderRightColor: '#662483',
-  },
-  input: {
-    justifyContent: "center",
-    textAlign: "center",
-    height: 40,
-    borderColor: "#662483",
-    borderWidth: 2,
-    margin: 1,
-    marginTop: 2,
-    borderRadius: 6,
-    marginHorizontal: 30,
-  },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 15,
-    borderRadius: 6,
-    elevation: 3,
-    backgroundColor: "white",
-    marginTop: 20,
-    borderWidth: 2,
-    borderColor: "#662483",
-    marginHorizontal: 30,
-  },
-  text: {
-    color: "#662483",
-    padding: 0,
-    margin: 0,
-    marginTop: 10,
-    marginLeft: 30,
-  },
-  textButton: {
-    fontSize: 16,
-    lineHeight: 21,
-    fontWeight: 'bold',
-    letterSpacing: 0.25,
-    color: '#662483',
-  },
-} );
+

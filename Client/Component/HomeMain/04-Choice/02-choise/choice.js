@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import {  Image, Text, TouchableOpacity, View, ScrollView, TextInput } from "react-native";
 import Modal from "react-native-modal";
-import { useSelector, useDispatch } from "react-redux";
-import {validateTopinc, loadAnswer} from '../../../redux/actions/index'
+import { useDispatch } from "react-redux";
+import {validateTopinc, loadAnswer} from '../../../../redux/actions/index'
 import {Identify} from './identify/identify'
 import {Emotions} from './emotions/emotions'
-import {styles} from './styles/styles';
-import ButtonNext from './Button/Button' 
+import {styles} from './styles';
+import ButtonNext from './Button/Button' ;
 
 export default function Choice({ navigation, route }) {
 
@@ -31,7 +31,7 @@ export default function Choice({ navigation, route }) {
   URLimg(Imagen que se va a mostrar dentro del modal).
 */
   const [modal, setModal] = useState(false)
-  const [textModal, setTextModal] = useState('Nuevo logro desbloqueado!!!!')
+  const [textModal, setTextModal] = useState('¡Buen trabajo! Desbloqueaste un nuevo reto.')
   const [URLimg, setImg] = useState('https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png');
 //--------------------------------------------------------------------------------------------------------------------------------
  
@@ -131,7 +131,7 @@ export default function Choice({ navigation, route }) {
     <View style={styles.mainContainer}>
       <ScrollView>
         <Text style={styles.title}>{title}</Text>
-        <Text style={{fontSize:20, padding:25}}>{text}</Text>
+        <Text style={styles.description}>{text}</Text>
         {questions[index1].answers.map((value, index) => {
           if (value.charAt(0) === "¿") {
             console.log(value.split("-")[0])
@@ -179,7 +179,7 @@ export default function Choice({ navigation, route }) {
             return (
               <ScrollView>
                 <TextInput
-                  style={{height:150, width: '90%', borderWidth:2, borderColor:'purple', margin:15, marginLeft:'5%', borderRadius:12, backgroundColor:'white', padding:25}}
+                  style={{height:150, width: '90%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'5%', borderRadius:12, backgroundColor:'white', padding:25, fontSize: 20}}
                   multiline={true}
                   numberOfLines={7}
                   onChangeText={setDescription}
@@ -197,7 +197,7 @@ export default function Choice({ navigation, route }) {
                     });
                   }}
                 >
-                  <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'purple', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
+                  <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
                     <Text style={styles.textContainer}>Continuar</Text>
                   </View>
                 </TouchableOpacity>
@@ -213,7 +213,7 @@ export default function Choice({ navigation, route }) {
                   <View style={{flexDirection:"row"}}>
                     <Text style={{fontSize:20, paddingTop:23, paddingLeft:10}}>{index+1}</Text>
                   <TextInput
-                    style={{height:40, width: '80%', borderWidth:2, borderColor:'purple', margin:15, borderRadius:12, paddingLeft:20}}
+                    style={{height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, borderRadius:12, paddingLeft:20}}
                     key={textInputValues[index].id}
                     value={textInputValues[index].value}
                     onChangeText={(text) => {handleTextInputChange(text,textInputValues[index].id)}}
@@ -233,7 +233,7 @@ export default function Choice({ navigation, route }) {
                         toggleModal({module: nameTheory,ask: index1 + 1,answer: value,})
                       }}
                     >
-                      <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'purple', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
+                      <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
                         <Text style={styles.textContainer}>Continuar</Text>
                       </View>
                     </TouchableOpacity>
@@ -245,7 +245,7 @@ export default function Choice({ navigation, route }) {
                 <View style={{flexDirection:"row"}}>
                   <Text style={{fontSize:20, paddingTop:23, paddingLeft:10}}>{index+1}</Text>
                   <TextInput
-                    style={{height:40, width: '80%', borderWidth:2, borderColor:'purple', margin:15, borderRadius:12, paddingLeft:20}}
+                    style={{height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, borderRadius:12, paddingLeft:20}}
                     key={textInputValues[index].id}
                     value={textInputValues[index].value}
                     onChangeText={(text) => handleTextInputChange(text,textInputValues[index].id)}
@@ -268,7 +268,7 @@ export default function Choice({ navigation, route }) {
                       />
                     </View>
                     <TextInput
-                      style={{height:40, width: '80%', borderWidth:2, borderColor:'purple', marginLeft:40, marginTop:20, borderRadius:12, paddingLeft:20}}
+                      style={{height:40, width: '80%', borderWidth:2, borderColor:'#662483', marginLeft:40, marginTop:20, borderRadius:12, paddingLeft:20}}
                     />
                 </View>  
                 <TouchableOpacity
@@ -287,7 +287,7 @@ export default function Choice({ navigation, route }) {
                         })
                   }
                 >
-                  <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'purple', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
+                  <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
                     <Text style={styles.textContainer}>Continuar</Text>
                   </View>
                 </TouchableOpacity>
@@ -306,7 +306,7 @@ export default function Choice({ navigation, route }) {
                       />
                     </View>
                     <TextInput
-                      style={{height:40, width: '80%', borderWidth:2, borderColor:'purple', marginLeft:40, marginTop:20, borderRadius:12, paddingLeft:20}}
+                      style={{height:40, width: '80%', borderWidth:2, borderColor:'#662483', marginLeft:40, marginTop:20, borderRadius:12, paddingLeft:20}}
                     />
                   </View>          
                 </ScrollView>
@@ -327,9 +327,9 @@ export default function Choice({ navigation, route }) {
         
       </ScrollView>
 
-      <Modal isVisible={modal} style={{ padding: 0, margin: 15, backgroundColor: 'white', borderColor:'purple', borderWidth:2, borderRadius:12 }}>
+      <Modal isVisible={modal} style={styles.containerModal}>
         <View>
-          <Text style={{fontSize:25, color: 'purple',flex:0,justifyContent:'center',alignItems:'center', textAlign:'center', fontFamily:'logo'}}>{textModal}</Text>
+          <Text style={styles.textModal}>{textModal}</Text>
         <Image
             style={{height:400}}
             source={{
@@ -347,9 +347,9 @@ export default function Choice({ navigation, route }) {
             }else{
               navigation.navigate('topincs',{indexModule})
             }
-            setTextModal('Nuevo logro desbloqueado')
+            setTextModal("¡Buen trabajo! Desbloqueaste un nuevo reto.")
           }}>
-            <View style={{borderRadius:60 , height:60, width:60, flex:0,justifyContent:'center',alignItems:'center', textAlign:'center', marginLeft:'40%', backgroundColor:'purple'}}>
+            <View style={styles.buttonModal}>
               <Text style={{fontSize:36, color:'white'}}>{"=>"}</Text>
             </View>
           </TouchableOpacity>

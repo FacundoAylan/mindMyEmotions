@@ -1,8 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { Text, View, TouchableOpacity } from "react-native";
 import * as SecureStore from 'expo-secure-store';
-
+import { styles } from "./styles";
 
 export default function Login({ navigation }) {
   const [ first, setfirst ] = useState( 'aaaaaaaaaa' )
@@ -47,34 +47,4 @@ export default function Login({ navigation }) {
 }
 
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    borderLeftWidth: 5,
-    borderLeftColor: '#f29100',
-    borderRightWidth: 5,
-    borderRightColor: '#662483',
-  },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 80,
-    borderWidth: 2,
-    borderColor: '#662483',
-    borderRadius: 12,
-    elevation: 3,
-    backgroundColor: "white",
-    marginTop: 20,
-    marginHorizontal: 50,
-  },
-  text: {
-    fontSize: 16,
-    lineHeight: 30,
-    fontWeight: "bold",
-    letterSpacing: 0.25,
-    color: "#662483",
-  },
-});
+

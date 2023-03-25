@@ -12,9 +12,16 @@ export const styles = StyleSheet.create({
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
-    fontFamily:  "title",
-    fontSize: 32,
-    color: "purple",
+    fontFamily:  "logo",
+    fontSize: 36,
+    color: '#662483',
+  },
+  description:{
+    flex: 0,
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize:25,
+    padding: 5
   },
   container: {
     backgroundColor: "#E0ECFF",
@@ -26,7 +33,8 @@ export const styles = StyleSheet.create({
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
-    color: "purple",
+    color: '#662483',
+    fontSize: 20
   },
   image:{
     width: '100%',
@@ -64,7 +72,7 @@ export const styles = StyleSheet.create({
     height:150,
     width: '90%', 
     borderWidth:2, 
-    borderColor:'purple', 
+    borderColor:'#662483', 
     margin:15, 
     marginLeft:'5%', 
     borderRadius:12, 
@@ -77,6 +85,34 @@ export const styles = StyleSheet.create({
     marginTop: 10, 
     padding: 5, 
     borderRadius: 5 
+  },
+  containerModal: { 
+    padding: 0,
+    margin: 15, 
+    backgroundColor: 'white', 
+    borderColor:'#662483', 
+    borderWidth:2, 
+    borderRadius:12 
+  },
+  textModal:{
+    fontSize:25,
+    color: '#662483',
+    flex:0,
+    justifyContent:'center',
+    alignItems:'center', 
+    textAlign:'center', 
+    fontFamily:'logo'
+  },
+  buttonModal:{
+    borderRadius:60 , 
+    height:60, 
+    width:60, 
+    flex:0,
+    justifyContent:'center',
+    alignItems:'center', 
+    textAlign:'center', 
+    marginLeft:'40%', 
+    backgroundColor:'#662483'
   }
 
 })
