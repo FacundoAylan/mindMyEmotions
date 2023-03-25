@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+
 export const styles = StyleSheet.create({
   mainContainer: {
     borderLeftWidth: 5,
@@ -11,6 +12,7 @@ export const styles = StyleSheet.create({
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
+    fontFamily:  "title",
     fontSize: 32,
     color: "purple",
   },
@@ -20,6 +22,7 @@ export const styles = StyleSheet.create({
     margin: 10,
   },
   textContainer: {
+    fontFamily:  "text",
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
@@ -75,4 +78,5 @@ export const styles = StyleSheet.create({
     padding: 5, 
     borderRadius: 5 
   }
-});
+
+})

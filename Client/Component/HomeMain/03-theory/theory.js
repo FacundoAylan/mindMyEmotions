@@ -4,7 +4,7 @@ import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 export default function Theory ({ navigation, route}) {
 
   const {json, nameTheory, indexModule, nameNext, nameModule} = route.params;
-  console.log(nameTheory)
+
   const theory = json.theory.filter((value) => value.nameTheory === nameTheory)
 
   return (
@@ -13,7 +13,7 @@ export default function Theory ({ navigation, route}) {
       <Text style={styles.description}>{theory[0].text}</Text> 
       <TouchableOpacity key={nameTheory} onPress={() => navigation.navigate(nameTheory === "Test de inteligencia emocional" ? "choiseTest":"choice", {json, nameTheory, indexModule, nameNext, nameModule})}>
         <View style={styles.container}>
-          <Text style={styles.textContainer}>ingresar</Text>
+          <Text style={styles.data}>Ingresar</Text>
         </View>
       </TouchableOpacity> 
     </View>
@@ -22,6 +22,7 @@ export default function Theory ({ navigation, route}) {
 
 const styles = StyleSheet.create({
   title: {
+    fontFamily: 'title',
     flex: 0,
     justifyContent: 'center',
     textAlign: 'center',
@@ -29,21 +30,24 @@ const styles = StyleSheet.create({
     fontSize: 30
   },
   description: {
+    fontFamily: 'text',
     flex:0,
     justifyContent: 'center',
     textAlign: 'center'
   },
   container: {
-    backgroundColor:'#E0ECFF',
+    borderRadius: 12,
+    borderWidth: 2,
+    borderColor:'#662483',
+    backgroundColor:'white',
     height: 60,
     margin: 10,
   },
-  textContainer:{
+  data:{
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',
-    color: 'purple',
-    size: '100%',
+    color: '#662483',
     marginTop: '5%'
   },
 })

@@ -3,11 +3,21 @@ import { Image, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
 import { loadInfo } from '../../redux/actions/index';
 import {Info} from '../HomeMain/info/info'
+import * as Font from 'expo-font';
 
 export default function Home( { navigation } ) {
+
+  const loadFont = async () => {
+    await Font.loadAsync({
+      'title': require('../../assets/fonts/title.ttf'),
+      'text': require('../../assets/fonts/text.ttf'),
+      'logo': require('../../assets/fonts/logo.ttf'),
+    });
+  };
   const dispatch = useDispatch();
 
   useEffect(()=> {
+    loadFont();
     dispatch(loadInfo(Info));
     setTimeout(() => {
       navigation.navigate("login")

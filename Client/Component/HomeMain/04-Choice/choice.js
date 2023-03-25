@@ -329,7 +329,7 @@ export default function Choice({ navigation, route }) {
 
       <Modal isVisible={modal} style={{ padding: 0, margin: 15, backgroundColor: 'white', borderColor:'purple', borderWidth:2, borderRadius:12 }}>
         <View>
-          <Text style={{fontSize:20, color: 'purple',flex:0,justifyContent:'center',alignItems:'center', textAlign:'center'}}>{textModal}</Text>
+          <Text style={{fontSize:25, color: 'purple',flex:0,justifyContent:'center',alignItems:'center', textAlign:'center', fontFamily:'logo'}}>{textModal}</Text>
         <Image
             style={{height:400}}
             source={{

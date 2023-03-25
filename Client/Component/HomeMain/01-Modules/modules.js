@@ -41,15 +41,6 @@ const styles = StyleSheet.create({
     borderRightColor: '#662483',
     minHeight: '100%'
   },
-  title: {
-    alignSelf: "center",
-    fontSize: 27,
-    marginTop: 25,
-    marginBottom: 17,
-    fontWeight: "800",
-    color: '#662483',
-
-  },
   container: {
     backgroundColor:'white',
     height: 60,
@@ -60,10 +51,11 @@ const styles = StyleSheet.create({
     borderColor: '#662483'
   },
   text:{
+    fontFamily: 'title',
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',
-    color: '#662483',
+    color: 'black',
     fontSize: 20,
     marginTop: 13,
   },

@@ -58,7 +58,7 @@ export default function ChoiceTest({ navigation, route }) {
     <View style={styles.mainContainer}>
       <ScrollView>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.title}>{text}</Text>
+        <Text style={{fontSize:20, padding:20}}>{text}</Text>
         {questions[index1].answers.map((value) => {
           return (
             <TouchableOpacity key ={value} onPress={() => toggleModal({pregunta:index1 + 1, respuesta: value.charAt(0)})}>
@@ -105,22 +105,17 @@ const styles = StyleSheet.create({
     minHeight: '100%'
   },
   title: {
+    fontFamily:'title',
+    color: 'black',
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 20,
-    color: "purple",
+    fontSize: 32,
   },
   container: {
     backgroundColor: "#E0ECFF",
     height: 60,
     margin: 10,
-  },
-  textContainer: {
-    flex: 0,
-    justifyContent: "center",
-    textAlign: "center",
-    color: "purple",
   },
   image:{
     width: '100%',
@@ -133,12 +128,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     textAlign: 'center',
     height: 40,
-    width: '100%',
+    width: '90%',
+    marginLeft: '5%',
     backgroundColor: 'white',
     borderRadius:12,
     fontSize: 30,
     marginTop: 6,
     borderColor: '#662483',
     borderWidth:2
+  },
+  textContainer: {
+    fontFamily:  "text",
+    flex: 0,
+    justifyContent: "center",
+    textAlign: "center",
+    color: "purple",
   }
 });
