@@ -66,5 +66,10 @@ export const styles = StyleSheet.create( {
     marginLeft: 30,
     letterSpacing: 2,
     fontSize: 20
-  }
+  },
+  imagenFondo: {
+    flex: 1,
+    resizeMode: 'cover',
+    marginTop: 30
+  },
 } );

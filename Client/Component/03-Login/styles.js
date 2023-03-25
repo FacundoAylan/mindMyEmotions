@@ -33,4 +33,9 @@ export const styles = StyleSheet.create({
     letterSpacing: 2,
     color: "#662483",
   },
+  imagenFondo: {
+    flex: 1,
+    resizeMode: 'cover',
+    marginTop: 30
+  },
 });
