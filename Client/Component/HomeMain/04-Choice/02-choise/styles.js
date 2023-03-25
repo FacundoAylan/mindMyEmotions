@@ -22,6 +22,7 @@ export const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize:25,
     padding: 5
+
   },
   container: {
     backgroundColor: "#E0ECFF",

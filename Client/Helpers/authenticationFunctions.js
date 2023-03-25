@@ -15,16 +15,16 @@ export const validateUserAuthentication = ( email, password ) => {
     let res = axios.post( 'https://mind-my-emotions.vercel.app/Login/', objLoginData )
         .then( ( response ) => {
 
-            if ( response.data.Mensaje === "Usuario y/ contraseña ingresados correctamente" ) {
+            if ( response.data?.Mensaje === "Usuario y/ contraseña ingresados correctamente" ) {
                 console.log( "Usuario autenticado correctamente" );
             }
-            if ( response.data.Mensaje !== "Usuario y/ contraseña ingresados correctamente" ) {
+            if ( response.data?.Mensaje !== "Usuario y/ contraseña ingresados correctamente" ) {
                 console.log( "No se pudo autenticar el usuario" );
             }
-            if ( response.data.Mensaje === "Usuario y/ contraseña ingresados correctamente" ) {
+            if ( response.data?.Mensaje === "Usuario y/ contraseña ingresados correctamente" ) {
                 return true
             }
-            if ( response.data.Mensaje !== "Usuario y/ contraseña ingresados correctamente" ) {
+            if ( response.data?.Mensaje !== "Usuario y/ contraseña ingresados correctamente" ) {
                 return false
             }
         } )

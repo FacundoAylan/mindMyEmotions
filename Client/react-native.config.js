@@ -1,4 +1,5 @@
 module.exports = {
+<<<<<<< HEAD
   dependencies: {
     'react-native-vector-icons': {
       platforms: {
@@ -6,6 +7,8 @@ module.exports = {
       },
     },
   },
+=======
+>>>>>>> develop
   project: {
     ios: {},
     android: {},

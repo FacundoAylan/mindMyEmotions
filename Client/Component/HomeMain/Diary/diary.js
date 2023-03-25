@@ -1,30 +1,41 @@
 import React, { useEffect } from "react";
-import { Image, StyleSheet, View, Dimensions } from "react-native";
+import { Image, StyleSheet, View, Dimensions, Pressable, Linking } from "react-native";
 
-const windowHeight = Dimensions.get('window').height;
+const windowHeight = Dimensions.get( 'window' ).height;
+const windowWidth = Dimensions.get( 'window' ).width;
 
 export default function Diary( { navigation } ) {
 
-  useEffect(()=> {
-    setTimeout(() => {
-      navigation.navigate("introduction")
-    }, 1000); 
-  },[])
+  const navigateToDiary = () => {
+    console.log( 'clicked' );
+    navigation.navigate( "introduction" )
+  }
 
   return (
     <View style={styles.container}>
-      <Image
-        style={styles.image}
-        source={{
-          uri: "https://res.cloudinary.com/dafvcjkfo/image/upload/q_10/v1679251238/diary_njhrtu.png",
-        }}
-      />
+      <Pressable onPress={navigateToDiary}>
+        <Image
+          style={styles.image}
+          source={{
+            uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1679724033/ASSETTS/Midiariodegratitud_lcauo1.png",
+          }}
+        />
+      </Pressable>
+      <Pressable onPress={() => Linking.openURL( 'https://open.spotify.com/playlist/774cDGhJLsU1dUFf9rtvjg?si=9603a7d0f22d4fbc&nd=1' )} >
+        <Image
+          style={styles.spotifyImage}
+          source={{
+            uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_356/v1679724279/ASSETTS/Spotify_Logo_RGB_Green_fwntlm.png",
+          }}
+        />
+      </Pressable>
     </View>
-  );
+  )
 }
+
 const styles = StyleSheet.create( {
   container: {
-    height: windowHeight,
+    //height: windowHeight,
   },
   text: {
     fontSize: 16,
@@ -32,12 +43,23 @@ const styles = StyleSheet.create( {
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: '#662483',
-    /* backgroundColor: 'none', */
   },
   image: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'stretch'
+    position: "absolute",
+    alignSelf: "center",
+    marginTop: 0,
+    width: windowWidth * 1.1,
+    height: windowHeight * 0.7,
+    borderRadius: 20,
+  },
+  spotifyImage: {
+    position: "absolute",
+    alignSelf: "center",
+    marginTop: windowHeight * 0.78,
+    width: windowWidth * 0.35,
+    height: windowHeight * 0.052,
+
   }
-} )
+}
+)
 

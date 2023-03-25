@@ -9,8 +9,10 @@ import axios from "axios";
 import { styles } from "./styles";
 
 export default function Sesion( { navigation } ) {
-  const [ email, setEmail ] = useState( '' ); //jorge@gmail.com
-  const [ password, setPassword ] = useState( '' );
+
+  const [ email, setEmail ] = useState( 'jorge@gmail.com' ); //jorge@gmail.com
+  const [ password, setPassword ] = useState( '12345' );
+
   const [ isAdultState, setIsAdultState ] = useState( undefined )
 
 

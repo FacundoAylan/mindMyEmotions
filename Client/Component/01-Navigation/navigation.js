@@ -13,7 +13,8 @@ import Choice from "../HomeMain/04-Choice/02-choise/choice";
 import Importance from "../Importance/importance";
 import Diary from "../HomeMain/Diary/diary";
 import Introduction from "../HomeMain/Diary/Introduction/introduction";
-import Data from "../HomeMain/Diary/Data/data";
+import DiaryNavigation from "../HomeMain/Diary/DiaryNavigation/diaryNavigation";
+import UserInfo from "../HomeMain/Diary/UserInfo/userInfo";
 
 /*En este componente se crea todas las rutas
   El componete Home muestra el logo de mind my emotion y despues de 2 segundo se trslada al componete login
@@ -36,7 +37,8 @@ export default function Navigation () {
         <stack.Screen name="importance" component={Importance} />
         <stack.Screen name="diary" component={Diary} />
         <stack.Screen name="introduction" component={Introduction} />
-        <stack.Screen name="data" component={Data} />
+        <stack.Screen name="userInfo" component={UserInfo} />
+        <stack.Screen name="diaryNavigation" component={DiaryNavigation} />
       </stack.Navigator>
     </NavigationContainer>
   );

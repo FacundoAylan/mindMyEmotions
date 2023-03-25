@@ -1,37 +1,39 @@
 import React from "react";
 import { Image, StyleSheet, View, Text, TouchableOpacity } from "react-native";
+import DiaryNavigation from "../DiaryNavigation/diaryNavigation";
 
 
 export default function Introduction( { navigation } ) {
 
   return (
-    <View style={styles.container}>
-      <View style={styles.ContainerText}>
-        <Text style={styles.text}>Utiliza este espacion para hacer</Text>
-        <Text style={styles.text}>un viaje</Text>
-        <Text style={styles.text}>Este es un lugar para que</Text>
-        <Text style={styles.text}>escribas razones para agradecer</Text>
-        <Text style={styles.text}>y para que poco a poco</Text>
-        <Text style={styles.text}>incorpores este habito en tu vida.</Text>
-        <Text style={styles.text}>Utiliza este libro como tu lugar</Text>
-        <Text style={styles.text}>seguro.Es tuyo y de nadie mas.</Text>
-      </View>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('data')}
-        key={'introduction'}
-      >
-        <View style={styles.containerButton}>
-          <Text style={styles.textButton}>Continuar</Text>
+    <DiaryNavigation>
+      <View style={styles.container}>
+        <View style={styles.ContainerText}>
+          {
+            <View>
+              <Text style={styles.text}>Utiliza este espacio para hacer un viaje a tu interior.</Text>
+              <Text style={styles.text}>Este es un lugar para que escribas razones para agradecer y para que poco a poco incorpores este habito en tu vida.</Text>
+              <Text style={styles.text}>Utiliza este libro como tu lugar. Es tuyo y de nadie mas.</Text>
+            </View>
+          }
         </View>
-      </TouchableOpacity>
-      <Image
-        style={styles.image}
-        source={{
-          uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_fit,g_center,w_1188,x_0/v1679012928/MME%20logos/Mind_My_Emotions_znokgz.png",
-        }}
-      />
-    </View>
-  );
+        <TouchableOpacity
+          onPress={() => navigation.navigate( 'data' )}
+          key={'introduction'}
+        >
+          <View style={styles.containerButton}>
+            <Text style={styles.textButton}>Continuar</Text>
+          </View>
+        </TouchableOpacity>
+        <Image
+          style={styles.image}
+          source={{
+            uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_fit,g_center,w_1188,x_0/v1679012928/MME%20logos/Mind_My_Emotions_znokgz.png",
+          }}
+        />
+      </View>
+    </DiaryNavigation>
+  )
 }
 
 const styles = StyleSheet.create( {

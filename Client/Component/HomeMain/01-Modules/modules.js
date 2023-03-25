@@ -21,6 +21,7 @@ export default function Modules ({navigation}) {
                 onPress={() => module!== 'Salud mental' ? navigation.navigate("topincs",{indexModule:index}):navigation.navigate("diary")}
               >
                 <View style={validate[module.split(" ").join("")] ? styles.container : styles.disabled}>
+
                   <Text style={styles.text}>{module}</Text>
                 </View>
               </TouchableOpacity>

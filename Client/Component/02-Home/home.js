@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
@@ -7,7 +8,7 @@ import * as Font from 'expo-font';
 
 export default function Home( { navigation } ) {
 
-  /*Esto sirve para poder cargar la tipografia correctamente*/
+/*Esto sirve para poder cargar la tipografia correctamente*/
   const loadFont = async () => {
     await Font.loadAsync({
       'title': require('../../assets/fonts/title.ttf'),
@@ -29,6 +30,7 @@ export default function Home( { navigation } ) {
       navigation.navigate("login")
     }, 4000); 
   },[])
+
 
   return (
     <View style={styles.container}>
