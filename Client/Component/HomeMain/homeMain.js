@@ -1,6 +1,6 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Modules from "./Modules/modules";
+import Modules from "./01-Modules/modules";
 import Setting from "./Setting/setting";
 import About from "./about/about";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'

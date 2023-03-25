@@ -46,7 +46,8 @@ const styles = StyleSheet.create( {
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',
-    color: 'purple',
+    fontFamily: 'title',
+    color: 'black',
     fontSize: 20,
     marginTop: '10%'
   },
