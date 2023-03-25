@@ -13,7 +13,8 @@ import ChoiceTest from "../HomeMain/04-Choice/ChoiseTest";
 import Importance from "../Importance/importance";
 import Diary from "../HomeMain/Diary/diary";
 import Introduction from "../HomeMain/Diary/Introduction/introduction";
-import Data from "../HomeMain/Diary/Data/data";
+import DiaryNavigation from "../HomeMain/Diary/DiaryNavigation/diaryNavigation";
+import UserInfo from "../HomeMain/Diary/UserInfo/userInfo";
 
 //En este componente se crea todas las rutas
 export default function Navigation () {
@@ -33,7 +34,8 @@ export default function Navigation () {
         <stack.Screen name="choiseTest" component={ChoiceTest} />
         <stack.Screen name="diary" component={Diary} />
         <stack.Screen name="introduction" component={Introduction} />
-        <stack.Screen name="data" component={Data} />
+        <stack.Screen name="userInfo" component={UserInfo} />
+        <stack.Screen name="diaryNavigation" component={DiaryNavigation} />
       </stack.Navigator>
     </NavigationContainer>
   );

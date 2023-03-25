@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useEffect } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { useDispatch } from "react-redux";
@@ -23,6 +24,7 @@ export default function Home( { navigation } ) {
       navigation.navigate("login")
     }, 2000); 
   },[])
+
 
   return (
     <View style={styles.container}>

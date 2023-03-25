@@ -6,9 +6,41 @@ import About from "./about/about";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import { AntDesign } from '@expo/vector-icons'; 
 import { Image, StyleSheet } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function HomeMain ({ navigation }) {
   const Tab = createBottomTabNavigator();
+
+  //All these new asyncstorage keys are used to store the diary values and they are created here the first time after an async storage clean() function is executed, so these keys are born after a new user enters the app.
+  const createAllTextInputsOnAsyncStorage = async () => {
+    let diaryKeysExist = await AsyncStorage.getItem( 'DIARY_KEYS_CREATED' );
+    if ( diaryKeysExist === 'true' ) {
+      console.log( 'Diary keys are already created.' );
+      return
+    }
+    try {
+      console.log( 'CREATING DIARY KEYS ON ASYNC STORAGE...' );
+      await AsyncStorage.setItem( 'MY_NAME_IS', '' );
+      await AsyncStorage.setItem( 'MY_AGE_IS', '' );
+      await AsyncStorage.setItem( 'MY_HAPPINESS_IS', '' );
+      await AsyncStorage.setItem( 'FIRST_DATE', '' );
+      await AsyncStorage.setItem( 'FIRST_INPUT', '' );
+      await AsyncStorage.setItem( 'SECOND_DATE', '' );
+      await AsyncStorage.setItem( 'SECOND_INPUT', '' );
+      await AsyncStorage.setItem( 'THIRD_DATE', '' );
+      await AsyncStorage.setItem( 'THIRD_INPUT', '' );
+      await AsyncStorage.setItem( 'FOURTH_DATE', '' );
+      await AsyncStorage.setItem( 'FOURTH_INPUT', '' );
+      await AsyncStorage.setItem( 'FIFTH_DATE', '' );
+      await AsyncStorage.setItem( 'FIFTH_INPUT', '' );
+      await AsyncStorage.setItem( 'MONTH_INPUT', '' );
+      await AsyncStorage.setItem( 'DIARY_KEYS_CREATED', 'true' );
+    } catch ( error ) {
+      console.log( error );
+    }
+  }
+  createAllTextInputsOnAsyncStorage()
+
   return (
     <Tab.Navigator
       screenOptions={{
