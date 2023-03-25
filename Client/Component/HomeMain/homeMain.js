@@ -20,6 +20,7 @@ export default function HomeMain ({ navigation }) {
     }
     try {
       console.log( 'CREATING DIARY KEYS ON ASYNC STORAGE...' );
+      await AsyncStorage.setItem( 'MY_NAME_IS', '' );
       await AsyncStorage.setItem( 'MY_AGE_IS', '' );
       await AsyncStorage.setItem( 'MY_HAPPINESS_IS', '' );
       await AsyncStorage.setItem( 'FIRST_DATE', '' );

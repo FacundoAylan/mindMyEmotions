@@ -1,5 +1,4 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert } from "react-native";
 import EditProfileData from "./editProfileData";
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -117,12 +116,12 @@ export default function Setting( { navigation } ) {
       let retrievedJson = await AsyncStorage.getItem( 'myObject' );
       console.log( 'Request local user data   ' + retrievedJson );
       let jsonToObject = JSON.parse( retrievedJson )
-      setUserName( jsonToObject.Mensaje?.Datos_registro.Nombre_de_usuario )
-      setUserLastname( jsonToObject.Mensaje?.Datos_registro.Apellido_de_usuario )
-      setUserAge( jsonToObject.Mensaje?.Datos_registro.Edad )
-      setUserGender( jsonToObject.Mensaje?.Datos_registro.Genero )
-      setUserDepartment( jsonToObject.Mensaje?.Datos_registro.Departamento )
-      setUserEmail( jsonToObject.Mensaje?.Datos_registro.Mail )
+      setUserName( jsonToObject?.Mensaje?.Datos_registro.Nombre_de_usuario )
+      setUserLastname( jsonToObject?.Mensaje?.Datos_registro.Apellido_de_usuario )
+      setUserAge( jsonToObject?.Mensaje?.Datos_registro.Edad )
+      setUserGender( jsonToObject?.Mensaje?.Datos_registro.Genero )
+      setUserDepartment( jsonToObject?.Mensaje?.Datos_registro.Departamento )
+      setUserEmail( jsonToObject?.Mensaje?.Datos_registro.Mail )
       //console.log( jsonToObject.Mensaje.Datos_registro );
 
     } catch ( error ) {

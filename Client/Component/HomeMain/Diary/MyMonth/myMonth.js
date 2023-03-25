@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Image, StyleSheet, View, Text, TouchableOpacity, Pressable, TextInput, ScrollView } from "react-native";
+import { Image, StyleSheet, View, Text, Dimensions, Pressable, TextInput, ScrollView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+const windowHeight = Dimensions.get( 'window' ).height;
+
 export default function MyMonth() {
+
 
     const [ newText, setNewText ] = useState( '' );
     const [ textChanged, setTextChanged ] = useState( false );
@@ -39,27 +42,34 @@ export default function MyMonth() {
     }, [] );
 
     return (
+        <ScrollView>
         <View style={styles.container}>
-            <Image
-                style={styles.image}
-                source={{
-                    uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1679549943/ASSETTS/mes_vs34l8.png",
-                }}
-            />
-            <TextInput
-                style={styles.inputName}
-                value={newText}
-                onChangeText={handleTextChange}
-                multiline={true}
-                numberOfLines={4}
-            />
+                <Image
+                    style={styles.image}
+                    source={{
+                        uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1679549943/ASSETTS/mes_vs34l8.png",
+                    }}
+                />
+
+                <TextInput
+                    style={styles.inputText}
+                    value={newText}
+                    onChangeText={handleTextChange}
+                    multiline={true}
+                    numberOfLines={18}
+                    scrollEnabled={true}
+                    maxLength={2000}
+                />
         </View>
+        </ScrollView>
     );
 }
 
 const styles = StyleSheet.create( {
     container: {
-        //height: windowHeight,
+        height: windowHeight * 0.87,
+        position: "relative",
+        padding: 0
     },
     text: {
         fontSize: 16,
@@ -72,23 +82,22 @@ const styles = StyleSheet.create( {
         position: "absolute",
         alignSelf: "center",
         marginTop: 0,
-        width: 395,
-        height: 650,
+        width: '100%',
+        height: '100%',
         borderRadius: 0,
     },
-    inputName: {
-        /* borderColor: 'red',
-        borderWidth: 2, */
+    inputText: {
         position: "absolute",
         alignSelf: 'center',
         maxWidth: 330,
         minWidth: 250,
         maxHeight: 350,
-        marginTop: 200,
+        marginTop: 190,
         marginLeft: 20,
         borderRadius: 50,
-        fontSize: 24,
-        color: 'black',
-        padding: 30
+        fontSize: 16,
+        color: '#662483',
+        padding: 20,
     },
-} )
+}
+)
