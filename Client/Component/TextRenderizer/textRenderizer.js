@@ -25,11 +25,12 @@ export default function TextRenderizer( { title, text } ) {
 
 const styles = StyleSheet.create( {
     titleContainer: {
-        fontSize: 25,
+        fontSize: 36,
         alignSelf: "center",
         color: "#662483",
-        fontWeight: 'bold',
+        //fontWeight: 'bold',
         marginTop: 20,
+        fontFamily: 'logo',
     },
     textContainer: {
         alignItems: "center",
@@ -43,14 +44,15 @@ const styles = StyleSheet.create( {
         borderRadius: 12,
         marginTop: 30,
         maxHeight: 500,
+
     },
     text: {
         fontSize: 15,
         lineHeight: 22,
         fontWeight: "normal",
         color: "black",
-        paddingHorizontal: 15,
-        /* fontFamily:  */
+        paddingHorizontal: 15, 
+        fontFamily: 'text',
     },
 
 } );

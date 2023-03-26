@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert } from "react-native";
+import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert, ScrollView } from "react-native";
 import EditProfileData from "./editProfileData";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
@@ -172,6 +172,7 @@ export default function Setting( { navigation } ) {
 
 
   return (
+
     <View style={styles.mainContainer}>
       <View>
         <Text style={styles.title}>Tu Perfil</Text>
@@ -186,8 +187,6 @@ export default function Setting( { navigation } ) {
             />
           </Pressable>
         </View>
-
-
 
         <View style={styles.avatarContainer}>
           <Image
@@ -263,23 +262,23 @@ export default function Setting( { navigation } ) {
 
         <Pressable onPress={() => setShowEditPanel()}>
           <View style={styles.informationContainer}>
-            <Text style={styles.notWorkingYet}>Correo</Text>
+            <Text style={styles.text}>Correo</Text>
             <Text style={styles.textForUserData}>  {userEmail ? userEmail : '...'}</Text>
-            <Image
+            {/*  <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
-            />
+            /> */}
           </View>
         </Pressable>
 
         <Pressable onPress={() => setShowEditPanel()}>
           <View style={styles.informationContainer}>
-            <Text style={styles.notWorkingYet} >Contraseña</Text>
+            <Text style={styles.text} >Contraseña</Text>
             <Text style={styles.textForUserData}>********</Text>
-            <Image
+            {/* <Image
               style={styles.imageEditLogoForTheRightSide}
               source={{ uri: editImage }}
-            />
+            /> */}
           </View>
         </Pressable>
 
@@ -300,8 +299,11 @@ export default function Setting( { navigation } ) {
 
         <Button title="LogOut" onPress={logOutUser}>LogOut</Button>
 
+
+
       </View>
     </View>
+
   );
 }
 
@@ -311,16 +313,16 @@ const styles = StyleSheet.create( {
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
     borderRightColor: '#662483',
-    minHeight: '100%'
+    /*     minHeight: '100%', */
   },
   title: {
     flex: 0,
     marginTop: 20,
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
-    color: '#662483'
+    fontSize: 36,
+    fontFamily: "logo",
+    color: '#662483',
   },
   avatar: {
     alignSelf: "center",
@@ -340,12 +342,13 @@ const styles = StyleSheet.create( {
   },
   text: {
     color: "#662483",
-    fontWeight: "800",
-    fontSize: 17,
+    /*  fontWeight: "800", */
+    fontSize: 22,
     padding: 0,
     margin: 0,
     marginTop: 5,
     marginLeft: 30,
+    fontFamily: "logo",
   },
   textForUserData: {
     color: "#8C8C8C",
@@ -355,6 +358,7 @@ const styles = StyleSheet.create( {
     margin: 0,
     marginTop: 5,
     marginLeft: 50,
+    fontFamily: 'text',
   },
   editInfoImg: {
     position: "absolute",
@@ -373,16 +377,16 @@ const styles = StyleSheet.create( {
   imageEditLogo: {
     alignSelf: "center",
     marginBottom: 10,
-    height: 26,
-    width: 28,
+    height: 22,
+    width: 24,
   },
   imageEditLogoForTheRightSide: {
     position: "absolute",
     marginTop: 5,
     marginRight: 0,
     marginLeft: 300,
-    height: 26,
-    width: 28,
+    height: 22,
+    width: 24,
   },
   avatarContainer: {
     flexDirection: "row",

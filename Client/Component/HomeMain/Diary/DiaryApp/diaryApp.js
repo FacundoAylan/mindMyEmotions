@@ -74,6 +74,29 @@ export default function DiaryApp() {
         setText5Changed( true );
     }
 
+    const handleDeleteAllText = () => {
+        setDate1( '' );
+        setDate1Changed( true );
+        setText1( '' );
+        setText1Changed( true );
+        setDate2( '' );
+        setDate2Changed( true );
+        setText2( '' );
+        setText2Changed( true );
+        setDate3( '' );
+        setDate3Changed( true );
+        setText3( '' );
+        setText3Changed( true );
+        setDate4( '' );
+        setDate4Changed( true );
+        setText4( '' );
+        setText4Changed( true );
+        setDate5( '' );
+        setDate5Changed( true );
+        setText5( '' );
+        setText5Changed( true );
+    }
+
 
 
     //Setter
@@ -311,6 +334,12 @@ export default function DiaryApp() {
                     value={text5}
                 />
 
+                <TouchableOpacity
+                    style={styles.button}
+                    onPress={handleDeleteAllText}
+                >
+                    <Text style={styles.textButton}>Borrar texto</Text>
+                </TouchableOpacity>
 
             </View>
         </ScrollView>
@@ -350,6 +379,7 @@ const styles = StyleSheet.create( {
         marginLeft: windowWidth * 0.06,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'white',
         padding: 5,
         textAlign: 'center'
@@ -365,6 +395,7 @@ const styles = StyleSheet.create( {
         marginRight: 200,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'black',
         padding: 7,
         textAlign: 'center'
@@ -380,6 +411,7 @@ const styles = StyleSheet.create( {
         marginLeft: windowWidth * 0.4,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'white',
         padding: 5,
         textAlign: 'center'
@@ -394,6 +426,7 @@ const styles = StyleSheet.create( {
         marginLeft: windowWidth * 0.355,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'black',
         padding: 7,
         textAlign: 'center'
@@ -409,6 +442,7 @@ const styles = StyleSheet.create( {
         marginLeft: windowWidth * 0.74,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'white',
         padding: 5,
         textAlign: 'center'
@@ -424,6 +458,7 @@ const styles = StyleSheet.create( {
         marginRight: 200,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'black',
         padding: 5,
         textAlign: 'center'
@@ -439,6 +474,7 @@ const styles = StyleSheet.create( {
         marginLeft: windowWidth * 0.4,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'white',
         padding: 5,
         textAlign: 'center'
@@ -453,6 +489,7 @@ const styles = StyleSheet.create( {
         marginTop: windowHeight * 0.5,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'black',
         padding: 5,
         textAlign: 'center'
@@ -468,6 +505,7 @@ const styles = StyleSheet.create( {
         marginLeft: windowWidth * 0.72,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'white',
         padding: 5,
         textAlign: 'center'
@@ -483,10 +521,26 @@ const styles = StyleSheet.create( {
         marginRight: 200,
         borderRadius: 5,
         fontSize: 12,
+        fontFamily: 'text',
         color: 'black',
         padding: 5,
         textAlign: 'center'
     },
+    button: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingVertical: 12,
+        maxWidth: 100,
+        marginLeft: 280,
+        borderRadius: 18,
+        elevation: 3,
+        backgroundColor: 'white',
+        marginTop: windowHeight * 0.01,
+    },
+    textButton: {
+        fontSize: 10,
+        fontFamily: 'text',
+    }
 
 
 } )
