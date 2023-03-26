@@ -59,12 +59,10 @@ const styles = StyleSheet.create( {
     fontWeight: 'bold',
     letterSpacing: 0.25,
     color: '#662483',
-    /* backgroundColor: 'none', */
   },
   image: {
     width: '100%',
-    height: '100%',
+    height: '50%',
     borderRadius: 12,
-    resizeMode: 'stretch'
   }
 } )

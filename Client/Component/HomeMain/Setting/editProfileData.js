@@ -15,7 +15,8 @@ export default function EditProfileData( {
     renderNewserAge,
     renderNewUserGender,
     renderUserDepartment,
-    userEmail
+    userEmail,
+    userActivities
 } ) {
     const [ newName, setNewName ] = useState( "" )
     const [ newLastName, setNewLastName ] = useState( "" )
@@ -43,8 +44,22 @@ export default function EditProfileData( {
 
 
     let selectAvatar = () => {
+        //This code selects the amount of images to be rendered based on the number of activities completed (on true):
+        const indexOfModules = userActivities?.indexOf( "Apellido_de_usuario" )
+        const stringOfActivityTrueAndFalseValues = userActivities.slice( indexOfModules, userActivities.length )
 
-        let allImages = MES_IMAGES.map( image => {
+        //checks the number of true and false values in the string of all activity values
+        const trueCount = ( stringOfActivityTrueAndFalseValues?.match( /true/g ) || [] ).length;
+        const falseCount = ( stringOfActivityTrueAndFalseValues?.match( /false/g ) || [] ).length;
+
+        const numberOfAllActivities = trueCount + falseCount
+        const percentageOfActivitiesOnTrue = 100 * trueCount / numberOfAllActivities
+        const numberOfElementsToShow = Math.round( MES_IMAGES.length * ( percentageOfActivitiesOnTrue / 100 ) );
+        //calculates the number of images to show slicing the array and creating a new one to show.
+        const arrayOfAvatarImagesToShow = MES_IMAGES.slice( 0, numberOfElementsToShow )
+
+
+        let allImages = arrayOfAvatarImagesToShow?.map( image => {
             return (
                 <TouchableOpacity style={styles.imageAndTextContainer}
                     onPress={() => selectNewAvatarAndSendItToTheDb( image.img )}
@@ -178,8 +193,10 @@ export default function EditProfileData( {
             case "EDIT_AVATAR":
                 return (
                     <View >
+                        <ScrollView>
                         <Text style={styles.textTitles}>Cambiar avatar</Text>
                         {selectAvatar()}
+                        </ScrollView>
                     </View>
                 )
             case "EDIT_NAME":
@@ -300,7 +317,7 @@ export default function EditProfileData( {
             <TouchableOpacity style={styles.closeButton} onPress={stopShowingEditPanel}>
                 <Text style={styles.closeButtonX}>X</Text>
             </TouchableOpacity>
-            <ScrollView style={{ height: 400 }}>
+            <ScrollView style={{ height: 400, flex: 1 }}>
                 {renderEditModals()}
             </ScrollView>
         </View>
@@ -313,14 +330,14 @@ const styles = StyleSheet.create( {
     mainContainer: {
         position: 'absolute',
         alignSelf: 'center',
-        marginTop: 180,
+        marginTop: 150,
         height: 400,
         width: 310,
         borderColor: '#662483',
         borderWidth: 2,
         borderRadius: 10,
         backgroundColor: 'white',
-
+        flex: 1,
     },
     closeButton: {
         alignSelf: 'flex-end',
@@ -332,7 +349,6 @@ const styles = StyleSheet.create( {
         borderWidth: 2,
         borderRadius: 50,
         backgroundColor: '#662483'
-
     },
     closeButtonX: {
         marginLeft: 13,
@@ -369,8 +385,9 @@ const styles = StyleSheet.create( {
     textTitles: {
         alignSelf: 'center',
         marginBottom: 20,
-        fontSize: 20,
-        fontWeight: '800',
+        fontSize: 28,
+        fontFamily: "logo",
+        //fontWeight: '800',
         color: '#662483',
     },
     imgStyles: {
@@ -380,7 +397,8 @@ const styles = StyleSheet.create( {
     avatarTextStyles: {
         marginTop: 3,
         alignSelf: 'center',
-        fontWeight: '600',
+        fontFamily: "text",
+        //fontWeight: '600',
     },
     imageAndTextContainer: {
         flexDirection: 'column-reverse',

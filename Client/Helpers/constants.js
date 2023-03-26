@@ -17,57 +17,57 @@ export const endpoints = {
 export const MES_IMAGES = [
     {
         name: 'emoción',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583059/MEs/Emoci%C3%B3n_sjj36a.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583059/MEs/Emoci%C3%B3n_sjj36a.png"
 
     },
     {
         name: 'confusión',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583059/MEs/Confusi%C3%B3n_ncu3l8.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583059/MEs/Confusi%C3%B3n_ncu3l8.png"
 
     },
     {
         name: 'duda',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583059/MEs/Duda_eklwfn.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583059/MEs/Duda_eklwfn.png"
 
     },
     {
         name: 'asco',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583058/MEs/Asco_jydbmd.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583058/MEs/Asco_jydbmd.png"
 
     },
     {
         name: 'miedo',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583058/MEs/Miedo_fr8dxg.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583058/MEs/Miedo_fr8dxg.png"
 
     },
     {
         name: 'tristeza',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Tristeza_axbgis.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583057/MEs/Tristeza_axbgis.png"
 
     },
     {
         name: 'paz',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Paz_apk3em.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583057/MEs/Paz_apk3em.png"
 
     },
     {
         name: 'risa',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Risa_vmjvg3.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583057/MEs/Risa_vmjvg3.png"
 
     },
     {
         name: 'asco',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583058/MEs/Asco_jydbmd.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583058/MEs/Asco_jydbmd.png"
 
     },
     {
         name: 'rabia',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Rabia_ptfck0.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583057/MEs/Rabia_ptfck0.png"
 
     },
     {
         name: 'alegría',
-        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png"
+        img: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_310/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png"
 
     },
 ]
