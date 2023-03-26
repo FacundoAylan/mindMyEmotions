@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, StyleSheet, View, Dimensions, TextInput, Text, ScrollViewBase, ScrollView } from "react-native";
+import { Image, StyleSheet, View, Dimensions, TextInput, Text, ScrollViewBase, ScrollView, TouchableOpacity } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -28,6 +28,15 @@ export default function UserInfo( { navigation } ) {
   }
   const handleHappinessChange = ( text ) => {
     setNewText( text );
+    setTextChanged( true );
+  }
+
+  const handleDeleteText = () => {
+    setNewNameText( '' );
+    setNameChanged( true );
+    setNewAgeText( '' );
+    setAgeChanged( true );
+    setNewText( '' );
     setTextChanged( true );
   }
 
@@ -131,6 +140,7 @@ export default function UserInfo( { navigation } ) {
             uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_fit,g_center,w_1188,x_0/v1679012928/MME%20logos/Mind_My_Emotions_znokgz.png",
           }}
         />
+
       </View>
     </ScrollView>
   );
@@ -143,34 +153,37 @@ const styles = StyleSheet.create( {
   },
   Name: {
     position: "absolute",
-    width: windowWidth * 0.5,
-    marginTop: windowHeight * 0.15,
+    maxWidth: windowWidth * 0.7,
+    marginTop: windowHeight * 0.16,
     marginLeft: windowWidth * 0.1,
-    fontSize: 22,
+    fontSize: 25,
     color: 'black',
     maxHeight: 85,
+    fontFamily: 'logo'
   },
   inputName: {
     position: "absolute",
     width: windowWidth * 0.5,
     backgroundColor: '#FFE8E8',
-    marginTop: windowHeight * 0.2,
+    marginTop: windowHeight * 0.22,
     marginLeft: windowWidth * 0.05,
     borderRadius: 50,
-    fontSize: 24,
+    fontSize: 18,
     color: 'black',
     maxHeight: 85,
-    padding: 30,
-    textAlign: 'center'
+    padding: 20,
+    textAlign: 'center',
+    fontFamily: 'text',
   },
   Age: {
     position: "absolute",
-    width: windowWidth * 0.5,
-    marginTop: windowHeight * 0.35,
-    marginLeft: windowWidth * 0.6,
-    fontSize: 22,
+    maxWidth: windowWidth * 0.5,
+    marginTop: windowHeight * 0.33,
+    marginLeft: windowWidth * 0.58,
+    fontSize: 25,
     color: 'black',
     maxHeight: 85,
+    fontFamily: 'logo',
   },
   inputAge: {
     position: 'absolute',
@@ -178,22 +191,24 @@ const styles = StyleSheet.create( {
     maxWidth: '30%',
     minWidth: '30%',
     backgroundColor: '#FFE8E8',
-    marginTop: windowHeight * 0.4,
+    marginTop: windowHeight * 0.385,
     marginLeft: windowWidth * 0.6,
     borderRadius: 50,
-    fontSize: 25,
+    fontSize: 18,
     color: 'black',
     height: 70,
     paddingLeft: 33,
+    fontFamily: 'text',
   },
   Text: {
     position: "absolute",
     width: windowWidth * 1,
     marginTop: windowHeight * 0.5,
-    marginLeft: windowWidth * 0.15,
-    fontSize: 20,
+    marginLeft: windowWidth * 0.1,
+    fontSize: 25,
     color: 'black',
     maxHeight: 85,
+    fontFamily: 'logo',
   },
   inputText: {
     position: "absolute",
@@ -203,12 +218,13 @@ const styles = StyleSheet.create( {
     marginTop: windowHeight * 0.55,
     marginLeft: windowWidth * 0.19,
     borderRadius: 12,
-    fontSize: 25,
+    fontSize: 18,
     color: 'black',
     maxHeight: 120,
     padding: 10,
     zIndex: 3,
-    textAlign: 'center'
+    textAlign: 'center',
+    fontFamily: 'text',
   },
   image: {
     width: '100%',

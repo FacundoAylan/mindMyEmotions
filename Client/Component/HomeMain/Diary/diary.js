@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Image, StyleSheet, View, Dimensions, Pressable, Linking } from "react-native";
+import { Image, Text, StyleSheet, View, Dimensions, Pressable, Linking, TouchableOpacity } from "react-native";
 
 const windowHeight = Dimensions.get( 'window' ).height;
 const windowWidth = Dimensions.get( 'window' ).width;
@@ -21,6 +21,16 @@ export default function Diary( { navigation } ) {
           }}
         />
       </Pressable>
+
+      <TouchableOpacity
+        style={styles.button}
+        onPress={navigateToDiary}
+      >
+        <Text style={styles.text}>Abrir diario</Text>
+      </TouchableOpacity>
+
+
+
       <Pressable onPress={() => Linking.openURL( 'https://open.spotify.com/playlist/774cDGhJLsU1dUFf9rtvjg?si=9603a7d0f22d4fbc&nd=1' )} >
         <Image
           style={styles.spotifyImage}
@@ -29,6 +39,9 @@ export default function Diary( { navigation } ) {
           }}
         />
       </Pressable>
+
+
+
     </View>
   )
 }
@@ -40,25 +53,36 @@ const styles = StyleSheet.create( {
   text: {
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: 'bold',
+    fontFamily: 'text',
+    //fontWeight: 'bold',
     letterSpacing: 0.25,
     color: '#662483',
   },
   image: {
     position: "absolute",
     alignSelf: "center",
-    marginTop: 0,
-    width: windowWidth * 1.1,
-    height: windowHeight * 0.7,
+    marginTop: 20,
+    width: windowWidth * 0.50,
+    height: windowHeight * 0.4,
     borderRadius: 20,
   },
   spotifyImage: {
     position: "absolute",
     alignSelf: "center",
-    marginTop: windowHeight * 0.78,
+    marginTop: windowHeight * 0.3,
     width: windowWidth * 0.35,
     height: windowHeight * 0.052,
-
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 2,
+    marginHorizontal: 50,
+    borderRadius: 18,
+    elevation: 3,
+    backgroundColor: 'white',
+    marginTop: windowHeight * 0.45,
   }
 }
 )

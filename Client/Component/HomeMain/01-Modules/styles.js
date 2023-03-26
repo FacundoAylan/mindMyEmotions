@@ -42,5 +42,23 @@ export const styles = StyleSheet.create({
     opacity:0.5,
     borderColor: 'grey',
     fontSize: 25,
+  },
+  button: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 12,
+    maxWidth: 110,
+    minWidth: 90,
+    marginLeft: 262,
+    borderRadius: 18,
+    elevation: 13,
+    backgroundColor: 'white',
+    marginTop: 10,
+  },
+  textButton: {
+    fontSize: 10,
+    fontFamily: 'text',
   }
 }) 
