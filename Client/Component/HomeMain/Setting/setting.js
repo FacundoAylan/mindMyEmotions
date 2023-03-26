@@ -14,6 +14,8 @@ export default function Setting( { navigation } ) {
   const [ userGender, setUserGender ] = useState( '' )
   const [ userDepartment, setUserDepartment ] = useState( '' )
   const [ userEmail, setUserEmail ] = useState( '' )
+  const [ userActivities, setUserActivities ] = useState( '' )
+
 
   const [ showEditPanel, setShowEditPanel ] = useState( false )
   const [ selectedPanel, setSelectedPanel ] = useState( false )
@@ -28,6 +30,7 @@ export default function Setting( { navigation } ) {
       getUserDataFromAsyncStorage()
     }, 2500 );
   }, [] )
+
 
 
   //state rerendering functions
@@ -114,6 +117,7 @@ export default function Setting( { navigation } ) {
   let getUserDataFromAsyncStorage = async () => {
     try {
       let retrievedJson = await AsyncStorage.getItem( 'myObject' );
+      setUserActivities( retrievedJson )
       console.log( 'Request local user data   ' + retrievedJson );
       let jsonToObject = JSON.parse( retrievedJson )
       setUserName( jsonToObject?.Mensaje?.Datos_registro.Nombre_de_usuario )
@@ -123,6 +127,7 @@ export default function Setting( { navigation } ) {
       setUserDepartment( jsonToObject?.Mensaje?.Datos_registro.Departamento )
       setUserEmail( jsonToObject?.Mensaje?.Datos_registro.Mail )
       //console.log( jsonToObject.Mensaje.Datos_registro );
+
 
     } catch ( error ) {
       console.log( error );
@@ -151,7 +156,7 @@ export default function Setting( { navigation } ) {
     console.log( 'user signed out' );
   }
 
-  console.log( userEmail );
+  //console.log( userEmail );
 
   if ( userName === ''
     && userLastname === ''
@@ -163,11 +168,12 @@ export default function Setting( { navigation } ) {
     getUserDataFromAsyncStorage()
   }
 
+
+
+
   return (
     <View style={styles.mainContainer}>
       <View>
-
-
         <Text style={styles.title}>Tu Perfil</Text>
 
         <View style={styles.reloadImage}>
@@ -179,7 +185,6 @@ export default function Setting( { navigation } ) {
               onPress={sendAvatarPanel}
             />
           </Pressable>
-
         </View>
 
 
@@ -289,6 +294,7 @@ export default function Setting( { navigation } ) {
           renderNewUserGender={renderNewUserGender}
           renderUserDepartment={renderUserDepartment}
           userEmail={userEmail}
+          userActivities={userActivities}
 
         />}
 

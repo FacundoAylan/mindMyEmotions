@@ -15,7 +15,8 @@ export default function EditProfileData( {
     renderNewserAge,
     renderNewUserGender,
     renderUserDepartment,
-    userEmail
+    userEmail,
+    userActivities
 } ) {
     const [ newName, setNewName ] = useState( "" )
     const [ newLastName, setNewLastName ] = useState( "" )
@@ -43,8 +44,22 @@ export default function EditProfileData( {
 
 
     let selectAvatar = () => {
+        //This code selects the amount of images to be rendered based on the number of activities completed (on true):
+        const indexOfModules = userActivities?.indexOf( "Apellido_de_usuario" )
+        const stringOfActivityTrueAndFalseValues = userActivities.slice( indexOfModules, userActivities.length )
 
-        let allImages = MES_IMAGES.map( image => {
+        //checks the number of true and false values in the string of all activity values
+        const trueCount = ( stringOfActivityTrueAndFalseValues?.match( /true/g ) || [] ).length;
+        const falseCount = ( stringOfActivityTrueAndFalseValues?.match( /false/g ) || [] ).length;
+
+        const numberOfAllActivities = trueCount + falseCount
+        const percentageOfActivitiesOnTrue = 100 * trueCount / numberOfAllActivities
+        const numberOfElementsToShow = Math.round( MES_IMAGES.length * ( percentageOfActivitiesOnTrue / 100 ) );
+        //calculates the number of images to show slicing the array and creating a new one to show.
+        const arrayOfAvatarImagesToShow = MES_IMAGES.slice( 0, numberOfElementsToShow )
+
+
+        let allImages = arrayOfAvatarImagesToShow?.map( image => {
             return (
                 <TouchableOpacity style={styles.imageAndTextContainer}
                     onPress={() => selectNewAvatarAndSendItToTheDb( image.img )}
