@@ -9,6 +9,7 @@ export const styles = StyleSheet.create({
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
     borderRightColor: '#662483',
+    height:'100%'
   },
   button: {
     alignItems: "center",
@@ -19,7 +20,7 @@ export const styles = StyleSheet.create({
     borderColor: '#662483',
     borderRadius: 18,
     elevation: 3,
-    backgroundColor: "white",
+    backgroundColor: "#662483",
     marginTop: 20,
     marginHorizontal: 50,
   },
@@ -27,15 +28,14 @@ export const styles = StyleSheet.create({
     flex: 0,
     justifyContent: 'center',
     textAlign: 'center',
-    fontFamily: 'logo',
-    fontSize: 25,
+    fontFamily: 'text',
+    fontSize: 20,
     lineHeight: 30,
     letterSpacing: 2,
-    color: "#662483",
+    color: "white",
   },
   imagenFondo: {
     flex: 1,
     resizeMode: 'cover',
-    marginTop: 30
   },
 });

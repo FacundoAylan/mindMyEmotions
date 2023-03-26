@@ -10,7 +10,7 @@ export default function Topics ({ navigation, route }) {
   const validate = useSelector((state) => state.loader);
 
   return (
-    <View>
+    <View style={styles.mainContaiiner}>
       <ScrollView>
         {
           json[indexModule].topics.map((topic, indexChoise) =>{
@@ -23,7 +23,7 @@ export default function Topics ({ navigation, route }) {
                   nameModule: json[indexModule+1].module.split(" ").join("")
                 })}>
                 <View style={ validate[topic.split(" ").join("")]? styles.container: styles.disabled }>
-                  <Text style={styles.textButton}>{topic}</Text>
+                  <Text style={validate[topic.split(" ").join("")]? styles.textButton: styles.textDisabled}>{topic}</Text>
                 </View>
               </TouchableOpacity>
               )

@@ -1,19 +1,22 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  mainContainer: {
+    flex:1,
+    justifyContent: 'center',
+    textAlign:'center',
+    paddingBottom: 25
+  },
   title: {
     fontFamily: 'logo',
     letterSpacing: 2,
     flex: 0,
-    justifyContent: 'center',
     textAlign: 'center',
     color: '#662483',
     fontSize: 36
   },
   description: {
     fontFamily: 'text',
-    flex:0,
-    justifyContent: 'center',
     textAlign: 'center',
     padding: 10,
     fontSize: 20
@@ -22,7 +25,7 @@ export const styles = StyleSheet.create({
     borderRadius: 14,
     borderWidth: 2,
     borderColor:'#662483',
-    backgroundColor:'white',
+    backgroundColor:'#662483',
     height: 60,
     margin: 10,
   },
@@ -30,9 +33,9 @@ export const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',
-    color: '#662483',
+    color: 'white',
     marginTop: '3%',
-    fontFamily: 'logo',
+    fontFamily: 'title',
     letterSpacing: 2,
     fontSize: 25
   },

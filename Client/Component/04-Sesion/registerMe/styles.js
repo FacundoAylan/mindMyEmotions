@@ -11,6 +11,7 @@ export const styles = StyleSheet.create( {
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
     borderRightColor: '#662483',
+    paddingBottom: 35
   },
   input: {
     fontFamily: 'title',
@@ -32,7 +33,7 @@ export const styles = StyleSheet.create( {
     paddingHorizontal: 15,
     borderRadius: 14,
     elevation: 3,
-    backgroundColor: "white",
+    backgroundColor: "#662483",
     marginTop: 20,
     borderWidth: 2,
     borderColor: "#662483",
@@ -42,7 +43,7 @@ export const styles = StyleSheet.create( {
     flex:0,
     justifyContent: 'center',
     textAlign: 'center',
-    fontFamily: 'logo',
+    fontFamily: 'text',
     color: "#662483",
     padding: 0,
     margin: 0,
@@ -51,11 +52,11 @@ export const styles = StyleSheet.create( {
     letterSpacing: 2
   },
   textButton: {
-    fontFamily: 'logo',
+    fontFamily: 'text',
     fontSize: 25,
     lineHeight: 30,
     letterSpacing: 2,
-    color: '#662483',
+    color: 'white',
   },
   selectInput1:{
     fontSize: 20,
@@ -82,5 +83,9 @@ export const styles = StyleSheet.create( {
     borderWidth: 2,
     width:'80%', 
     marginLeft: '10%'
-  }
+  },
+  imagenFondo: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
 } );

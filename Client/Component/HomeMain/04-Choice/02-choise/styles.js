@@ -1,4 +1,8 @@
 import { StyleSheet } from "react-native";
+import { Dimensions } from 'react-native';
+
+const windowHeight = Dimensions.get('window').height;
+
 
 export const styles = StyleSheet.create({
   mainContainer: {
@@ -7,6 +11,7 @@ export const styles = StyleSheet.create({
     borderRightWidth: 5,
     borderRightColor: '#662483',
     minHeight: '100%',
+    paddingBottom: 30
   },
   title: {
     flex: 0,
@@ -34,8 +39,9 @@ export const styles = StyleSheet.create({
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
-    color: '#662483',
-    fontSize: 20
+    color: 'white',
+    fontSize: 20,
+    padding: 5
   },
   image:{
     width: '100%',
@@ -47,14 +53,17 @@ export const styles = StyleSheet.create({
     flex:0,
     justifyContent: 'center',
     textAlign: 'center',
-    height: 40,
+    height: 60,
     width: '100%',
-    backgroundColor: 'white',
-    borderRadius:12,
+    backgroundColor: '#662483',
+    borderRadius:14,
     fontSize: 30,
-    marginTop: 6,
+    marginTop: 20,
     borderColor: '#662483',
-    borderWidth:2
+    borderWidth:2,
+    width: '90%',
+    marginLeft: '5%',
+    padding: 2
   },
   input: {
     justifyContent: 'center',
@@ -69,6 +78,15 @@ export const styles = StyleSheet.create({
     borderColor: '#662483',
     marginHorizontal: 30,
   },
+  textCaso: {
+    fontFamily:  "text",
+    flex: 0,
+    justifyContent: "center",
+    textAlign: "center",
+    color: 'black',
+    fontSize: 20,
+    padding: 5
+  },
   caso1:{
     height:150,
     width: '90%', 
@@ -78,31 +96,48 @@ export const styles = StyleSheet.create({
     marginLeft:'5%', 
     borderRadius:12, 
     backgroundColor:'white', 
-    padding:25
+    padding:25,
   },
   caso2: { 
     borderWidth: 1, 
     borderColor: 'gray', 
     marginTop: 10, 
     padding: 5, 
-    borderRadius: 5 
+    borderRadius: 5 ,
+    height:50, 
+    borderWidth:2, 
+    borderColor:'#662483', 
+    borderRadius: 14,
   },
   containerModal: { 
-    padding: 5,
     margin: 15, 
-    backgroundColor: 'white', 
+    backgroundColor: "#FFE1AE", 
     borderColor:'#662483', 
     borderWidth:2, 
-    borderRadius:12 
+    borderRadius:12, 
   },
-  textModal:{
-    flex:0,
+  logModal:{
+    flex:1,
     justifyContent: 'center',
     textAlign: 'center',
-    fontSize: 20,
+    fontSize: 36,
+    width: '100%',
     color: '#662483',
     flex:0, 
-    fontFamily:'logo'
+    fontFamily:'logo',
+    marginTop: 128
+  },
+  textModal:{
+    flex:1,
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontSize: 17,
+    width: '100%',
+    color: '#662483',
+    flex:0, 
+    fontFamily:'text',
+    marginTop: windowHeight*0.1,
+    padding: 8
   },
   buttonModal:{
     borderRadius:60 , 
@@ -114,6 +149,19 @@ export const styles = StyleSheet.create({
     textAlign:'center', 
     marginLeft:'40%', 
     backgroundColor:'#662483'
+  },
+  containerImg: {
+    height: windowHeight*0.4, 
+    width: '100%', 
+    justifyContent: 'center', 
+    alignItems: 'center',
+    padding:0
+  },
+  modalImg:{
+    height: '100%', 
+    width: '100%', 
+    alignSelf: 'center', 
+    resizeMode: 'contain',
   }
 
 })

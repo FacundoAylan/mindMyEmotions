@@ -127,7 +127,7 @@ export var Info = [
             "text": " ¿Sabes cual es la diferencia entre una emoción y un sentimiento?",
             "answers": [
               "a. Si.",
-              "b. N0.",
+              "b. No.",
             ],
             },
             {"title": "Pregunta 3",
@@ -321,7 +321,7 @@ export var Info = [
           ],
           },
           {"title": "Pregunta 6",
-          "text": "7. Nombra la emoción que piensas cuando ves a ME",
+          "text": "Nombra la emoción que piensas cuando ves a ME",
           "answers": [
             "imagen"
           ],
@@ -346,15 +346,15 @@ export var Info = [
             "e. Tristeza."
           ],
           },
-          {"title": "Pregunta 9",
-          "text": "Nombra a cada ME",
-          "answers": [
-            "imagen",
-            "imagen",
-            "imagen",
-            "imagen",
-          ],
-          }
+          // {"title": "Pregunta 9",
+          // "text": "Nombra a cada ME",
+          // "answers": [
+          //   "imagen",
+          //   "imagen",
+          //   "imagen",
+          //   "imagen",
+          // ],
+          // }
         ],
       },
 

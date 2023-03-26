@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { Text, View, TouchableOpacity, ImageBackground } from "react-native";
+import { Text, View, TouchableOpacity} from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { styles } from "./styles";
 
@@ -24,12 +24,6 @@ export default function Login({ navigation }) {
   }
 
   return (
-    <ImageBackground
-      source={{
-        uri: "https://res.cloudinary.com/dafvcjkfo/image/upload/q_100/v1679262554/Documento_A4_formas_curvas_Hoja_de_papel_formas_abstractas_multicolor_plcg3l.png",
-      }}
-      style={styles.imagenFondo}
-    >
       <View style={styles.container}>
         <TouchableOpacity style={styles.button} onPress={() => kidSelected()}>
           <Text style={styles.text}>Soy niño/a</Text>
@@ -44,6 +38,5 @@ export default function Login({ navigation }) {
           <Text style={styles.text}>Soy adulto</Text>
         </TouchableOpacity>
       </View>
-    </ImageBackground>
   );
 }

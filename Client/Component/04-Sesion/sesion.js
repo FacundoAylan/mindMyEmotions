@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  ImageBackground,
   Text,
   TextInput,
   TouchableOpacity,
@@ -107,14 +106,8 @@ export default function Sesion({ navigation }) {
   };
 
   return (
-    <ImageBackground
-      source={{
-        uri: "https://res.cloudinary.com/dafvcjkfo/image/upload/q_100/v1679262554/Documento_A4_formas_curvas_Hoja_de_papel_formas_abstractas_multicolor_plcg3l.png",
-      }}
-      style={styles.imagenFondo}
-    >
       <View style={styles.container}>
-        <Text style={styles.title}> Iniciar sesión</Text>
+        <Text style={styles.title}> INICIAR SESION</Text>
         <Text style={styles.label}>Correo</Text>
         <TextInput
           style={styles.input}
@@ -125,6 +118,7 @@ export default function Sesion({ navigation }) {
         <Text style={styles.label}>Contraseña</Text>
         <TextInput
           style={styles.input}
+          secureTextEntry={true}
           placeholder="Contraseña"
           onChangeText={setPassword}
           value={password}
@@ -143,6 +137,5 @@ export default function Sesion({ navigation }) {
           <Text style={styles.text}>Registrarme</Text>
         </TouchableOpacity>
       </View>
-    </ImageBackground>
   );
 }

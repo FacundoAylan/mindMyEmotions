@@ -36,19 +36,31 @@ export const styles = StyleSheet.create({
     height: 50,
     width: '90%',
     marginLeft: '5%',
-    backgroundColor: 'white',
+    backgroundColor: '#662483',
     borderRadius:12,
     fontSize: 30,
-    marginTop: 6,
+    marginTop: 10,
     borderColor: '#662483',
-    borderWidth:2
+    borderWidth:2, 
   },
   textContainer: {
     fontFamily:  "text",
     flex: 0,
     justifyContent: "center",
     textAlign: "center",
-    color: '#662483',
+    color: 'white',
     fontSize: 20
+  },
+  modalButton: {
+    borderRadius:60 , 
+    height:60, 
+    width:60, 
+    flex:0,
+    justifyContent:'center',
+    alignItems:'center', 
+    textAlign:'center', 
+    marginLeft:'40%', 
+    backgroundColor:'#662483',
+    marginTop:2
   }
 });
