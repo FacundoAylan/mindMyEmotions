@@ -1,5 +1,6 @@
 import React from "react";
-import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
+import { styles } from "./styles";
 
 export default function Theory ({ navigation, route}) {
 
@@ -20,34 +21,3 @@ export default function Theory ({ navigation, route}) {
   );
 }
 
-const styles = StyleSheet.create({
-  title: {
-    fontFamily: 'title',
-    flex: 0,
-    justifyContent: 'center',
-    textAlign: 'center',
-    color: 'purple',
-    fontSize: 30
-  },
-  description: {
-    fontFamily: 'text',
-    flex:0,
-    justifyContent: 'center',
-    textAlign: 'center'
-  },
-  container: {
-    borderRadius: 12,
-    borderWidth: 2,
-    borderColor:'#662483',
-    backgroundColor:'white',
-    height: 60,
-    margin: 10,
-  },
-  data:{
-    flex: 1,
-    justifyContent: 'center',
-    textAlign: 'center',
-    color: '#662483',
-    marginTop: '5%'
-  },
-})

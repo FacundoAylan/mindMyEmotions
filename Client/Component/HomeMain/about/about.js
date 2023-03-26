@@ -82,7 +82,7 @@ const styles = StyleSheet.create( {
     flex: 1,
     justifyContent: 'center',
     textAlign: 'center',
-    color: 'purple',
+    color: '#662483',
     size: '100%',
     marginTop: '5%'
   },

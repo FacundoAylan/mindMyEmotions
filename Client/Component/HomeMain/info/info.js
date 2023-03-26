@@ -263,32 +263,32 @@ export var Info = [
           {"title": "¿Qué tan bueno eres nombrando emociones?",
           "text": "Eso que siento cuando tengo ganas de saltar, jugar y bailar (Puedes seleccionar varias opciones).",
           "answers": [
-            "a. ALEGRIA.",
-            "b.TRISTEZA.",
-            "c. MIEDO.",
-            "d. Euforia",
-            "e. Felicidad"
+            "a. Alegria.",
+            "b. Tristeza.",
+            "c. Miedo.",
+            "d. Euforia.",
+            "e. Felicidad."
 
           ],
           },
           {"title": "Pregunta 1",
           "text": "Eso que siento cuando una tarea me parece muy difícil (Puedes seleccionar varias opciones)",
           "answers": [
-            "a. Alegría",
-            "b.Frustración",
-            "c. Rabia",
-            "d. Estrés",
-            "e. Miedo"
+            "a. Alegría.",
+            "b.Frustración.",
+            "c. Rabia.",
+            "d. Estrés.",
+            "e. Miedo."
           ],
           },
           {"title": "Pregunta 2",
           "text": "Pisar caca de perro me produce",
           "answers": [
-            "a. Asco",
-            "b.Frustración",
-            "c. Rabia",
-            "d. Estrés",
-            "e. Miedo"
+            "a. Asco.",
+            "b.Frustración.",
+            "c. Rabia.",
+            "d. Estrés.",
+            "e. Miedo."
           ],
           },
           {"title": "Pregunta 3",
@@ -330,20 +330,20 @@ export var Info = [
           "text": "Elige algunas palabras que puedes utilizar como sinónimo de rabia",
           "answers": [
             "a. Enojo.",
-            "b. Felicidad",
-            "c. Mal genio",
-            "d. Miedo",
-            "e. Tristeza"
+            "b. Felicidad.",
+            "c. Mal genio.",
+            "d. Miedo.",
+            "e. Tristeza."
           ],
           },
           {"title": "Pregunta 8",
           "text": "Eso que siento cuando no me siento en una situación segura",
           "answers": [
             "a. Enojo.",
-            "b. Felicidad",
-            "c. Mal genio",
-            "d. Miedo",
-            "e. Tristeza"
+            "b. Felicidad.",
+            "c. Mal genio.",
+            "d. Miedo.",
+            "e. Tristeza."
           ],
           },
           {"title": "Pregunta 9",
@@ -364,67 +364,67 @@ export var Info = [
           {"title": "ENTENDER",
           "text": "Puedes intentar entender por qué ME está llorando?.",
           "answers": [
-            "a.Se le cayó el helado",
-            "b.Le duele un pie",
-            "c.Alguien le gritó",
-            "d.Hoy es martes"
+            "a.Se le cayó el helado.",
+            "b.Le duele un pie.",
+            "c.Alguien le gritó.",
+            "d.Hoy es martes."
 
           ],
           },
           {"title": "Pregunta 1",
           "text": "Puedes intentar entender por qué ME está enojado?",
           "answers": [
-            "a.Su amigo le quitó su juguete",
-            "b.Esta lloviendo",
-            "c.Se mudará de ciudad"
+            "a.Su amigo le quitó su juguete.",
+            "b.Esta lloviendo.",
+            "c.Se mudará de ciudad."
           ],
           },
           {"title": "Pregunta 2",
           "text": "Puedes intentar entender por qué ME siente asco?",
           "answers": [
-            "a.Le duele un pie",
-            "b.Tiene zapatos nuevos",
-            "c.Piso popo de perro"
+            "a.Le duele un pie.",
+            "b.Tiene zapatos nuevos.",
+            "c.Piso popo de perro."
           ],
           },
           {"title": "Pregunta 3",
           "text": "ME es amante de los deportes. Entrena todos los días y se esfuerza mucho por estar en un nivel competitivo para ayudar a su equipo a ganar siempre. El torneo más importante del año es en dos semanas, sin embargo, en el último entrenamiento, ME se cayó y se partió una mano. El doctor le dijo que no iba a poder participar en el torneo, porque su mano no iba a estar recuperada en ese momento. Puedes intentar entender como se sintió ME con la noticia de que no podrá participar en el torneo más importante del año?",
           "answers": [
-            "a.Feliz / Eufórico / Sorprendido/Enérgico",
-            "b.Triste/ Enojado/Decepcionado/Frustrado",
-            "c.Calmado/Indiferente/ Tranquilo",
+            "a.Feliz / Eufórico / Sorprendido/Enérgico.",
+            "b.Triste/ Enojado/Decepcionado/Frustrado.",
+            "c.Calmado/Indiferente/ Tranquilo.",
           ],
           },
           {"title": "Pregunta 4",
           "text": "ME es un niño tímido, al que le cuesta comunicarse y decir lo que siente o piensa. En el colegio, a veces lo presionan a que participe o hable. Puedes intentar entender como se siente ME cuando lo obligan a participar o a hablar?",
           "answers": [
-            "a.Incomodo / Nervioso / Presionado",
-            "b.Cómodo / Tranquilo",
-            "c.Feliz / Con iniciativa / Emocionado"
+            "a.Incomodo / Nervioso / Presionado.",
+            "b.Cómodo / Tranquilo.",
+            "c.Feliz / Con iniciativa / Emocionado."
           ],
           },
           {"title": "Pregunta 5",
           "text": "ME tiene algunos hobbies y ama compartirlos con sus amigos. Puedes intentar entender como se siente ME cuando está con sus amigos?",
           "answers": [
-            "a.Feliz / seguro / Eufórico",
-            "b.Triste / Aburrido / Inseguro",
-            "c.Indiferente"
+            "a.Feliz / seguro / Eufórico.",
+            "b.Triste / Aburrido / Inseguro.",
+            "c.Indiferente."
           ],
           },
           {"title": "Pregunta 6",
           "text": "ME estaba jugando con sus amigos y el balón se fue a la carretera y un carro lo dañó. El mejor amigo de ME se fue detrás del carro y empezó a gritar y a insultar al conductor del carro. Puedes intentar entender por qué el amigo de ME reaccionó de esa forma?",
           "answers": [
-            "a.Estaba feliz porque por fin el juego se habia acabado",
-            "b.Estaba enojado porque le dañaron el juego",
-            "c.Estaba eufórico porque iba ganando",
-            "d.Estaba triste porque iba perdiendo"
+            "a.Estaba feliz porque por fin el juego se habia acabado.",
+            "b.Estaba enojado porque le dañaron el juego.",
+            "c.Estaba eufórico porque iba ganando.",
+            "d.Estaba triste porque iba perdiendo."
           ],
           },
           {"title": "Pregunta 7",
           "text": "ME salió de su casa sin desayunar hoy, y cuando llegó al colegio no logró concentrarse en ninguna materia. Puedes intentar entender por qué ME no se pudo concentrar?",
           "answers": [
-            "a.Porque no le gusta ir al colegio",
-            "b.Porque tenía mucha hambre y no podía dejar de pensar en eso",
+            "a.Porque no le gusta ir al colegio.",
+            "b.Porque tenía mucha hambre y no podía dejar de pensar en eso.",
             "c.Porque está enamorado de una persona de su salón."
           ],
           },
@@ -475,10 +475,10 @@ export var Info = [
           {"title": "Pregunta 3",
           "text": "Selecciona algunas cosas que podrían ayudarte a tomar mejores decisiones.",
           "answers": [
-            "a.Respirar",
-            "b.Dibujar",
-            "c.Alejarme de la situación mientras puedo pensar mejor",
-            "d.Intentar comunicar lo que siento sin aumentar el tono de voz"
+            "a.Respirar.",
+            "b.Dibujar.",
+            "c.Alejarme de la situación mientras puedo pensar mejor.",
+            "d.Intentar comunicar lo que siento sin aumentar el tono de voz."
           ],
           },
           {"title": "Pregunta 4",
@@ -626,9 +626,9 @@ export var Info = [
           {"title": "Pregunta 1",
           "text": "¿Cómo hubieras reaccionado tu en la misma situación?",
           "answers": [
-            "a.Hubiera reaccionado igual que ME lo hizo",
-            "b.No le hubiera dicho nada y hubiera parado de jugar",
-            "c.Le hubiera dicho que por favor tuviera más cuidado la próxima vez "     
+            "a.Hubiera reaccionado igual que ME lo hizo.",
+            "b.No le hubiera dicho nada y hubiera parado de jugar.",
+            "c.Le hubiera dicho que por favor tuviera más cuidado la próxima vez."     
           ],
           },
           {"title": "Pregunta 2",
@@ -643,16 +643,16 @@ export var Info = [
           "text": "¿Te irritas con facilidad?",
           "answers": [
             "a. Si.",
-            "b.No.",
+            "b. No.",
             "c. Depende de la situacion.",
           ],
           },
           {"title": "Pregunta 4",
           "text": "¿Te molesta cuando alguien se equivoca?",
           "answers": [
-            "a.Si mucho.",
-            "b.No me da igual.",
-           " a.A veces."
+            "a. Si mucho.",
+            "b. No me da igual.",
+           " a. A veces."
           ],
           },
           {"title": "Pregunta 5",
@@ -661,13 +661,13 @@ export var Info = [
             "a. No.",
             "b. Lo intento.",
             "c. Si, simepre con cualquier persona.",
-            "d.Depende de la persona"
+            "d. Depende de la persona."
           ],
           },
           {"title": "Pregunta 6",
           "text": " ¿Podrías describir lo que haces cuando estás perdiendo el control de algo?",
           "answers": [
-            "a.No se como",
+            "a.No se como.",
             "¿Text?-b. Si.", 
           ],
           },
@@ -679,8 +679,8 @@ export var Info = [
           {"title": "Pregunta 1",
           "text": "Cuando alguien te cuenta un problema que le ha afectado mucho…",
           "answers": [
-            "¿por que?-a.Me cuesta entenderlo.",
-            "b.Puedo imaginar como se siente.",
+            "¿por que?-a. Me cuesta entenderlo.",
+            "b. Puedo imaginar como se siente.",
             "c. Me esfuerzo para ayudarle."
             
           ],
@@ -688,19 +688,19 @@ export var Info = [
           {"title": "Pregunta 2",
           "text": "Si alguien te está contando algo y crees que es una tontería ¿que le dices?",
           "answers": [
-            "a.Le digo que es una tonteia y que no se preocupe.",
-            "b.Prefiero no decir nada.",
-            "c.Escucho sin invalidar sus sentimientos."
+            "a. Le digo que es una tonteia y que no se preocupe.",
+            "b. Prefiero no decir nada.",
+            "c. Escucho sin invalidar sus sentimientos."
             
           ],
           },
           {"title": "Pregunta 3",
           "text": " ¿Te afecta cuando ves a alguien triste?",
           "answers": [
-            "¿por que?-a.Si mucho",
-            "b.A veces.",
-            "c.No",
-            "d.Depende de la persona"
+            "¿por que?-a. Si mucho.",
+            "b. A veces.",
+            "c. No.",
+            "d. Depende de la persona."
           ],
           },
           {"title": "Pregunta 4",
@@ -713,8 +713,8 @@ export var Info = [
           {"title": "Pregunta 5",
           "text": "Si ves que alguien necesita ayuda",
           "answers": [
-            "a.Ofresco mi ayuda.",
-            "¿por que?-b.Prefiero no hacer nada.",
+            "a. Ofresco mi ayuda.",
+            "¿por que?-b. Prefiero no hacer nada.",
             "c. Busco a alguien que pueda ayudarlo."
             
           ],
@@ -753,41 +753,41 @@ export var Info = [
           {"title": "Situacion 1",
           "text": "Cuando tienes un desacuerdo con alguien ¿Qué haces?",
           "answers": [
-            "a.Prfiero no decir nada.",
-            "b.Me dan ganas de discutir porque yo tengo la razon.",
-            "c.Trato de llegar a un acuerdo respetuosamente."           
+            "a. Prfiero no decir nada.",
+            "b. Me dan ganas de discutir porque yo tengo la razon.",
+            "c. Trato de llegar a un acuerdo respetuosamente."           
           ],
           },
           {"title": "Situacion 2",
           "text": "Cuando alguien te pide un consejo¿Qué haces?",
           "answers": [
-            "a.Si puedo trato de darselo.",
-            "b.No me gusta dar consejos.",
-            "¿por que?-c.No me importa.",
+            "a. Si puedo trato de darselo.",
+            "b. No me gusta dar consejos.",
+            "¿por que?-c. No me importa.",
           ],
           },
           {"title": "Situacion 3",
           "text": "Si estás jugando y perdiste ¿Que haces?",
           "answers": [
-            "a.Me molesto demasiado y me quejo mucho.",
-            "b.No pasa nada, no siempre se gana.",
-            "¿por que?-c.Me da igual.",
+            "a. Me molesto demasiado y me quejo mucho.",
+            "b. No pasa nada, no siempre se gana.",
+            "¿por que?-c. Me da igual.",
           ],
           },
           {"title": "Situacion 4",
           "text": "Si alguien es grosero/a contigo ¿Que haces?",
           "answers": [
-            "a.Le hago o le digo lo mismo.",
-            "b.Prefiero no hacer nada.",
-            "c.Calmadamente le pido que no sea grocero/a."             
+            "a. Le hago o le digo lo mismo.",
+            "b. Prefiero no hacer nada.",
+            "c. Calmadamente le pido que no sea grocero/a."             
           ],
           },
           {"title": "Situacion 5",
           "text": "Cuando te sientes triste ¿Qué haces?",
           "answers": [
-            "¿por que?-a.No le digo nada a nadie y me guardo mis sentimientos.",
-            "b.Prefiero decirle a alguien para sentirme mejor.",
-            "c.No se que hacer."
+            "¿por que?-a. No le digo nada a nadie y me guardo mis sentimientos.",
+            "b. Prefiero decirle a alguien para sentirme mejor.",
+            "c. No se que hacer."
             
           ],
           },
@@ -799,78 +799,78 @@ export var Info = [
           {"title": "Practica 1",
           "text": "¿Normalmente enfrentas los problemas?",
           "answers": [
-            "a.Siempre.",
-            "¿por que?-b.Casi nunca.",
-            "c.A veces."
+            "a. Siempre.",
+            "¿por que?-b. Casi nunca.",
+            "c. A veces."
                       
           ],
           },
           {"title": "Practica 2",
           "text": "¿Es fácil para ti superar momentos difíciles?",
           "answers": [
-            "¿por que?-a.No, es muy dificil.",
-            "b.Si, siempre es facil.",
-            "c.Depende de la situacion."
+            "¿por que?-a. No, es muy dificil.",
+            "b. Si, siempre es facil.",
+            "c. Depende de la situacion."
                       
           ],
           },
           {"title": "Practica 3",
           "text": "¿Normalmente encuentras motivos para reírte y estar alegre?",
           "answers": [
-            "a.Si trato de estar alegre.",
-            "¿por que?-b.No me cuesta encontrar motivos.",
-            "c.Unos dias me cuesta mas que otros."
+            "a. Si trato de estar alegre.",
+            "¿por que?-b. No me cuesta encontrar motivos.",
+            "c. Unos dias me cuesta mas que otros."
                       
           ],
           },
           {"title": "Practica 4",
           "text": "¿Cuando estás en una situación difícil normalmente encuentras una salida?",
           "answers": [
-            "a.Casi siempre.",
-            "¿por que?-b.Casi nunca.",
-            "c.A veces."
+            "a. Casi siempre.",
+            "¿por que?-b. Casi nunca.",
+            "c. A veces."
                       
           ],
           },
           {"title": "Situacion 1",
           "text": "Si un día tienes un problema con uno/a de tus amigos/as y el o ella no quiere hablarte más ¿Que haces?",
           "answers": [
-            "a.No me importa, prefiero dejarlo así.",
-            "b.Trato de hablar con él/ella para solucionar el problema.",
-            "c.Si ya no me quiere hablar, trato de seguir adelante y recordar las cosas lindas que pasaron."
+            "a. No me importa, prefiero dejarlo así.",
+            "b. Trato de hablar con él/ella para solucionar el problema.",
+            "c. Si ya no me quiere hablar, trato de seguir adelante y recordar las cosas lindas que pasaron."
                       
           ],
           },
           {"title": "Situacion 2",
           "text": "Imagina que te cambian de colegio y no conoces a nadie ¿Qué harías?",
           "answers": [
-            "a.Hago pataleta y digo que no quiero ir al colegio.",
-            "b.Aunque me cueste, acepto, voy y trato de hacer nuevos/as amigos/as.",
-            "c.Voy pero no hablo con nadie porque me siento inseguro/a."
+            "a. Hago pataleta y digo que no quiero ir al colegio.",
+            "b. Aunque me cueste, acepto, voy y trato de hacer nuevos/as amigos/as.",
+            "c. Voy pero no hablo con nadie porque me siento inseguro/a."
           ],
           },
           {"title": "Situacion 3",
           "text": "Imagina que te ponen a hacer algo en público y hay muchas personas mirándote ¿Qué harías?",
           "answers": [
-            "a.Salgo corriendo.",
-            "b.Prefiero decir que no cuando no quiero hacer algo.",
-            "c.Improviso y lo hago. "
+            "a. Salgo corriendo.",
+            "b. Prefiero decir que no cuando no quiero hacer algo.",
+            "c. Improviso y lo hago. "
           ],
           },
           {"title": "Situacion 4",
           "text": "Cuando pasaste por la pandemia del COVID 19 ¿Cómo te adaptaste? ",
           "answers": [
-            "a.Me gustó estar en casa mucho tiempo.",
-            "b.No me adapté, fue muy difícil porque estaba lejos de mis amigos/as y no sabia que hacer.",
-            "c.Al principio fue difícil pero logré adaptarme con algunas rutinas y cosas que tenía en casa.",                  
+            "a. Me gustó estar en casa mucho tiempo.",
+            "b. No me adapté, fue muy difícil porque estaba lejos de mis amigos/as y no sabia que hacer.",
+            "c. Al principio fue difícil pero logré adaptarme con algunas rutinas y cosas que tenía en casa.",                  
           ],
           },
           {"title": "Situacion 5",
           "text": "Si no tienes la posibilidad de ir al cole y estudiar ¿Qué harías?",
           "answers": [
-            "a.No me importa.",
-            "b.Trato de aprender en casa, internet o una biblioteca.",
-            "c.Le pido a alguien adulto que me enseñe."
+            "a. No me importa.",
+            "b. Trato de aprender en casa, internet o una biblioteca.",
+            "c. Le pido a alguien adulto que me enseñe."
           ],
           },
         ],

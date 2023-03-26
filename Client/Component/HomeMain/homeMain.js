@@ -44,7 +44,7 @@ export default function HomeMain ({ navigation }) {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarActiveTintColor: "purple",
+        tabBarActiveTintColor: '#662483',
       }}
     >
       <Tab.Screen
