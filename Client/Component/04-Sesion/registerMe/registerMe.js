@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Alert, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAvoidingScrollView } from "react-native-keyboard-avoiding-scroll-view";
 import { SelectList } from "react-native-dropdown-select-list";
 import { Data } from "./city";
@@ -167,75 +167,77 @@ export default function Register({ navigation }) {
 
   return (
       <View style={styles.container}>
-        <KeyboardAvoidingScrollView>
-          <Text style={styles.text}>Nombre</Text>
-          <TextInput
-            placeholder="Nombre (Ej. Laura)"
-            style={styles.input}
-            onChangeText={(nombre) =>
-              setform({ ...form, Nombre_de_usuario: nombre })
-            }
-          />
-          <Text style={styles.text}>Apellido</Text>
-          <TextInput
-            placeholder="Apellido (Ej. Vargas)"
-            style={styles.input}
-            onChangeText={(apellido) =>
-              setform({ ...form, Apellido_de_usuario: apellido })
-            }
-          />
-          <Text style={styles.text}>Edad</Text>
-          <TextInput
-            placeholder="Edad (Ej. 12)"
-            style={styles.input}
-            keyboardType="numeric"
-            maxLength={2}
-            onChangeText={(edad) => setform({ ...form, Edad: parseInt(edad) })}
-          />
-          <Text style={styles.text}>Genero</Text>
-          <SelectList
-            placeholder="Género"
-            search={false}
-            setSelected={(gender) => setform({ ...form, Genero: gender })}
-            data={["Masculino", "Femenino", "Otro"]}
-            save="value"
-            inputStyles={styles.selectInput1}
-            fontFamily="title"
-            boxStyles={styles.selectBox}
-            dropdownStyles={styles.selectDropdown}
-          />
-          <Text style={styles.text}>Departamento</Text>
+        <ScrollView>
+          <KeyboardAvoidingScrollView>
+            <Text style={styles.text}>Nombre</Text>
+            <TextInput
+              placeholder="Nombre (Ej. Laura)"
+              style={styles.input}
+              onChangeText={(nombre) =>
+                setform({ ...form, Nombre_de_usuario: nombre })
+              }
+            />
+            <Text style={styles.text}>Apellido</Text>
+            <TextInput
+              placeholder="Apellido (Ej. Vargas)"
+              style={styles.input}
+              onChangeText={(apellido) =>
+                setform({ ...form, Apellido_de_usuario: apellido })
+              }
+            />
+            <Text style={styles.text}>Edad</Text>
+            <TextInput
+              placeholder="Edad (Ej. 12)"
+              style={styles.input}
+              keyboardType="numeric"
+              maxLength={2}
+              onChangeText={(edad) => setform({ ...form, Edad: parseInt(edad) })}
+            />
+            <Text style={styles.text}>Genero</Text>
+            <SelectList
+              placeholder="Género"
+              search={false}
+              setSelected={(gender) => setform({ ...form, Genero: gender })}
+              data={["Masculino", "Femenino", "Otro"]}
+              save="value"
+              inputStyles={styles.selectInput1}
+              fontFamily="title"
+              boxStyles={styles.selectBox}
+              dropdownStyles={styles.selectDropdown}
+            />
+            <Text style={styles.text}>Departamento</Text>
 
-          <SelectList
-            placeholder={"Departamento"}
-            setSelected={(dep) => setform({ ...form, Departamento: dep })}
-            data={data}
-            save="value"
-            fontFamily="title"
-            boxStyles={styles.selectBox}
-            inputStyles={styles.selectInput}
-            dropdownStyles={styles.selectDropdown}
-          />
+            <SelectList
+              placeholder={"Departamento"}
+              setSelected={(dep) => setform({ ...form, Departamento: dep })}
+              data={data}
+              save="value"
+              fontFamily="title"
+              boxStyles={styles.selectBox}
+              inputStyles={styles.selectInput}
+              dropdownStyles={styles.selectDropdown}
+            />
 
-          <Text style={styles.text}>Correo</Text>
-          <TextInput
-            placeholder="Correo (Ej. laurav123@gmail.com)"
-            style={styles.input}
-            onChangeText={(correo) => setform({ ...form, Mail: correo })}
-          />
-          <Text style={styles.text}>Contraseña. </Text>
-          <TextInput
-            placeholder="De 6 a 15 caracteres"
-            secureTextEntry={true}
-            style={styles.input}
-            onChangeText={(contraseña) =>
-              setform({ ...form, Contrasenia: contraseña })
-            }
-          />
-          <TouchableOpacity style={styles.button} onPress={() => validate()}>
-            <Text style={styles.textButton}>Registrarse</Text>
-          </TouchableOpacity>
-        </KeyboardAvoidingScrollView>
+            <Text style={styles.text}>Correo</Text>
+            <TextInput
+              placeholder="Correo (Ej. laurav123@gmail.com)"
+              style={styles.input}
+              onChangeText={(correo) => setform({ ...form, Mail: correo })}
+            />
+            <Text style={styles.text}>Contraseña. </Text>
+            <TextInput
+              placeholder="De 6 a 15 caracteres"
+              secureTextEntry={true}
+              style={styles.input}
+              onChangeText={(contraseña) =>
+                setform({ ...form, Contrasenia: contraseña })
+              }
+            />
+            <TouchableOpacity style={styles.button} onPress={() => validate()}>
+              <Text style={styles.textButton}>Registrarse</Text>
+            </TouchableOpacity>
+          </KeyboardAvoidingScrollView>
+        </ScrollView>
       </View>
   );
 }

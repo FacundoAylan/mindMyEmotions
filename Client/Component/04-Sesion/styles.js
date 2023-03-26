@@ -43,7 +43,7 @@ export const styles = StyleSheet.create( {
     paddingHorizontal: 22,
     borderRadius: 18,
     elevation: 3,
-    backgroundColor: 'white',
+    backgroundColor: '#662483',
     marginTop: 20,
     borderWidth: 2,
     borderColor: '#662483',
@@ -54,7 +54,7 @@ export const styles = StyleSheet.create( {
     fontSize: 25,
     lineHeight: 23,
     letterSpacing: 2,
-    color: '#662483',
+    color: 'white',
   },
   label: {
     fontFamily:'title',

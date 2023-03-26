@@ -2,7 +2,6 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create( {
   container: {
-    zIndex: 2,
     flex: 1,
     justifyContent: "center",
     textAlign: "center",
@@ -12,6 +11,7 @@ export const styles = StyleSheet.create( {
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
     borderRightColor: '#662483',
+    paddingBottom: 35
   },
   input: {
     fontFamily: 'title',
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create( {
     paddingHorizontal: 15,
     borderRadius: 14,
     elevation: 3,
-    backgroundColor: "white",
+    backgroundColor: "#662483",
     marginTop: 20,
     borderWidth: 2,
     borderColor: "#662483",
@@ -56,7 +56,7 @@ export const styles = StyleSheet.create( {
     fontSize: 25,
     lineHeight: 30,
     letterSpacing: 2,
-    color: '#662483',
+    color: 'white',
   },
   selectInput1:{
     fontSize: 20,

@@ -16,7 +16,7 @@ export default function Login({ navigation }) {
 
   let kidSelected = () => {
     saveToStorage(IS_ADULT, "no");
-    navigation.navigate("homeMain");
+    navigation.navigate("sesion");
   };
 
   async function saveToStorage(key, value) {
