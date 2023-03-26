@@ -4,9 +4,9 @@ import Modal from "react-native-modal";
 import { useDispatch } from "react-redux";
 import {validateTopinc, loadAnswer} from '../../../../redux/actions/index'
 import {Identify} from './identify/identify'
-import {Emotions} from './emotions/emotions'
 import {styles} from './styles';
 import ButtonNext from './Button/Button' ;
+import Icon from 'react-native-vector-icons/Feather';
 
 export default function Choice({ navigation, route }) {
 
@@ -32,7 +32,7 @@ export default function Choice({ navigation, route }) {
 */
   const [modal, setModal] = useState(false)
   const [textModal, setTextModal] = useState('¡Buen trabajo! Desbloqueaste un nuevo reto.')
-  const [URLimg, setImg] = useState('https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png');
+  const [URLimg, setImg] = useState(require('../../../../assets/images/Alegría.png'));
 //--------------------------------------------------------------------------------------------------------------------------------
  
 /*
@@ -134,17 +134,16 @@ export default function Choice({ navigation, route }) {
         <Text style={styles.description}>{text}</Text>
         {questions[index1].answers.map((value, index) => {
           if (value.charAt(0) === "¿") {
-            console.log(value.split("-")[0])
             return (
               <View style={{width:'96%', marginLeft:5}}>
                 <TouchableOpacity onPress={handleButtonPress}>
                   <View style={styles.containerButton}>
-                    <Text style={styles.textContainer}>{value.split("-")[1]}</Text>
+                    <Text style={styles.textContainer}>{value.split(".")[1]}</Text>
                   </View>
                 </TouchableOpacity>
                 {isInputVisible &&  (
                   <View style={{width:'90%', marginLeft:20}}>
-                    <Text style={styles.textContainer}>{value.split("-")[0]}</Text>
+                    <Text style={styles.textCaso}>{value.split("-")[0]}</Text>
                     {
                       value.split("-")[0] === "¿Text?"?
                       <TextInput                   
@@ -184,7 +183,7 @@ export default function Choice({ navigation, route }) {
                   numberOfLines={7}
                   onChangeText={setDescription}
                   value={description}
-                  placeholder="Digite seu texto aqui"
+                  placeholder="Digite su texto aqui"
                 />
                 <TouchableOpacity
                   key={value}
@@ -197,7 +196,7 @@ export default function Choice({ navigation, route }) {
                     });
                   }}
                 >
-                  <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
+                  <View style={{flex:0, justifyContent:'center', textAlign:'center', height:60, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'#662483'}}>
                     <Text style={styles.textContainer}>Continuar</Text>
                   </View>
                 </TouchableOpacity>
@@ -233,7 +232,7 @@ export default function Choice({ navigation, route }) {
                         toggleModal({module: nameTheory,ask: index1 + 1,answer: value,})
                       }}
                     >
-                      <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
+                      <View style={{flex:0, justifyContent:'center', textAlign:'center', height:60, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'#662483'}}>
                         <Text style={styles.textContainer}>Continuar</Text>
                       </View>
                     </TouchableOpacity>
@@ -262,9 +261,7 @@ export default function Choice({ navigation, route }) {
                     <View style={{width: 200, height: 200, marginLeft:'25%'}}>
                       <Image
                         style={{width: '100%', height: '100%', resizeMode: 'contain'}} 
-                        source={{
-                          uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png",
-                        }}
+                        source={URLimg}
                       />
                     </View>
                     <TextInput
@@ -287,7 +284,7 @@ export default function Choice({ navigation, route }) {
                         })
                   }
                 >
-                  <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
+                  <View style={{flex:0, justifyContent:'center', textAlign:'center', height:60, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'#662483'}}>
                     <Text style={styles.textContainer}>Continuar</Text>
                   </View>
                 </TouchableOpacity>
@@ -300,9 +297,7 @@ export default function Choice({ navigation, route }) {
                     <View style={{width: 200, height: 200, marginLeft:'25%'}}>
                       <Image
                         style={{width: '100%', height: '100%', resizeMode: 'contain'}} 
-                        source={{
-                          uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1678583057/MEs/Alegr%C3%ADa_r6kb1s.png",
-                        }}
+                        source={URLimg}
                       />
                     </View>
                     <TextInput
@@ -318,7 +313,7 @@ export default function Choice({ navigation, route }) {
             return (
               <TouchableOpacity key ={value} onPress={() => nameTheory === 'Identificar' && index1+1===1? identify({module:nameTheory, ask:index1 + 1, answer: value}) :toggleModal({module:nameTheory, ask:index1 + 1, answer: value})}>
                 <View style={styles.containerButton}>
-                  <Text style={styles.textContainer}>{value}</Text>
+                  <Text style={styles.textContainer}>{value.split(".")[1]}</Text>
                 </View>
               </TouchableOpacity>
             );
@@ -327,16 +322,15 @@ export default function Choice({ navigation, route }) {
         
       </ScrollView>
 
-      <ScrollView style={{padding:'5%'}}>
       <Modal isVisible={modal} style={styles.containerModal}>
-          <Text style={styles.textModal}>{textModal}</Text>
+      <ScrollView>
+          <Text style={textModal.charAt(0) !== '¿'? styles.logModal : styles.textModal}>{textModal}</Text>
+          <View style={styles.containerImg}>
             <Image
-                style={{height:300, margin:0}}
-                source={{
-                  uri: URLimg
-                  ,
-                }}
+                style={styles.modalImg}
+                source={URLimg}
               /> 
+          </View>
           <TouchableOpacity 
           onPress={() => {
             if(nameNext=== ''){
@@ -350,11 +344,13 @@ export default function Choice({ navigation, route }) {
             setTextModal("¡Buen trabajo! Desbloqueaste un nuevo reto.")
           }}>
             <View style={styles.buttonModal}>
-              <Text style={{fontSize:36, color:'white'}}>{"=>"}</Text>
+              <Text style={{fontSize:36, color:'white'}}>
+                <Icon name="arrow-right" size={30} color="white" />
+              </Text>
             </View>
           </TouchableOpacity>
-      </Modal>
         </ScrollView>
+      </Modal>
     </View>
   );
 }

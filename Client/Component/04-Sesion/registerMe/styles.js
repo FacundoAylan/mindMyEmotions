@@ -2,6 +2,7 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create( {
   container: {
+    zIndex: 2,
     flex: 1,
     justifyContent: "center",
     textAlign: "center",
@@ -42,7 +43,7 @@ export const styles = StyleSheet.create( {
     flex:0,
     justifyContent: 'center',
     textAlign: 'center',
-    fontFamily: 'logo',
+    fontFamily: 'text',
     color: "#662483",
     padding: 0,
     margin: 0,
@@ -51,7 +52,7 @@ export const styles = StyleSheet.create( {
     letterSpacing: 2
   },
   textButton: {
-    fontFamily: 'logo',
+    fontFamily: 'text',
     fontSize: 25,
     lineHeight: 30,
     letterSpacing: 2,
@@ -82,5 +83,9 @@ export const styles = StyleSheet.create( {
     borderWidth: 2,
     width:'80%', 
     marginLeft: '10%'
-  }
+  },
+  imagenFondo: {
+    flex: 1,
+    resizeMode: 'cover',
+  },
 } );

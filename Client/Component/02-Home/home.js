@@ -36,9 +36,7 @@ export default function Home( { navigation } ) {
     <View style={styles.container}>
       <Image
         style={styles.image}
-        source={{
-          uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_fit,g_center,w_1188,x_0/v1679012928/MME%20logos/Mind_My_Emotions_znokgz.png",
-        }}
+        source={require('../../assets/images/home.png')}
       />
     </View>
   );

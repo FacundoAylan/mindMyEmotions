@@ -12,6 +12,7 @@ export default function Modules ({navigation}) {
   return (
     <View style={styles.mainContainer}>
       <ScrollView>
+        <Text style={styles.title}>Módulos de aprendizaje </Text>
         {
           modules.map((module,index) =>{
             return(
@@ -22,7 +23,7 @@ export default function Modules ({navigation}) {
               >
                 <View style={validate[module.split(" ").join("")] ? styles.container : styles.disabled}>
 
-                  <Text style={styles.text}>{module}</Text>
+                  <Text style={validate[module.split(" ").join("")] ? styles.text: styles.textDisabled}>{module}</Text>
                 </View>
               </TouchableOpacity>
             )

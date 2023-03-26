@@ -8,6 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import { Image, StyleSheet } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
 export default function HomeMain ({ navigation }) {
   const Tab = createBottomTabNavigator();
 
@@ -66,9 +67,7 @@ export default function HomeMain ({ navigation }) {
           tabBarIcon: ({ color, size }) => (
             <Image
             style={styles.logo}
-            source={{
-              uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/c_scale,w_100/v1679012926/MME%20logos/ME_3_offzo2.png',
-            }}
+            source={require('../../assets/images/ME.png')}
           />
           ),
         }}

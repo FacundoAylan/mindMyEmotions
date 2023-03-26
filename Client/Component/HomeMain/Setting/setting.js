@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert } from "react-native";
+import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert, ScrollView } from "react-native";
 import EditProfileData from "./editProfileData";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
 import axios from "axios";
+import { Dimensions } from 'react-native';
 
+const windowHeight = Dimensions.get('window').height;
 
 export default function Setting( { navigation } ) {
 
@@ -164,138 +166,149 @@ export default function Setting( { navigation } ) {
   }
 
   return (
-    <View style={styles.mainContainer}>
-      <View>
+    <ScrollView>
+      <View style={styles.mainContainer}>
+        <View>
+          <Text style={styles.title}>Tu Perfil</Text>
 
+          <View style={styles.reloadImage}>
+            <Pressable onPressIn={getUserDataObjectAndSaveItLocally}>
+              <Image
+                style={styles.imageEditLogo}
+                source={{
+                  uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1679427955/ASSETTS/383083_refresh_reload_icon_ae9ghe.png",
+                }}
+                key={Math.random()}
+                onPress={sendAvatarPanel}
+              />
+            </Pressable>
+          </View>
 
-        <Text style={styles.title}>Tu Perfil</Text>
-
-        <View style={styles.reloadImage}>
-          <Pressable onPressIn={getUserDataObjectAndSaveItLocally}>
+          <View style={styles.avatarContainer}>
             <Image
-              style={styles.imageEditLogo}
-              source={{ uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1679427955/ASSETTS/383083_refresh_reload_icon_ae9ghe.png' }}
+              style={styles.avatar}
+              source={{ uri: selectedAvatar }}
               key={Math.random()}
               onPress={sendAvatarPanel}
             />
+          </View>
+          <Pressable onPress={() => sendAvatarPanel()}>
+            <Image style={styles.imageEditLogo} source={{ uri: editImage }} />
           </Pressable>
 
+          <Pressable onPress={() => sendEditNamePanel()}>
+            <View style={styles.informationContainer}>
+              <Text style={styles.text}>Nombre</Text>
+              <Text style={styles.textForUserData}>
+                {userName ? userName : "..."}
+              </Text>
+
+              <Image
+                style={styles.imageEditLogoForTheRightSide}
+                source={{ uri: editImage }}
+              />
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => sendEditLastNamePanel()}>
+            <View style={styles.informationContainer}>
+              <Text style={styles.text}>Apellido</Text>
+              <Text style={styles.textForUserData}>
+                {userLastname ? userLastname : "..."}
+              </Text>
+              <Image
+                style={styles.imageEditLogoForTheRightSide}
+                source={{ uri: editImage }}
+              />
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => sendEditAgePanel()}>
+            <View style={styles.informationContainer}>
+              <Text style={styles.text}>Edad</Text>
+              <Text style={styles.textForUserData}>
+                {userAge ? userAge : "..."}
+              </Text>
+              <Image
+                style={styles.imageEditLogoForTheRightSide}
+                source={{ uri: editImage }}
+              />
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => sendEditGenderPanel()}>
+            <View style={styles.informationContainer}>
+              <Text style={styles.text}>Género</Text>
+              <Text style={styles.textForUserData}>
+                {userGender ? userGender : "..."}
+              </Text>
+              <Image
+                style={styles.imageEditLogoForTheRightSide}
+                source={{ uri: editImage }}
+              />
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => sendEditDepartmentPanel()}>
+            <View style={styles.informationContainer}>
+              <Text style={styles.text}>Departamento</Text>
+              <Text style={styles.textForUserData}>
+                {userDepartment ? userDepartment : "..."}
+              </Text>
+              <Image
+                style={styles.imageEditLogoForTheRightSide}
+                source={{ uri: editImage }}
+              />
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => setShowEditPanel()}>
+            <View style={styles.informationContainer}>
+              <Text style={styles.notWorkingYet}>Correo</Text>
+              <Text style={styles.textForUserData}>
+                {" "}
+                {userEmail ? userEmail : "..."}
+              </Text>
+              <Image
+                style={styles.imageEditLogoForTheRightSide}
+                source={{ uri: editImage }}
+              />
+            </View>
+          </Pressable>
+
+          <Pressable onPress={() => setShowEditPanel()}>
+            <View style={styles.informationContainer}>
+              <Text style={styles.notWorkingYet}>Contraseña</Text>
+              <Text style={styles.textForUserData}>********</Text>
+              <Image
+                style={styles.imageEditLogoForTheRightSide}
+                source={{ uri: editImage }}
+              />
+            </View>
+          </Pressable>
+
+          {showEditPanel === true && (
+            <EditProfileData
+              stopShowingEditPanel={stopShowingEditPanel}
+              selectedPanel={selectedPanel}
+              changeAvatarImage={changeAvatarImage}
+              renderNewUserName={renderNewUserName}
+              renderNewUserLastname={renderNewUserLastname}
+              renderNewserAge={renderNewserAge}
+              renderNewUserGender={renderNewUserGender}
+              renderUserDepartment={renderUserDepartment}
+              userEmail={userEmail}
+            />
+          )}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {logOutUser()}}
+          >
+            <Text style={styles.textButton}> LogOut</Text>
+          </TouchableOpacity>
         </View>
-
-
-
-        <View style={styles.avatarContainer}>
-          <Image
-            style={styles.avatar}
-            source={{ uri: selectedAvatar }}
-            key={Math.random()}
-            onPress={sendAvatarPanel}
-          />
-        </View>
-        <Pressable onPress={() => sendAvatarPanel()}>
-          <Image
-            style={styles.imageEditLogo}
-            source={{ uri: editImage }}
-          />
-        </Pressable>
-
-        <Pressable onPress={() => sendEditNamePanel()}>
-          <View style={styles.informationContainer}>
-            <Text style={styles.text}>Nombre</Text>
-            <Text style={styles.textForUserData}>{userName ? userName : '...'}</Text>
-
-            <Image
-              style={styles.imageEditLogoForTheRightSide}
-              source={{ uri: editImage }}
-            />
-
-          </View>
-        </Pressable>
-
-        <Pressable onPress={() => sendEditLastNamePanel()}>
-          <View style={styles.informationContainer}>
-            <Text style={styles.text}>Apellido</Text>
-            <Text style={styles.textForUserData}>{userLastname ? userLastname : '...'}</Text>
-            <Image
-              style={styles.imageEditLogoForTheRightSide}
-              source={{ uri: editImage }}
-            />
-          </View>
-        </Pressable>
-
-        <Pressable onPress={() => sendEditAgePanel()}>
-          <View style={styles.informationContainer}>
-            <Text style={styles.text}>Edad</Text>
-            <Text style={styles.textForUserData}>{userAge ? userAge : '...'}</Text>
-            <Image
-              style={styles.imageEditLogoForTheRightSide}
-              source={{ uri: editImage }}
-            />
-          </View>
-        </Pressable>
-
-        <Pressable onPress={() => sendEditGenderPanel()}>
-          <View style={styles.informationContainer}>
-            <Text style={styles.text}>Género</Text>
-            <Text style={styles.textForUserData}>{userGender ? userGender : '...'}</Text>
-            <Image
-              style={styles.imageEditLogoForTheRightSide}
-              source={{ uri: editImage }}
-            />
-          </View>
-        </Pressable>
-
-        <Pressable onPress={() => sendEditDepartmentPanel()}>
-          <View style={styles.informationContainer}>
-            <Text style={styles.text}>Departamento</Text>
-            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : '...'}</Text>
-            <Image
-              style={styles.imageEditLogoForTheRightSide}
-              source={{ uri: editImage }}
-            />
-          </View>
-        </Pressable>
-
-        <Pressable onPress={() => setShowEditPanel()}>
-          <View style={styles.informationContainer}>
-            <Text style={styles.notWorkingYet}>Correo</Text>
-            <Text style={styles.textForUserData}>  {userEmail ? userEmail : '...'}</Text>
-            <Image
-              style={styles.imageEditLogoForTheRightSide}
-              source={{ uri: editImage }}
-            />
-          </View>
-        </Pressable>
-
-        <Pressable onPress={() => setShowEditPanel()}>
-          <View style={styles.informationContainer}>
-            <Text style={styles.notWorkingYet} >Contraseña</Text>
-            <Text style={styles.textForUserData}>********</Text>
-            <Image
-              style={styles.imageEditLogoForTheRightSide}
-              source={{ uri: editImage }}
-            />
-          </View>
-        </Pressable>
-
-
-        {showEditPanel === true && <EditProfileData
-          stopShowingEditPanel={stopShowingEditPanel}
-          selectedPanel={selectedPanel}
-          changeAvatarImage={changeAvatarImage}
-          renderNewUserName={renderNewUserName}
-          renderNewUserLastname={renderNewUserLastname}
-          renderNewserAge={renderNewserAge}
-          renderNewUserGender={renderNewUserGender}
-          renderUserDepartment={renderUserDepartment}
-          userEmail={userEmail}
-
-        />}
-
-        <Button title="LogOut" onPress={logOutUser}>LogOut</Button>
-
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -305,7 +318,7 @@ const styles = StyleSheet.create( {
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
     borderRightColor: '#662483',
-    minHeight: '100%'
+    minHeight: windowHeight,
   },
   title: {
     flex: 0,
@@ -386,5 +399,28 @@ const styles = StyleSheet.create( {
     position: "absolute",
     marginLeft: 320,
     marginTop: 30,
-  }
+  },
+  button: {
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+    paddingHorizontal: 80,
+    borderWidth: 2,
+    borderColor: '#662483',
+    borderRadius: 18,
+    elevation: 3,
+    backgroundColor: "#662483",
+    marginTop: 20,
+    marginHorizontal: 50,
+  },
+  textButton: {
+    flex: 0,
+    justifyContent: 'center',
+    textAlign: 'center',
+    fontFamily: 'text',
+    fontSize: 20,
+    lineHeight: 30,
+    letterSpacing: 2,
+    color: "white",
+  },
 } );

@@ -6,14 +6,13 @@ export const styles = StyleSheet.create( {
     textAlign: 'center',
     flex: 1,
     padding: 10,
-    backgroundColor: "#eaeaea",
     borderLeftWidth: 5,
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
     borderRightColor: '#662483',
   },
   title: {
-    fontFamily: 'logo',
+    fontFamily: 'text',
     letterSpacing: 5,
     fontSize: 36,
     justifyContent: 'center',
@@ -51,14 +50,14 @@ export const styles = StyleSheet.create( {
     marginHorizontal: 30,
   },
   text: {
-    fontFamily:'logo',
+    fontFamily:'text',
     fontSize: 25,
     lineHeight: 23,
     letterSpacing: 2,
     color: '#662483',
   },
   label: {
-    fontFamily:'logo',
+    fontFamily:'title',
     color: '#662483',
     padding: 0,
     margin: 0,
@@ -70,6 +69,6 @@ export const styles = StyleSheet.create( {
   imagenFondo: {
     flex: 1,
     resizeMode: 'cover',
-    marginTop: 30
+    marginTop: 30,
   },
 } );

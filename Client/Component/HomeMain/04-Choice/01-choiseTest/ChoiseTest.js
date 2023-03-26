@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import {  Image, StyleSheet, Text, TouchableOpacity, View, ScrollView } from "react-native";
+import {  Image, Text, TouchableOpacity, View, ScrollView } from "react-native";
 import Modal from "react-native-modal";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import {validateTopinc} from '../../../../redux/actions/index';
 import { styles } from "./styles";
+import { Count } from "./count";
+import Icon from 'react-native-vector-icons/Feather';
 
 export default function ChoiceTest({ navigation, route }) {
 
   const { json, nameTheory, indexModule, nameNext, nameModule} = route.params;
 
-  const validate = useSelector((state) => state.loader);
   const JSON = json.practice.filter((value) => value.nameTheory === nameTheory);
   const questions = JSON[0].questions
 
@@ -18,13 +19,14 @@ export default function ChoiceTest({ navigation, route }) {
   const [title, setTitle] = useState(questions[0].title);
   const [text, setText] = useState(questions[0].text);
   const [countSum, setCount] = useState(0);
-  const [URLimg, setImg] = useState('');
+  const [URLimg, setImg] = useState(require('../../../../assets/images/0-6.png'));
 
   const dispatch = useDispatch()
   
   const toggleModal = async ({pregunta, respuesta}) => {
     //tengo que solucionar el tema de presionar el boton cuando no existen mas preguntas
-    setCount(countSum+index1)
+    let count = Count({pregunta,respuesta})
+    setCount(countSum+count)
     //--------------------------------------------
     if(pregunta < questions.length){
       setIndex(pregunta)
@@ -40,16 +42,16 @@ export default function ChoiceTest({ navigation, route }) {
         dispatch(validateTopinc({name: nameModule, value:true}))
       }
       if(countSum <= 6){
-        setImg('https://i.ibb.co/VSxFhWP/0-6.jpg')
+        setImg(require('../../../../assets/images/0-6.png'))
       }
       if(countSum >= 7 && countSum <= 15){
-        setImg('https://i.ibb.co/XCzXTRt/7-15.jpg')
+        setImg(require('../../../../assets/images/7-15.png'))
       }
       if(countSum > 15 && countSum <= 25){
-        setImg('https://i.ibb.co/CJXkHL5/15-25.jpg')
+        setImg(require('../../../../assets/images/15-25.png'))
       }
       if(countSum > 25){
-        setImg('https://i.ibb.co/2gLBKR5/25.jpg')
+        setImg(require('../../../../assets/images/25.png'))
       }
       setModal(!modal)
     }
@@ -63,7 +65,7 @@ export default function ChoiceTest({ navigation, route }) {
           return (
             <TouchableOpacity key ={value} onPress={() => toggleModal({pregunta:index1 + 1, respuesta: value.charAt(0)})}>
               <View style={styles.containerButton}>
-                <Text style={styles.textContainer}>{value}</Text>
+                <Text style={styles.textContainer}>{value.split(".")[1]}</Text>
               </View>
             </TouchableOpacity>
           );
@@ -74,20 +76,21 @@ export default function ChoiceTest({ navigation, route }) {
         <View>
         <Image
             style={styles.image}
-            source={{
-              uri: URLimg
-              ,
-            }}
+            source={URLimg}
           /> 
           <TouchableOpacity onPress={() => {
             if(nameNext=== ''){
+              setCount(0)
               navigation.navigate('homeMain')
             }else{
+              setCount(0)
               navigation.navigate('topincs',{indexModule})
             }
           }}>
-            <View style={styles.containerButton}>
-              <Text style={styles.textContainer}>Terminar</Text>
+            <View style={styles.modalButton}>
+              <Text style={{fontSize:36, color:'white'}}>
+                <Icon name="arrow-right" size={30} color="white" />
+              </Text>
             </View>
           </TouchableOpacity>
         </View>

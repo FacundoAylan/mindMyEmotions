@@ -11,7 +11,7 @@ export default function ButtonNext ({module, ask, answer, value, isInputVisible,
         toggleModal({module, ask, answer});
       }}
     >
-      <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'white'}}>
+      <View style={{flex:0, justifyContent:'center', textAlign:'center', height:40, width: '80%', borderWidth:2, borderColor:'#662483', margin:15, marginLeft:'10%', borderRadius:12, backgroundColor:'#662483'}}>
         <Text style={styles.textContainer}>Continuar</Text>
       </View>
     </TouchableOpacity>
