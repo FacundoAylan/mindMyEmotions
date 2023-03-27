@@ -110,9 +110,36 @@ export default function Navigation() {
                 fontSize: 30,
               }}}
           />
-          <stack.Screen name="importance" component={Importance} />
-          <stack.Screen name="diary" component={Diary} />
-          <stack.Screen name="introduction" component={Introduction} />
+          <stack.Screen name="importance" component={Importance} 
+            options={{
+              title: "Importancia",
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontFamily: "logo",
+                fontSize: 30,
+              },
+            }}
+          />
+          <stack.Screen name="diary" component={Diary} 
+            options={{
+              title: "Diario",
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontFamily: "logo",
+                fontSize: 30,
+              },
+            }}
+          />
+          <stack.Screen name="introduction" component={Introduction}
+            options={{
+              title: "¿Quien eres?",
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontFamily: "logo",
+                fontSize: 30,
+              },
+            }}
+          />
           <stack.Screen name="userInfo" component={UserInfo} />
           <stack.Screen name="diaryNavigation" component={DiaryNavigation} />
         </stack.Navigator>
