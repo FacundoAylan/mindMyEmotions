@@ -65,7 +65,16 @@ export default function Navigation() {
             component={Sesion}
             options={{ headerShown: false }}
           />
-          <stack.Screen name="register" component={Register} />
+          <stack.Screen name="register" component={Register} 
+            options={{
+              title: "Registrarse",
+              headerTintColor: "white",
+              headerTitleStyle: {
+                fontFamily: "logo",
+                fontSize: 30,
+              },
+            }}
+          />
           <stack.Screen
             name="homeMain"
             component={HomeMain}
