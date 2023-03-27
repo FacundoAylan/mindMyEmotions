@@ -333,15 +333,15 @@ export default function Choice({ navigation, route }) {
           </View>
           <TouchableOpacity 
           onPress={() => {
-            if(nameNext=== ''){
-              navigation.navigate('homeMain')
+            setTextModal("¡Buen trabajo! Desbloqueaste un nuevo reto.")
+            if(nameNext=== 'next'){
+              return (navigation.navigate("homeMain"))
             }
             if(nameTheory === 'Identificar' && index1===1){
-              setModal(!Modal)
+              return (setModal(!Modal))
             }else{
-              navigation.navigate('topincs',{indexModule})
+              return (navigation.navigate('topincs',{indexModule}))
             }
-            setTextModal("¡Buen trabajo! Desbloqueaste un nuevo reto.")
           }}>
             <View style={styles.buttonModal}>
               <Text style={{fontSize:36, color:'white'}}>
