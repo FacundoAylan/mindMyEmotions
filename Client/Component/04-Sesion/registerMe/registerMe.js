@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Alert, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Alert, KeyboardAvoidingView, ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { KeyboardAvoidingScrollView } from "react-native-keyboard-avoiding-scroll-view";
 import { SelectList } from "react-native-dropdown-select-list";
 import { Data } from "./city";
@@ -166,8 +166,9 @@ export default function Register({ navigation }) {
   };
 
   return (
-      <View style={styles.container}>
+    <KeyboardAvoidingView style={styles.mainContainer} behavior="position">
         <ScrollView>
+      <View style={styles.container}>
           <KeyboardAvoidingScrollView>
             <Text style={styles.text}>Nombre</Text>
             <TextInput
@@ -237,7 +238,8 @@ export default function Register({ navigation }) {
               <Text style={styles.textButton}>Registrarse</Text>
             </TouchableOpacity>
           </KeyboardAvoidingScrollView>
-        </ScrollView>
       </View>
+        </ScrollView>
+      </KeyboardAvoidingView>
   );
 }

@@ -1,17 +1,19 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create( {
-  container: {
+  mainContainer: {
     flex: 1,
     justifyContent: "center",
     textAlign: "center",
-    padding: 10,
     overflow: "scroll",
     borderLeftWidth: 5,
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
     borderRightColor: '#662483',
-    paddingBottom: 35
+    paddingBottom: 80
+  },
+  container:{
+    paddingTop: 30,
   },
   input: {
     fontFamily: 'title',
@@ -34,7 +36,7 @@ export const styles = StyleSheet.create( {
     borderRadius: 14,
     elevation: 3,
     backgroundColor: "#662483",
-    marginTop: 20,
+    marginTop: 10,
     borderWidth: 2,
     borderColor: "#662483",
     marginHorizontal: 30,
@@ -48,7 +50,7 @@ export const styles = StyleSheet.create( {
     padding: 0,
     margin: 0,
     marginTop: 10,
-    fontSize: 25,
+    fontSize: 20,
     letterSpacing: 2
   },
   textButton: {
