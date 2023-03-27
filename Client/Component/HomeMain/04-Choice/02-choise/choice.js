@@ -334,7 +334,7 @@ export default function Choice({ navigation, route }) {
           <TouchableOpacity 
           onPress={() => {
             setTextModal("¡Buen trabajo! Desbloqueaste un nuevo reto.")
-            if(nameNext=== 'next'){
+            if(nameNext=== ''){
               return (navigation.navigate("homeMain"))
             }
             if(nameTheory === 'Identificar' && index1===1){
