@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert, ScrollView } from "react-native";
+import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert, ScrollView, Dimensions } from "react-native";
 import EditProfileData from "./editProfileData";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
 import axios from "axios";
 
+const windowHeight = Dimensions.get( 'window' ).height;
 
 export default function Setting( { navigation } ) {
 
@@ -172,7 +173,7 @@ export default function Setting( { navigation } ) {
 
 
   return (
-
+    <ScrollView>
     <View style={styles.mainContainer}>
       <View>
         <Text style={styles.title}>Tu Perfil</Text>
@@ -296,13 +297,16 @@ export default function Setting( { navigation } ) {
           userActivities={userActivities}
 
         />}
-
-        <Button title="LogOut" onPress={logOutUser}>LogOut</Button>
-
-
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => logOutUser()}
+        >
+          <Text style={styles.textButton}>LogOut</Text>
+        </TouchableOpacity>
 
       </View>
     </View>
+    </ScrollView>
 
   );
 }
@@ -313,7 +317,7 @@ const styles = StyleSheet.create( {
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
     borderRightColor: '#662483',
-    /*     minHeight: '100%', */
+    minHeight: windowHeight,
   },
   title: {
     flex: 0,
@@ -396,5 +400,25 @@ const styles = StyleSheet.create( {
     position: "absolute",
     marginLeft: 320,
     marginTop: 30,
-  }
+  },
+  button: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 12,
+    paddingHorizontal: 22,
+    borderRadius: 18,
+    elevation: 3,
+    backgroundColor: '#662483',
+    marginTop: 20,
+    borderWidth: 2,
+    borderColor: '#662483',
+    marginHorizontal: 30,
+  },
+  textButton: {
+    fontFamily:'text',
+    fontSize: 25,
+    lineHeight: 23,
+    letterSpacing: 2,
+    color: 'white',
+  },
 } );
