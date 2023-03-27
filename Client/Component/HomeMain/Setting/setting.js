@@ -16,6 +16,8 @@ export default function Setting( { navigation } ) {
   const [ userGender, setUserGender ] = useState( '' )
   const [ userDepartment, setUserDepartment ] = useState( '' )
   const [ userEmail, setUserEmail ] = useState( '' )
+  const [ userActivities, setUserActivities ] = useState( '' )
+
 
   const [ showEditPanel, setShowEditPanel ] = useState( false )
   const [ selectedPanel, setSelectedPanel ] = useState( false )
@@ -30,6 +32,7 @@ export default function Setting( { navigation } ) {
       getUserDataFromAsyncStorage()
     }, 2500 );
   }, [] )
+
 
 
   //state rerendering functions
@@ -116,6 +119,7 @@ export default function Setting( { navigation } ) {
   let getUserDataFromAsyncStorage = async () => {
     try {
       let retrievedJson = await AsyncStorage.getItem( 'myObject' );
+      setUserActivities( retrievedJson )
       console.log( 'Request local user data   ' + retrievedJson );
       let jsonToObject = JSON.parse( retrievedJson )
       setUserName( jsonToObject?.Mensaje?.Datos_registro.Nombre_de_usuario )
@@ -125,6 +129,7 @@ export default function Setting( { navigation } ) {
       setUserDepartment( jsonToObject?.Mensaje?.Datos_registro.Departamento )
       setUserEmail( jsonToObject?.Mensaje?.Datos_registro.Mail )
       //console.log( jsonToObject.Mensaje.Datos_registro );
+
 
     } catch ( error ) {
       console.log( error );
@@ -153,7 +158,7 @@ export default function Setting( { navigation } ) {
     console.log( 'user signed out' );
   }
 
-  console.log( userEmail );
+  //console.log( userEmail );
 
   if ( userName === ''
     && userLastname === ''
@@ -165,24 +170,14 @@ export default function Setting( { navigation } ) {
     getUserDataFromAsyncStorage()
   }
 
-  return (
-    <ScrollView>
-      <View style={styles.mainContainer}>
-        <View>
-          <Text style={styles.title}>Tu Perfil</Text>
 
-          <View style={styles.reloadImage}>
-            <Pressable onPressIn={getUserDataObjectAndSaveItLocally}>
-              <Image
-                style={styles.imageEditLogo}
-                source={{
-                  uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/v1679427955/ASSETTS/383083_refresh_reload_icon_ae9ghe.png",
-                }}
-                key={Math.random()}
-                onPress={sendAvatarPanel}
-              />
-            </Pressable>
-          </View>
+
+
+  return (
+
+    <View style={styles.mainContainer}>
+      <View>
+        <Text style={styles.title}>Tu Perfil</Text>
 
           <View style={styles.avatarContainer}>
             <Image
@@ -196,19 +191,32 @@ export default function Setting( { navigation } ) {
             <Image style={styles.imageEditLogo} source={{ uri: editImage }} />
           </Pressable>
 
-          <Pressable onPress={() => sendEditNamePanel()}>
-            <View style={styles.informationContainer}>
-              <Text style={styles.text}>Nombre</Text>
-              <Text style={styles.textForUserData}>
-                {userName ? userName : "..."}
-              </Text>
+        </View>
 
-              <Image
-                style={styles.imageEditLogoForTheRightSide}
-                source={{ uri: editImage }}
-              />
-            </View>
-          </Pressable>
+        <View style={styles.avatarContainer}>
+          <Image
+            style={styles.avatar}
+            source={{ uri: selectedAvatar }}
+            key={Math.random()}
+            onPress={sendAvatarPanel}
+          />
+        </View>
+        <Pressable onPress={() => sendAvatarPanel()}>
+          <Image
+            style={styles.imageEditLogo}
+            source={{ uri: editImage }}
+          />
+        </Pressable>
+
+        <Pressable onPress={() => sendEditNamePanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Nombre</Text>
+            <Text style={styles.textForUserData}>{userName ? userName : '...'}</Text>
+
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
 
           <Pressable onPress={() => sendEditLastNamePanel()}>
             <View style={styles.informationContainer}>
@@ -276,39 +284,50 @@ export default function Setting( { navigation } ) {
             </View>
           </Pressable>
 
-          <Pressable onPress={() => setShowEditPanel()}>
-            <View style={styles.informationContainer}>
-              <Text style={styles.notWorkingYet}>Contraseña</Text>
-              <Text style={styles.textForUserData}>********</Text>
-              <Image
-                style={styles.imageEditLogoForTheRightSide}
-                source={{ uri: editImage }}
-              />
-            </View>
-          </Pressable>
+        <Pressable onPress={() => setShowEditPanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Correo</Text>
+            <Text style={styles.textForUserData}>  {userEmail ? userEmail : '...'}</Text>
+            {/*  <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            /> */}
+          </View>
+        </Pressable>
 
-          {showEditPanel === true && (
-            <EditProfileData
-              stopShowingEditPanel={stopShowingEditPanel}
-              selectedPanel={selectedPanel}
-              changeAvatarImage={changeAvatarImage}
-              renderNewUserName={renderNewUserName}
-              renderNewUserLastname={renderNewUserLastname}
-              renderNewserAge={renderNewserAge}
-              renderNewUserGender={renderNewUserGender}
-              renderUserDepartment={renderUserDepartment}
-              userEmail={userEmail}
-            />
-          )}
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => {logOutUser()}}
-          >
-            <Text style={styles.textButton}> LogOut</Text>
-          </TouchableOpacity>
-        </View>
+        <Pressable onPress={() => setShowEditPanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text} >Contraseña</Text>
+            <Text style={styles.textForUserData}>********</Text>
+            {/* <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            /> */}
+          </View>
+        </Pressable>
+
+
+        {showEditPanel === true && <EditProfileData
+          stopShowingEditPanel={stopShowingEditPanel}
+          selectedPanel={selectedPanel}
+          changeAvatarImage={changeAvatarImage}
+          renderNewUserName={renderNewUserName}
+          renderNewUserLastname={renderNewUserLastname}
+          renderNewserAge={renderNewserAge}
+          renderNewUserGender={renderNewUserGender}
+          renderUserDepartment={renderUserDepartment}
+          userEmail={userEmail}
+          userActivities={userActivities}
+
+        />}
+
+        <Button title="LogOut" onPress={logOutUser}>LogOut</Button>
+
+
+
       </View>
-    </ScrollView>
+    </View>
+
   );
 }
 
@@ -325,9 +344,9 @@ const styles = StyleSheet.create( {
     marginTop: 20,
     justifyContent: "center",
     textAlign: "center",
-    fontSize: 30,
-    fontWeight: "bold",
-    color: '#662483'
+    fontSize: 36,
+    fontFamily: "logo",
+    color: '#662483',
   },
   avatar: {
     alignSelf: "center",
@@ -347,12 +366,13 @@ const styles = StyleSheet.create( {
   },
   text: {
     color: "#662483",
-    fontWeight: "800",
-    fontSize: 17,
+    /*  fontWeight: "800", */
+    fontSize: 22,
     padding: 0,
     margin: 0,
     marginTop: 5,
     marginLeft: 30,
+    fontFamily: "logo",
   },
   textForUserData: {
     color: "#8C8C8C",
@@ -362,6 +382,7 @@ const styles = StyleSheet.create( {
     margin: 0,
     marginTop: 5,
     marginLeft: 50,
+    fontFamily: 'text',
   },
   editInfoImg: {
     position: "absolute",
@@ -380,16 +401,16 @@ const styles = StyleSheet.create( {
   imageEditLogo: {
     alignSelf: "center",
     marginBottom: 10,
-    height: 26,
-    width: 28,
+    height: 22,
+    width: 24,
   },
   imageEditLogoForTheRightSide: {
     position: "absolute",
     marginTop: 5,
     marginRight: 0,
     marginLeft: 300,
-    height: 26,
-    width: 28,
+    height: 22,
+    width: 24,
   },
   avatarContainer: {
     flexDirection: "row",
