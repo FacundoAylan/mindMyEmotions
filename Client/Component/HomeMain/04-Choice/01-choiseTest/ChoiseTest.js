@@ -79,13 +79,8 @@ export default function ChoiceTest({ navigation, route }) {
             source={URLimg}
           /> 
           <TouchableOpacity onPress={() => {
-            if(nameNext=== ''){
-              setCount(0)
-              navigation.navigate('homeMain')
-            }else{
               setCount(0)
               navigation.navigate('topincs',{indexModule})
-            }
           }}>
             <View style={styles.modalButton}>
               <Text style={{fontSize:36, color:'white'}}>
