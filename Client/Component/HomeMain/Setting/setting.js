@@ -4,9 +4,7 @@ import EditProfileData from "./editProfileData";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
 import axios from "axios";
-import { Dimensions } from 'react-native';
 
-const windowHeight = Dimensions.get('window').height;
 
 export default function Setting( { navigation } ) {
 
@@ -179,18 +177,15 @@ export default function Setting( { navigation } ) {
       <View>
         <Text style={styles.title}>Tu Perfil</Text>
 
-          <View style={styles.avatarContainer}>
+        <View style={styles.reloadImage}>
+          <Pressable onPressIn={getUserDataObjectAndSaveItLocally}>
             <Image
-              style={styles.avatar}
-              source={{ uri: selectedAvatar }}
+              style={styles.imageEditLogo}
+              source={{ uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1679427955/ASSETTS/383083_refresh_reload_icon_ae9ghe.png' }}
               key={Math.random()}
               onPress={sendAvatarPanel}
             />
-          </View>
-          <Pressable onPress={() => sendAvatarPanel()}>
-            <Image style={styles.imageEditLogo} source={{ uri: editImage }} />
           </Pressable>
-
         </View>
 
         <View style={styles.avatarContainer}>
@@ -218,71 +213,52 @@ export default function Setting( { navigation } ) {
               source={{ uri: editImage }}
             />
 
-          <Pressable onPress={() => sendEditLastNamePanel()}>
-            <View style={styles.informationContainer}>
-              <Text style={styles.text}>Apellido</Text>
-              <Text style={styles.textForUserData}>
-                {userLastname ? userLastname : "..."}
-              </Text>
-              <Image
-                style={styles.imageEditLogoForTheRightSide}
-                source={{ uri: editImage }}
-              />
-            </View>
-          </Pressable>
+          </View>
+        </Pressable>
 
-          <Pressable onPress={() => sendEditAgePanel()}>
-            <View style={styles.informationContainer}>
-              <Text style={styles.text}>Edad</Text>
-              <Text style={styles.textForUserData}>
-                {userAge ? userAge : "..."}
-              </Text>
-              <Image
-                style={styles.imageEditLogoForTheRightSide}
-                source={{ uri: editImage }}
-              />
-            </View>
-          </Pressable>
+        <Pressable onPress={() => sendEditLastNamePanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Apellido</Text>
+            <Text style={styles.textForUserData}>{userLastname ? userLastname : '...'}</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
 
-          <Pressable onPress={() => sendEditGenderPanel()}>
-            <View style={styles.informationContainer}>
-              <Text style={styles.text}>Género</Text>
-              <Text style={styles.textForUserData}>
-                {userGender ? userGender : "..."}
-              </Text>
-              <Image
-                style={styles.imageEditLogoForTheRightSide}
-                source={{ uri: editImage }}
-              />
-            </View>
-          </Pressable>
+        <Pressable onPress={() => sendEditAgePanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Edad</Text>
+            <Text style={styles.textForUserData}>{userAge ? userAge : '...'}</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
 
-          <Pressable onPress={() => sendEditDepartmentPanel()}>
-            <View style={styles.informationContainer}>
-              <Text style={styles.text}>Departamento</Text>
-              <Text style={styles.textForUserData}>
-                {userDepartment ? userDepartment : "..."}
-              </Text>
-              <Image
-                style={styles.imageEditLogoForTheRightSide}
-                source={{ uri: editImage }}
-              />
-            </View>
-          </Pressable>
+        <Pressable onPress={() => sendEditGenderPanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Género</Text>
+            <Text style={styles.textForUserData}>{userGender ? userGender : '...'}</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
 
-          <Pressable onPress={() => setShowEditPanel()}>
-            <View style={styles.informationContainer}>
-              <Text style={styles.notWorkingYet}>Correo</Text>
-              <Text style={styles.textForUserData}>
-                {" "}
-                {userEmail ? userEmail : "..."}
-              </Text>
-              <Image
-                style={styles.imageEditLogoForTheRightSide}
-                source={{ uri: editImage }}
-              />
-            </View>
-          </Pressable>
+        <Pressable onPress={() => sendEditDepartmentPanel()}>
+          <View style={styles.informationContainer}>
+            <Text style={styles.text}>Departamento</Text>
+            <Text style={styles.textForUserData}>{userDepartment ? userDepartment : '...'}</Text>
+            <Image
+              style={styles.imageEditLogoForTheRightSide}
+              source={{ uri: editImage }}
+            />
+          </View>
+        </Pressable>
 
         <Pressable onPress={() => setShowEditPanel()}>
           <View style={styles.informationContainer}>
@@ -337,7 +313,7 @@ const styles = StyleSheet.create( {
     borderLeftColor: '#f29100',
     borderRightWidth: 5,
     borderRightColor: '#662483',
-    minHeight: windowHeight,
+    /*     minHeight: '100%', */
   },
   title: {
     flex: 0,
@@ -420,28 +396,5 @@ const styles = StyleSheet.create( {
     position: "absolute",
     marginLeft: 320,
     marginTop: 30,
-  },
-  button: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 80,
-    borderWidth: 2,
-    borderColor: '#662483',
-    borderRadius: 18,
-    elevation: 3,
-    backgroundColor: "#662483",
-    marginTop: 20,
-    marginHorizontal: 50,
-  },
-  textButton: {
-    flex: 0,
-    justifyContent: 'center',
-    textAlign: 'center',
-    fontFamily: 'text',
-    fontSize: 20,
-    lineHeight: 30,
-    letterSpacing: 2,
-    color: "white",
-  },
+  }
 } );
