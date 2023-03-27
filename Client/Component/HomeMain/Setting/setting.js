@@ -173,7 +173,6 @@ export default function Setting( { navigation } ) {
 
 
   return (
-    <ScrollView>
     <View style={styles.mainContainer}>
       <View>
         <Text style={styles.title}>Tu Perfil</Text>
@@ -306,7 +305,6 @@ export default function Setting( { navigation } ) {
 
       </View>
     </View>
-    </ScrollView>
 
   );
 }
