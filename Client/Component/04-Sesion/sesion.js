@@ -14,8 +14,8 @@ import axios from "axios";
 import { styles } from "./styles";
 
 export default function Sesion({ navigation }) {
-  const [email, setEmail] = useState("jorge@gmail.com"); //jorge@gmail.com
-  const [password, setPassword] = useState("12345");
+  const [ email, setEmail ] = useState( "" ); //"jorge@gmail.com" es la cuenta que usamos para probar usuarios, la contrase;a es "12345"
+  const [ password, setPassword ] = useState( "" );
 
   const [isAdultState, setIsAdultState] = useState(undefined);
 
@@ -107,7 +107,7 @@ export default function Sesion({ navigation }) {
 
   return (
       <View style={styles.container}>
-        <Text style={styles.title}> INICIAR SESION</Text>
+      <Text style={styles.title}>INICIAR SESION</Text>
         <Text style={styles.label}>Correo</Text>
         <TextInput
           style={styles.input}
