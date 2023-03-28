@@ -141,7 +141,7 @@ export default function Navigation() {
           />
           <stack.Screen name="introduction" component={Introduction}
             options={{
-              title: "¿Quien eres?",
+              title: "​",
               headerTintColor: "white",
               headerTitleStyle: {
                 fontFamily: "logo",
