@@ -12,6 +12,7 @@ export const styles = StyleSheet.create({
   },
   title:
   {
+    marginTop: 20,
     textAlign:'center',
     fontSize: 36,
     fontFamily: 'logo',

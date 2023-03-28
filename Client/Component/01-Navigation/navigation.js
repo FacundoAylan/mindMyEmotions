@@ -38,7 +38,7 @@ const windowHeight = Dimensions.get('window').height;
 export default function Navigation() {
   const stack = createNativeStackNavigator();
   return (
-    <View style={{ height: windowHeight , marginTop:28 }}>
+    <View style={{ height: windowHeight, marginTop: 0 }}>
       <NavigationContainer theme={MyTheme}>
         <stack.Navigator
           screenOptions={{
@@ -141,7 +141,7 @@ export default function Navigation() {
           />
           <stack.Screen name="introduction" component={Introduction}
             options={{
-              title: "¿Quien eres?",
+              title: "​",
               headerTintColor: "white",
               headerTitleStyle: {
                 fontFamily: "logo",

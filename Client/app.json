@@ -1,7 +1,8 @@
 {
   "expo": {
-    "name": "mindMyEmotions",
-    "slug": "mindMyEmotions",
+    "name": "mme",
+    "slug": "mme",
+    "plugins": ["@react-native-google-signin/google-signin"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -19,13 +20,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIndentifier": "com.mindMyEmotions.mindMyEmotions",
+      "bundleIndentifier": "com.mme.mme",
       "config": {
         "usesNonExemptEncryption": false
       }
     },
     "android": {
-      "package": "com.mindMyEmotions.mindMyEmotions",
+      "googleServicesFile": "./google-services.json",
+      "package": "com.mme.mme",
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
@@ -36,8 +38,9 @@
     },
     "extra": {
       "eas": {
-        "projectId": "e35ca37f-2dfc-49d6-a797-7f9275b8e362"
+        "projectId": "53a0fb8b-b523-4791-bdd4-e6b28c367654"
       }
-    }
+    },
+    "owner": "emociones"
   }
 }

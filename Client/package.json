@@ -1,5 +1,5 @@
 {
-  "name": "mindmyemotions",
+  "name": "mme",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -12,6 +12,9 @@
     "@expo/vector-icons": "^13.0.0",
     "@react-native-async-storage/async-storage": "^1.17.11",
     "@react-native-community/masked-view": "^0.1.11",
+    "@react-native-firebase/app": "^17.4.0",
+    "@react-native-firebase/auth": "^17.4.0",
+    "@react-native-google-signin/google-signin": "^9.0.2",
     "@react-navigation/bottom-tabs": "^6.5.7",
     "@react-navigation/native": "^6.1.6",
     "@react-navigation/native-stack": "^6.9.12",

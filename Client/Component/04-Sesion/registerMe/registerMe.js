@@ -8,19 +8,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as SecureStore from "expo-secure-store";
 import { styles } from "./styles";
 
-// {
-//  name: "Facundo", mas de 3 caracteres y menos que 16
-// lastName: "Aylan", mas de 3 caracteres y menos que 16
-// email: "",
-// password: "Testing193!", mayuscula,letras,numero y simbolo
-// age: "",
-// gender: "",
-// city: "",
-// });
-
 export default function Register({ navigation }) {
-  const [isAdultState, setIsAdultState] = useState(undefined);
-  //const [ userCreated, setUserCreated ] = useState( undefined )
+  const [ isAdultState, setIsAdultState ] = useState( undefined );
 
   const data = Data;
   const [form, setform] = useState({
@@ -34,11 +23,11 @@ export default function Register({ navigation }) {
   });
 
   const expresiones = {
-    name: /^[a-zA-Z ]{3,16}$/,
-    lastName: /^[a-zA-Z ]{3,16}$/,
-    age: /^[0-9]{1,3}$/,
-    email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
-    password: /.{7,16}/,
+    name: /^[a-zA-Z ]{3,16}$/, //Validates a name with only alphabetic characters and spaces, between 3 and 16 characters.
+    lastName: /^[a-zA-Z ]{3,16}$/, //Validates a last name with only alphabetic characters and spaces, between 3 and 16 characters.
+    age: /^[0-9]{1,3}$/, //Validates an age with only numeric characters, between 1 and 3 characters.
+    email: /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, //Validates an email address.
+    password: /.{7,16}/, //Validates a password with a length between 7 and 16 characters.
   };
 
   async function getProfileSwitchValue() {
@@ -97,7 +86,13 @@ export default function Register({ navigation }) {
 
   const postObjectToCreateNewUser = async () => {
     try {
-      axios.post("https://mind-my-emotions.vercel.app/Registro/", form);
+      let postNewUser = axios.post( "https://mind-my-emotions.vercel.app/Registro/", form )
+
+      if ( postNewUser?.data?.Mensaje === "Se registro correctamente" ) {
+        Alert.alert( 'Te registraste correctamente.' )
+      }
+
+      console.log( 'Resultado del post de nuevo usuario  ' + postNewUser.data );  
     } catch (error) {
       console.log("Error in postObjectToCreateNewUser  " + error);
     }
@@ -146,7 +141,6 @@ export default function Register({ navigation }) {
 
   const getUserDataObjectAndSaveItLocally = async () => {
     try {
-      // Aquí haces la petición y esperas a que se resuelva
       axios
         .get(
           `https://mind-my-emotions.vercel.app/Devolver_todo/?Mail=${form.Mail}`
@@ -155,9 +149,9 @@ export default function Register({ navigation }) {
           // Aquí guardas los datos localmente y los muestras por consola
           const jsonValue = JSON.stringify(res.data);
           await AsyncStorage.setItem("myObject", jsonValue);
-          //console.log( 'LOS DATOS DEL USUARIO EN LA DB SON:' + jsonValue )
+          console.log( 'LOS DATOS DEL USUARIO EN LA DB SON:' + jsonValue )
         });
-      console.log(2);
+      //console.log(2);
     } catch (error) {
       // Aquí manejas el error que pueda ocurrir en la petición o en el guardado de datos
       console.error("the error when getting the user data is ==>  " + error);
