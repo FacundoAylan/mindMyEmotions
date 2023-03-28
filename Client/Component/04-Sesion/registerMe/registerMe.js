@@ -166,10 +166,11 @@ export default function Register({ navigation }) {
   };
 
   return (
-    <KeyboardAvoidingView style={styles.mainContainer} behavior="position">
+  return (
+    <KeyboardAvoidingView style={styles.mainContainer} behavior="padding">
         <ScrollView>
       <View style={styles.container}>
-          <KeyboardAvoidingScrollView>
+
             <Text style={styles.text}>Nombre</Text>
             <TextInput
               placeholder="Nombre (Ej. Laura)"
@@ -237,7 +238,6 @@ export default function Register({ navigation }) {
             <TouchableOpacity style={styles.button} onPress={() => validate()}>
               <Text style={styles.textButton}>Registrarse</Text>
             </TouchableOpacity>
-          </KeyboardAvoidingScrollView>
       </View>
         </ScrollView>
       </KeyboardAvoidingView>
