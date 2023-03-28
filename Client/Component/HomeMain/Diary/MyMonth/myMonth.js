@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Image, StyleSheet, View, Text, Dimensions, Pressable, TextInput, ScrollView, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, View, Text, Dimensions, Pressable, TextInput, ScrollView, TouchableOpacity, KeyboardAvoidingView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const windowHeight = Dimensions.get( 'window' ).height;
@@ -47,6 +47,7 @@ export default function MyMonth() {
     }, [] );
 
     return (
+      <KeyboardAvoidingView style={styles.mainContainer} behavior="padding">
         <ScrollView>
         <View style={styles.container}>
                 <Image
@@ -74,10 +75,14 @@ export default function MyMonth() {
                 />
         </View>
         </ScrollView>
+      </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create( {
+  mainContainer: {
+    height: windowHeight * 0.87,
+  },
     container: {
         height: windowHeight * 0.87,
         position: "relative",
