@@ -166,7 +166,6 @@ export default function Register({ navigation }) {
   };
 
   return (
-  return (
     <KeyboardAvoidingView style={styles.mainContainer} behavior="padding">
         <ScrollView>
       <View style={styles.container}>
