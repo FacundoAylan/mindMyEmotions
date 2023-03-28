@@ -8,7 +8,7 @@ export const styles = StyleSheet.create( {
     borderRightColor: '#662483',
   },
   container:{
-    paddingBottom:100
+    paddingBottom:200
   },
   input: {
     fontFamily: 'title',
