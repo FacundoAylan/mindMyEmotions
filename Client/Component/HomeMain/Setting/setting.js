@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert, ScrollView, Dimensions } from "react-native";
+import { StyleSheet, Text, TextInput, View, Image, Button, TouchableOpacity, Pressable, Alert, Dimensions } from "react-native";
 import EditProfileData from "./editProfileData";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as SecureStore from 'expo-secure-store';
 import axios from "axios";
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import { ScrollView } from "react-native-gesture-handler";
 
 const windowHeight = Dimensions.get( 'window' ).height;
 
@@ -17,6 +20,8 @@ export default function Setting( { navigation } ) {
   const [ userEmail, setUserEmail ] = useState( '' )
   const [ userActivities, setUserActivities ] = useState( '' )
 
+  const [ userAsyncStorageData, setUserAsyncStorageData ] = useState( '' )
+
 
   const [ showEditPanel, setShowEditPanel ] = useState( false )
   const [ selectedPanel, setSelectedPanel ] = useState( false )
@@ -29,7 +34,7 @@ export default function Setting( { navigation } ) {
   useEffect( () => {
     setTimeout( () => {
       getUserDataFromAsyncStorage()
-    }, 2500 );
+    }, 1000 );
   }, [] )
 
 
@@ -93,10 +98,17 @@ export default function Setting( { navigation } ) {
       setShowEditPanel( true )
     } */
 
-  const getUserDataObjectAndSaveItLocally = async () => {
+  const getUserDataFromDbOrFromAsyncStorage = async () => {
     try {
+      //si no hay datos de db, o están desactualizados, los actualiza
       if ( userEmail !== '...' ) {
         axios.get( `https://mind-my-emotions.vercel.app/Devolver_todo/?Mail=${userEmail}` ).then( async ( res ) => {
+
+          if ( res.data.Mensaje === 'Usuario no existe' ) {
+            Alert.alert( 'Tu usuario no existe, sal de la app y vuelve a entrar.' )
+            return
+          }
+
           // Aquí guardas los datos localmente y los muestras por consola
           const jsonValue = JSON.stringify( res.data );
           await AsyncStorage.setItem( 'myObject', jsonValue );
@@ -106,6 +118,12 @@ export default function Setting( { navigation } ) {
           }, 1000 );
         } )
       }
+
+      //si no ha cargado el usuario de asyncstorage, lo carga
+      if ( userEmail === '...' ) {
+        getUserDataFromAsyncStorage()
+      }
+
       // Aquí haces la petición y esperas a que se resuelva   
     } catch ( error ) {
       // Aquí manejas el error que pueda ocurrir en la petición o en el guardado de datos
@@ -118,17 +136,24 @@ export default function Setting( { navigation } ) {
   let getUserDataFromAsyncStorage = async () => {
     try {
       let retrievedJson = await AsyncStorage.getItem( 'myObject' );
-      setUserActivities( retrievedJson )
-      console.log( 'Request local user data   ' + retrievedJson );
-      let jsonToObject = JSON.parse( retrievedJson )
-      setUserName( jsonToObject?.Mensaje?.Datos_registro.Nombre_de_usuario )
-      setUserLastname( jsonToObject?.Mensaje?.Datos_registro.Apellido_de_usuario )
-      setUserAge( jsonToObject?.Mensaje?.Datos_registro.Edad )
-      setUserGender( jsonToObject?.Mensaje?.Datos_registro.Genero )
-      setUserDepartment( jsonToObject?.Mensaje?.Datos_registro.Departamento )
-      setUserEmail( jsonToObject?.Mensaje?.Datos_registro.Mail )
-      //console.log( jsonToObject.Mensaje.Datos_registro );
+      if ( retrievedJson.Mensaje !== 'Usuario no existe' || retrievedJson.Mensaje !== null ) {
+        setUserAsyncStorageData( retrievedJson )
+      } else {
+        getUserDataFromDbOrFromAsyncStorage()
+      }
 
+      setTimeout( () => {
+        setUserActivities( retrievedJson )
+        console.log( 'The requested local user data from asyncStorage is   ' + retrievedJson );
+        let jsonToObject = JSON.parse( retrievedJson )
+        setUserName( jsonToObject?.Mensaje?.Datos_registro?.Nombre_de_usuario )
+        setUserLastname( jsonToObject?.Mensaje?.Datos_registro?.Apellido_de_usuario )
+        setUserAge( jsonToObject?.Mensaje?.Datos_registro?.Edad )
+        setUserGender( jsonToObject?.Mensaje?.Datos_registro?.Genero )
+        setUserDepartment( jsonToObject?.Mensaje?.Datos_registro?.Departamento )
+        setUserEmail( jsonToObject?.Mensaje?.Datos_registro?.Mail )
+        //console.log( jsonToObject.Mensaje.Datos_registro );
+      }, 1000 );
 
     } catch ( error ) {
       console.log( error );
@@ -137,25 +162,41 @@ export default function Setting( { navigation } ) {
 
 
   //Removes this key from async storage, so the user has to log in again from the sesion screen. The user is navigated to the sesion.
+  //I dont know if the changes of the login and logout with google can be tested on a normal server... I had to create an apk
   let logOutUser = async () => {
     try {
       //await AsyncStorage.removeItem( 'IS_LOGGED_IN' );
       await AsyncStorage.clear();
+      console.log( 'user logged out from normal email and password account' )
+      //Google sing out function
+      const signOut = async () => {
+        try {
+          await GoogleSignin.revokeAccess()
+          await auth().signOut()
+          console.log( 'user logged out from google' )
 
-      await SecureStore.deleteItemAsync( 'IS_ADULT' )
-        .then( () => {
-          console.log( 'Value deleted successfully!' );
-        } )
-        .catch( error => {
-          console.log( 'Failed to delete value:', error );
-        } );
+          await SecureStore.deleteItemAsync( 'IS_ADULT' )
+            .then( () => {
+              console.log( 'Value IS_ADULT deleted successfully!' );
+            } )
+            .catch( error => {
+              console.log( 'Failed to delete value IS_ADULT:', error );
+            } );
+
+        } catch ( error ) {
+          console.log( error );
+        }
+      }
+
+      await signOut()
 
     } catch ( error ) {
       console.log( error );
     }
     navigation.navigate( 'login' )
-    console.log( 'user signed out' );
+    console.log( 'User signed out' );
   }
+
 
   //console.log( userEmail );
 
@@ -177,7 +218,15 @@ export default function Setting( { navigation } ) {
       <View>
         <Text style={styles.title}>Tu Perfil</Text>
 
-        <View style={styles.reloadImage}>
+
+        {<TouchableOpacity
+          style={styles.reloadUserButton}
+          onPress={getUserDataFromDbOrFromAsyncStorage}
+        >
+          <Text style={styles.textReloadButton}>Recarga tu información</Text>
+        </TouchableOpacity>}
+
+        {/*  <View style={styles.reloadImage}>
           <Pressable onPressIn={getUserDataObjectAndSaveItLocally}>
             <Image
               style={styles.imageEditLogo}
@@ -186,7 +235,7 @@ export default function Setting( { navigation } ) {
               onPress={sendAvatarPanel}
             />
           </Pressable>
-        </View>
+        </View> */}
 
         <View style={styles.avatarContainer}>
           <Image
@@ -300,7 +349,7 @@ export default function Setting( { navigation } ) {
           style={styles.button}
           onPress={() => logOutUser()}
         >
-          <Text style={styles.textButton}>LogOut</Text>
+          <Text style={styles.textButton}>Salir de mi cuenta</Text>
         </TouchableOpacity>
 
       </View>
@@ -414,9 +463,27 @@ const styles = StyleSheet.create( {
   },
   textButton: {
     fontFamily:'text',
-    fontSize: 25,
+    fontSize: 17,
     lineHeight: 23,
     letterSpacing: 2,
     color: 'white',
   },
+  reloadUserButton: {
+    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    maxWidth: 100,
+    marginLeft: 280,
+    borderRadius: 18,
+    elevation: 3,
+    backgroundColor: 'white',
+    marginTop: windowHeight * 0.035,
+  },
+  textReloadButton: {
+    fontSize: 8,
+    fontFamily: 'text',
+  }
+
 } );

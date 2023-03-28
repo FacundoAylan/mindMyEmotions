@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
 import {
   Text,
   TextInput,
   TouchableOpacity,
   View,
+  Button,
+  Alert
 } from "react-native";
 import { validateEmail } from "../../Helpers/authenticationFunctions";
 import { validatePassword } from "../../Helpers/authenticationFunctions";
@@ -11,14 +13,19 @@ import { validateUserAuthentication } from "../../Helpers/authenticationFunction
 import * as SecureStore from "expo-secure-store";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
+import auth from '@react-native-firebase/auth';
+import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { styles } from "./styles";
 
 export default function Sesion({ navigation }) {
   const [ email, setEmail ] = useState( "" ); //"jorge@gmail.com" es la cuenta que usamos para probar usuarios, la contrase;a es "12345"
   const [ password, setPassword ] = useState( "" );
-
   const [isAdultState, setIsAdultState] = useState(undefined);
 
+  const [ initializing, setInitializing ] = useState( true );
+  const [ user, setUser ] = useState();
+
+  //////////////////NORMAL LOGIN//////////////////////// 
   //Saves the user profile to be shown, if its not an adult, its a kid so the homemain should be shown
   async function getProfileSwitchValue() {
     try {
@@ -104,6 +111,113 @@ export default function Sesion({ navigation }) {
       alert("Tu email parece estar mal.");
     }
   };
+  //////////////////NORMAL LOGIN////////////////////////
+
+  //////////////////GOOGLE LOGIN///////////////////////
+
+  //La autenticación con google persiste aunque se cierre la app, entonces si el usuario entra a la pantalla de login, pero ya esta logueado con google, va a pasar directamente a la pantalla homemain si es niño o importance si es adulto. 
+  if ( user ) {
+    //1. request to see if a firebase object with that email already exists
+    try {
+      response = axios.post( `https://mind-my-emotions.vercel.app/Registro/google?Mail=${email}` )
+        .then( async ( res ) => {
+          if ( res.status ) {
+            return res.data?.Mensaje
+          } else {
+            console.log( 'Request failed with status code:', res.status );
+            Alert.alert( 'No se puedo relacionar con una base de datos al usuario de google.' )
+          }
+        } )
+        .catch( ( error ) => {
+          console.error( 'the error when querying or creating the google user on firebase was ==>  ' + error );
+        } );
+    } catch ( error ) {
+      console.log( error );
+    }
+
+    getGoogleUserDataAndSaveItLocally()
+
+    //Cheks if the user is an adult or not and navigates accordingly
+    if ( isAdultState === 'yes' ) {
+      navigation.navigate( 'importance' )
+    }
+    else {
+      navigation.navigate( 'homeMain' )
+    }
+  }
+  //////////////////////////////////////GOOGLE THINGS/////////////////////////////////////////////////////////////
+  GoogleSignin.configure( {
+    webClientId: '673592098328-gne0jogeq4fcjn12443d2mh0o41femm2.apps.googleusercontent.com',
+  } );
+
+
+  // Handle user state changes
+  function onAuthStateChanged( user ) {
+    setUser( user );
+    if ( initializing ) setInitializing( false );
+    //console.log( 2 );
+  }
+
+  useEffect( () => {
+    const subscriber = auth().onAuthStateChanged( onAuthStateChanged );
+    //console.log( 1 );
+    return subscriber; // unsubscribe on unmount
+  }, [] );
+
+
+  const onGoogleButtonPress = async () => {
+    // Check if your device supports Google Play
+    try {
+      await GoogleSignin.hasPlayServices( { showPlayServicesUpdateDialog: true } );
+      //console.log( 3 );
+      // Get the users ID token
+      const { idToken } = await GoogleSignin.signIn();
+      //console.log( 4 );
+      // Create a Google credential with the token
+      const googleCredential = auth.GoogleAuthProvider.credential( idToken );
+      //console.log( 5 );
+      // Sign-in the user with the credential
+      //return auth().signInWithCredential( googleCredential );
+      const userSignedIn = await auth().signInWithCredential( googleCredential )
+      setEmail( userSignedIn.user.email )
+      console.log( userSignedIn.user.email );
+
+
+
+      /* userSignedIn.then( user => {
+        console.log( user );
+      } ).catch( error => {
+        console.log( error );
+        console.log( 69 + 'eeeerrrrooooor' );
+      } )  */
+    } catch ( error ) {
+      console.log( error );
+    }
+  }
+
+  if ( initializing ) return null;
+
+  //Trae el objeto del usuario de google y lo guarda en async storage
+  async function getGoogleUserDataAndSaveItLocally() {
+    axios.get( `https://mind-my-emotions.vercel.app/Devolver_todo/?Mail=${email ? email : user.Mail}` )
+      .then( async ( res ) => {
+        if ( res.data.Mensaje !== 'Usuario no existe' ) {
+          const jsonValue = JSON.stringify( res.data );
+          await AsyncStorage.setItem( 'myObject', jsonValue );
+        }
+        if ( res.data.Mensaje === 'Usuario no existe' ) {
+          console.log( 'Usuario no existe en la db' );
+        }
+      } )
+      .catch( ( error ) => {
+        console.error( 'the error when getting the GOOGLE user data is ==>  ' + error );
+      } );
+
+    console.log( 'Google user information was saved on asyncStorage' );
+  }
+
+
+  //////////////////GOOGLE LOGIN///////////////////////
 
   return (
       <View style={styles.container}>
@@ -136,6 +250,14 @@ export default function Sesion({ navigation }) {
         >
           <Text style={styles.text}>Registrarme</Text>
         </TouchableOpacity>
+
+      {user ?
+        <View>
+          <Text style={{ marginTop: 20, marginHorizontal: 20, marginLeft: 20 }}> Estas logueado/a con tu cuenta de Google como {user?.displayName} </Text>
+          {/* <Button title='logout' onPress={signOut} >LOG OUT</Button> */}
+        </View>
+        : <GoogleSigninButton style={{ alignSelf: 'center', marginTop: 40 }} onPress={onGoogleButtonPress} />}
+
       </View>
   );
 }

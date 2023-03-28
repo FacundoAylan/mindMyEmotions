@@ -16,7 +16,7 @@ export default function HomeMain ({ navigation }) {
   const createAllTextInputsOnAsyncStorage = async () => {
     let diaryKeysExist = await AsyncStorage.getItem( 'DIARY_KEYS_CREATED' );
     if ( diaryKeysExist === 'true' ) {
-      console.log( 'Diary keys are already created.' );
+      //console.log( 'Diary keys are already created.' );
       return
     }
     try {

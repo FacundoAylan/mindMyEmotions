@@ -7,7 +7,7 @@ const windowWidth = Dimensions.get( 'window' ).width;
 export default function Diary( { navigation } ) {
 
   const navigateToDiary = () => {
-    console.log( 'clicked' );
+    //console.log( 'clicked' );
     navigation.navigate( "introduction" )
   }
 

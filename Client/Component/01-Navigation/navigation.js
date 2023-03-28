@@ -38,7 +38,7 @@ const windowHeight = Dimensions.get('window').height;
 export default function Navigation() {
   const stack = createNativeStackNavigator();
   return (
-    <View style={{ height: windowHeight , marginTop:28 }}>
+    <View style={{ height: windowHeight, marginTop: 0 }}>
       <NavigationContainer theme={MyTheme}>
         <stack.Navigator
           screenOptions={{

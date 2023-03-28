@@ -24,7 +24,7 @@ export default function Modules ({navigation}) {
           style={styles.button}
           onPress={handleShowInstructions}
         >
-          <Text style={styles.textButton}> {showInstructions === false ? 'Instrucciones' : 'Modulos'}</Text>
+          <Text style={styles.textButton}> {showInstructions === false ? 'Instrucciones' : 'Módulos'}</Text>
         </TouchableOpacity>
 
         {showInstructions === false &&

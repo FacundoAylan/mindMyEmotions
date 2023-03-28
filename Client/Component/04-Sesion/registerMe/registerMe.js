@@ -86,7 +86,13 @@ export default function Register({ navigation }) {
 
   const postObjectToCreateNewUser = async () => {
     try {
-      axios.post("https://mind-my-emotions.vercel.app/Registro/", form);
+      let postNewUser = axios.post( "https://mind-my-emotions.vercel.app/Registro/", form )
+
+      if ( postNewUser?.data?.Mensaje === "Se registro correctamente" ) {
+        Alert.alert( 'Te registraste correctamente.' )
+      }
+
+      console.log( 'Resultado del post de nuevo usuario  ' + postNewUser.data );  
     } catch (error) {
       console.log("Error in postObjectToCreateNewUser  " + error);
     }
@@ -143,9 +149,9 @@ export default function Register({ navigation }) {
           // Aquí guardas los datos localmente y los muestras por consola
           const jsonValue = JSON.stringify(res.data);
           await AsyncStorage.setItem("myObject", jsonValue);
-          //console.log( 'LOS DATOS DEL USUARIO EN LA DB SON:' + jsonValue )
+          console.log( 'LOS DATOS DEL USUARIO EN LA DB SON:' + jsonValue )
         });
-      console.log(2);
+      //console.log(2);
     } catch (error) {
       // Aquí manejas el error que pueda ocurrir en la petición o en el guardado de datos
       console.error("the error when getting the user data is ==>  " + error);
