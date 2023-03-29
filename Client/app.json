@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "mme",
+    "name": "MindMyEmotions",
     "slug": "mme",
     "plugins": ["@react-native-google-signin/google-signin"],
     "version": "1.0.0",

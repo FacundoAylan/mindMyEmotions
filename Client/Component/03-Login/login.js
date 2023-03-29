@@ -4,6 +4,10 @@ import { Text, View, TouchableOpacity} from "react-native";
 import * as SecureStore from "expo-secure-store";
 import { styles } from "./styles";
 
+
+//Al elegir si es nino o adulto se guarda una flag en securestorage, con esa flag se va a saber si se va a navegar hacia la importancia de la app, que es lo que le queremos mostrar a los adultos, o si se navega a la home, que es donde los ninos van a pasar el tiempo. 
+
+
 export default function Login({ navigation }) {
   const [first, setfirst] = useState("aaaaaaaaaa");
 
