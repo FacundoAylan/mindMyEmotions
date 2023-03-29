@@ -69,7 +69,8 @@ def validar_Apellido_o_Nombre(Nombre_de_usuario_user: str, dato_persona):
     #inicia la variable mensaje 
     mensaje=""
     #si hay caracteres que no sean letras
-    if not(Nombre_de_usuario_user.isalpha()):
+    Nombre_de_usuario_user_sin_espacios=Nombre_de_usuario_user.replace(" ","")
+    if not(Nombre_de_usuario_user_sin_espacios.isalpha()):
         #el mensaje es Apellido invalido o Nombre invalido
         mensaje=mensaje_error(dato_persona)
         
