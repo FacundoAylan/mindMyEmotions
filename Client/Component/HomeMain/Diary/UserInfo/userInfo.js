@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Image, StyleSheet, View, Dimensions, TextInput, Text, ScrollViewBase, ScrollView, TouchableOpacity } from "react-native";
+import { Image, StyleSheet, View, Dimensions, TextInput, Text, ScrollViewBase, ScrollView, TouchableOpacity, KeyboardAvoidingView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -102,54 +102,58 @@ export default function UserInfo( { navigation } ) {
 
 
   return (
+    <KeyboardAvoidingView style={styles.mainContainer} behavior="padding">
+      <ScrollView>
+        <View style={styles.container}>
+          <Image
+            style={styles.image}
+            source={{
+              uri: "https://res.cloudinary.com/dafvcjkfo/image/upload/q_100/v1679262554/Documento_A4_formas_curvas_Hoja_de_papel_formas_abstractas_multicolor_plcg3l.png",
+            }}
+          />
+          <Text style={styles.Name}>Mi nombre es:</Text>
+          <TextInput
+            style={styles.inputName}
+            maxLength={10}
+            value={newNameText}
+            onChangeText={handleNameChange}
+          />
+          <Text style={styles.Age}>Mi edad es:</Text>
+          <TextInput
+            style={styles.inputAge}
+            keyboardType="numeric"
+            maxLength={2}
+            value={newAgeText}
+            onChangeText={handleAgeChange}
+          />
+          <Text style={styles.Text}>Lo que más me hace feliz es:</Text>
+          <TextInput
+            style={styles.inputText}
+            multiline={true} // Permitir varias líneas
+            numberOfLines={4} // Mostrar hasta cuatro líneas
+            value={newText}
+            onChangeText={handleHappinessChange}
+          />
+          <Image
+            style={styles.imageMind}
+            source={{
+              uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_fit,g_center,w_1188,x_0/v1679012928/MME%20logos/Mind_My_Emotions_znokgz.png",
+            }}
+          />
 
-    <ScrollView>
-      <View style={styles.container}>
-        <Image
-          style={styles.image}
-          source={{
-            uri: "https://res.cloudinary.com/dafvcjkfo/image/upload/q_100/v1679262554/Documento_A4_formas_curvas_Hoja_de_papel_formas_abstractas_multicolor_plcg3l.png",
-          }}
-        />
-        <Text style={styles.Name}>Mi nombre es:</Text>
-        <TextInput
-          style={styles.inputName}
-          maxLength={10}
-          value={newNameText}
-          onChangeText={handleNameChange}
-        />
-        <Text style={styles.Age}>Mi edad es:</Text>
-        <TextInput
-          style={styles.inputAge}
-          keyboardType="numeric"
-          maxLength={2}
-          value={newAgeText}
-          onChangeText={handleAgeChange}
-        />
-        <Text style={styles.Text}>Lo que más me hace feliz es:</Text>
-        <TextInput
-          style={styles.inputText}
-          multiline={true} // Permitir varias líneas
-          numberOfLines={4} // Mostrar hasta cuatro líneas
-          value={newText}
-          onChangeText={handleHappinessChange}
-        />
-        <Image
-          style={styles.imageMind}
-          source={{
-            uri: "https://res.cloudinary.com/ds7h3huhx/image/upload/c_fit,g_center,w_1188,x_0/v1679012928/MME%20logos/Mind_My_Emotions_znokgz.png",
-          }}
-        />
-
-      </View>
-    </ScrollView>
+        </View>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 const styles = StyleSheet.create( {
-  container: {
+  mainContainer: {
     height: windowHeight * 0.87,
+  },
+  container: {
+    height: windowHeight,
     position: "relative",
-    padding: 0
+    
   },
   Name: {
     position: "absolute",
