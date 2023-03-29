@@ -5,6 +5,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const windowHeight = Dimensions.get( 'window' ).height;
 const windowWidth = Dimensions.get( 'window' ).width;
 
+
+
+//Estos son todos los inputs de que guardan cosas en async storage para ser mostradas en el diario.
+//Todo lo del diario se actualiza de forma similar, es la mejor forma que encontre para que que se guarden bien las cosas y se rerenderice el componente solo cuando se obtenga el texto desde asyncstorage... Con useEffects y changed flags como estos se puede confiar en que la app no va a romper facilmente como si pasa con los settimeouts (como en el perfil... eso toca cambiarlo por una implementacion similar a la de estos componentes del diario)
+
 export default function DiaryApp() {
 
     const [ date1, setDate1 ] = useState( '' );

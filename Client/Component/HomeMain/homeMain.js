@@ -9,6 +9,8 @@ import { Image, StyleSheet } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
+// Aqui esta la navegacion de la home y al llegar aqui se crean las variables de asynstorage que se crean para almacenar los datos del diario
+
 export default function HomeMain ({ navigation }) {
   const Tab = createBottomTabNavigator();
 

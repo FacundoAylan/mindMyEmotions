@@ -2,6 +2,9 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from "react-native";
 
 
+// renderiza texto en cuadritos... Se usa en la importancia y en las instrucciones de la app 
+
+
 export default function TextRenderizer( { title, text } ) {
 
     return (

@@ -10,6 +10,17 @@ import { ScrollView } from "react-native-gesture-handler";
 
 const windowHeight = Dimensions.get( 'window' ).height;
 
+
+//Este componente obtiene los datos del usuario y los renderiza, hay que cambiarlo para que funcione con useEffects en vez de set timeouts al traer los datos... Asi va a funcionar mejor. Porque asyncStorage a veces puede tardar mas tiempo del que se espera en setear o en traer los datos, asi que los settimeouts a veces no funcionan bien
+
+//Aqui se llama al componente editProfileData para que renderice los modales que editan la informacion del usuario.
+
+//No se puede editar correo y contrasena todavia porque no hay politica de seguridad de datos por el momento
+
+//Al salir de la cuenta, se borra todo lo que hay en asyncStorage sea que se haya logueado con google o de otra forma
+
+//Los avatares son renderizados dependiendo de la cantidad de actividades que el usuario ha completado, entre mas actividades esten en true, mas avatares les apareceran.
+
 export default function Setting( { navigation } ) {
 
   const [ userName, setUserName ] = useState( '' )
@@ -105,7 +116,7 @@ export default function Setting( { navigation } ) {
         axios.get( `https://mind-my-emotions.vercel.app/Devolver_todo/?Mail=${userEmail}` ).then( async ( res ) => {
 
           if ( res.data.Mensaje === 'Usuario no existe' ) {
-            Alert.alert( 'Tu usuario no existe, sal de la app y vuelve a entrar.' )
+            Alert.alert( 'Tu usuario no aparece :( recarga tu informacion.' )
             return
           }
 
@@ -226,16 +237,6 @@ export default function Setting( { navigation } ) {
           <Text style={styles.textReloadButton}>Recarga tu información</Text>
         </TouchableOpacity>}
 
-        {/*  <View style={styles.reloadImage}>
-          <Pressable onPressIn={getUserDataObjectAndSaveItLocally}>
-            <Image
-              style={styles.imageEditLogo}
-              source={{ uri: 'https://res.cloudinary.com/ds7h3huhx/image/upload/v1679427955/ASSETTS/383083_refresh_reload_icon_ae9ghe.png' }}
-              key={Math.random()}
-              onPress={sendAvatarPanel}
-            />
-          </Pressable>
-        </View> */}
 
         <View style={styles.avatarContainer}>
           <Image

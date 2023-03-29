@@ -3,7 +3,7 @@ import { StyleSheet, Text, TouchableOpacity, View, Linking, Image } from "react-
 import { SvgUri } from 'react-native-svg';
 
 
-
+//componente que renderiza los links a otras aplicaciones 
 export default function About( { navigation } ) {
 
   return (

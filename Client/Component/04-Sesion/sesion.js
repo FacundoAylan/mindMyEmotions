@@ -17,8 +17,16 @@ import auth from '@react-native-firebase/auth';
 import { GoogleSignin, GoogleSigninButton } from '@react-native-google-signin/google-signin';
 import { styles } from "./styles";
 
+
+//1. Este componente se encarga de loguear al usuario con correo y contrasena normal o con google... Si ya hay alguien logueado, va a navegar automaticamente a la home.
+//2. Guarda algunas variables que despues son usadas para saber si hay un usuario, si esta logueado, si es con google o no...
+//3. Usa securestorage de expo y asyncstorage de react native, el primero es para cosas seguras, porque los encripta, con ese pueden guardar tokens o contrasenas por ejemplo, no muchas cosas, porque es pequeno, y el asyncstorage tiene una capacidad promedio de 6mb de texto, eso parece mucho, pero si almacenan muchas cosas ahi, puede que se llene en el futuro cuando la app tenga mas funcionalidades.
+//4. Para entender lo de google, este video fue paso a paso lo que se hizo aqui https://www.youtube.com/watch?v=d_Vf41Sb0v0
+//5. La mejor forma que vi para probar lo que rompe en el login, registro o login con google es con console.logs y numeros (clg(1), clg(2) y asi por cada linea que ejecuta)... Tambien hay loggers para react native y visualizadores de estado como react devtools y redux-algo para ver los estados de redux. Si encuentran una muy forma facil de ver las lineas en las que fallo el codigo o los estados, me avisan por favor... Es que se sufre mucho al no poder ver que es lo que falla (zeus santiago vargas en linkedin).  
+
+
 export default function Sesion({ navigation }) {
-  const [ email, setEmail ] = useState( "" ); //"jorge@gmail.com" es la cuenta que usamos para probar usuarios, la contrase;a es "12345"
+  const [ email, setEmail ] = useState( "" ); 
   const [ password, setPassword ] = useState( "" );
   const [isAdultState, setIsAdultState] = useState(undefined);
 

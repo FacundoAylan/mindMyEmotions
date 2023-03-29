@@ -6,6 +6,16 @@ import { MES_IMAGES } from '../../../Helpers/constants';
 import { ScrollView, SectionList } from 'react-native';
 import axios from 'axios';
 
+
+    // Este componente recibe funciones que vienen de settings/perfil y las utiliza para editar informacion del usuario en la db de firebase
+
+    //Estas funciones validan la nueva informacion, la renderizan y mandan la petición para cambiarlas en el backend
+    // Aqui hay que anadir validaciones para que no puedan enviar 20000 letras como nombre o cosas asi
+    //Yo intente poner los links en constantes y hacer las peticiones mandandole un objeto datos a axios... Pero no me funciono rapido entonces toca cambiarlo luego. Porque los endpoints deberian tener su propio archivo... 
+    //Por ejemplo, se importa el nuevo endpoint base y se hace esto 
+    // `${https://NUEVO_ENDPOINT_IMPORTADO_DE_OTRO_ARCHIVO.vercel.app/}Perfil/Nombre?Mail=${userEmail}&Nuevo_Nombre=${newName}`
+
+
 export default function EditProfileData( {
     stopShowingEditPanel,
     selectedPanel,
@@ -79,9 +89,7 @@ export default function EditProfileData( {
         return allImages
     }
 
-    //Estas funciones validan el nuevo nombre, lo renderizan y mandan la petición para cambiarlas en el backend
-    //Intente poner los links en constantes y hacer las peticiones mandandole un objeto datos a axios... Pero no me funciono rapido entonces toca cambiarlo luego
-
+    
     let validateAndChangeName = () => {
         renderNewUserName( newName )
         let sendNewNameToTheDb = async () => {
